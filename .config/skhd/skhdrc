@@ -1,0 +1,148 @@
+# run terminal
+# ctrl - return : open -na alacritty # set in hammerspoon instead
+ctrl + shift - return : open -na kitty
+
+# run or focus ~/scripts/run_term_fm
+cmd + ctrl + shift - return : ~/scripts/run_term_fm
+
+# run or focus browser
+# ctrl + alt - f : /Applications/Firefox.app/Contents/MacOS/firefox
+
+# open bookmarks
+# ctrl + shift - b : ~/scripts/launch_browser
+
+# save bookmarks
+cmd + ctrl + shift - b : ~/scripts/save_bookmark
+
+# Open daily note
+cmd + ctrl + shift - d : ~/scripts/dailynote
+
+# Open scratchpad note
+cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Dropbox/Notes-Database -e fish -ic "nvim ~/Dropbox/Notes-Database/Misc\ Notes/Scratchpad.md"
+
+# Open finder script
+ctrl + shift - f : ~/scripts/finder
+
+# open nvim
+# alt - v: kitty nvim -c "cd ~/.config | Alpha"
+alt - v: open -na kitty --args nvim
+# alt + shift - v: open -na alacritty --args -o window.dimensions.columns=100 -o window.dimensions.lines=44 -e fish -ic nvim 
+
+# open terminal and attach to Tmux session
+# alt - t: alacritty --working-directory ~/ -e tmux new-session -A -s W
+alt + shift - t: kitty -d ~/ tmux new-session -A -s W
+
+# focus apps
+alt - j : ~/scripts/focus_app alacritty
+alt - l : ~/scripts/focus_app zathura 1
+alt - i : ~/scripts/focus_app kitty
+
+# run scripts
+ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py
+
+# check and save tasks
+# ctrl + shift - c : ~/scripts/check_later
+ctrl + alt + shift - t : ~/scripts/save_check_later
+
+
+# Yabai
+
+# # focus window
+# alt - h : yabai -m window --focus west
+# alt - j : yabai -m window --focus south
+# alt - k : yabai -m window --focus north
+# alt - l : yabai -m window --focus east
+
+# # swap window
+# shift + alt - h : yabai -m window --swap west
+# shift + alt - j : yabai -m window --swap south
+# shift + alt - k : yabai -m window --swap north
+# shift + alt - l : yabai -m window --swap east
+
+# # move window
+# shift + cmd - h : yabai -m window --warp west
+# shift + cmd - j : yabai -m window --warp south
+# shift + cmd - k : yabai -m window --warp north
+# shift + cmd - l : yabai -m window --warp east
+
+# # Move float window
+# # shift + alt + ctrl - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# # float / unfloat window and center on screen
+
+# alt - t : yabai -m window --toggle float;\
+#           yabai -m window --grid 10:10:1:1:8:8
+# alt - m : yabai -m window --toggle float;\
+#           yabai -m window --grid 6:6:1:1:4:4
+
+# # # move window
+# # shift + ctrl - a : yabai -m window --move rel:-20:0
+# # shift + ctrl - s : yabai -m window --move rel:0:20
+# # shift + ctrl - w : yabai -m window --move rel:0:-20
+# # shift + ctrl - d : yabai -m window --move rel:20:0
+
+# # increase window size
+# shift + alt - a : yabai -m window --resize left:-20:0
+# shift + alt - s : yabai -m window --resize bottom:0:20
+# shift + alt - w : yabai -m window --resize top:0:-20
+# shift + alt - d : yabai -m window --resize right:20:0
+
+# # decrease window size
+# shift + cmd - a : yabai -m window --resize left:20:0
+# shift + cmd - s : yabai -m window --resize bottom:0:-20
+# shift + cmd - w : yabai -m window --resize top:0:20
+# shift + cmd - d : yabai -m window --resize right:-20:0
+
+# # set insertion point in focused container
+# ctrl + alt - h : yabai -m window --insert west
+# ctrl + alt - j : yabai -m window --insert south
+# ctrl + alt - k : yabai -m window --insert north
+# ctrl + alt - l : yabai -m window --insert east
+# ctrl + alt - i : yabai -m window --insert stack
+
+# # rotate tree
+# alt - r : yabai -m space --rotate 90
+
+# # mirror tree y-axis
+# alt - y : yabai -m space --mirror y-axis
+
+# # mirror tree x-axis
+# alt - x : yabai -m space --mirror x-axis
+
+# # toggle desktop offset
+# alt - a : yabai -m space --toggle padding && yabai -m space --toggle gap
+
+# # toggle window parent zoom
+# alt - d : yabai -m window --toggle zoom-parent
+
+# # toggle window fullscreen zoom
+# alt - f : yabai -m window --toggle zoom-fullscreen
+
+# # toggle window native fullscreen
+# shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# # toggle window split type
+# shift + alt - e : yabai -m window --toggle split
+
+# # toggle sticky (show on all spaces)
+# alt - s : yabai -m window --toggle sticky
+
+# # toggle topmost (keep above other windows)
+# alt - o : yabai -m window --toggle topmost
+
+# # toggle picture-in-picture
+# alt - p : yabai -m window --toggle border && \
+#           yabai -m window --toggle pip
+
+# # change layout of desktop
+# cmd + ctrl + alt - a : yabai -m space --layout bsp
+# cmd + ctrl + alt - d : yabai -m space --layout float
+
+# # Balance tree
+# shift + alt - 0 : yabai -m space --balance
+
+# # Opening Apps
+# # cmd - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+# # Quickly restart the yabai launch angent
+# ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"

@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+# lof: launch or focus
+# this script checks whether an app is running and
+# if running, focuses the window
+# if not running, launches the app
+
+# this script is likely called from another command or script
+
+# usage: lof [arg]
+# [arg]: provide the full path, arguments, and flags representing the process
+# The value of arg will be looked up literally in the process list by wrapping [arg] in ^ (start) and $ (end)
+# for example, to ensure the correct firefox window is launched, lof would be used as follows:
+# lof /usr/lib/firefox/firefox
+
+# for web-based apps, nodejs-natifier can be used to generate a desktop binary
+# https://aur.archlinux.org/packages/nodejs-nativefier
+
+# this script assumes the app exists and wmctrl is installed
+# checks do not occur to ensure optimal performance
+
+APP_NAME="$1"
+
+# find pid for app process
+# -f includes the entire process details, including arguments and flags
+# APP_PID="$(pgrep -f "^${APP_NAME}$")"
+APP_PID=$(ps -A | grep -m1 "$APP_NAME" | awk '{print $1}')
+check=$(ps -A | grep -m1 "$APP_NAME" | awk '{for (i=4; i<NF; i++) printf $i " "; print $NF}')
+
+# Check if app or proccess is not running
+[ -z "$APP_PID" ] || [ "$check" != "$APP_NAME" ] && echo "No process" && exit 1
+
+# using the pid, focus the process
+osascript << EOD
+  tell application "System Events"
+    set frontmost of every process whose unix id is $APP_PID to true
+  end tell
+EOD
+
+exit
+

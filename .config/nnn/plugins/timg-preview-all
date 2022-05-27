@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+kitty --hold timg --grid=2 --title --frames=1 *

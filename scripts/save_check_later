@@ -1,0 +1,56 @@
+#!/usr/bin/env sh
+
+export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin:$HOME/.fzf/bin:$HOME/bin"
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+. ~/.config/zsh/nnn.sh
+
+# term="/usr/local/bin/alacritty --working-directory $HOME/pCloud -d 90 20"
+term="/usr/local/bin/alacritty --working-directory $HOME/pCloud"
+editor="/usr/local/bin/nvim"
+choose="/usr/local/bin/choose"
+
+# create temp file
+file="$TMPDIR/task"
+
+# enter task in the editor
+$term -e $editor $file
+
+# read task and delete temp file
+task=$(head -n 1 $file)
+rm $file
+
+tasks="$HOME/.config/check_later"
+[ ! -f "$tasks" ] && mkdir -p "$(dirname $tasks)"; touch "$tasks"
+
+# check if task has actually a url, otherwise don't save
+url=$(echo "$task" | egrep -o 'https?://[^ ]+')
+[ -z "$task" ] && osascript -e 'display notification "⛔ No task entered!" with title "Tasks:"' && exit 1
+# [ -z $url ] && osascript -e 'display notification "⛔ No URL entered!" with title "Tasks:"' && exit 1
+
+# check if url is already saved in tasks
+# match=$(grep -n $url $bookmarks | awk 'FNR <= 1')
+match=$(grep -n -E "(^|\s)$url(\s|$)" $tasks | awk 'FNR <= 1')
+match_index=$(echo $match | cut -d ":" -f 1)
+[ -n "$match" ] && $term -e $editor $tasks +$match_index && exit
+
+hint="$(echo $task | cut -d " " -f 1)"
+suffix="$(echo $task | cut -d " " -f 2-)"
+
+case $hint in
+  "t") markup='TODO: ';;
+  "c") markup='CHECK: ';;
+  "w") markup='WATCH: ';;
+  "a") markup='ANYTIME: ';;
+  "e") markup='EMAIL: ';;
+  *) markup=$hint;;
+esac
+
+task="$markup $suffix"
+
+## Save task
+echo "$task" >> $tasks
+osascript -e 'display notification "👍 Task saved!" with title "Tasks:"'
+

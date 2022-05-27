@@ -1,0 +1,126 @@
+# Fish shell config
+
+# Greeting
+# set -U fish_greeting only once in the command line or,
+set -g fish_greeting
+
+# Set EDITOR
+set -gx EDITOR nvim
+
+# nnn env variables
+# bookmarks
+set -gx NNN_BMS "b:~/Dropbox/Books;d:~/Downloads;p:~/Dropbox/PSU;q:~/Dropbox/PSU/Econ103/Econ103-2021-II;w:~/Dropbox/PSU/Econ207/Econ207-2021-II;c:~/.config;v:/Volumes"
+# plugins
+set -gx NNN_PLUG "d:dropover;f:openfinder;j:autojump;c:fcd;h:fhcd;o:fzopen;l:openzathura;p:timg-preview;t:preview-tabbed;T:trash;v:imgview;z:fzcd;y:yoink;a:timg-preview-all"
+# colors
+set -gx NNN_FCOLORS "c1e28D31006033f7c6d6abc4"
+# terminal
+set -gx TERMINAL $(echo $(which alacritty))
+set -gx NNN_USE_EDITOR 1
+
+# Aliases
+alias ls='exa --icons'
+alias ll='ls -al'
+alias la='ls -a'
+alias lt='ls --tree --level=3'
+alias llt='ll --tree --level=3'
+alias c='clear'
+alias cdd='cd ~/Dropbox'
+alias cdp='cd ~/pCloud'
+alias pd='pwd'
+alias up='cd ..'
+alias tm='tmux'
+alias tw='tmux new-session -A -s W'
+alias tc='tmux new-session -A -s C'
+alias xc='pwd | pbcopy'
+alias nv="nvim"
+alias st="subl"
+alias sm="smerge"
+alias code="code -r"
+alias lg="lazygit"
+alias n="nnn -e"
+alias r="ranger"
+alias rd="ranger ~/Downloads"
+alias yo="open -a yoink"
+alias marta="marta --existing-tab"
+
+# # Vi mode cursor shape
+# Set the normal and visual mode cursors to a block
+# set fish_cursor_default block
+# Set the insert mode cursor to a line
+# set fish_cursor_insert line
+# Set the replace mode cursor to an underscore
+# set fish_cursor_replace_one underscore
+
+# Fzf
+setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
+setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
+setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1'"
+
+# Golang's path
+set -gx GOPATH $HOME/go
+set -gx PATH $PATH $GOPATH/bin
+
+# Rust's cargo
+set -gx PATH $HOME/.cargo/bin $PATH
+
+# Autojump
+[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+
+# ZK Notes
+set -gx ZK_NOTEBOOK_DIR "$HOME/Dropbox/Notes-zk"
+set -gx ZK_SHELL "/bin/bash"
+
+# Fish git prompt
+set __fish_git_prompt_showuntrackedfiles 'yes'
+set __fish_git_prompt_showdirtystate 'yes'
+set __fish_git_prompt_showstashstate ''
+set __fish_git_prompt_showupstream 'none'
+
+# colored man output
+# from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
+setenv LESS_TERMCAP_mb \e'[01;31m'       # begin blinking
+setenv LESS_TERMCAP_md \e'[01;38;5;74m'  # begin bold
+setenv LESS_TERMCAP_me \e'[0m'           # end mode
+setenv LESS_TERMCAP_se \e'[0m'           # end standout-mode
+setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
+setenv LESS_TERMCAP_ue \e'[0m'           # end underline
+setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
+
+# Prompt configuration
+function fish_prompt
+  set -g fish_prompt_pwd_dir_length 1
+  set -g fish_prompt_pwd_full_dirs 2 
+  set_color white
+  # echo -n "["(date "+%H:%M")"] "
+  echo -n '卑 '
+  # set_color blue
+  # set_color yellow
+  set_color white
+  # echo -n (prompt_pwd)
+  if [ $PWD != $HOME ]
+    if [ (dirname $PWD) = $HOME ]
+      echo -n "~/"(basename $PWD)
+    else
+      echo -n (__shorten (basename (dirname $PWD)))/(basename $PWD)
+    end
+  else
+    echo -n (prompt_pwd)
+    # echo -n "~"
+  end
+  set_color green
+  printf '%s ' (__fish_git_prompt)
+  # set_color brblack
+  set_color white
+  # set_color red
+  echo -n '❯ '
+  # echo -n '▲ '
+  # echo -n '△ '
+  # echo -n '喝 '
+  # echo -n '➜ '
+  set_color normal
+end
+
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end

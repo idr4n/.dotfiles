@@ -1,0 +1,26 @@
+#!/usr/bin/env sh
+
+tasks="$HOME/.config/check_later"
+localBROWSER="firefox"
+
+choose="/usr/local/bin/choose"
+tac="/usr/local/bin/tac"
+
+LAUNCER="$choose -n 20 -w 65 -s 22 -c c400ff"
+
+# while cat print in normal order, tac reversees the order
+choice=$( $tac $tasks | $LAUNCER )
+
+[ -z "$choice" ] && exit
+
+url=$(echo "$choice" | egrep -o 'https?://[^ ]+')
+
+if [[ -n $url ]]
+then
+	# open -a $localBROWSER $url
+	open $url
+	exit
+else
+	exit
+fi
+

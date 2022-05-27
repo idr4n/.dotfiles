@@ -1,0 +1,20 @@
+# located in dir  ~/.config/zathura/
+# Window size settings
+set window-height 1350
+set window-width 1100
+set selection-clipboard clipboard
+set scroll-step 100
+
+# Looks
+set font "monaco 12"
+set recolor-keephue "true"
+# set recolor-lightcolor "#FDF6E3" # base02
+set recolor-lightcolor "#1A1B26" # base02
+# set recolor-lightcolor "#073642" # base02
+# set recolor-darkcolor  "#000000" # base1
+set recolor-darkcolor  "#C0CAF5" # base1
+# set recolor-darkcolor  "#DFDFDF" # base1
+set highlight-color "#F4BF75"
+
+# mappings
+# map <C-i> recolor # use the default C-r instead

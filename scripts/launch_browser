@@ -1,0 +1,37 @@
+#!/usr/bin/env sh
+
+bookmarks="$HOME/.config/bookmarks"
+num_bookmarks=$(wc -l  $bookmarks | awk '{print $1}')
+localBROWSER="firefox"
+
+cache_file="$HOME/.cache/rofi/launch_browser"
+[ ! -f "$cache_file" ] && mkdir -p "$(dirname $cache_file)" && touch "$cache_file"
+count_previous=$(tac $cache_file | wc -l)
+
+choose="/usr/local/bin/choose"
+tac="/usr/local/bin/tac"
+
+LAUNCER="$choose -n 20 -w 65 -s 20 -c c400ff"
+
+# while cat print in normal order, tac reversees the order
+choice=$( ($tac $cache_file | awk '{print "-h- " $0}' && $tac $bookmarks) | $LAUNCER )
+
+[ -z "$choice" ] && exit
+
+url=$(echo "$choice" | egrep -o 'https?://[^ ]+')
+
+case $choice in
+	*-h-*) choice=$(echo $choice | awk -F "-h- " '{print $2}');;
+esac
+
+if [[ -n $url ]]
+then
+	echo "$choice" >> $cache_file
+	echo "$($tac $cache_file | awk '!seen[$0]++' | head -n 5 | $tac)" > $cache_file
+	# open -a $localBROWSER $url
+	open $url
+	exit
+else
+	exit
+fi
+

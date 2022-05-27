@@ -1,0 +1,40 @@
+#!/usr/bin/env sh
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+. ~/.config/zsh/nnn.sh
+
+# term="/usr/local/bin/alacritty -d 100 23"
+term="/usr/local/bin/alacritty"
+fm="$HOME/bin/nnn"
+
+directories=(
+  ~/Dropbox/PSU
+  ~/Dropbox/Research
+  ~/Dropbox/Notes-Database
+  ~/pCloud/Dev
+)
+
+choose="/usr/local/bin/choose"
+tac="/usr/local/bin/tac"
+fd="/usr/local/bin/fd"
+
+LAUNCER="$choose -n 20 -w 65 -s 20 -c c400ff"
+
+cache_file="$HOME/.cache/rofi/rofi-finder"
+[ ! -f "$cache_file" ] && mkdir -p "$(dirname $cache_file)"; touch "$cache_file"
+
+sel="$( ( $tac $cache_file | head -n 5 | awk '!seen[$0]++' && $fd . -H "${directories[@]}" ) | $LAUNCER )"
+
+echo $sel
+
+[[ -z "$sel" ]] && exit
+
+[[ ! -d "$sel" && ! -f "$sel" ]] && echo "Not a path" && exit 1
+
+echo "$sel" >> $cache_file
+echo "$($tac $cache_file | awk '!seen[$0]++' | head -n 10 | $tac)" > $cache_file
+
+$term -e $fm -e "$sel"
+

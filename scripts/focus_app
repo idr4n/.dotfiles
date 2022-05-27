@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+
+APP_NAME="$1"
+# if 1, the app is a command line app such as zathura,
+# otherwise it is a native app.
+CL_APP="$2"
+
+# gets the pid of frontmost app
+front_pid=$(lsappinfo info -only pid `lsappinfo front` | cut -d "=" -f 2)
+
+# array of pid's of APP_NAME
+# wins=($(ps -A | awk -v app="$APP_NAME" '$4 ~ app' | awk '{print $1}'))
+# this is faster than the line above!
+wins=($(pgrep "$APP_NAME"))
+
+for var in "${wins[@]}"
+do
+  echo "${var}"
+done
+
+# if not pid's then run the app
+# [ "${#wins[@]}" -eq 0 ] && osascript -e 'display notification "'$APP_NAME'"'
+[ "${#wins[@]}" -eq 0 ] && [ "$CL_APP" == "1" ] && $APP_NAME && exit
+[ "${#wins[@]}" -eq 0 ] && open -na $APP_NAME && exit
+
+for i in "${!wins[@]}"; do
+   if [[ " ${wins[$i]} " =~ " $front_pid " ]]; then
+       # echo "${i}";
+       index=$(expr $i + 1)
+       index=$(expr $index % ${#wins[@]})
+       # echo $index
+       focus_pid="${wins[$index]}"
+       break
+   fi
+   focus_pid="${wins[0]}"
+done
+
+# # echo $focus_pid
+
+osascript << EOD
+  tell application "System Events"
+    # display notification "$focus_pid"
+    set frontmost of every process whose unix id is $focus_pid to true
+  end tell
+EOD
+

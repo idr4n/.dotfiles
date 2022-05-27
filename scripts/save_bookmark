@@ -1,0 +1,45 @@
+#!/usr/bin/env sh
+
+export PATH="/opt/homebrew/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin:$HOME/.fzf/bin:$HOME/bin"
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+. ~/.config/zsh/nnn.sh
+
+# term="/usr/local/bin/alacritty --working-directory $HOME/pCloud -d 90 20"
+term="$(which alacritty) --working-directory $HOME/pCloud -o window.dimensions.columns=110 -o window.dimensions.lines=26"
+# editor="/usr/local/bin/nvim"
+editor="$(which nvim)"
+choose="/usr/local/bin/choose"
+
+# create temp file
+file="$TMPDIR/bookmark"
+
+# enter bookmark in the editor
+$term -e $editor $file
+
+# read bookmark and delete temp file
+bookmark=$(head -n 1 $file)
+rm $file
+
+backup_dir="$HOME/Dropbox"
+
+bookmarks="$HOME/.config/bookmarks"
+[ ! -f "$bookmarks" ] && mkdir -p "$(dirname $bookmarks)"; touch "$bookmarks"
+
+# check if bookmark has actually a url, otherwise don't save
+url=$(echo "$bookmark" | egrep -o 'https?://[^ ]+')
+[ -z $url ] && osascript -e 'display notification "⛔ No URL entered!" with title "Bookmarks:"' && exit 1
+
+# check if url is already saved in bookmarks
+# match=$(grep -n $url $bookmarks | awk 'FNR <= 1')
+match=$(grep -n -E "(^|\s)$url(\s|$)" $bookmarks | awk 'FNR <= 1')
+match_index=$(echo $match | cut -d ":" -f 1)
+[ -n "$match" ] && $term -e $editor $bookmarks +$match_index && exit
+
+## Save bookmark
+echo "$bookmark" >> $bookmarks
+osascript -e 'display notification "👍 Bookmark saved!" with title "Bookmarks:"'
+[ -d $backup_dir ] && cp $bookmarks "$backup_dir/bookmarks"
+

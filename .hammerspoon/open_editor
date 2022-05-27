@@ -1,0 +1,3 @@
+#!/usr/bin/env sh
+
+/Users/iduran/bin/subl -n $1 && /Users/iduran/bin/subl $1:$2 

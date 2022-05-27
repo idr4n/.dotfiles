@@ -1,0 +1,32 @@
+#!/usr/bin/env sh
+
+[ -z $1 ] && echo "No file entered" && exit
+
+file=$1
+dir_path="$(dirname $file)"
+ext="${file##*.}"
+os="$(uname -s)"
+
+case $ext in
+  cpp) 
+    case $os in
+      Linux*) g++ -o $dir_path/a.out $file;;
+      # *) clang++ -g -std=c++17 -stdlib=libc++ $file
+      *) clang++ -o $dir_path/a.out -std=c++17 -stdlib=libc++ $file;;
+    esac
+    [ -f $dir_path/a.out ] && $dir_path/a.out
+    ;;
+  go) go run $file;;
+  py) python $file;;
+  rs)
+    cd $dir_path
+    cargo run
+    ;;
+  js|ts) node $file;;
+  jl) julia $file;;
+  java) 
+    javac $file
+    java $file
+    ;;
+  *) ./$file;;
+esac

@@ -1,0 +1,80 @@
+schemes:
+  tokyo_night: &tokyo_night
+    primary:
+      background: '0x1a1b26'
+      foreground: '0xa9b1d6'
+    cursor:
+      cursor: '#c0caf5'
+      text: '#1a1b26'
+    normal:
+      black:   '0x32344a'
+      red:     '0xf7768e'
+      green:   '0x9ece6a'
+      yellow:  '0xe0af68'
+      blue:    '0x7aa2f7'
+      magenta: '0xad8ee6'
+      cyan:    '0x449dab'
+      white:   '0x787c99'
+    bright:
+      black:   '0x444b6a'
+      red:     '0xff7a93'
+      green:   '0xb9f27c'
+      yellow:  '0xff9e64'
+      blue:    '0x7da6ff'
+      magenta: '0xbb9af7'
+      cyan:    '0x0db9d7'
+      white:   '0xacb0d0'
+
+  zenbones_dark: &zenbones_dark
+    primary:
+      foreground: '#B4BDC3'
+      background: '#171210'
+    cursor:
+      cursor: '#C4CACF'
+      text: '#1C1917'
+    normal:
+      black:   '#1C1917'
+      red:     '#DE6E7C'
+      green:   '#819B69'
+      yellow:  '#B77E64'
+      blue:    '#6099C0'
+      magenta: '#B279A7'
+      cyan:    '#66A5AD'
+      white:   '#B4BDC3'
+    bright:
+      black:   '#403833'
+      red:     '#E8838F'
+      green:   '#8BAE68'
+      yellow:  '#D68C67'
+      blue:    '#61ABDA'
+      magenta: '#CF86C1'
+      cyan:    '#65B8C1'
+      white:   '#888F94'
+
+  zenbones_light: &zenbones_light
+    primary:
+      foreground: '#2C363C'
+      background: '#F8F6F5'
+    cursor:
+      cursor: '#9775FA'
+      text: '#F0EDEC'
+    normal:
+      black:   '#F0EDEC'
+      red:     '#A8334C'
+      green:   '#4F6C31'
+      yellow:  '#944927'
+      blue:    '#286486'
+      magenta: '#88507D'
+      cyan:    '#3B8992'
+      white:   '#2C363C'
+    bright:
+      black:   '#CFC1BA'
+      red:     '#94253E'
+      green:   '#3F5A22'
+      yellow:  '#803D1C'
+      blue:    '#1D5573'
+      magenta: '#7B3B70'
+      cyan:    '#2B747C'
+      white:   '#4F5E68'
+
+colors: *zenbones_light

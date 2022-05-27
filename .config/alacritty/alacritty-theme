@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+theme="$1"
+color_scheme="$HOME/.config/alacritty/zenbones_scheme.yml"
+
+# check file exists
+if [ ! -f "$color_scheme" ]; then
+    echo "Color scheme file not found!"
+    exit 0
+fi
+
+# sed doesn't like symlinks, get the absolute path
+config_path="$(readlink $color_scheme)"
+
+sed -i "" -e "s#^colors: \*.*#colors: *$theme#g" $config_path
+
+echo "switched to $theme."

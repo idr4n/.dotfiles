@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+
+# # No need to load path if using skhd
+# export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin:$HOME/.fzf/bin:$HOME/bin"
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+. ~/.config/zsh/nnn.sh
+
+term="/usr/local/bin/alacritty -o window.dimensions.columns=100 -o window.dimensions.lines=23"
+# term="/opt/homebrew/bin/alacritty"
+fm="$HOME/bin/nnn"
+process="$term -e $fm $HOME"
+
+~/scripts/lof "$process"
+status=$?
+
+[ $status -eq 1 ] && $process && exit
+
+# -- Alternative if not using ~/scripts/lof script ---
+
+# APP_PID=$(ps -A | grep -m1 "$process" | awk '{print $1}')
+# ps_name=$(ps -A | grep -m1 "$process" | awk '{for (i=4; i<NF; i++) printf $i " "; print $NF}')
+
+# echo $ps_name
+# # Check if app or proccess is not running
+# if [ "$ps_name" != "$process" ] 
+# then
+#   $term -e $fm 
+#   exit
+# fi
+
+# # using the pid, focus the process
+# osascript << EOD
+#   tell application "System Events"
+#     display notification "$ps_name"
+#     set frontmost of every process whose unix id is $APP_PID to true
+#   end tell
+# EOD
+

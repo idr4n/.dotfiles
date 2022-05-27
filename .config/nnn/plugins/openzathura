@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+# /usr/local/bin/zathura "$1" &
+
+if ! command -v /opt/homebrew/bin/zathura &> /dev/null
+then
+  /usr/local/bin/zathura "$1" &
+  exit
+else
+  /opt/homebrew/bin/zathura "$1" &
+fi
