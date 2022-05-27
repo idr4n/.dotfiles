@@ -6,7 +6,7 @@ Includes a folder with scripts for automation of some tasks (although some of th
 
 ## Basic setup
 
-![terminal-tmux](./assets/terminal-tmux.png)
+![](./assets/terminal-tmux.png)
 
 - Main terminal: Alacritty (and Kitty), normally running Tmux.
 - Font used in terminal: [tonsky/FiraCode](https://github.com/tonsky/FiraCode) (at the moment).
@@ -25,11 +25,11 @@ I don't store my bookmarks in the browser. I gave up on that long time ago and a
 
 What I do is to store all my bookmarks in a local file. Whenever I want to save one, I copy the title and url (there are different ways to do that with a simple shortcut), and then I trigger the script '[save_bookmark](https://github.com/idr4n/.dotfiles/blob/master/scripts/save_bookmark)' with a shortcut (configured in skhd), which opens an instance of Alacritty and allows me to paste the title and url and any other information that I want. The important thing is to enter all the information in a single line (so I can search for it with Hammerspoon's chooser). The script then appends the bookmark in a local file.
 
-![bookmark-save](./assets/bookmark-save.png)
+![](./assets/bookmark-save.png)
 
 Then, whenever I want to search for a bookmark, I trigger a Hammerspoon shortcut to run '[bookmar_choose.lua](https://github.com/idr4n/.dotfiles/blob/master/.hammerspoon/bookmark_chooser.lua)' which allows me to search for any information saved and upon hitting enter, it will open the url in the default browser.
 
-![](./assets/chooser.png)
+![](./assets/chooser-1.png)
 
 I was using a similar workflow in Linux with Rofi, and so I wanted something similar in MacOS as well. I used Linux and different tiling window managers for sometime, and the experience was good, but I ended up going back to MacOS just because I find it more suitable for my needs, the apps available, and the ability to use 4K external monitors (Linux does not handle high resolution external monitors very well based on my experience). Dmenu or Rofi are one of the things that I miss the most from Linux, but fortunately Hammerspoon came to the rescue with something similar (although not as powerful).
 
