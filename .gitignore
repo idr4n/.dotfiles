@@ -38,6 +38,7 @@ node_modules/
 *.sublime-project
 *.sublime-workspace
 .vscode
+*.conf.bak
 debug
 .idea/
 __pycache__/
