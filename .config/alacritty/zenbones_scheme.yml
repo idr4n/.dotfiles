@@ -77,4 +77,4 @@ schemes:
       cyan:    '#2B747C'
       white:   '#4F5E68'
 
-colors: *zenbones_light
+colors: *zenbones_dark

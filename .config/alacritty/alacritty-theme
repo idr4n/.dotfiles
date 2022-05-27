@@ -9,9 +9,4 @@ if [ ! -f "$color_scheme" ]; then
     exit 0
 fi
 
-# sed doesn't like symlinks, get the absolute path
-config_path="$(readlink $color_scheme)"
-
-sed -i "" -e "s#^colors: \*.*#colors: *$theme#g" $config_path
-
-echo "switched to $theme."
+sed -i '' -e "s#^colors: \*.*#colors: *$theme#g" $color_scheme
