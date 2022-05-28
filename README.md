@@ -6,7 +6,7 @@ Includes a folder with scripts for automation of some tasks (although some of th
 
 ## Basic setup
 
-<img width="1252" alt="terminal-tmux" src="https://user-images.githubusercontent.com/20104703/170835573-075ed7f5-092b-43e8-98e5-94274f927d43.png">
+![](./assets/terminal-tmux.png)
 
 - Main terminal: Alacritty (and Kitty), normally running Tmux.
 - Font used in terminal: [tonsky/FiraCode](https://github.com/tonsky/FiraCode) (at the moment).
@@ -25,11 +25,11 @@ I don't store my bookmarks in the browser. I gave up on that long time ago and a
 
 What I do is to store all my bookmarks in a local file. Whenever I want to save one, I copy the title and url (there are different ways to do that with a simple shortcut), and then I trigger the script '[save_bookmark](https://github.com/idr4n/.dotfiles/blob/master/scripts/save_bookmark)' with a shortcut (configured in skhd), which opens an instance of Alacritty and allows me to paste the title and url and any other information that I want. The important thing is to enter all the information in a single line (so I can search for it with Hammerspoon's chooser). The script then appends the bookmark in a local file.
 
-<img width="985" alt="bookmark-save" src="https://user-images.githubusercontent.com/20104703/170835615-0a666ef4-f11b-46c9-b706-c2d7d63cd299.png">
+![](./assets/save-bookmark.png) 
 
 Then, whenever I want to search for a bookmark, I trigger a Hammerspoon shortcut to run '[bookmar_choose.lua](https://github.com/idr4n/.dotfiles/blob/master/.hammerspoon/bookmark_chooser.lua)' which allows me to search for any information saved and upon hitting enter, it will open the url in the default browser.
 
-<img width="1768" alt="chooser-1" src="https://user-images.githubusercontent.com/20104703/170835626-0d3b6274-f8af-460e-9c16-ce82953a7265.png">
+![](./assets/chooser.png) 
 
 I was using a similar workflow in Linux with Rofi, and so I wanted something similar in MacOS as well. I used Linux and different tiling window managers for sometime, and the experience was good, but I ended up going back to MacOS just because I find it more suitable for my needs, the apps available, and the ability to use 4K external monitors (Linux does not handle high resolution external monitors very well based on my experience). Dmenu or Rofi are one of the things that I miss the most from Linux, but fortunately Hammerspoon came to the rescue with something similar (although not as powerful).
 
@@ -58,7 +58,7 @@ end)
 
 The scripts folder includes a Python script that is automatically triggered when the system changes appearance mode ([change_dark_mode.py](https://github.com/idr4n/.dotfiles/blob/master/scripts/change_dark_mode.py)).
 
-https://user-images.githubusercontent.com/20104703/170835530-a1ab4b86-e7fd-4cf2-8f80-c82541220087.mp4
+![](./assets/switch-dark-light-mode.mp4) 
 
 Unfortunately, it is not a very straight forward process. I mostly follow ['Automatic dark mode for terminal applications'](https://arslan.io/2021/02/15/automatic-dark-mode-for-terminal-applications/) instructions, with the difference that I didn't implement an automatic switch for vim/neovim, and the script is written in Python, rather than in fish/bash. 
 
