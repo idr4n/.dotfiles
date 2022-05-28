@@ -54,3 +54,17 @@ end)
 
 ```
 
+## Auto-switch dark/light mode in Alacritty and Kitty
+
+The scripts folder includes a Python script that is automatically triggered when the system changes appearance mode ([change_dark_mode.py](https://github.com/idr4n/.dotfiles/blob/master/scripts/change_dark_mode.py)).
+
+[video here...]
+
+Unfortunately, it is not a very straight forward process. I mostly follow ['Automatic dark mode for terminal applications'](https://arslan.io/2021/02/15/automatic-dark-mode-for-terminal-applications/) instructions, with the difference that I didn't implement an automatic switch for vim/neovim, and the script is written in Python, rather than in fish/bash. 
+
+This mainly depends on ['bouk/dark-mode-notify'](https://github.com/bouk/dark-mode-notify) swift program that will 'run a command whenever the dark mode status changes on macOS', in my case, it runs the Python script.
+
+This script also depends on a Python package ['darkdetect'](https://pypi.org/project/darkdetect/), which should be installed with `pip`, to detect which mode the system is currently on (light or dark), and run some stuff based on that. 
+
+For Neovim, I just use a Lua function that sets the theme based on a specific time interval. It is quite simple, but the drawback is that it only runs when I start Neovim. Therefore, if the mode change takes effect while in a Neovim session, I have to quit and start Neovim for it to take effect. For me, this is sufficient enough.
+
