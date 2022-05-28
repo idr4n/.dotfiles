@@ -58,7 +58,7 @@ end)
 
 The scripts folder includes a Python script that is automatically triggered when the system changes appearance mode ([change_dark_mode.py](https://github.com/idr4n/.dotfiles/blob/master/scripts/change_dark_mode.py)).
 
-![](./assets/switch-dark-light-mode-2.mp4) 
+https://user-images.githubusercontent.com/20104703/170837256-078c2b66-a1dc-4715-81f7-e7c89bb208cb.mp4
 
 Unfortunately, it is not a very straight forward process. I mostly follow ['Automatic dark mode for terminal applications'](https://arslan.io/2021/02/15/automatic-dark-mode-for-terminal-applications/) instructions, with the difference that I didn't implement an automatic switch for vim/neovim, and the script is written in Python, rather than in fish/bash. 
 
