@@ -1,10 +1,10 @@
 # Functions
 
-function __shorten -d "shortens the string if length greater than 7 characters"
-  if test (string length $argv[1]) -gt 7
-    echo -n (string sub --length 5 $argv[1])".."
+function __shorten -d "shortens the string if length greater than 10 characters"
+  if test (string length $argv[1]) -gt 10
+    echo -n (string sub --length 8 $argv[1])".."
   else
-    string sub --length 7 $argv[1]
+    string sub --length 10 $argv[1]
   end
 end
 
