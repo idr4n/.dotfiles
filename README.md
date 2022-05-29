@@ -9,6 +9,7 @@ Includes a folder with scripts for automation of some tasks (although some of th
 ![](./assets/terminal-tmux.png)
 
 - Main terminal: Alacritty (and Kitty), normally running Tmux.
+- Shell: Fish.
 - Font used in terminal: [tonsky/FiraCode](https://github.com/tonsky/FiraCode) (at the moment).
 - Main editor: Neovim (see my config at [idr4n/nvim-lua](https://github.com/idr4n/nvim-lua)). I also use Sublime Text, and rarely VSCode.
 - Window manager: [Hammerspoon](http://www.hammerspoon.org/). I also use a MacOS app called [Rectangle](https://rectangleapp.com/).
