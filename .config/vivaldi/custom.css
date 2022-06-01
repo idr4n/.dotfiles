@@ -9,3 +9,8 @@
 /* #pagetitle { */
 /*   display: none !important; */
 /* } */
+
+#modal-bg.qc-modal {
+  top: 20vh !important;
+}
+
