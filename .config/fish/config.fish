@@ -52,6 +52,9 @@ alias marta="marta --existing-tab"
 # Set the replace mode cursor to an underscore
 # set fish_cursor_replace_one underscore
 
+# Add homebrew's python3 and pip3 as default (so no need to add the 3 at the end)
+set -gx PATH /opt/homebrew/opt/python@3.10/libexec/bin $PATH
+
 # Fzf
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
