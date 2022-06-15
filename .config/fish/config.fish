@@ -104,6 +104,8 @@ function fish_prompt
   if [ $PWD != $HOME ]
     if [ (dirname $PWD) = $HOME ]
       echo -n "~/"(basename $PWD)
+    else if [ (dirname $PWD) = "/" ]
+      echo -n $PWD
     else
       echo -n (__shorten (basename (dirname $PWD)))/(basename $PWD)
     end
