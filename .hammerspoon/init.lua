@@ -9,33 +9,6 @@ local h = require("helper")
 local screenMargin = 15
 local wingap = 15
 
--- Functions
-
--- local resizeMediumCenter = function(app)
---   local win = app:focusedWindow()
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:frame()
-
---   f.x = max.x + (max.w * 0.2)
---   f.y = max.y + (max.h * 0.15)
---   f.w = max.w * 0.6
---   f.h = max.h * 0.7
---   win:setFrame(f)
--- end
-
--- local centerWindow = function(app)
---   local win = app:focusedWindow()
---   local win = hs.window.focusedWindow()
---   local f = win:frame()
---   local screen = win:screen()
---   local max = screen:frame()
-
---   f.x = max.x + (max.w - f.w)/2
---   f.y = max.y + (max.h - f.h)/2
---   win:setFrame(f)
--- end
-
 -- Set up
 local hyper = { "ctrl", "cmd", "alt" }
 local hyper2 = { "shift", "ctrl", "cmd", "alt" }
@@ -476,76 +449,6 @@ hs.hotkey.bind(hyper, "F", function()
 	f.w = max.w
 	f.h = max.h
 	win:setFrame(f)
-end)
-
--------------------------------------------------
--- Focus particular apps
--------------------------------------------------
-
--- hs.hotkey.bind({"ctrl", "cmd"}, "k", function()
--- centerWindow(hs.application.open("kitty", 2, true))
--- end)
-
--- hs.hotkey.bind("alt", "1", function()
---   -- hs.application.launchOrFocus("qutebrowser")
---   -- hs.application.launchOrFocus("Google Chrome")
---   hs.application.open("Brave Browser")
--- end)
-
--- hs.hotkey.bind("alt", "2", function()
---   -- hs.application.launchOrFocus("iTerm")
---   hs.application.open("Brave Browser")
---   -- hs.application.open("Marta")
--- end)
-
--- hs.hotkey.bind("alt", "3", function()
--- hs.application.launchOrFocus("Visual Studio Code")
--- hs.application.launchOrFocus("Google Chrome")
--- hs.application.launchOrFocus("qutebrowser")
--- end)
-
--- hs.hotkey.bind({"ctrl", "cmd"}, "s", function()
---   hs.application.launchOrFocus("Sublime Text")
--- end)
-
--- hs.hotkey.bind({"ctrl", "cmd"}, "f", function()
---   hs.application.launchOrFocus("Firefox")
--- end)
-
--- hs.hotkey.bind("alt", "0", function()
---   hs.application.launchOrFocus("iTerm")
---   -- hs.application.launchOrFocus("kitty")
--- end)
-
--------------------------------------------------
--- Show window hints
--------------------------------------------------
--- hs.hints.showTitleThresh = 0
--- hs.hotkey.bind("ctrl", ";", function()
---     hs.hints.windowHints()
--- end)
-
--------------------------------------------------
--- Focus East, West, North, South window
--------------------------------------------------
-hs.hotkey.bind({ "alt", "shift" }, "l", function()
-	local win = hs.window.focusedWindow()
-	win:focusWindowEast(nil, true)
-end)
-
-hs.hotkey.bind({ "alt", "shift" }, "h", function()
-	local win = hs.window.focusedWindow()
-	win:focusWindowWest(nil, true)
-end)
-
-hs.hotkey.bind({ "alt", "shift" }, "j", function()
-	local win = hs.window.focusedWindow()
-	win:focusWindowSouth(nil, true)
-end)
-
-hs.hotkey.bind({ "alt", "shift" }, "k", function()
-	local win = hs.window.focusedWindow()
-	win:focusWindowNorth(nil, true)
 end)
 
 -------------------------------------------------
