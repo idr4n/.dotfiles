@@ -35,7 +35,7 @@ alt + shift - t: kitty -d ~/ tmux new-session -A -s W
 # focus apps
 alt - j : ~/scripts/focus_app alacritty
 alt - l : ~/scripts/focus_app zathura 1
-alt - i : ~/scripts/focus_app kitty
+alt - k : ~/scripts/focus_app kitty
 
 # run scripts
 ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py

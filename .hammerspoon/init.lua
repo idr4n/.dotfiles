@@ -622,7 +622,7 @@ end)
 -- Shortcuts to lunch, focus, or cycle windows of applications
 --------------------------------------------------------------
 
-hs.hotkey.bind("alt", "k", function()
+hs.hotkey.bind({ "alt", "shift" }, "K", function()
 	local name = "Sublime Text"
 	local app = hs.application.get(name)
 	if not app then
