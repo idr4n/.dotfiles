@@ -782,12 +782,12 @@ end)
 hs.hotkey.bind("alt", "1", function()
 	-- local name = "Google Chrome"
 	-- local name = "Firefox"
-	-- local name = "Safari"
+	local name = "Safari"
 	-- local name = "Brave Browser"
 	-- local name = "Microsoft Edge"
-	local name = "Vivaldi"
-	-- local app = hs.application.get(name)
-	local app = hs.application.find(name)
+	-- local name = "Vivaldi"
+	local app = hs.application.get(name)
+	-- local app = hs.application.find(name)
 	if not app then
 		hs.application.launchOrFocus(name)
 		return
