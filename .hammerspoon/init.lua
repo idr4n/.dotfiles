@@ -488,53 +488,6 @@ hs.hotkey.bind({ "ctrl", "shift" }, "D", function()
 	hs.execute("open ~/Downloads")
 end)
 
--------------------------------------------------
--- Window layouts
--------------------------------------------------
-
-local samsungScreen = "S27D590"
-local iMacScreen = "iMac"
-
-local applyCodingLayout = function()
-	hs.application.launchOrFocus("Visual Studio Code")
-	hs.application.launchOrFocus("Google Chrome")
-end
-
-local redBorder = false
-hs.window.highlight.ui.frameColor = { 1, 0, 0, 0.7 }
-hs.window.highlight.ui.frameWidth = 6
-hs.window.highlight.ui.isolateColor = { 0, 0, 0, 1 }
--- hs.window.highlight.start()
-
-local redBorderWindow = function()
-	if not redBorder then
-		hs.window.highlight.ui.overlay = true
-		hs.window.highlight.ui.frameColor = { 1, 0, 0, 0.7 }
-		hs.window.highlight.ui.overlayColor = { 0, 0, 0, 0.00000001 }
-		redBorder = true
-	else
-		hs.window.highlight.ui.overlay = false
-		hs.window.highlight.ui.frameColor = { 1, 0, 0, 0 }
-		hs.window.highlight.ui.overlayColor = { 0, 0, 0, 0.4 }
-		redBorder = false
-	end
-end
-
-local isolateWindowMedium = function()
-	hs.window.highlight.ui.isolateColor = { 0, 0, 0, 0.5 }
-	hs.window.highlight.toggleIsolate()
-end
-
-local isolateWindowFull = function()
-	hs.window.highlight.ui.isolateColor = { 0, 0, 0, 0.95 }
-	hs.window.highlight.toggleIsolate()
-end
-
--- hs.hotkey.bind(hyper, "1", applyCodingLayout)
-hs.hotkey.bind(hyper, "1", redBorderWindow)
-hs.hotkey.bind(hyper2, "1", isolateWindowMedium)
-hs.hotkey.bind(hyper2, "2", isolateWindowFull)
-
 ------------- Move window to screen borders -------------
 
 hs.hotkey.bind({ "ctrl", "shift", "alt" }, "right", function()
@@ -647,7 +600,6 @@ hs.hotkey.bind({ "ctrl", "alt", "shift" }, "j", function()
 	local f = win:frame()
 	local delta = 0.025
 	local incWidth = f.w * delta
-	local incHeight = f.h * delta
 
 	f.x = f.x - incWidth / 2
 	f.w = f.w + incWidth
@@ -660,7 +612,6 @@ hs.hotkey.bind({ "ctrl", "alt", "shift" }, "k", function()
 	local f = win:frame()
 	local delta = 0.025
 	local incWidth = f.w * delta
-	local incHeight = f.h * delta
 
 	f.x = f.x + incWidth / 2
 	f.w = f.w - incWidth
@@ -698,18 +649,6 @@ hs.hotkey.bind("alt", "1", function()
 
 	h.focusApp(app, name)
 end)
-
--- hs.hotkey.bind("alt", "z", function()
---   local name = "Logseq"
---   -- local app = hs.application.find(name)
---   local app = hs.application.get(name)
---   if not app then
---     hs.application.launchOrFocus(name)
---     return
---   end
-
---   helper.focusApp(app, name)
--- end)
 
 hs.hotkey.bind("alt", "m", function()
 	local name = "finder"
