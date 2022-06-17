@@ -74,6 +74,10 @@ key_bindings:
 - { key: Q, mods: Control, chars: "\x11" }
 - { key: B, mods: Alt, chars: "\x1bb" }
 - { key: F, mods: Alt, chars: "\x1bf" }
+- { key: U, mods: Alt, chars: "\x1bu" }
+- { key: I, mods: Alt, chars: "\x1bi" }
+- { key: O, mods: Alt, chars: "\x1bo" }
+- { key: P, mods: Alt, chars: "\x1bp" }
 
 import:
   - "~/.config/alacritty/zenbones_scheme.yml"
