@@ -43,6 +43,7 @@ alias r="ranger"
 alias rd="ranger ~/Downloads"
 alias yo="open -a yoink"
 alias marta="marta --existing-tab"
+alias fg="fish_greeting"
 
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block
