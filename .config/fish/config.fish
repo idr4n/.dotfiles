@@ -43,7 +43,7 @@ alias r="ranger"
 alias rd="ranger ~/Downloads"
 alias yo="open -a yoink"
 alias marta="marta --existing-tab"
-alias fg="fish_greeting"
+alias we="fish_greeting"
 
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block
@@ -175,9 +175,9 @@ function fish_greeting
     cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
   end
 	# echo "  [project] <description>"
-  echo
 
 	if test -s ~/Dropbox/Notes-Database/notes.md
+    echo
     set_color normal
     echo -e " \e[1mNOTEs\e[0;32m"
     echo
