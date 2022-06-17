@@ -485,7 +485,8 @@ hs.hotkey.bind(hyper3, "left", moveWindowPrev)
 -- end)
 
 hs.hotkey.bind({ "ctrl", "shift" }, "D", function()
-	hs.execute("open ~/Downloads")
+	-- hs.execute("open ~/Downloads")
+	hs.execute("/usr/local/bin/marta --existing-tab ~/Downloads")
 end)
 
 ------------- Move window to screen borders -------------
