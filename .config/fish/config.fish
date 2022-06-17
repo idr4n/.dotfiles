@@ -129,3 +129,61 @@ end
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
+
+function fish_greeting
+	set r (random 0 100)
+  # set r 10
+
+  if test -s ~/Dropbox/Notes-Database/todos_unimportant.md
+    or test -s ~/Dropbox/Notes-Database/todos_eventually.md
+    or test -s ~/Dropbox/Notes-Database/todos_upcoming.md
+    or test -s ~/Dropbox/Notes-Database/todos_important.md
+    set_color normal
+    echo -e " \e[1mTODOs\e[0;32m"
+    echo
+  end
+
+	if [ $r -lt 40 ]
+		# unimportant, so show rarely
+    set_color green
+    if test -s ~/Dropbox/Notes-Database/todos_unimportant.md
+      cat ~/Dropbox/Notes-Database/todos_unimportant.md | sed 's/^/  /'
+    end
+		# echo "  [project] <description>"
+	end
+	if [ $r -lt 60 ]
+		# not so important, so show occasionally
+    set_color blue
+    if test -s ~/Dropbox/Notes-Database/todos_eventually.md
+      cat ~/Dropbox/Notes-Database/todos_eventually.md | sed 's/^/  /'
+    end
+		# echo "  [project] <description>"
+	end
+	if [ $r -lt 80 ]
+		# upcoming, so prompt regularly
+		set_color yellow
+    if test -s ~/Dropbox/Notes-Database/todos_upcoming.md
+      cat ~/Dropbox/Notes-Database/todos_upcoming.md | sed 's/^/  /'
+    end
+		# echo "  [project] <description>"
+	end
+
+	# urgent, so prompt always
+  set_color magenta
+  if test -s ~/Dropbox/Notes-Database/todos_important.md
+    cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
+  end
+	# echo "  [project] <description>"
+  echo
+
+	if test -s ~/Dropbox/Notes-Database/notes.md
+    set_color normal
+    echo -e " \e[1mNOTEs\e[0;32m"
+    echo
+		set_color brblue
+		cat ~/Dropbox/Notes-Database/notes.md | sed 's/^/  /'
+	end
+
+  echo
+	set_color normal
+end
