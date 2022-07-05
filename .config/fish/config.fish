@@ -140,11 +140,28 @@ function fish_greeting
     or test -s ~/Dropbox/Notes-Database/todos_upcoming.md
     or test -s ~/Dropbox/Notes-Database/todos_important.md
     set_color normal
-    echo -e " \e[1mTODOs\e[0;32m"
+    echo -en " \e[1mTODOs\e[0;32m "
+    if [ $r -gt 20 ] 
+      and test -s ~/Dropbox/Notes-Database/todos_unimportant.md
+      set_color --bold green
+      echo -n "+"
+    end
+    if [ $r -gt 40 ] 
+      and test -s ~/Dropbox/Notes-Database/todos_eventually.md
+      set_color --bold blue
+      echo -n "+"
+    end
+    if [ $r -gt 70 ] 
+      and test -s ~/Dropbox/Notes-Database/todos_upcoming.md
+      set_color --bold yellow
+      echo -n "+"
+    end
+    set_color normal
+    echo
     echo
   end
 
-	if [ $r -lt 40 ]
+	if [ $r -lt 20 ]
 		# unimportant, so show rarely
     set_color green
     if test -s ~/Dropbox/Notes-Database/todos_unimportant.md
@@ -152,7 +169,7 @@ function fish_greeting
     end
 		# echo "  [project] <description>"
 	end
-	if [ $r -lt 60 ]
+	if [ $r -lt 40 ]
 		# not so important, so show occasionally
     set_color blue
     if test -s ~/Dropbox/Notes-Database/todos_eventually.md
@@ -160,7 +177,7 @@ function fish_greeting
     end
 		# echo "  [project] <description>"
 	end
-	if [ $r -lt 80 ]
+	if [ $r -lt 70 ]
 		# upcoming, so prompt regularly
 		set_color yellow
     if test -s ~/Dropbox/Notes-Database/todos_upcoming.md

@@ -63,3 +63,17 @@ function fno -d "# search in Notes with fzf/rg"
     $EDITOR "$file" +$line_nr
   end
 end
+
+
+function tt -d "print all todos"
+  echo
+  set_color green
+  cat ~/Dropbox/Notes-Database/todos_unimportant.md | sed 's/^/  /'
+  set_color blue
+  cat ~/Dropbox/Notes-Database/todos_eventually.md | sed 's/^/  /'
+  set_color yellow
+  cat ~/Dropbox/Notes-Database/todos_upcoming.md | sed 's/^/  /'
+  set_color magenta
+  cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
+  echo
+end
