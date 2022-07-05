@@ -18,6 +18,16 @@ set -gx NNN_FCOLORS "c1e28D31006033f7c6d6abc4"
 set -gx TERMINAL $(echo $(which alacritty))
 set -gx NNN_USE_EDITOR 1
 
+# Bat env variable
+set t (math (date +%H) + (date +%M)/60)
+if [ $t -gt 6.5 ]
+  and [ $t -lt 19 ]
+  set -gx BAT_THEME "gruvbox-light"
+else
+  set -gx BAT_THEME "Nord"
+end
+
+
 # Aliases
 alias ls='exa --icons'
 alias ll='ls -al'
