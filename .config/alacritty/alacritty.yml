@@ -38,8 +38,6 @@ font:
     # family:  MesloLGS NF
     # family: JetBrainsMono Nerd Font
     # style: Medium Italic
-    # Point size
-    size: 18
 
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
@@ -54,6 +52,10 @@ font:
   glyph_offset:
     #  x: 0
     y: 3
+
+  # Thin strokes are suitable for retina displays, but for non-retina screens
+  # it is recommended to set `use_thin_strokes` to `false`.
+  use_thin_strokes: true
 
 cursor:
   # Values for `style`:
