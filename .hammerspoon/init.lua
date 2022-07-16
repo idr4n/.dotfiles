@@ -6,8 +6,9 @@ local h = require("helper")
 
 -- local variables
 
-local screenMargin = 15
-local wingap = 15
+local screenMargin = 0
+local wingap = 0
+hs.window.animationDuration = 0.1
 
 -- Set up
 local hyper = { "ctrl", "cmd", "alt" }
@@ -332,8 +333,22 @@ hs.hotkey.bind(hyper3, "C", function()
 	win:setFrame(f)
 end)
 
--- Almost center window, tilted right
-hs.hotkey.bind({ "ctrl", "alt" }, ".", function()
+-- Almost center window, tilted right 1
+hs.hotkey.bind({ "ctrl", "alt" }, "K", function()
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
+
+	f.x = max.x + max.w / 3
+	f.y = max.y + screenMargin
+	f.w = (max.w - screenMargin * 2 - wingap) / 2
+	f.h = max.h - screenMargin * 2
+	win:setFrame(f)
+end)
+
+-- Almost center window, tilted right 2
+hs.hotkey.bind({ "ctrl", "alt" }, "O", function()
 	local win = hs.window.focusedWindow()
 	local f = win:frame()
 	local screen = win:screen()
@@ -637,10 +652,10 @@ end)
 hs.hotkey.bind("alt", "1", function()
 	-- local name = "Google Chrome"
 	-- local name = "Firefox"
-	local name = "Safari"
+	-- local name = "Safari"
 	-- local name = "Brave Browser"
 	-- local name = "Microsoft Edge"
-	-- local name = "Vivaldi"
+	local name = "Vivaldi"
 	local app = hs.application.get(name)
 	-- local app = hs.application.find(name)
 	if not app then
