@@ -1,5 +1,8 @@
+[sqlfluff]
+dialect = postgres
+
 [sqlfluff:rules:L010]
 capitalisation_policy = upper
 
-[sqlfluff:rules:L036]
-wildcard_policy = multiple
+/* [sqlfluff:rules:L036] */
+/* wildcard_policy = multiple */
