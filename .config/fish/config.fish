@@ -124,17 +124,22 @@ function fish_prompt
     echo -n (prompt_pwd)
     # echo -n "~"
   end
-  set_color green
-  printf '%s ' (__fish_git_prompt)
+  # set_color green
+  # printf '%s ' (__fish_git_prompt)
   # set_color brblack
   set_color white
   # set_color red
-  echo -n '❯ '
+  echo -n ' ❯ '
   # echo -n '▲ '
   # echo -n '△ '
   # echo -n '喝 '
   # echo -n '➜ '
   set_color normal
+end
+
+function fish_right_prompt -d "Right Prompt"
+  set_color green
+  printf '%s ' (__fish_git_prompt)
 end
 
 if status is-interactive
@@ -210,6 +215,7 @@ function fish_greeting
     echo
 		set_color brblue
 		cat ~/Dropbox/Notes-Database/notes.md | sed 's/^/  /'
+    echo
 	end
 
   echo
