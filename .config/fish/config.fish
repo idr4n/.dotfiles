@@ -75,6 +75,9 @@ setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1'"
 set -gx GOPATH $HOME/go
 set -gx PATH $PATH $GOPATH/bin
 
+# Postgres
+set -gx PATH $PATH /Applications/Postgres.app/Contents/Versions/14/bin
+
 # Rust's cargo
 set -gx PATH $HOME/.cargo/bin $PATH
 
@@ -90,6 +93,10 @@ set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
 set __fish_git_prompt_showupstream 'none'
+set __fish_git_prompt_show_informative_status
+set __fish_git_prompt_showcolorhints
+set __fish_git_prompt_showupstream "informative"
+set __fish_git_prompt_char_stateseparator ' '
 
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
