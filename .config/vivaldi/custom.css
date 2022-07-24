@@ -1,14 +1,14 @@
-#header {
-  display: none !important;
-}
-
-#titlebar {
-  display: none !important;
-}
-
-/* #pagetitle { */
+/* #header { */
 /*   display: none !important; */
 /* } */
+
+/* #titlebar { */
+/*   display: none !important; */
+/* } */
+
+#pagetitle {
+  display: none !important;
+}
 
 #modal-bg.qc-modal {
   top: 20vh !important;
