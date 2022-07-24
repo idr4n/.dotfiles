@@ -51,6 +51,19 @@ function fr -d "Search in current directory"
   end
 end
 
+function frr -d "Search with fzf/rg in current directory"
+  set -l sel $(rg -n '.*' | fzf --layout=reverse --height 50% --ansi) 
+
+  set -l file $(echo "$sel" | cut -d ":" -f 1)
+  set -l line_nr $(echo "$sel" | cut -d ":" -f 2)
+
+  if test -z "$sel"
+    echo "nothing selected!"
+  else
+    $EDITOR "$file" +$line_nr
+  end
+end
+
 function fno -d "# search in Notes with fzf/rg"
   set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
 
