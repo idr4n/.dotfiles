@@ -4,12 +4,12 @@ import darkdetect
 light_color_kitty = "Zenbones Light Custom"
 # dark_color_kitty = "Tokyo Night Custom"
 # dark_color_kitty = "Nord Custom"
-# dark_color_kitty = "Zenbones Dark Custom"
-dark_color_kitty = "Rasmus"
+dark_color_kitty = "Zenbones Dark Custom"
+# dark_color_kitty = "Rasmus"
 light_color_alacritty = "zenbones_light"
 # dark_color_alacritty = "tokyo_night"
-# dark_color_alacritty = "zenbones_dark"
-dark_color_alacritty = "rasmus"
+dark_color_alacritty = "zenbones_dark"
+# dark_color_alacritty = "rasmus"
 
 if os.environ.get("HOME") == "/Users/iduran":
     if darkdetect.isDark():
