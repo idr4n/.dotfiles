@@ -27,7 +27,7 @@ function mkf
   end
 end
 
-function f -d "search files and cd into their directories"
+function ff -d "search files and cd into their directories"
   set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud
 
   set -l sel $(fd . -H $directories | fzf --layout=reverse --height 50% --ansi)
@@ -64,6 +64,16 @@ function fno -d "# search in Notes with fzf/rg"
   end
 end
 
+function f -d "search recent workdirs set in Neovim"
+  set -l sel $(cat ~/.config/nvim/lua/workdirs.txt | fzf --layout=reverse --height 50% --ansi)
+  if test -z "$sel"
+    echo "nothing selected!"
+  else if test -d "$sel"
+    cd "$sel"
+  else if test -f "$sel"
+    cd $(dirname "$sel")
+  end
+end
 
 function tt -d "print all todos"
   echo

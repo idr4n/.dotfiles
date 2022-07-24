@@ -20,9 +20,10 @@ set -gx NNN_USE_EDITOR 1
 
 # Bat env variable
 set t (math (date +%H) + (date +%M)/60)
-if [ $t -gt 6.5 ]
-  and [ $t -lt 19 ]
+if [ $t -gt 8 ]
+  and [ $t -lt 18 ]
   set -gx BAT_THEME "gruvbox-light"
+  # set -gx BAT_THEME "Nord"
 else
   set -gx BAT_THEME "Nord"
 end
