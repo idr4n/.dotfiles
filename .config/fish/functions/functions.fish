@@ -52,8 +52,8 @@ function fr -d "Search in current directory"
 end
 
 function frr -d "Search with fzf/rg in current directory"
-  set -l sel $(rg -n '.*' -g !node_modules | fzf --delimiter=: --nth=2.. --height 50% \
-              --layout=reverse --info=inline --ansi \
+  set -l sel $(rg -n '.*' --hidden --follow --no-ignore -g '!.git/*' -g !node_modules | \
+              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window +{2}-5) 
 
