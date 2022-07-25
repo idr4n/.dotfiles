@@ -70,7 +70,7 @@ set -gx PATH /opt/homebrew/opt/python@3.10/libexec/bin $PATH
 # Fzf
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
-setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1'"
+setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
 
 # Golang's path
 set -gx GOPATH $HOME/go

@@ -30,7 +30,7 @@ end
 function ff -d "search files and cd into their directories"
   set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud
 
-  set -l sel $(fd . -H $directories | fzf --layout=reverse --height 50% --ansi)
+  set -l sel $(fd . -H --type d $directories | fzf --layout=reverse --height 50% --ansi)
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -40,8 +40,23 @@ function ff -d "search files and cd into their directories"
   end
 end
 
-function fr -d "Search in current directory"
-  set -l sel $(fd . | fzf --layout=reverse --height 50% --ansi)
+function fa -d "search files and cd into their directories"
+  set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud
+
+  set -l sel $(fd . -H --type f $directories | \
+              fzf --height 50% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always {1} --style="numbers"')
+  if test -z "$sel"
+    echo "nothing selected!"
+  else if test -d "$sel"
+    cd "$sel"
+  else if test -f "$sel"
+    cd $(dirname "$sel")
+  end
+end
+
+function fr -d "Search files and directories in current directory"
+  set -l sel $(fd . -H | fzf --layout=reverse --height 50% --ansi)
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -68,7 +83,11 @@ function frr -d "Search with fzf/rg in current directory"
 end
 
 function fno -d "# search in Notes with fzf/rg"
-  set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
+  # set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
+  set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-Database/ | \
+              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
+              --preview-window +{2}-5) 
 
   set -l file $(echo "$sel" | cut -d ":" -f 1)
   set -l line_nr $(echo "$sel" | cut -d ":" -f 2)
