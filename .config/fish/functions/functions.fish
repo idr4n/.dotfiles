@@ -56,7 +56,9 @@ function fa -d "search files and cd into their directories"
 end
 
 function fr -d "Search files and directories in current directory"
-  set -l sel $(fd . -H -E '*.git*' | fzf --layout=reverse --height 50% --ansi)
+  set -l sel $(fd . -H --type f -E '*.git*' | \
+              fzf --height 50% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always {1} --style="numbers"')
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
