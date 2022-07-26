@@ -112,6 +112,21 @@ function f -d "search recent workdirs set in Neovim"
   end
 end
 
+function fu -d "search for URLs in current directory"
+  set -l sel $(rg -n 'https?://[^ ]+' --hidden --follow --no-ignore -g '!.git/*' -g !node_modules | \
+              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
+              --preview-window +{2}-5) 
+  set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.)
+  if test -z $url
+    echo "nothing selected!"
+  else
+    echo "URL: $url"
+    echo $url | pbcopy
+    open $url
+  end
+end
+
 function tt -d "print all todos"
   echo
   set_color green
