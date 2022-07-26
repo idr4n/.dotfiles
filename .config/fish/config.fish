@@ -65,7 +65,7 @@ alias we="fish_greeting"
 # set fish_cursor_replace_one underscore
 
 # Add homebrew's python3 and pip3 as default (so no need to add the 3 at the end)
-set -gx PATH /opt/homebrew/opt/python@3.10/libexec/bin $PATH
+set -gx PATH $(brew --prefix)/opt/python@3.10/libexec/bin $PATH
 
 # Fzf
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
@@ -83,7 +83,7 @@ set -gx PATH $PATH /Applications/Postgres.app/Contents/Versions/14/bin
 set -gx PATH $HOME/.cargo/bin $PATH
 
 # Autojump
-[ -f /opt/homebrew/share/autojump/autojump.fish ]; and source /opt/homebrew/share/autojump/autojump.fish
+[ -f $(brew --prefix)/share/autojump/autojump.fish ]; and source $(brew --prefix)/share/autojump/autojump.fish
 
 # ZK Notes
 set -gx ZK_NOTEBOOK_DIR "$HOME/Dropbox/Notes-zk"
