@@ -68,9 +68,13 @@ alias we="fish_greeting"
 set -gx PATH $(brew --prefix)/opt/python@3.10/libexec/bin $PATH
 
 # Fzf
+set -gx PATH $PATH $(brew --prefix)/opt/fzf/bin
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
+
+# add ~/bin to path
+set -gx PATH $PATH $HOME/bin
 
 # Golang's path
 set -gx GOPATH $HOME/go
