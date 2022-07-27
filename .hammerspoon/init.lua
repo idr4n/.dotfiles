@@ -652,7 +652,8 @@ end)
 hs.hotkey.bind("alt", "1", function()
 	-- local name = "Google Chrome"
 	-- local name = "Firefox"
-	local name = "Safari"
+	-- local name = "Safari"
+	local name = "Opera GX"
 	-- local name = "Brave Browser"
 	-- local name = "Microsoft Edge"
 	-- local name = "Vivaldi"
