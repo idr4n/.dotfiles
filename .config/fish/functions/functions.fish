@@ -117,7 +117,7 @@ function fu -d "search for URLs in current directory"
               fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window +{2}-5) 
-  set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.)
+  set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.:)
   if test -z $url
     echo "nothing selected!"
   else
