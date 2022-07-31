@@ -22,8 +22,8 @@ set -gx NNN_USE_EDITOR 1
 set t (math (date +%H) + (date +%M)/60)
 if [ $t -gt 8 ]
   and [ $t -lt 18 ]
-  set -gx BAT_THEME "gruvbox-light"
-  # set -gx BAT_THEME "Nord"
+  # set -gx BAT_THEME "gruvbox-light"
+  set -gx BAT_THEME "Nord"
 else
   set -gx BAT_THEME "Nord"
 end
@@ -122,7 +122,8 @@ function fish_prompt
   echo -n '卑 '
   # set_color blue
   # set_color yellow
-  set_color white
+  # set_color white
+  set_color magenta
   # echo -n (prompt_pwd)
   if [ $PWD != $HOME ]
     if [ (dirname $PWD) = $HOME ]
@@ -214,7 +215,7 @@ function fish_greeting
 	end
 
 	# urgent, so prompt always
-  set_color magenta
+  set_color cyan
   if test -s ~/Dropbox/Notes-Database/todos_important.md
     cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
   end
@@ -227,7 +228,6 @@ function fish_greeting
     echo
 		set_color brblue
 		cat ~/Dropbox/Notes-Database/notes.md | sed 's/^/  /'
-    echo
 	end
 
   echo

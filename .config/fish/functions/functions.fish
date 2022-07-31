@@ -112,12 +112,33 @@ function f -d "search recent workdirs set in Neovim"
   end
 end
 
-function fu -d "search for URLs in current directory"
-  set -l sel $(rg -n 'https?://[^ ]+' --hidden --follow --no-ignore -g '!.git/*' -g !node_modules | \
+function fuu -d "search for URLs in current directory"
+  set -l sel $(rg -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules | \
               fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window +{2}-5) 
+
   set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.:)
+
+  if test -z $url
+    echo "nothing selected!"
+  else
+    echo "URL: $url"
+    echo $url | pbcopy
+    open $url
+  end
+end
+
+function fu -d "search for URLs in list of directories"
+  set -l directories ~/Dropbox/Notes-zk ~/Dropbox/Notes-Database
+
+  set -l sel $(rg -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules $directories | \
+              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
+              --preview-window +{2}-5) 
+
+  set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.:)
+
   if test -z $url
     echo "nothing selected!"
   else
@@ -135,7 +156,7 @@ function tt -d "print all todos"
   cat ~/Dropbox/Notes-Database/todos_eventually.md | sed 's/^/  /'
   set_color yellow
   cat ~/Dropbox/Notes-Database/todos_upcoming.md | sed 's/^/  /'
-  set_color magenta
+  set_color cyan
   cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
   echo
 end
