@@ -1,0 +1,61 @@
+/* 
+copy or symlink in:
+'~/Library/Application Support/Firefox/Profiles/auu01v15.default-release/chrome' 
+In general, to find the correct folder, go to Firefox help and select
+'Troubleshooting information'. From there, show in finder the 'Profile Folder'
+and and go to the 'chrome' subfolder.
+*/
+
+#tabbrowser-tabs {
+  --tab-min-height: 30px !important;
+  --lwt-tab-line-color: transparent !important;
+  /* --lwt-tab-line-color: rgba(172, 112, 255, 0.5) !important; */
+}
+
+#toolbar-menubar[autohide='true'] > .titlebar-buttonbox-container {
+  min-height: 30px !important;
+}
+#tabbrowser-tabs,
+.tabbrowser-tab[pinned] {
+  min-height: 30px !important;
+}
+#nav-bar {
+  margin-left: calc(100vw - var(--uc-navigationbar-width));
+  margin-top: calc(0px - var(--uc-toolbar-height));
+}
+
+/* ------------------------- */
+/* keep above code for narrower tabs and no tab borders */
+/* keep below code for autohiding the navbar */
+/* ------------------------- */
+
+:root:not([customizing]) #navigator-toolbox {
+  display: grid;
+  grid-template-rows: auto;
+}
+:root:not([customizing]) #navigator-toolbox > * {
+  grid-area: 1/1;
+}
+:root:not([customizing]) #titlebar {
+  -moz-appearance: none !important;
+}
+
+#urlbar-container {
+  margin-top: 1px;
+}
+:root[sessionrestored] #nav-bar:not([customizing]) {
+  transform: rotateX(90deg);
+  transition: transform 67ms linear, opacity 0ms linear 67ms !important;
+  opacity: 0;
+  z-index: 3;
+}
+:root[sessionrestored] #nav-bar:focus-within {
+  transform: rotateX(0deg);
+  opacity: 1;
+  transition-delay: 0ms, 0ms !important;
+}
+
+/* This enables compatibility with autohide_bookmarks_toolbar.css */
+#PersonalToolbar {
+  margin-top: var(--tab-min-height) !important;
+}
