@@ -2,6 +2,7 @@ require("bookmark_chooser")
 require("check_later")
 require("espanso_chooser")
 require("list_chooser")
+require("safari_tabs_chooser")
 local h = require("helper")
 
 -- local variables
@@ -652,8 +653,8 @@ end)
 hs.hotkey.bind("alt", "1", function()
 	-- local name = "Google Chrome"
 	-- local name = "Firefox"
-	-- local name = "Safari"
-	local name = "Opera GX"
+	local name = "Safari"
+	-- local name = "Opera GX"
 	-- local name = "Brave Browser"
 	-- local name = "Microsoft Edge"
 	-- local name = "Vivaldi"
