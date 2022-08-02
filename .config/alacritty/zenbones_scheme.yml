@@ -103,6 +103,58 @@ schemes:
       cyan:    '#2B747C'
       white:   '#4F5E68'
 
+  nordfox: &nordfox
+    primary:
+      background: '0x2e3440'
+      foreground: '0xcdcecf'
+    cursor:
+      cursor: '0xcdcecf'
+      text: '0x2e3440'
+    normal:
+      black:   '0x3b4252'
+      red:     '0xbf616a'
+      green:   '0xa3be8c'
+      yellow:  '0xebcb8b'
+      blue:    '0x81a1c1'
+      magenta: '0xb48ead'
+      cyan:    '0x88c0d0'
+      white:   '0xe5e9f0'
+    bright:
+      black:   '0x465780'
+      red:     '0xd06f79'
+      green:   '0xb1d196'
+      yellow:  '0xf0d399'
+      blue:    '0x8cafd2'
+      magenta: '0xc895bf'
+      cyan:    '0x93ccdc'
+      white:   '0xe7ecf4'
+
+  duskfox: &duskfox
+    primary:
+      background: '0x232136'
+      foreground: '0xe0def4'
+    cursor:
+      cursor: '0xe0def4'
+      text: '0x232136'
+    normal:
+      black:   '0x393552'
+      red:     '0xeb6f92'
+      green:   '0xa3be8c'
+      yellow:  '0xf6c177'
+      blue:    '0x569fba'
+      magenta: '0xc4a7e7'
+      cyan:    '0x9ccfd8'
+      white:   '0xe0def4'
+    bright:
+      black:   '0x47407d'
+      red:     '0xf083a2'
+      green:   '0xb1d196'
+      yellow:  '0xf9cb8c'
+      blue:    '0x65b1cd'
+      magenta: '0xccb1ed'
+      cyan:    '0xa6dae3'
+      white:   '0xe2e0f7'
+
   rasmus: &rasmus
     primary:
       background: '#1a1a19'
