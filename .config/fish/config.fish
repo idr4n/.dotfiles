@@ -37,8 +37,8 @@ else
 end
 alias ll='ls -al'
 alias la='ls -a'
-alias lt='ls --tree --level=3'
-alias llt='ll --tree --level=3'
+alias lt='ls --tree --level=3 -I node_modules'
+alias llt='ll --tree --level=3 -I node_modules'
 alias c='clear'
 alias cdd='cd ~/Dropbox'
 alias cdp='cd ~/pCloud'
