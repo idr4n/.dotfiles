@@ -1,9 +1,13 @@
 # run terminal
 # ctrl - return : open -na alacritty # set in hammerspoon instead
-ctrl + shift - return : open -na kitty
+ctrl + shift - return : wezterm start --always-new-process
+# ctrl + shift - return : open -na kitty
 
 # run or focus ~/scripts/run_term_fm
 cmd + ctrl + shift - return : ~/scripts/run_term_fm
+
+# run or focus ~/Downloads in file manager
+ctrl + shift - d : ~/scripts/open_downloads
 
 # run or focus browser
 # ctrl + alt - f : /Applications/Firefox.app/Contents/MacOS/firefox
@@ -37,6 +41,7 @@ alt + shift - t: kitty -d ~/ tmux new-session -A -s W
 
 # focus apps
 alt - j : ~/scripts/focus_app alacritty
+# alt - k : ~/scripts/focus_app wezterm
 alt - l : ~/scripts/focus_app zathura 1
 alt - k : ~/scripts/focus_app kitty
 

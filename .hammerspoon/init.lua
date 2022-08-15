@@ -500,10 +500,10 @@ hs.hotkey.bind(hyper3, "left", moveWindowPrev)
 --   os.execute("~/scripts/launch_browser")
 -- end)
 
-hs.hotkey.bind({ "ctrl", "shift" }, "D", function()
-	-- hs.execute("open ~/Downloads")
-	hs.execute("/usr/local/bin/marta --existing-tab ~/Downloads")
-end)
+-- hs.hotkey.bind({ "ctrl", "shift" }, "D", function()
+-- 	hs.execute("open ~/Downloads")
+-- 	-- hs.execute("/usr/local/bin/marta --existing-tab ~/Downloads")
+-- end)
 
 ------------- Move window to screen borders -------------
 
@@ -650,11 +650,12 @@ hs.hotkey.bind({ "alt", "shift" }, "K", function()
 	h.focusApp(app, name)
 end)
 
-hs.hotkey.bind("alt", "1", function()
+hs.hotkey.bind("alt", "Q", function()
 	-- local name = "Google Chrome"
 	-- local name = "Firefox"
-	local name = "Safari"
-	-- local name = "Opera GX"
+	-- local name = "Firefox Nightly"
+	-- local name = "Safari"
+	local name = "Opera GX"
 	-- local name = "Brave Browser"
 	-- local name = "Microsoft Edge"
 	-- local name = "Vivaldi"

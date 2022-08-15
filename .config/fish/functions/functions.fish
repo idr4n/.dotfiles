@@ -27,7 +27,7 @@ function mkf
   end
 end
 
-function ff -d "search files and cd into their directories"
+function ff -d "search and cd into directories"
   set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud
 
   set -l sel $(fd . -H --type d -E '*.git*' $directories | fzf --layout=reverse --height 50% --ansi)
@@ -44,8 +44,8 @@ function fa -d "search files and cd into their directories"
   set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud
 
   set -l sel $(fd . -H --type f -E '*.git*' $directories | \
-              fzf --height 50% --layout=reverse --info=inline --ansi \
-              --preview 'bat --color=always {1} --style="numbers"')
+              fzf --height 100% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always {1} --style="numbers"' --preview-window=down,60%)
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -56,9 +56,9 @@ function fa -d "search files and cd into their directories"
 end
 
 function fr -d "Search files and directories in current directory"
-  set -l sel $(fd . -H --type f -E '*.git*' | \
-              fzf --height 50% --layout=reverse --info=inline --ansi \
-              --preview 'bat --color=always {1} --style="numbers"')
+  set -l sel $(fd . -H --type f -E '*.git*' -E node_modules | \
+              fzf --height 100% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always {1} --style="numbers"' --preview-window=down,60%)
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -70,9 +70,9 @@ end
 
 function frr -d "Search with fzf/rg in current directory"
   set -l sel $(rg -n '.*' --hidden --follow --no-ignore -g '!.git/*' -g !node_modules | \
-              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
-              --preview-window +{2}-5) 
+              --preview-window=down --preview-window +{2}-5) 
 
   set -l file $(echo "$sel" | cut -d ":" -f 1)
   set -l line_nr $(echo "$sel" | cut -d ":" -f 2)
@@ -86,10 +86,10 @@ end
 
 function fno -d "# search in Notes with fzf/rg"
   # set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
-  set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-Database/ | \
-              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
+  set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-zk/ $HOME/Dropbox/Notes-Database/ | \
+              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
-              --preview-window +{2}-5) 
+              --preview-window=down --preview-window +{2}-5) 
 
   set -l file $(echo "$sel" | cut -d ":" -f 1)
   set -l line_nr $(echo "$sel" | cut -d ":" -f 2)
@@ -114,9 +114,9 @@ end
 
 function fuu -d "search for URLs in current directory"
   set -l sel $(rg -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules | \
-              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
-              --preview-window +{2}-5) 
+              --preview-window=down --preview-window +{2}-5) 
 
   set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.:)
 
@@ -133,9 +133,9 @@ function fu -d "search for URLs in list of directories"
   set -l directories ~/Dropbox/Notes-zk ~/Dropbox/Notes-Database
 
   set -l sel $(rg -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules $directories | \
-              fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
-              --preview-window +{2}-5) 
+              --preview-window=down --preview-window +{2}-5) 
 
   set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.:)
 
