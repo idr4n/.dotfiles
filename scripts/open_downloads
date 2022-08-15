@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# # No need to load path if using skhd
+# export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin:$HOME/.fzf/bin:$HOME/bin"
+
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+
+term="/usr/local/bin/alacritty -o window.dimensions.columns=160 -o window.dimensions.lines=40"
+# fm="$HOME/bin/nnn"
+fm="$(brew --prefix)/bin/lf"
+process="$term -e $fm $HOME/Downloads"
+
+~/scripts/lof "$process"
+status=$?
+
+[ $status -eq 1 ] && $process && exit
+
