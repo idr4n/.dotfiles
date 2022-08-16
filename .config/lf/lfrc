@@ -89,10 +89,12 @@ map y
 # Basic Settings
 # set previewer ~/.config/lf/previewer.sh
 # set preview true
-set hidden true
+# set hidden true
 # set drawbox true
 set icons on
 set ignorecase true
+set previewer ~/.config/lf/lf_kitty_preview
+set cleaner ~/.config/lf/lf_kitty_clean
 
 cmd mkdir %{{
   printf "Directory Name: "
@@ -268,6 +270,7 @@ map gtr cd ~/.local/share/Trash/files
 # map gwm cd ~/pictures/Wallpapers/MobileWallpapers
 
 map gd cd ~/Downloads
+map gs cd ~/Desktop/ScreenShots
 
 map gc cd ~/.config
 map gl cd ~/.local
