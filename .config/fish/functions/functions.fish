@@ -148,7 +148,7 @@ function fu -d "search for URLs in list of directories"
   end
 end
 
-function tt -d "print all todos"
+function td -d "print all todos"
   echo
   set_color green
   cat ~/Dropbox/Notes-Database/todos_unimportant.md | sed 's/^/  /'

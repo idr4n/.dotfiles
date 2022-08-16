@@ -122,6 +122,7 @@ cmd fzf_dirs ${{
   directories=(
     ~/.config
     ~/Dev
+    ~/Desktop
     ~/Downloads
     ~/Dropbox
     ~/pCloud
@@ -180,6 +181,7 @@ cmd move_to_dir ${{
   directories=(
     ~/.config
     ~/Dev
+    ~/Desktop
     ~/Downloads
     ~/Dropbox
     ~/pCloud
@@ -254,6 +256,9 @@ map L bottom
 map R reload
 map C clear
 map U unselect
+map st :set sortby time; set info time; set reverse
+map sa :set sortby atime; set info atime; set reverse
+map sc :set sortby ctime; set info ctime; set reverse
 
 # Movement
 map gtr cd ~/.local/share/Trash/files
