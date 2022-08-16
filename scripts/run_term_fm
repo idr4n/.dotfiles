@@ -9,7 +9,7 @@ export EDITOR="$VISUAL"
 # . ~/.config/zsh/nnn.sh
 
 # term="/usr/local/bin/alacritty -o window.dimensions.columns=100 -o window.dimensions.lines=23"
-term="/usr/local/bin/alacritty -o window.dimensions.columns=130 -o window.dimensions.lines=30"
+term="/usr/local/bin/alacritty -o window.dimensions.columns=160 -o window.dimensions.lines=40"
 # term="/opt/homebrew/bin/alacritty"
 # fm="$HOME/bin/nnn"
 fm="$(brew --prefix)/bin/lf"

@@ -6,13 +6,9 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-term="/usr/local/bin/alacritty -o window.dimensions.columns=160 -o window.dimensions.lines=40"
+term="/usr/local/bin/alacritty --args -o window.dimensions.columns=160 -o window.dimensions.lines=40"
 # fm="$HOME/bin/nnn"
 fm="$(brew --prefix)/bin/lf"
-process="$term -e $fm $HOME/Downloads"
 
-~/scripts/lof "$process"
-status=$?
-
-[ $status -eq 1 ] && $process && exit
+open -na $term -e $fm -command 'set sortby time; set info time; set reverse' $HOME/Downloads
 
