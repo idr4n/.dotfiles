@@ -10,16 +10,19 @@ export EDITOR="$VISUAL"
 
 # term="/usr/local/bin/alacritty -o window.dimensions.columns=160 -o window.dimensions.lines=40"
 term="$(brew --prefix)/bin/kitty -o remember_window_size=no -o initial_window_width=1600 -o initial_window_height=900"
+# term="$(brew --prefix)/bin/wezterm-gui --config initial_rows=40 --config initial_cols=160 start"
 # term="/opt/homebrew/bin/alacritty"
 # fm="$HOME/bin/nnn"
 fm="$(brew --prefix)/bin/lf"
 # process="$term -e $fm $HOME"
 process="$term $fm $HOME"
 
-~/scripts/lof "$process"
-status=$?
+# ~/scripts/lof "$process"
+# status=$?
 
-[ $status -eq 1 ] && $process && exit
+# [ $status -eq 1 ] && $process && exit
+
+$process && exit
 
 # -- Alternative if not using ~/scripts/lof script ---
 
