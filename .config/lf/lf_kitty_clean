@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 
+CACHE="$HOME/.cache/tmpimg"
+[ -f "${CACHE}.jpg" ] && rm "${CACHE}.jpg"
 kitty +icat --clear --silent --transfer-mode file
-rm "${CACHE}.jpg"
