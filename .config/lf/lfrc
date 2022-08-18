@@ -258,9 +258,9 @@ map L bottom
 map R reload
 map C clear
 map U unselect
-map st :set sortby time; set info time; set reverse
-map sa :set sortby atime; set info atime; set reverse
-map sc :set sortby ctime; set info ctime; set reverse
+map st :set sortby time; set info time; set reverse; top
+map sa :set sortby atime; set info atime; set reverse; top
+map sc :set sortby ctime; set info ctime; set reverse; top
 
 # Movement
 map gtr cd ~/.local/share/Trash/files
