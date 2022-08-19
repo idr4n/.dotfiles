@@ -182,6 +182,7 @@ fi             # FILE
 *.zshrc                 
 *.zshenv                
 *.zprofile              
+*lfrc                   
 *.vimrc                 
 *.gvimrc                
 *_vimrc                 

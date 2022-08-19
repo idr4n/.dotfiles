@@ -86,6 +86,13 @@ key_bindings:
 - { key: I, mods: Alt, chars: "\x1bi" }
 - { key: O, mods: Alt, chars: "\x1bo" }
 - { key: P, mods: Alt, chars: "\x1bp" }
+- { key: J, mods: Command, chars: "\x01\x2f" } # ctrl+a+/
+- { key: T, mods: Command, chars: "\x01\x63" } # ctrl+a+c
+- { key: Tab, mods: Control, chars: "\x01\x09" } # ctrl+a+Tab
+- { key: RBracket, mods: Command|Shift, chars: "\x01\x6e" } # ctrl+a+n
+- { key: LBracket, mods: Command|Shift, chars: "\x01\x4e" } # ctrl+a+N
+- { key: W, mods: Command, chars: "\x01\x78" } # ctrl+a+x kill-pane (and window if last pane)
+- { key: L, mods: Command, chars: "\x01\x5e" } # ctrl+a+^ switch to last session
 
 import:
   - "~/.config/alacritty/zenbones_scheme.yml"
