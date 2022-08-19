@@ -4,11 +4,17 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 
 # term="/usr/local/bin/alacritty --args -o window.dimensions.columns=160 -o window.dimensions.lines=40"
-term="$(brew --prefix)/bin/kitty -o remember_window_size=no -o initial_window_width=1600 -o initial_window_height=900"
+# term="$(brew --prefix)/bin/kitty -o remember_window_size=no -o initial_window_width=1600 -o initial_window_height=900"
+term="$(brew --prefix)/bin/wezterm-gui --config initial_rows=40 --config initial_cols=160 start"
 # fm="$HOME/bin/nnn"
 fm="$(brew --prefix)/bin/lf"
 # process="$term $fm -command 'set sortby time; set info time; set reverse' $HOME/Downloads"
+process="$term $fm $HOME/Downloads"
+
+~/scripts/lof "$process"
+status=$?
 
 # open -na $term -e $fm -command 'set sortby time; set info time; set reverse' $HOME/Downloads
-$term $fm $HOME/Downloads && exit 1
+# $term $fm $HOME/Downloads && exit 1
 
+[ $status -eq 1 ] && $process && exit

@@ -48,17 +48,18 @@ alias tm='tmux'
 alias tw='tmux new-session -A -s W'
 alias tc='tmux new-session -A -s C'
 alias xc='pwd | pbcopy'
-alias nv="nvim"
+alias n="nvim"
 alias st="subl"
 alias sm="smerge"
 alias code="code -r"
 alias lg="lazygit"
-alias n="nnn -e"
+alias nnn="nnn -e"
 alias r="ranger"
 alias rd="ranger ~/Downloads"
 alias yo="open -a yoink"
 alias marta="marta --existing-tab"
 alias we="fish_greeting"
+alias t="~/dotfiles/scripts/t"
 
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block
@@ -118,44 +119,44 @@ setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 # Prompt configuration
-function fish_prompt
-  echo
-  set -g fish_prompt_pwd_dir_length 1
-  set -g fish_prompt_pwd_full_dirs 2 
-  set_color white
-  # echo -n "["(date "+%H:%M")"] "
-  # echo -n '卑 '
-  # set_color blue
-  # set_color yellow
-  # set_color white
-  set_color magenta
-  # echo -n (prompt_pwd)
-  if [ $PWD != $HOME ]
-    if [ (dirname $PWD) = $HOME ]
-      echo -n "~/"(basename $PWD)
-    else if [ (dirname $PWD) = "/" ]
-      echo -n $PWD
-    else
-      echo -n (__shorten (basename (dirname $PWD)))/(basename $PWD)
-    end
-  else
-    echo -n (prompt_pwd)
-    # echo -n "~"
-  end
-  set_color normal
-  printf '%s' (__fish_git_prompt)
-  # set_color brblack
-  echo
-  set_color white
-  # set_color red
-  # echo -n ' ❯ '
-  echo -n '❯ '
-  # echo -n '▲ '
-  # echo -n '△ '
-  # echo -n '喝 '
-  # echo -n '➜ '
-  set_color normal
-end
+# function fish_prompt
+#   echo
+#   set -g fish_prompt_pwd_dir_length 1
+#   set -g fish_prompt_pwd_full_dirs 2 
+#   set_color white
+#   # echo -n "["(date "+%H:%M")"] "
+#   # echo -n '卑 '
+#   # set_color blue
+#   # set_color yellow
+#   # set_color white
+#   set_color magenta
+#   # echo -n (prompt_pwd)
+#   if [ $PWD != $HOME ]
+#     if [ (dirname $PWD) = $HOME ]
+#       echo -n "~/"(basename $PWD)
+#     else if [ (dirname $PWD) = "/" ]
+#       echo -n $PWD
+#     else
+#       echo -n (__shorten (basename (dirname $PWD)))/(basename $PWD)
+#     end
+#   else
+#     echo -n (prompt_pwd)
+#     # echo -n "~"
+#   end
+#   set_color normal
+#   printf '%s' (__fish_git_prompt)
+#   # set_color brblack
+#   echo
+#   set_color white
+#   # set_color red
+#   # echo -n ' ❯ '
+#   echo -n '❯ '
+#   # echo -n '▲ '
+#   # echo -n '△ '
+#   # echo -n '喝 '
+#   # echo -n '➜ '
+#   set_color normal
+# end
 
 # function fish_right_prompt -d "Right Prompt"
 #   set_color normal
@@ -244,5 +245,5 @@ end
 # Add zoxide
 zoxide init fish | source
 
-# # Add starship prompt
-# starship init fish | source
+# Add starship prompt
+starship init fish | source
