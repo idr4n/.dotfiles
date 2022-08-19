@@ -22,16 +22,16 @@
 # file types (with matching order)
 ln             # LINK
 or             # ORPHAN
-tw      t       # STICKY_OTHER_WRITABLE
-ow             # OTHER_WRITABLE
-st      t       # STICKY
+tw             # STICKY_OTHER_WRITABLE
+ow             # OTHER_WRITABLE
+st             # STICKY
 di             # DIR
-pi      p       # FIFO
-so      s       # SOCK
-bd      b       # BLK
-cd      c       # CHR
-su      u       # SETUID
-sg      g       # SETGID
+pi      ﳣ       # FIFO
+so      臘       # SOCK
+bd      כּ       # BLK
+cd             # CHR
+su             # SETUID
+sg             # SETGID
 ex             # EXEC
 fi             # FILE
 
@@ -88,6 +88,8 @@ fi             # FILE
 *.cp            
 *.c             
 *.cs            
+*.doc           
+*.docx          
 *.h             
 *.hh            
 *.hpp           
@@ -104,6 +106,8 @@ fi             # FILE
 *.ksh           
 *.csh           
 *.awk           
+*.ppt           
+*.pptx          
 *.ps1           
 *.ml            λ
 *.mli           λ
@@ -118,6 +122,8 @@ fi             # FILE
 *.scala         
 *.go            
 *.dart          
+*.xls           
+*.xlsx          
 *.xul           
 *.sln           
 *.suo           
