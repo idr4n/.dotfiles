@@ -1,0 +1,77 @@
+#!/bin/sh
+
+# if not currently in tmux
+if [ -z "$TMUX" ]; then
+  # tmux is not active
+  echo "is not tmux"
+  # save fzf to variables
+  ZOXIDE_RESULT=$(zoxide query -l | fzf --height 100% --layout=reverse --info=inline --ansi \
+              --preview 'll {1}' --preview-window=down,60%)
+
+  # if empty exit
+  if [ -z "$ZOXIDE_RESULT" ]; then
+    exit 0
+  fi
+
+  FOLDER=$(basename $ZOXIDE_RESULT)
+
+  # lookup tmux window
+  WINDOW=$(tmux list-windows -a | grep -m 1 "$FOLDER" | awk '{print $1}')
+  WINDOW=${WINDOW%?}
+  echo $WINDOW
+
+  if [ -z "$WINDOW" ]; then
+    # session does not exist
+    echo "window ${FOLDER} does not exist"
+    # jump to directory
+    cd $ZOXIDE_RESULT
+    # create session
+    tmux new-session -s $FOLDER -n $FOLDER
+  else
+    # window exists
+    echo "window ${FOLDER} exists in ${WINDOW}"
+    tmux attach -t $WINDOW
+  fi
+else
+  # tmux is active
+  echo "is tmux"
+  # save fzf to variables
+  ZOXIDE_RESULT=$(zoxide query -l | fzf --height 100% --layout=reverse --info=inline --ansi \
+    --preview 'll {1}' --preview-window=down,60%)
+
+  # if no result exit
+  if [ -z "$ZOXIDE_RESULT" ]; then
+    exit 0
+  fi
+
+  FOLDER=$(basename $ZOXIDE_RESULT)
+  # lookup tmux window
+  WINDOW=$(tmux list-windows -a | grep -m 1 ": $FOLDER" | awk '{print $1}')
+  WINDOW=${WINDOW%?}
+
+  if [ -z "$WINDOW" ]; then
+    # window does not exist in any session
+    echo "window ${FOLDER} does not exist"
+    # check if exist session same name as window
+    SESSION=$(tmux list-sessions | grep $FOLDER | awk '{print $1}')
+    SESSION=${SESSION//:/}
+
+    if [ -z "$SESSION" ]; then
+      # no session with same name as window
+      # then create window in CURRENT session
+      echo "session ${FOLDER} does not exist"
+      tmux new-window -c $ZOXIDE_RESULT
+    else
+      # switch to that session and create window there
+      echo "session ${FOLDER} does exist"
+      tmux switch-client -t $SESSION\; new-window -c $ZOXIDE_RESULT -n $FOLDER
+    fi
+
+  else
+    # window exists in some session
+    echo "window ${FOLDER} exists in ${WINDOW}"
+    # switch to tmux session/window
+    tmux switch-client -t $WINDOW
+  fi
+fi
+

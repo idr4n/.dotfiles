@@ -87,12 +87,23 @@ key_bindings:
 - { key: O, mods: Alt, chars: "\x1bo" }
 - { key: P, mods: Alt, chars: "\x1bp" }
 - { key: J, mods: Command, chars: "\x01\x2f" } # ctrl+a+/
+- { key: N, mods: Command, chars: "\x01\x3b" } # ctrl+a+;
 - { key: T, mods: Command, chars: "\x01\x63" } # ctrl+a+c
 - { key: Tab, mods: Control, chars: "\x01\x09" } # ctrl+a+Tab
 - { key: RBracket, mods: Command|Shift, chars: "\x01\x6e" } # ctrl+a+n
 - { key: LBracket, mods: Command|Shift, chars: "\x01\x4e" } # ctrl+a+N
 - { key: W, mods: Command, chars: "\x01\x78" } # ctrl+a+x kill-pane (and window if last pane)
 - { key: L, mods: Command, chars: "\x01\x5e" } # ctrl+a+^ switch to last session
+# Select window 1-9
+- { key: Key1, mods: Command, chars: "\x01\x31" }
+- { key: Key2, mods: Command, chars: "\x01\x32" }
+- { key: Key3, mods: Command, chars: "\x01\x33" }
+- { key: Key4, mods: Command, chars: "\x01\x34" }
+- { key: Key5, mods: Command, chars: "\x01\x35" }
+- { key: Key6, mods: Command, chars: "\x01\x36" }
+- { key: Key7, mods: Command, chars: "\x01\x37" }
+- { key: Key8, mods: Command, chars: "\x01\x38" }
+- { key: Key9, mods: Command, chars: "\x01\x39" }
 
 import:
   - "~/.config/alacritty/zenbones_scheme.yml"
