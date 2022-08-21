@@ -135,9 +135,11 @@ cmd fzf_dirs ${{
   sel=$(fd . -H -L -E '*.git*' -E node_modules "${directories[@]}" | fzf --layout=reverse --height 50% --ansi) || true
   if [ -d "$sel" ]; then
     lf -remote "send $id cd '${sel}'"
+    zoxide add "$sel"
   fi
   if [ -f "$sel" ]; then
-    lf -remote "send $id cd '$(dirname "${sel}")'"
+    lf -remote "send $id select '${sel}'"
+    zoxide add $(dirname "$sel")
   fi
 }}
 map fd fzf_dirs
