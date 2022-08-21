@@ -61,6 +61,7 @@ alias marta="marta --existing-tab"
 alias we="fish_greeting"
 alias t="~/dotfiles/scripts/t"
 alias tt="~/dotfiles/scripts/tt"
+alias T="~/dotfiles/scripts/T.sh"
 
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block

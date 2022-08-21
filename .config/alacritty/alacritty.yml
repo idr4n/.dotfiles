@@ -87,6 +87,7 @@ key_bindings:
 - { key: O, mods: Alt, chars: "\x1bo" }
 - { key: P, mods: Alt, chars: "\x1bp" }
 - { key: J, mods: Command, chars: "\x01\x2f" } # ctrl+a+/
+- { key: J, mods: Command|Shift, chars: "\x01\x54" } # ctrl+a+T
 - { key: N, mods: Command, chars: "\x01\x3b" } # ctrl+a+;
 - { key: T, mods: Command, chars: "\x01\x63" } # ctrl+a+c
 - { key: Tab, mods: Control, chars: "\x01\x09" } # ctrl+a+Tab
