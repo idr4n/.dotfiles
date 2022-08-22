@@ -8,12 +8,12 @@ hfloat=$(expr $h*0.9 | bc)
 hint=${hfloat/.*}
 CACHE="$HOME/.cache/tmpimg"
 
-if [[ "$( file -Lb --mime-type "$file")" =~ ^image ]]; then
+if [[ "$( file -Lb --mime-type "$file")" =~ ^image && $lf_preview == true ]]; then
   kitty +icat --silent --transfer-mode file --place "${w}x${h}@${x}x2" "$file"
   exit 1
 fi
 
-if [[ "$( file -Lb --mime-type "$file")" =~ ^application/pdf ]]; then
+if [[ "$( file -Lb --mime-type "$file")" =~ ^application/pdf && $lf_preview == true ]]; then
   pdftoppm -jpeg -f 1 -singlefile "$file" "$CACHE"
   kitty +icat --silent --transfer-mode file --place "${w}x$hint@${x}x2" "${CACHE}.jpg"
   exit 1

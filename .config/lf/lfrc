@@ -281,6 +281,9 @@ map gs cd ~/Desktop/ScreenShots
 map gc cd ~/.config
 map gl cd ~/.local
 map gE cd /etc
-map gU. cd /usr
 
-map \;j cd ~
+# toggle preview
+map ~ ${{
+	lf -remote "send $id set preview!"
+  $lf_preview && lf -remote "send $id set ratios 1:4" || lf -remote "send $id set ratios 1:2:2"
+}}
