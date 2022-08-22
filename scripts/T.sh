@@ -72,4 +72,3 @@ else
     tmux switch-client -t "$SESSION"
   fi
 fi
-

@@ -1,12 +1,13 @@
 #!/bin/sh
 
+# save fzf to variables
+ZOXIDE_RESULT=$(zoxide query -l | fzf --height 100% --layout=reverse --info=inline --ansi \
+  --preview 'll {1}' --preview-window=down,60%)
+
 # if not currently in tmux
 if [ -z "$TMUX" ]; then
   # tmux is not active
   echo "is not tmux"
-  # save fzf to variables
-  ZOXIDE_RESULT=$(zoxide query -l | fzf --height 100% --layout=reverse --info=inline --ansi \
-              --preview 'll {1}' --preview-window=down,60%)
 
   # if empty exit
   if [ -z "$ZOXIDE_RESULT" ]; then
@@ -18,7 +19,6 @@ if [ -z "$TMUX" ]; then
   # lookup tmux window
   WINDOW=$(tmux list-windows -a | grep -m 1 "$FOLDER" | awk '{print $1}')
   WINDOW=${WINDOW%?}
-  echo $WINDOW
 
   if [ -z "$WINDOW" ]; then
     # session does not exist
@@ -35,9 +35,6 @@ if [ -z "$TMUX" ]; then
 else
   # tmux is active
   echo "is tmux"
-  # save fzf to variables
-  ZOXIDE_RESULT=$(zoxide query -l | fzf --height 100% --layout=reverse --info=inline --ansi \
-    --preview 'll {1}' --preview-window=down,60%)
 
   # if no result exit
   if [ -z "$ZOXIDE_RESULT" ]; then
@@ -74,4 +71,3 @@ else
     tmux switch-client -t $WINDOW
   fi
 fi
-
