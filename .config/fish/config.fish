@@ -179,54 +179,57 @@ function fish_greeting
     or test -s ~/Dropbox/Notes-Database/todos_important.md
     set_color normal
     echo -en " \e[1mTODOs\e[0;32m "
-    if [ $r -gt 20 ] 
+    if [ $r -gt 10 ] 
       and test -s ~/Dropbox/Notes-Database/todos_unimportant.md
       set_color --bold green
       echo -n "+"
     end
-    if [ $r -gt 40 ] 
+    if [ $r -gt 20 ] 
       and test -s ~/Dropbox/Notes-Database/todos_eventually.md
       set_color --bold blue
       echo -n "+"
     end
-    if [ $r -gt 70 ] 
+    if [ $r -gt 50 ] 
       and test -s ~/Dropbox/Notes-Database/todos_upcoming.md
       set_color --bold yellow
       echo -n "+"
     end
     set_color normal
     echo
-    echo
   end
 
-	if [ $r -lt 20 ]
+	if [ $r -lt 10 ]
 		# unimportant, so show rarely
     set_color green
     if test -s ~/Dropbox/Notes-Database/todos_unimportant.md
+      echo
       cat ~/Dropbox/Notes-Database/todos_unimportant.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
-	if [ $r -lt 40 ]
+	if [ $r -lt 20 ]
 		# not so important, so show occasionally
     set_color blue
     if test -s ~/Dropbox/Notes-Database/todos_eventually.md
+      echo
       cat ~/Dropbox/Notes-Database/todos_eventually.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
-	if [ $r -lt 70 ]
+	if [ $r -lt 50 ]
 		# upcoming, so prompt regularly
 		set_color yellow
     if test -s ~/Dropbox/Notes-Database/todos_upcoming.md
+      echo
       cat ~/Dropbox/Notes-Database/todos_upcoming.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
 
 	# urgent, so prompt always
-  set_color cyan
+  set_color magenta
   if test -s ~/Dropbox/Notes-Database/todos_important.md
+    echo
     cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
   end
 	# echo "  [project] <description>"
