@@ -165,6 +165,7 @@ cmd fzf_current_dir_all ${{
 
   if [ -d "$sel" ]; then
     lf -remote "send $id cd '${sel}'"
+    zoxide add "$sel"
   fi
   if [ -f "$sel" ]; then
     lf -remote "send $id select '${sel}'"
@@ -177,6 +178,7 @@ cmd fzf_current_dir ${{
 
   if [ -d "$sel" ]; then
     lf -remote "send $id cd '${sel}'"
+    zoxide add "$sel"
   fi
   if [ -f "$sel" ]; then
     lf -remote "send $id select '${sel}'"
@@ -201,6 +203,13 @@ cmd move_to_dir ${{
   fi
 }}
 map fm move_to_dir
+
+cmd list_tags ${{
+  sel=$(cat ~/.local/share/lf/tags | fzf --height 80% --layout=reverse --ansi) || true
+  sel="${sel%??}"
+  lf -remote "send $id select '${sel}'"
+}}
+map gt list_tags
 
 cmd copy_path ${{
   printf '%s' "$fx" | pbcopy
@@ -267,13 +276,6 @@ map U unselect
 map st :set sortby time; set info time; set reverse; top
 map sa :set sortby atime; set info atime; set reverse; top
 map sc :set sortby ctime; set info ctime; set reverse; top
-
-# Movement
-map gtr cd ~/.local/share/Trash/files
-
-# map gw. cd ~/pictures/Wallpapers
-# map gww cd ~/pictures/Wallpapers/Wallpapers
-# map gwm cd ~/pictures/Wallpapers/MobileWallpapers
 
 map gd cd ~/Downloads
 map gs cd ~/Desktop/ScreenShots
