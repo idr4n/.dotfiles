@@ -41,6 +41,7 @@ if [ -z "$TMUX" ]; then
     # attach to session
     tmux attach -t "$SESSION"
   fi
+  zoxide add "$RESULT"
 else
   # tmux is active
   echo "is tmux"
@@ -64,6 +65,7 @@ else
     tmux new-session -d -s "$FOLDER"
     # attach to session
     tmux switch-client -t "$FOLDER"
+    zoxide add "$RESULT"
   else
     # session exists
     echo "session exists"
