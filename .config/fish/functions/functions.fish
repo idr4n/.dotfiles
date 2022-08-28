@@ -137,12 +137,29 @@ function fu -d "search for URLs in list of directories"
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window=down --preview-window +{2}-5) 
 
-  set -l url $(echo "$sel" | egrep -o 'https?://[^ )]+' | string trim --right --chars=.:)
+  set -l url $(echo "$sel" | egrep -o 'https?://[^ )>]+' | string trim --right --chars=.:)
 
   if test -z $url
     echo "nothing selected!"
   else
     echo "URL: $url"
+    echo $url | pbcopy
+    open $url
+  end
+end
+
+function fuc -a file -d "search for URLs in given file"
+  if not test -e "$file"
+    echo "not a file"
+    return 1
+  end
+
+  set -l sel $(rg -N 'https?://[^ ]+' --follow "$file" | fzf --layout=reverse --height 50% --ansi)
+  set -l url $(echo "$sel" | egrep -o 'https?://[^ )>]+' | string trim --right --chars=.:)
+
+  if test -z $url
+    echo "nothing selected!"
+  else
     echo $url | pbcopy
     open $url
   end
