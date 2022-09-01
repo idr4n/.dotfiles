@@ -115,7 +115,7 @@ hs.hotkey.bind(hyper3, "S", function()
 
 	f.x = max.x + (max.w * (1 - proportion) / 2)
 	f.w = max.w * proportion
-	f.h = f.w * 1 / ratio
+	f.h = f.w * 1 / ratio * 1.05
 	-- f.y = max.y + (max.h - f.h)/2
 	f.y = max.y + (max.h - max.w * 0.8 * 1 / ratio) / 2
 	win:setFrame(f)
@@ -137,7 +137,7 @@ hs.hotkey.bind(hyper3, "A", function()
 
 	f.x = max.x + (max.w * (1 - proportion) / 2)
 	f.w = max.w * proportion
-	f.h = f.w * 1 / ratio
+	f.h = f.w * 1 / ratio * 1.05
 	-- f.y = max.y + (max.h - f.h)/2
 	f.y = max.y + (max.h - max.w * 0.8 * 1 / ratio) / 2
 	win:setFrame(f)
