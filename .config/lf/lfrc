@@ -215,6 +215,17 @@ cmd copy_path ${{
   printf '%s' "$fx" | pbcopy
 }}
 
+cmd Quit ${{
+  cache_dir="$HOME/.cache/lf"
+  cache_file="$cache_dir/last_dir"
+  if [ ! -f "$cache_file" ]; then
+    mkdir -p $cache_dir
+    # touch "$cache_file"
+  fi
+  echo "$PWD" > $cache_file
+  lf -remote "send $id quit"
+}}
+
 # Archive bindings
 cmd unarchive ${{
   case "$f" in
@@ -276,6 +287,7 @@ map U unselect
 map st :set sortby time; set info time; set reverse; top
 map sa :set sortby atime; set info atime; set reverse; top
 map sc :set sortby ctime; set info ctime; set reverse; top
+map q Quit
 
 map gd cd ~/Downloads
 map gs cd ~/Desktop/ScreenShots
