@@ -15,14 +15,22 @@ term="$(brew --prefix)/bin/wezterm-gui --config initial_rows=40 --config initial
 # fm="$HOME/bin/nnn"
 fm="$(brew --prefix)/bin/lf"
 # process="$term -e $fm $HOME"
-process="$term $fm $HOME"
+cache_file="$HOME/.cache/lf/last_dir"
+
+if [ -f $cache_file ]; then
+  last_dir=$(head -n 1 $cache_file)
+else
+  last_dir=$HOME
+fi
+
+process="$term $fm"
 
 # ~/scripts/lof "$process"
 # status=$?
 
 # [ $status -eq 1 ] && $process && exit
 
-$process && exit
+$process "$last_dir" && exit
 
 # -- Alternative if not using ~/scripts/lof script ---
 
@@ -44,4 +52,3 @@ $process && exit
 #     set frontmost of every process whose unix id is $APP_PID to true
 #   end tell
 # EOD
-
