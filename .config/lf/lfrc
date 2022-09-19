@@ -202,7 +202,6 @@ cmd move_to_dir ${{
     for fn in $fx; do
       filename=$(basename "$fn")
       mv $fn "$sel"
-      lf -remote "send clear"
     done
     lf -remote "send $id select '${sel}/${filename}'"
     lf -remote "send clear"
