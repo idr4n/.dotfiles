@@ -212,7 +212,12 @@ map fm move_to_dir
 cmd list_tags ${{
   sel=$(cat ~/.local/share/lf/tags | fzf --height 80% --layout=reverse --ansi) || true
   sel="${sel%??}"
-  lf -remote "send $id select '${sel}'"
+  if [ -d "$sel" ]; then
+    lf -remote "send $id cd '${sel}'"
+  fi
+  if [ -f "$sel" ]; then
+    lf -remote "send $id select '${sel}'"
+  fi
 }}
 map gt list_tags
 
