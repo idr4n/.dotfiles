@@ -198,8 +198,12 @@ cmd move_to_dir ${{
   sel=$(fd . -H --type d -L -E '*.git*' -E node_modules "${directories[@]}" | \
         fzf --layout=reverse --height 50% --ansi) || true
   if [ -d "$sel" ]; then
-    filename=$(basename "$fx")
-    mv $fx "$sel"
+    filename=''
+    for fn in $fx; do
+      filename=$(basename "$fn")
+      mv $fn "$sel"
+      lf -remote "send clear"
+    done
     lf -remote "send $id select '${sel}/${filename}'"
     lf -remote "send clear"
   fi
