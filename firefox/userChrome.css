@@ -59,3 +59,166 @@ and and go to the 'chrome' subfolder.
 /* #PersonalToolbar { */
 /*   margin-top: var(--tab-min-height) !important; */
 /* } */
+
+/* ------------------------- */
+/* keep below code for placing the navbar below content */
+/* ------------------------- */
+
+/* Source file https://github.com/MrOtherGuy/firefox-csshacks/tree/master/chrome/navbar_below_content.css made available under Mozilla Public License v. 2.0
+See the above repository for updates as well as full license text. */
+
+/* Moves the main toolbar (#nav-bar) to the bottom of the window */
+
+/* @-moz-document url(chrome://browser/content/browser.xhtml) */
+/* { */
+/*   :root:not([inFullscreen]) { */
+/*     --uc-bottom-toolbar-height: calc(30px + var(--toolbarbutton-outer-padding)); */
+/*   } */
+
+/*   :root[uidensity='compact']:not([inFullscreen]) { */
+/*     --uc-bottom-toolbar-height: calc(30px + var(--toolbarbutton-outer-padding)); */
+/*   } */
+
+/*   #browser, */
+/*   #customization-container { */
+/*     margin-bottom: var(--uc-bottom-toolbar-height, 0px); */
+/*   } */
+
+/*   #nav-bar { */
+/*     position: fixed !important; */
+/*     bottom: 0px; */
+/*     /1* For some reason -webkit-box behaves internally like -moz-box, but can be used with fixed position. display: flex would work too but it breaks extension menus. *1/ */
+/*     display: -webkit-box; */
+/*     width: 100%; */
+/*     z-index: 1; */
+/*   } */
+/*   #nav-bar-customization-target { */
+/*     -webkit-box-flex: 1; */
+/*   } */
+
+/*   /1* Fix panels sizing *1/ */
+/*   .panel-viewstack { */
+/*     max-height: unset !important; */
+/*   } */
+
+/*   #urlbar[breakout][breakout-extend] { */
+/*     display: flex !important; */
+/*     flex-direction: column-reverse; */
+/*     bottom: -2px !important; /1* Change to 3-5 px if using compact_urlbar_megabar.css depending on toolbar density *1/ */
+/*     top: auto !important; */
+/*   } */
+
+/*   .urlbarView-body-inner { */
+/*     border-top-style: none !important; */
+/*   } */
+/* } */
+
+/* ------------------------- */
+/* keep below code for placing the toolbars (both navbar and tabs) below content */
+/* ------------------------- */
+
+/* @-moz-document url(chrome://browser/content/browser.xhtml) */
+/* { */
+/*   /1* Dummy variable to support versions 94-96, can be removed when 96 lands *1/ */
+/*   :root { */
+/*     --lwt-frame: var(--lwt-accent-color); */
+/*   } */
+
+/*   :root:not([inFullscreen]) { */
+/*     --uc-bottom-toolbar-height: calc(30px + var(--toolbarbutton-outer-padding)); */
+/*   } */
+
+/*   :root[uidensity='compact']:not([inFullscreen]) { */
+/*     --uc-bottom-toolbar-height: calc(30px + var(--toolbarbutton-outer-padding)); */
+/*   } */
+
+/*   #titlebar { */
+/*     -moz-appearance: none !important; */
+/*   } */
+
+/*   #navigator-toolbox > div { */
+/*     display: contents; */
+/*   } */
+/*   .global-notificationbox, */
+/*   #mainPopupSet, */
+/*   #browser, */
+/*   #customization-container, */
+/*   #tab-notification-deck { */
+/*     -moz-box-ordinal-group: 0; */
+/*   } */
+
+/*   /1* Remove the next row if you want tabs to be the top-most row *1/ */
+/*   #titlebar { */
+/*     -moz-box-ordinal-group: 2; */
+/*   } */
+
+/*   #toolbar-menubar { */
+/*     position: fixed; */
+/*     display: flex; */
+/*     width: 100vw; */
+/*     top: 0px; */
+/*     -moz-window-dragging: drag; */
+/*   } */
+/*   /1* Remove bottom border that won't do anything useful when at bottom of the window *1/ */
+/*   #navigator-toolbox { */
+/*     border-bottom: none !important; */
+/*   } */
+
+/*   #toolbar-menubar > spacer { */
+/*     flex-grow: 1; */
+/*   } */
+
+/*   #urlbar[breakout][breakout-extend] { */
+/*     display: flex !important; */
+/*     flex-direction: column-reverse; */
+/*     bottom: -2px !important; /1* Change to 3-5 px if using compact_urlbar_megabar.css depending on toolbar density *1/ */
+/*     top: auto !important; */
+/*   } */
+
+/*   .urlbarView-body-inner { */
+/*     border-top-style: none !important; */
+/*   } */
+
+/*   /1* Yeah, removes window controls. Likely not wanted on bottom row  *1/ */
+/*   #TabsToolbar > .titlebar-buttonbox-container { */
+/*     display: none; */
+/*   } */
+/*   #toolbar-menubar > .titlebar-buttonbox-container { */
+/*     order: 1000; */
+/*   } */
+
+/*   /1* Fix panels sizing *1/ */
+/*   .panel-viewstack { */
+/*     max-height: unset !important; */
+/*   } */
+
+/*   /1* Fullscreen mode support *1/ */
+/*   #navigator-toolbox[inFullscreen] { */
+/*     margin-top: 0 !important; */
+/*   } */
+/*   #navigator-toolbox[inFullscreen][style*='margin-top'] { */
+/*     visibility: collapse; */
+/*   } */
+/*   #fullscr-toggler { */
+/*     bottom: 0; */
+/*     top: unset !important; */
+/*   } */
+
+/*   /1* These three rules exist for compatibility with autohide_toolbox.css *1/ */
+/*   #navigator-toolbox { */
+/*     bottom: 0px; */
+/*     transform-origin: bottom; */
+/*   } */
+/*   #main-window > body > box { */
+/*     margin-top: 0 !important; */
+/*   } */
+/*   #toolbar-menubar { */
+/*     z-index: 1; */
+/*     background-color: var(--lwt-frame, black); */
+/*   } */
+
+/*   /1* set to "reverse" (without quotes) if you want tabs above menubar with the above option *1/ */
+/*   #titlebar { */
+/*     -moz-box-direction: normal; */
+/*   } */
+/* } */
