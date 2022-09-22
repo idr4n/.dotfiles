@@ -30,11 +30,7 @@ end
 
 
 # Aliases
-if [ $TERM = "xterm-kitty" ]
-  alias ls='exa'
-else
-  alias ls='exa --icons'
-end
+alias ls='exa --icons'
 alias ll='ls -al'
 alias la='ls -a'
 alias lt='ls --tree --level=3 -I node_modules'
@@ -66,6 +62,7 @@ alias zf="zk f"
 alias zl="zk l"
 alias zd="zk d"
 alias zs="zk s"
+alias lf="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
 
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block
