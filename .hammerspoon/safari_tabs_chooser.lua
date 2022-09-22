@@ -46,30 +46,37 @@ end)
 
 tabs_chooser:choices(function()
 	local _, result = hs.osascript.applescript(tabsScript)
-	-- print(result)
 	local lines = {}
 	for line in string.gmatch(result, "(.-)\n") do
 		table.insert(lines, line)
 	end
 	local tabs = {}
-	for _, tab in pairs(lines) do
+	for idx, tab in pairs(lines) do
 		local winID, tabNumber, tabTitle, url = string.match(tab, "(.*);(.*);(.*);(.*)")
-		-- print(winID .. ":" .. tabTitle)
+		-- local img = hs.image.imageFromURL("https://www.google.com/s2/favicons?sz=64&domain_url=" .. url)
+		hs.image.imageFromURL("https://www.google.com/s2/favicons?sz=64&domain_url=" .. url, function(img)
+			tabs[idx].image = img
+		end)
 		table.insert(tabs, {
-			["text"] = tabTitle,
-			["subText"] = url,
-			["win"] = winID,
-			["tab"] = tabNumber,
+			text = tabTitle,
+			subText = url,
+			win = winID,
+			tab = tabNumber,
+			-- image = img,
 		})
 	end
 	return tabs
 end)
 
-tabs_chooser:width(55)
-tabs_chooser:rows(13)
+tabs_chooser:width(40)
+tabs_chooser:rows(11)
 tabs_chooser:searchSubText(true)
 
 hs.hotkey.bind("alt", "'", function()
-	tabs_chooser:refreshChoicesCallback(true)
-	tabs_chooser:show()
+	if tabs_chooser:isVisible() then
+		tabs_chooser:hide()
+	else
+		tabs_chooser:refreshChoicesCallback(true)
+		tabs_chooser:show()
+	end
 end)

@@ -1,16 +1,14 @@
 #!/usr/bin/env sh
 
-export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin:$HOME/.fzf/bin:$HOME/bin"
-
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-. ~/.config/zsh/nnn.sh
-
-notesDir="$HOME/Dropbox/Notes-Database"
+notesDir="$HOME/Dropbox/Notes-zk"
+# notesDir="$HOME/pCloud/Notes-Flow"
 
 # noteFilename="$HOME/Dropbox/Notes-Database/Daily-Notes/$(date +%Y-%m-%d).md"
-noteFilename="$notesDir""/Daily-Notes/$(date +%Y-%m-%d).md"
+# noteFilename="$notesDir""/Daily-Notes/$(date +%Y-%m-%d).md"
+noteFilename="$notesDir""/journal/daily/$(date +%Y-%m-%d).md"
 # term="/usr/local/bin/alacritty --working-directory $HOME/Dropbox/Notes-Database -d 90 20"
 # term="/usr/local/bin/alacritty --working-directory $HOME/Dropbox/Notes-Database"
 editor="/opt/homebrew/bin/nvim"
@@ -24,4 +22,5 @@ editor="/opt/homebrew/bin/nvim"
 
 # [ $status -eq 1 ] && $process && exit
 # $process && exit
-/usr/local/bin/alacritty --working-directory "$notesDir" -o window.dimensions.columns=98 window.dimensions.lines=24 -e $editor "$noteFilename" && exit
+# /usr/local/bin/alacritty --working-directory "$notesDir" -o window.dimensions.columns=98 window.dimensions.lines=24 -e /opt/homebrew/bin/fish -ic "$editor $noteFilename" && exit
+wezterm-gui --config initial_rows=33 --config initial_cols=132 start --cwd $notesDir $editor $noteFilename
