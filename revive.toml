@@ -1,0 +1,4 @@
+# Revive - Golang linter config
+
+[rule.package-comments]
+  Disabled = true
