@@ -62,7 +62,7 @@ alias zf="zk f"
 alias zl="zk l"
 alias zd="zk d"
 alias zs="zk s"
-alias lf="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
+alias lfl="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
 
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block
