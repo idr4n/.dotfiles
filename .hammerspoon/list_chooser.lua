@@ -28,8 +28,15 @@ list_chooser:choices(function()
 	local num = 1
 	for line in io.lines(list_file) do
 		local split = Split(line, ",")
-		local new_text = "ID: " .. split[1] .. ", Name: " .. split[2] .. ", Section: " .. split[3]
-		local marks = { table.unpack(split, 4) }
+		local new_text = "ID: "
+			.. split[1]
+			.. ", Name: "
+			.. split[2]
+			.. ", Course: "
+			.. split[3]
+			.. ", Section: "
+			.. split[4]
+		local marks = { table.unpack(split, 5) }
 		local marks_string = table.concat(marks, ", ")
 		local new_subtext = "Marks: " .. marks_string
 		table.insert(students, {
