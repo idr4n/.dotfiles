@@ -209,6 +209,11 @@ cmd move_to_dir ${{
 }}
 map fm move_to_dir
 
+cmd bath_rename ${{
+  massren $fx
+}}
+map fr bath_rename
+
 cmd list_tags ${{
   sel=$(cat ~/.local/share/lf/tags | fzf --height 80% --layout=reverse --ansi) || true
   sel="${sel%??}"
