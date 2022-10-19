@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+
+name="$1"
+
+[ -z "$name" ] && echo "Project name missing..." && exit 1;
+
+yellow="\033[0;33m"
+green="\033[0;32m"
+magenta="\033[0;35m"
+red="\033[0;31m"
+blue="\033[0;34m"
+nc="\033[0m" # no color
+
+ts_template_dir=$HOME/Sync/Project-Templates/TypeScript
+
+mkdir -p "$name" && cp -a "$ts_template_dir"/. ./"$name"/ && cd "$name" &&
+
+npm init -y && npm i -D typescript prettier eslint &&
+
+npm pkg set main="src/index.ts" &&
+echo
+echo -e "${blue}--> Setting main='src/index.ts'"
+npm pkg set scripts.start="npx ts-node src/index.ts" &&
+echo "--> Setting scripts.start='npx ts-node src/index.ts'"
+
+echo -e $yellow
+echo "🥳 Project '$name' created 👍"
+echo -en $green
+echo -e "🚀 Now cd into $magenta'$name'$green and compile with $magenta'npm run start'$nc"
