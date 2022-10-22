@@ -21,17 +21,17 @@ window:
   decorations: buttonless
 
 font:
-  size: 15.5
+  size: 16
   normal:
     # family: JetBrainsMono Nerd Font
-    # family: FiraCode Nerd Font
-    family: MonoLisaCustom Nerd Font
+    family: FiraCode Nerd Font
+    # family: MonoLisaCustom Nerd Font
     style: Light
     # style: Regular
   bold:
     # family: JetBrainsMono Nerd Font
-    # family: FiraCode Nerd Font
-    family: MonoLisaCustom Nerd Font
+    family: FiraCode Nerd Font
+    # family: MonoLisaCustom Nerd Font
     style: Medium
   italic:
     # family:  MesloLGS NF
@@ -49,8 +49,9 @@ font:
     x: 1
     # y: 6
     # for FiraCode
-    # y: 10
-    y: 4
+    y: 8
+    # For MonoLisa
+    # y: 4
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,

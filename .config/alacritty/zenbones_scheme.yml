@@ -346,4 +346,4 @@ schemes:
       - { index: 17, color: '#F4DBD6' }
 
 
-colors: *catppuccin-macchiato
+colors: *tokyo_night
