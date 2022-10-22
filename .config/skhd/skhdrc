@@ -23,10 +23,10 @@ cmd + ctrl + shift - b : ~/scripts/save_bookmark
 cmd + ctrl + shift - d : ~/scripts/dailynote
 
 # Open todos note
-cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Dropbox/Notes-Database -e fish -ic "nvim ~/Dropbox/Notes-Database/todos_important.md"
+cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/todos_important.md"
 
 # Open note file
-cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Dropbox/Notes-Database -e fish -ic "nvim ~/Dropbox/Notes-Database/notes.md"
+cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/notes.md"
 
 # Open finder script
 # ctrl + shift - f : ~/scripts/finder
@@ -43,7 +43,7 @@ alt + shift - t: kitty -d ~/ tmux new-session -A -s W
 # focus apps
 alt - j : ~/scripts/focus_app alacritty
 alt - h : ~/scripts/focus_app wezterm
-alt - l : ~/scripts/focus_app zathura 1
+alt - z : ~/scripts/focus_app zathura 1
 alt - k : ~/scripts/focus_app kitty
 
 # run scripts

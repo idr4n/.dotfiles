@@ -28,9 +28,9 @@ function mkf
 end
 
 function ff -d "search and cd into directories"
-  set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud
+  set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud ~/Sync
 
-  set -l sel $(fd . -H --type d -E '*.git*' $directories | fzf --layout=reverse --height 50% --ansi)
+  set -l sel $(fd . -H --type d -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse --height 50% --ansi)
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -41,9 +41,9 @@ function ff -d "search and cd into directories"
 end
 
 function fa -d "search files and cd into their directories"
-  set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud
+  set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud ~/Sync
 
-  set -l sel $(fd . -H --type f -E '*.git*' $directories | \
+  set -l sel $(fd . -H --type f -E '*.git*' -E '*node_modules*' $directories | \
               fzf --height 100% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --style="numbers"' --preview-window=down,60%)
   if test -z "$sel"
@@ -85,8 +85,8 @@ function frr -d "Search with fzf/rg in current directory"
 end
 
 function fno -d "# search in Notes with fzf/rg"
-  # set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
-  set -l sel $(rg -n '.*' $HOME/Dropbox/Notes-zk/ $HOME/Dropbox/Notes-Database/ | \
+  # set -l sel $(rg -n '.*' $HOME/Sync/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
+  set -l sel $(rg -n '.*' $HOME/Sync/Notes-zk/ $HOME/Sync/Notes-Database/ | \
               fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window=down --preview-window +{2}-5) 
@@ -130,7 +130,7 @@ function fuu -d "search for URLs in current directory"
 end
 
 function fu -d "search for URLs in list of directories"
-  set -l directories ~/Dropbox/Notes-zk ~/Dropbox/Notes-Database
+  set -l directories ~/Sync/Notes-zk ~/Sync/Notes-Database
 
   set -l sel $(rg -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules $directories | \
               fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
@@ -168,15 +168,15 @@ end
 function td -d "print all todos"
   set_color green
   echo
-  cat ~/Dropbox/Notes-Database/todos_unimportant.md | sed 's/^/  /'
+  cat ~/Sync/Notes-Database/todos_unimportant.md | sed 's/^/  /'
   set_color blue
   echo
-  cat ~/Dropbox/Notes-Database/todos_eventually.md | sed 's/^/  /'
+  cat ~/Sync/Notes-Database/todos_eventually.md | sed 's/^/  /'
   set_color yellow
   echo
-  cat ~/Dropbox/Notes-Database/todos_upcoming.md | sed 's/^/  /'
+  cat ~/Sync/Notes-Database/todos_upcoming.md | sed 's/^/  /'
   set_color magenta
   echo
-  cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
+  cat ~/Sync/Notes-Database/todos_important.md | sed 's/^/  /'
   echo
 end

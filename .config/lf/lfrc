@@ -130,6 +130,7 @@ cmd fzf_dirs ${{
     ~/Desktop
     ~/Downloads
     ~/Dropbox
+    ~/Sync
     ~/pCloud
   )
   sel=$(fd . -H -L -E '*.git*' -E node_modules "${directories[@]}" | fzf --layout=reverse --height 50% --ansi) || true
@@ -193,6 +194,7 @@ cmd move_to_dir ${{
     ~/Desktop
     ~/Downloads
     ~/Dropbox
+    ~/Sync
     ~/pCloud
   )
   sel=$(fd . -H --type d -L -E '*.git*' -E node_modules "${directories[@]}" | \
@@ -287,7 +289,8 @@ map x cut
 map <enter> open
 map tt tag-toggle
 map tc $trash -ey
-map dy $open -a Yoink $fx
+# map dy $open -a Yoink $fx
+map do $open -a Dropover $fx
 map Q $qlmanage -p "$fx" > /dev/null 2> /dev/null &
 map of $open -R "$fx"
 map oz $zathura "$fx" &

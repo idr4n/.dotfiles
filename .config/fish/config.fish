@@ -9,7 +9,7 @@ set -gx EDITOR nvim
 
 # nnn env variables
 # bookmarks
-set -gx NNN_BMS "b:~/Dropbox/Books;d:~/Downloads;p:~/Dropbox/PSU;q:~/Dropbox/PSU/Econ103/Econ103-2021-II;w:~/Dropbox/PSU/Econ207/Econ207-2021-II;c:~/.config;v:/Volumes"
+set -gx NNN_BMS "b:~/Sync/Books;d:~/Downloads;p:~/Sync/PSU;q:~/Sync/PSU/Econ103/Econ103-2021-II;w:~/Sync/PSU/Econ207/Econ207-2021-II;c:~/.config;v:/Volumes"
 # plugins
 set -gx NNN_PLUG "d:dropover;f:openfinder;j:autojump;c:fcd;h:fhcd;o:fzopen;l:openzathura;p:timg-preview;t:preview-tabbed;T:trash;v:imgview;z:fzcd;y:yoink;a:timg-preview-all"
 # colors
@@ -45,6 +45,7 @@ alias tw='tmux new-session -A -s W'
 alias tc='tmux new-session -A -s C'
 alias xc='pwd | pbcopy'
 alias n="nvim"
+alias h="hx"
 alias st="subl"
 alias sm="smerge"
 alias code="code -r"
@@ -98,8 +99,11 @@ set -gx PATH $HOME/.cargo/bin $PATH
 [ -f $(brew --prefix)/share/autojump/autojump.fish ]; and source $(brew --prefix)/share/autojump/autojump.fish
 
 # ZK Notes
-set -gx ZK_NOTEBOOK_DIR "$HOME/Dropbox/Notes-zk"
+set -gx ZK_NOTEBOOK_DIR "$HOME/Sync/Notes-zk"
 set -gx ZK_SHELL "/bin/bash"
+
+# MegaSync
+set -gx PATH /Applications/MEGAcmd.app/Contents/MacOS $PATH
 
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
@@ -174,24 +178,24 @@ function fish_greeting
 	set r (random 0 100)
   # set r 10
 
-  if test -s ~/Dropbox/Notes-Database/todos_unimportant.md
-    or test -s ~/Dropbox/Notes-Database/todos_eventually.md
-    or test -s ~/Dropbox/Notes-Database/todos_upcoming.md
-    or test -s ~/Dropbox/Notes-Database/todos_important.md
+  if test -s ~/Sync/Notes-Database/todos_unimportant.md
+    or test -s ~/Sync/Notes-Database/todos_eventually.md
+    or test -s ~/Sync/Notes-Database/todos_upcoming.md
+    or test -s ~/Sync/Notes-Database/todos_important.md
     set_color normal
     echo -en " \e[1mTODOs\e[0;32m "
     if [ $r -gt 10 ] 
-      and test -s ~/Dropbox/Notes-Database/todos_unimportant.md
+      and test -s ~/Sync/Notes-Database/todos_unimportant.md
       set_color --bold green
       echo -n "+"
     end
     if [ $r -gt 20 ] 
-      and test -s ~/Dropbox/Notes-Database/todos_eventually.md
+      and test -s ~/Sync/Notes-Database/todos_eventually.md
       set_color --bold blue
       echo -n "+"
     end
     if [ $r -gt 50 ] 
-      and test -s ~/Dropbox/Notes-Database/todos_upcoming.md
+      and test -s ~/Sync/Notes-Database/todos_upcoming.md
       set_color --bold yellow
       echo -n "+"
     end
@@ -202,46 +206,46 @@ function fish_greeting
 	if [ $r -lt 10 ]
 		# unimportant, so show rarely
     set_color green
-    if test -s ~/Dropbox/Notes-Database/todos_unimportant.md
+    if test -s ~/Sync/Notes-Database/todos_unimportant.md
       echo
-      cat ~/Dropbox/Notes-Database/todos_unimportant.md | sed 's/^/  /'
+      cat ~/Sync/Notes-Database/todos_unimportant.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
 	if [ $r -lt 20 ]
 		# not so important, so show occasionally
     set_color blue
-    if test -s ~/Dropbox/Notes-Database/todos_eventually.md
+    if test -s ~/Sync/Notes-Database/todos_eventually.md
       echo
-      cat ~/Dropbox/Notes-Database/todos_eventually.md | sed 's/^/  /'
+      cat ~/Sync/Notes-Database/todos_eventually.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
 	if [ $r -lt 50 ]
 		# upcoming, so prompt regularly
 		set_color yellow
-    if test -s ~/Dropbox/Notes-Database/todos_upcoming.md
+    if test -s ~/Sync/Notes-Database/todos_upcoming.md
       echo
-      cat ~/Dropbox/Notes-Database/todos_upcoming.md | sed 's/^/  /'
+      cat ~/Sync/Notes-Database/todos_upcoming.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
 
 	# urgent, so prompt always
   set_color magenta
-  if test -s ~/Dropbox/Notes-Database/todos_important.md
+  if test -s ~/Sync/Notes-Database/todos_important.md
     echo
-    cat ~/Dropbox/Notes-Database/todos_important.md | sed 's/^/  /'
+    cat ~/Sync/Notes-Database/todos_important.md | sed 's/^/  /'
   end
 	# echo "  [project] <description>"
 
-	if test -s ~/Dropbox/Notes-Database/notes.md
+	if test -s ~/Sync/Notes-Database/notes.md
     echo
     set_color normal
     echo -e " \e[1mNOTEs\e[0;32m"
     echo
 		set_color brblue
-		cat ~/Dropbox/Notes-Database/notes.md | sed 's/^/  /'
+		cat ~/Sync/Notes-Database/notes.md | sed 's/^/  /'
 	end
 
   # echo

@@ -75,6 +75,8 @@ tabs_chooser:searchSubText(true)
 hs.hotkey.bind("alt", "'", function()
 	if tabs_chooser:isVisible() then
 		tabs_chooser:hide()
+		local query = tabs_chooser:query()
+		os.execute("open " .. string.format("https://www.google.com/search?q='%s'", query))
 	else
 		tabs_chooser:refreshChoicesCallback(true)
 		tabs_chooser:show()

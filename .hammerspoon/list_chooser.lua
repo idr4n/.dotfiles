@@ -1,6 +1,6 @@
 -- Choose and open bookmark
 
-local list_file = os.getenv("HOME") .. "/Dropbox/PSU/List.csv"
+local list_file = os.getenv("HOME") .. "/Sync/PSU/List.csv"
 local bm_num = 0
 
 local list_chooser = hs.chooser.new(function(choice)

@@ -3,7 +3,7 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-notesDir="$HOME/Dropbox/Notes-zk"
+notesDir="$HOME/Sync/Notes-zk"
 # notesDir="$HOME/pCloud/Notes-Flow"
 
 # noteFilename="$HOME/Dropbox/Notes-Database/Daily-Notes/$(date +%Y-%m-%d).md"

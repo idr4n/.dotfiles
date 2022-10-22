@@ -6,6 +6,7 @@ directories=(
   ~/Desktop
   ~/Downloads
   ~/Dropbox
+  ~/Sync
   ~/pCloud
 )
 
