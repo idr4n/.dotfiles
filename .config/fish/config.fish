@@ -45,6 +45,7 @@ alias tw='tmux new-session -A -s W'
 alias tc='tmux new-session -A -s C'
 alias xc='pwd | pbcopy'
 alias n="nvim"
+alias c="nvim ."
 alias h="hx"
 alias st="subl"
 alias sm="smerge"
