@@ -27,12 +27,12 @@ if [ -z "$TMUX" ]; then
     # jump to directory
     cd $ZOXIDE_RESULT
     # create session
-    tmux new-session -s $FOLDER
+    tmux new-session -s "$FOLDER"
   else
     # session exists
     echo "session exists"
     # attach to session
-    tmux attach -t $SESSION
+    tmux attach -t "$SESSION"
   fi
 else
   # tmux is active
@@ -55,9 +55,9 @@ else
     # jump to directory
     cd $ZOXIDE_RESULT
     # create session
-    tmux new-session -d -s $FOLDER
+    tmux new-session -d -s "$FOLDER"
     # attach to session
-    tmux switch-client -t $FOLDER
+    tmux switch-client -t "$FOLDER"
   else
     # session exists
     echo "session exists"
