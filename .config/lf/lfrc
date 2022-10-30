@@ -232,6 +232,18 @@ cmd copy_path ${{
   printf '%s' "$fx" | pbcopy
 }}
 
+cmd megalinkCreate ${{
+    ~/scripts/megalink.sh "$fx"
+}}
+
+map flc megalinkCreate
+
+cmd megalinkDelete ${{
+    ~/scripts/megalink.sh "$fx" -d
+}}
+
+map fld megalinkDelete
+
 cmd Quit ${{
   cache_dir="$HOME/.cache/lf"
   cache_file="$cache_dir/last_dir"
