@@ -1,23 +1,18 @@
-#!/usr/bin/env sh
-
-export PATH="/opt/homebrew/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/usr/local/bin:$HOME/.fzf/bin:$HOME/bin"
+#!/usr/bin/env bash
 
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-. ~/.config/zsh/nnn.sh
-
-# term="/usr/local/bin/alacritty --working-directory $HOME/pCloud -d 90 20"
-term="$(which alacritty) --working-directory $HOME/pCloud -o window.dimensions.columns=110 -o window.dimensions.lines=26"
-# editor="/usr/local/bin/nvim"
+# term="$(which alacritty) --working-directory $HOME/pCloud -o window.dimensions.columns=110 -o window.dimensions.lines=26"
+term="wezterm-gui --config initial_rows=25 --config initial_cols=100 start --cwd $HOME/pCloud"
 editor="$(which nvim)"
-choose="/usr/local/bin/choose"
 
 # create temp file
-file="$TMPDIR/bookmark"
+file="${TMPDIR}bookmark"
 
 # enter bookmark in the editor
-$term -e $editor $file
+# $term -e $editor $file
+$term $editor $file
 
 # read bookmark and delete temp file
 bookmark=$(head -n 1 $file)
