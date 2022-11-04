@@ -81,7 +81,6 @@ cmd zip ${{
 # Remove some defaults
 map o
 map d
-map e
 map f
 map t
 map y

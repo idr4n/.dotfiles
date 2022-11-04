@@ -43,7 +43,7 @@ alt + shift - t: kitty -d ~/ tmux new-session -A -s W
 # focus apps
 alt - j : ~/scripts/focus_app alacritty
 alt - h : ~/scripts/focus_app wezterm
-alt - z : ~/scripts/focus_app zathura 1
+alt + shift - z : ~/scripts/focus_app zathura 1
 alt - k : ~/scripts/focus_app kitty
 
 # run scripts
