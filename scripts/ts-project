@@ -15,7 +15,7 @@ ts_template_dir=$HOME/Sync/Project-Templates/TypeScript
 
 mkdir -p "$name" && cp -a "$ts_template_dir"/. ./"$name"/ && cd "$name" &&
 
-npm init -y && npm i -D typescript prettier eslint &&
+npm init -y && npm i -D typescript prettier eslint @types/node &&
 
 npm pkg set main="src/index.ts" &&
 echo
