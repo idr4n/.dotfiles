@@ -16,6 +16,10 @@ case $ext in
     esac
     [ -f $dir_path/a.out ] && $dir_path/a.out
     ;;
+  c)
+    gcc $file -o $dir_path/a.out
+    [ -f $dir_path/a.out ] && $dir_path/a.out
+    ;;
   go) go run $file;;
   py) python $file;;
   rs)
