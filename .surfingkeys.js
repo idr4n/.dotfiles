@@ -91,7 +91,7 @@ Catppuccin = `
     font-family: Input Sans Condensed, Charcoal, sans-serif;
     font-size: 11pt;
     backdrop-filter: blur(4px);
-    background: rgba(36, 39, 58, 0.9);
+    background: rgba(36, 39, 58, 0.95);
     color: #CAD3F5;
     border: 0.5px solid rgba(255, 255, 255, 0.3);
     caret-color: #C6A0F6;
@@ -187,7 +187,7 @@ Catppuccin = `
     color: #CAD3F5 !important;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    background: rgba(36, 39, 58, 0.6) !important;
+    background: rgba(36, 39, 58, 0.7) !important;
 }
 .ace_print-margin {
     background: #C6A0F6 !important;
