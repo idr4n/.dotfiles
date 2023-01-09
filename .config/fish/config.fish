@@ -20,21 +20,19 @@ set -gx NNN_USE_EDITOR 1
 
 # Bat env variable
 set t (math (date +%H) + (date +%M)/60)
-if [ $t -gt 8 ]
-  and [ $t -lt 18 ]
-  # set -gx BAT_THEME "gruvbox-light"
-  set -gx BAT_THEME "Nord"
+# if [ $t -gt 8 ]
+if test $t -gt 8; and test $t -lt 18 
+    # set -gx BAT_THEME "gruvbox-light"
+    set -gx BAT_THEME "Nord"
 else
-  set -gx BAT_THEME "Nord"
+    set -gx BAT_THEME "Nord"
 end
-
 
 # Aliases
 alias ls='exa --icons'
 alias ll='ls -al'
 alias la='ls -a'
-alias lt='ls --tree --level=3 -I node_modules'
-alias llt='ll --tree --level=3 -I node_modules'
+alias lta='la --tree -I node_modules -I .git'
 alias c='clear'
 alias cdd='cd ~/Dropbox'
 alias cdp='cd ~/pCloud'
@@ -65,6 +63,22 @@ alias zl="zk l"
 alias zd="zk d"
 alias zs="zk s"
 alias lfl="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
+
+function lt
+    if test (count $argv) -gt 0
+        exa --icons -a --tree --level=$argv[1] -I node_modules -I .git
+    else
+        exa --icons -a --tree --level=3 -I node_modules -I .git
+    end
+end
+
+function llt
+    if test (count $argv) -gt 0
+        exa --icons -al --tree --level=$argv[1] -I node_modules -I .git
+    else
+        exa --icons -al --tree --level=3 -I node_modules -I .git
+    end
+end
 
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block
@@ -105,6 +119,9 @@ set -gx ZK_SHELL "/bin/bash"
 
 # MegaSync
 set -gx PATH /Applications/MEGAcmd.app/Contents/MacOS $PATH
+
+# Alogorithms course Java class
+set -gx CLASSPATH $HOME/Dev/Java-Libraries/algs4.jar
 
 # Fish git prompt
 set __fish_git_prompt_showuntrackedfiles 'yes'
@@ -177,79 +194,76 @@ end
 
 function fish_greeting
 	set r (random 0 100)
-  # set r 10
+    # set r 10
 
-  if test -s ~/Sync/Notes-Database/todos_unimportant.md
-    or test -s ~/Sync/Notes-Database/todos_eventually.md
-    or test -s ~/Sync/Notes-Database/todos_upcoming.md
-    or test -s ~/Sync/Notes-Database/todos_important.md
-    set_color normal
-    echo -en " \e[1mTODOs\e[0;32m "
-    if [ $r -gt 10 ] 
-      and test -s ~/Sync/Notes-Database/todos_unimportant.md
-      set_color --bold green
-      echo -n "+"
-    end
-    if [ $r -gt 20 ] 
-      and test -s ~/Sync/Notes-Database/todos_eventually.md
-      set_color --bold blue
-      echo -n "+"
-    end
-    if [ $r -gt 50 ] 
-      and test -s ~/Sync/Notes-Database/todos_upcoming.md
-      set_color --bold yellow
-      echo -n "+"
-    end
-    set_color normal
-    echo
-  end
-
-	if [ $r -lt 10 ]
-		# unimportant, so show rarely
-    set_color green
     if test -s ~/Sync/Notes-Database/todos_unimportant.md
-      echo
-      cat ~/Sync/Notes-Database/todos_unimportant.md | sed 's/^/  /'
+        or test -s ~/Sync/Notes-Database/todos_eventually.md
+        or test -s ~/Sync/Notes-Database/todos_upcoming.md
+        or test -s ~/Sync/Notes-Database/todos_important.md
+        set_color normal
+        echo -en " \e[1mTODOs\e[0;32m "
+        if test $r -gt 10; and test -s ~/Sync/Notes-Database/todos_unimportant.md
+            set_color --bold green
+            echo -n "+"
+        end
+        if test $r -gt 20; and test -s ~/Sync/Notes-Database/todos_eventually.md
+            set_color --bold blue
+            echo -n "+"
+        end
+        if test $r -gt 50; and test -s ~/Sync/Notes-Database/todos_upcoming.md
+            set_color --bold yellow
+            echo -n "+"
+        end
+        set_color normal
+        echo
+    end
+
+	if test $r -lt 10 
+		# unimportant, so show rarely
+        set_color green
+    if test -s ~/Sync/Notes-Database/todos_unimportant.md
+        echo
+        cat ~/Sync/Notes-Database/todos_unimportant.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
-	if [ $r -lt 20 ]
+	if test $r -lt 20 
 		# not so important, so show occasionally
-    set_color blue
+        set_color blue
     if test -s ~/Sync/Notes-Database/todos_eventually.md
-      echo
-      cat ~/Sync/Notes-Database/todos_eventually.md | sed 's/^/  /'
+        echo
+        cat ~/Sync/Notes-Database/todos_eventually.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
-	if [ $r -lt 50 ]
+	if test $r -lt 50 
 		# upcoming, so prompt regularly
 		set_color yellow
     if test -s ~/Sync/Notes-Database/todos_upcoming.md
-      echo
-      cat ~/Sync/Notes-Database/todos_upcoming.md | sed 's/^/  /'
+        echo
+        cat ~/Sync/Notes-Database/todos_upcoming.md | sed 's/^/  /'
     end
 		# echo "  [project] <description>"
 	end
 
 	# urgent, so prompt always
-  set_color magenta
-  if test -s ~/Sync/Notes-Database/todos_important.md
-    echo
-    cat ~/Sync/Notes-Database/todos_important.md | sed 's/^/  /'
-  end
+    set_color magenta
+    if test -s ~/Sync/Notes-Database/todos_important.md
+        echo
+        cat ~/Sync/Notes-Database/todos_important.md | sed 's/^/  /'
+    end
 	# echo "  [project] <description>"
 
 	if test -s ~/Sync/Notes-Database/notes.md
-    echo
-    set_color normal
-    echo -e " \e[1mNOTEs\e[0;32m"
-    echo
+        echo
+        set_color normal
+        echo -e " \e[1mNOTEs\e[0;32m"
+        echo
 		set_color brblue
 		cat ~/Sync/Notes-Database/notes.md | sed 's/^/  /'
 	end
 
-  # echo
+    # echo
 	set_color normal
 end
 
