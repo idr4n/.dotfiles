@@ -195,17 +195,16 @@ Catppuccin = `
 }
 .ace_cursor {
     color: #C6A0F6 !important;
-    opacity: 0.9 !important;
+    opacity: 0.7 !important;
 }
 .normal-mode .ace_cursor {
-    opacity: 0.9 !important;
-    border: 1px solid #C6A0F6;
+    opacity: 0.7 !important;
     background: #C6A0F6 !important;
 }
 .normal-mode .ace_hidden-cursors .ace_cursor {
     background: transparent !important;
     border: 1px solid #C6A0F6;
-    opacity: 0.9 !important;
+    opacity: 0.7 !important;
 }
 `;
 
