@@ -1,33 +1,33 @@
 local h = {}
 
 function h.open_alacritty(exec)
-  local e_flag = ''
-  if exec then
-    e_flag = " -e "..exec
-  end
+	local e_flag = ""
+	if exec then
+		e_flag = " -e " .. exec
+	end
 
-  local screen = hs.screen.mainScreen()
-  local max = screen:frame()
-  local rows = 0
-  local cols = 0
+	local screen = hs.screen.mainScreen()
+	local max = screen:frame()
+	local rows = 0
+	local cols = 0
 
-  if max.h == 1415 then
-    rows = 60
-    cols = 125
-  else
-    rows = 45
-    cols = 83
-  end
+	if max.h == 1415 then
+		rows = 60
+		cols = 125
+	else
+		rows = 45
+		cols = 83
+	end
 
-  local cmd = "open -na alacritty --args "
-  local args = "-o window.dimensions.columns="..cols.." -o window.dimensions.lines="..rows..e_flag
-  hs.execute(cmd..args, true)
+	local cmd = "open -na alacritty --args "
+	local args = "-o window.dimensions.columns=" .. cols .. " -o window.dimensions.lines=" .. rows .. e_flag
+	hs.execute(cmd .. args, true)
 end
 
 function h.focusApp(app, name)
 	-- local name = app:title()
 	local wins = app:allWindows()
-	-- print('windows: ' .. #wins)
+	-- print("windows: " .. #wins)
 
 	if #wins == 0 then
 		app:activate()
