@@ -206,6 +206,14 @@ Catppuccin = `
     border: 1px solid #C6A0F6;
     opacity: 0.7 !important;
 }
+.ace_selected-word {
+    background: transparent !important;
+    border: 0px !important;
+}
+.ace_selection {
+    opacity: 0.5 !important;
+    background: #C6A0F6 !important;
+}
 `;
 
 
