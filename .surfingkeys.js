@@ -311,6 +311,19 @@ Catppuccin_latte = `
     -webkit-backdrop-filter: blur(4px);
     background: rgba(239, 241, 245, 0.6) !important;
 }
+.ace_cursor {
+    color: #8839EF !important;
+    opacity: 0.9 !important;
+}
+.normal-mode .ace_cursor {
+    opacity: 0.7 !important;
+    background: #8839EF !important;
+}
+.normal-mode .ace_hidden-cursors .ace_cursor {
+    background: transparent !important;
+    border: 1px solid #8839EF;
+    opacity: 0.7 !important;
+}
 `;
 
 
