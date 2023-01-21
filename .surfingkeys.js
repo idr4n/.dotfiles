@@ -342,7 +342,7 @@ Light_theme = `
     max-height: 70%;
     left: max(calc((100% - 700px)/2), 5%);
     text-align: left;
-    box-shadow: 0px 20px 40px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 10px 20px 1px rgba(0, 0, 0, 0.2);
     z-index: 2147483298;
     padding: 1rem;
 }
