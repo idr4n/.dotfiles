@@ -32,5 +32,6 @@ case $ext in
     javac $file
     java $file
     ;;
+  swift) swift $file;;
   *) ./$file;;
 esac
