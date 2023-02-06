@@ -163,6 +163,28 @@ hs.hotkey.bind(hyper3, "E", function()
 	win:setFrame(f)
 end)
 
+-- Move window center of screen and resize for Email client app (superhuman)
+hs.hotkey.bind(hyper3, ",", function()
+	local win = hs.window.focusedWindow()
+	local f = win:frame()
+	local screen = win:screen()
+	local max = screen:frame()
+	local proportion_w = 0.45
+	local proportion_h = 0.9
+
+	if max.h <= 1200 then
+		proportion_w = 0.53
+		proportion_h = 0.93
+	end
+
+	f.x = max.x + (max.w * (1 - proportion_w) / 2)
+	f.w = max.w * proportion_w
+	f.h = max.h * proportion_h
+	-- f.y = max.y + (max.h - f.h) / 2
+	f.y = max.y + (max.h - max.h * 0.96)
+	win:setFrame(f)
+end)
+
 -- Move window center of screen and resize medium
 hs.hotkey.bind(hyper3, "K", function()
 	local win = hs.window.focusedWindow()
@@ -654,9 +676,10 @@ hs.hotkey.bind("alt", "Q", function()
 	-- local name = "Google Chrome"
 	-- local name = "Firefox"
 	-- local name = "Firefox Nightly"
-	local name = "Safari"
+	-- local name = "Safari"
 	-- local name = "Opera GX"
 	-- local name = "Brave Browser"
+	local name = "Arc"
 	-- local name = "Microsoft Edge"
 	-- local name = "Vivaldi"
 	local app = hs.application.get(name)

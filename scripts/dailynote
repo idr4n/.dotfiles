@@ -3,12 +3,13 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-notesDir="$HOME/Sync/Notes-zk"
+# notesDir="$HOME/Sync/Notes-zk"
+notesDir="$HOME/Sync/Notes-Database"
 # notesDir="$HOME/pCloud/Notes-Flow"
 
 # noteFilename="$HOME/Dropbox/Notes-Database/Daily-Notes/$(date +%Y-%m-%d).md"
-# noteFilename="$notesDir""/Daily-Notes/$(date +%Y-%m-%d).md"
-noteFilename="$notesDir""/journal/daily/$(date +%Y-%m-%d).md"
+noteFilename="$notesDir""/Daily-Notes/$(date +%Y-%m-%d).md"
+# noteFilename="$notesDir""/journal/daily/$(date +%Y-%m-%d).md"
 # term="/usr/local/bin/alacritty --working-directory $HOME/Dropbox/Notes-Database -d 90 20"
 # term="/usr/local/bin/alacritty --working-directory $HOME/Dropbox/Notes-Database"
 editor="/opt/homebrew/bin/nvim"

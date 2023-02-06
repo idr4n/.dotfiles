@@ -21,7 +21,7 @@ set -gx NNN_USE_EDITOR 1
 # Bat env variable
 set t (math (date +%H) + (date +%M)/60)
 # if [ $t -gt 8 ]
-if test $t -gt 8; and test $t -lt 18 
+if test $t -gt 7; and test $t -lt 18 
     # set -gx BAT_THEME "gruvbox-light"
     set -gx BAT_THEME "Nord"
 else
@@ -66,17 +66,18 @@ alias lfl="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
 
 function lt
     if test (count $argv) -gt 0
-        exa --icons -a --tree --level=$argv[1] -I node_modules -I .git
+        exa --icons -a --tree --level=$argv[1] -I "node_modules|.git"
     else
-        exa --icons -a --tree --level=3 -I node_modules -I .git
+        # use lta alias above to print all levels
+        exa --icons -a --tree --level=3 -I "node_modules|.git"
     end
 end
 
 function llt
     if test (count $argv) -gt 0
-        exa --icons -al --tree --level=$argv[1] -I node_modules -I .git
+        exa --icons -al --tree --level=$argv[1] -I "node_modules|.git"
     else
-        exa --icons -al --tree --level=3 -I node_modules -I .git
+        exa --icons -al --tree --level=3 -I "node_modules|.git"
     end
 end
 

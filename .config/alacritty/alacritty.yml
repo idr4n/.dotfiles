@@ -1,6 +1,6 @@
 window:
   # opacity: 1
-  opacity: 0.93
+  opacity: 0.98
 
   dimensions:
     columns: 110
@@ -22,6 +22,7 @@ window:
 
 font:
   size: 16
+  # size: 15.5
   normal:
     # family: JetBrainsMono Nerd Font
     family: FiraCode Nerd Font
@@ -62,7 +63,7 @@ font:
 
   # Thin strokes are suitable for retina displays, but for non-retina screens
   # it is recommended to set `use_thin_strokes` to `false`.
-  use_thin_strokes: true
+  # use_thin_strokes: true
 
 cursor:
   # Values for `style`:

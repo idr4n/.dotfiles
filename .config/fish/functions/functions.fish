@@ -45,7 +45,7 @@ function fa -d "search files and cd into their directories"
 
   set -l sel $(fd . -H --type f -E '*.git*' -E '*node_modules*' $directories | \
               fzf --height 100% --layout=reverse --info=inline --ansi \
-              --preview 'bat --color=always {1} --style="numbers"' --preview-window=down,60%)
+              --preview 'bat --color=always (echo {}) --style="numbers"' --preview-window=down,60%)
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -87,9 +87,10 @@ end
 function fno -d "# search in Notes with fzf/rg"
   # set -l sel $(rg -n '.*' $HOME/Sync/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
   set -l sel $(rg -n '.*' $HOME/Sync/Notes-zk/ $HOME/Sync/Notes-Database/ | \
-              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
-              --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
-              --preview-window=down --preview-window +{2}-5) 
+              # fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi \
+              --preview 'bat --color=always (echo {1}) --highlight-line {2} --style="numbers"' \
+              --preview-window=down --preview-window +{2}-5)
 
   set -l file $(echo "$sel" | cut -d ":" -f 1)
   set -l line_nr $(echo "$sel" | cut -d ":" -f 2)
