@@ -25,8 +25,8 @@ cmd + ctrl + shift - d : ~/scripts/dailynote
 # Open todos note
 cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/todos_important.md"
 
-# Open note file
-cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/notes.md"
+# Open scratchpad note file
+cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-zk/b4il-scratchpad.md"
 
 # Open finder script
 # ctrl + shift - f : ~/scripts/finder

@@ -87,7 +87,6 @@ map y
 
 # Basic Settings
 # set previewer ~/.config/lf/previewer.sh
-# set preview true
 # set hidden true
 # set drawbox true
 set info size
@@ -96,7 +95,9 @@ set icons on
 set ignorecase true
 set previewer ~/.config/lf/lf_kitty_preview
 set cleaner ~/.config/lf/lf_kitty_clean
-set ratios '1:2:2'
+set preview!
+# set ratios '1:2:2'
+set ratios '1:2'
 
 cmd mkdir %{{
   printf "Directory Name: "
@@ -328,5 +329,5 @@ map gE cd /etc
 # toggle preview
 map ~ ${{
 	lf -remote "send $id set preview!"
-  $lf_preview && lf -remote "send $id set ratios 1:4" || lf -remote "send $id set ratios 1:2:2"
+    $lf_preview && lf -remote "send $id set ratios 2:4" || lf -remote "send $id set ratios 1:2:2"
 }}
