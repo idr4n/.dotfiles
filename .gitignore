@@ -42,4 +42,4 @@ node_modules/
 debug
 .idea/
 __pycache__/
- - Copy.spacemacs
+current-theme.conf
