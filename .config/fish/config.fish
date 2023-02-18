@@ -22,8 +22,8 @@ set -gx NNN_USE_EDITOR 1
 set t (math (date +%H) + (date +%M)/60)
 # if [ $t -gt 8 ]
 if test $t -gt 7; and test $t -lt 18 
-    # set -gx BAT_THEME "gruvbox-light"
-    set -gx BAT_THEME "Nord"
+    set -gx BAT_THEME "gruvbox-light"
+    # set -gx BAT_THEME "Nord"
 else
     set -gx BAT_THEME "Nord"
 end
