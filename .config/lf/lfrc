@@ -1,3 +1,5 @@
+#: Default initial config {{{
+
 # interpreter for shell commands
 set shell sh
 
@@ -76,16 +78,22 @@ cmd zip ${{
     rm -rf $1
 }}
 
+#: }}}
+
 ### Custom Config ###
 
-# Remove some defaults
+#: Remove some defaults {{{
+
 map o
 map d
 map f
 map t
 map y
 
-# Basic Settings
+#: }}}
+
+#: Basic Settings {{{
+
 # set previewer ~/.config/lf/previewer.sh
 # set hidden true
 # set drawbox true
@@ -99,12 +107,20 @@ set preview!
 # set ratios '1:2:2'
 set ratios '1:2'
 
+#: }}}
+
+#: cmd mkdir {{{
+
 cmd mkdir %{{
   printf "Directory Name: "
   read ans
   mkdir -p $ans
   lf -remote "send $id select '${ans}'"
 }}
+
+#: }}}
+
+#: cmd mkfile {{{
 
 cmd mkfile %{{
   printf "File Name: "
@@ -116,12 +132,20 @@ cmd mkfile %{{
   lf -remote "send $id select '${FILE}'"
 }}
 
+#: }}}
+
+#: cmd fzf_workdirs {{{
+
 cmd fzf_workdirs ${{
   sel=$(cat ~/.config/nvim/lua/workdirs.txt | fzf --layout=reverse --height 50% --ansi) || true
   lf -remote "send $id cd '${sel}'"
 }}
 map fw fzf_workdirs
 map <c-t> fzf_workdirs
+
+#: }}}
+
+#: cmd fzf_dirs {{{
 
 cmd fzf_dirs ${{
   directories=(
@@ -146,11 +170,19 @@ cmd fzf_dirs ${{
 map fd fzf_dirs
 map <c-p> fzf_dirs
 
+#: }}}
+
+#: cmd zi {{{
+
 cmd zi ${{
   result="$(zoxide query -i -- "$@")" || true
   lf -remote "send ${id} cd '${result}'"
 }}
 map zi zi
+
+#: }}}
+
+#: cmd duplicate_file {{{
 
 cmd duplicate_file ${{
   filename=$(basename "$fx")
@@ -160,6 +192,10 @@ cmd duplicate_file ${{
   lf -remote "send clear"
 }}
 map Y duplicate_file
+
+#: }}}
+
+#: cmd fzf_current_dir_all {{{
 
 cmd fzf_current_dir_all ${{
   sel=$(fd . -L -H -E '*.git*' -E node_modules | sort -nr | fzf --layout=reverse --height 50% --ansi) || true
@@ -174,6 +210,10 @@ cmd fzf_current_dir_all ${{
 }}
 map fc fzf_current_dir_all
 
+#: }}}
+
+#: cmd fzf_current_dir {{{
+
 cmd fzf_current_dir ${{
   sel=$(fd . -L -H -E '*.git*' -E node_modules --max-depth 1 | sort -nr | fzf --height 80% --layout=reverse --ansi) || true
 
@@ -186,6 +226,10 @@ cmd fzf_current_dir ${{
   fi
 }}
 map fs fzf_current_dir
+
+#: }}}
+
+#: cmd move_to_dir {{{
 
 cmd move_to_dir ${{
   directories=(
@@ -211,10 +255,18 @@ cmd move_to_dir ${{
 }}
 map fm move_to_dir
 
+#: }}}
+
+#: cmd batch_rename {{{
+
 cmd batch_rename ${{
   massren $fx
 }}
 map fr batch_rename
+
+#: }}}
+
+#: cmd list_tags {{{
 
 cmd list_tags ${{
   sel=$(cat ~/.local/share/lf/tags | fzf --height 80% --layout=reverse --ansi) || true
@@ -228,21 +280,35 @@ cmd list_tags ${{
 }}
 map gt list_tags
 
+#: }}}
+
+#: cmd copy_path {{{
+
 cmd copy_path ${{
   printf '%s' "$fx" | pbcopy
 }}
 
+#: }}}
+
+#: cmd megalinkCreate {{{
+
 cmd megalinkCreate ${{
     ~/scripts/megalink.sh "$fx"
 }}
-
 map flc megalinkCreate
+
+#: }}}
+
+#: cmd megalinkDelete {{{
 
 cmd megalinkDelete ${{
     ~/scripts/megalink.sh "$fx" -d
 }}
-
 map fld megalinkDelete
+
+#: }}}
+
+#: cmd Quit {{{
 
 cmd Quit ${{
   cache_dir="$HOME/.cache/lf"
@@ -255,7 +321,10 @@ cmd Quit ${{
   lf -remote "send $id quit"
 }}
 
-# Archive bindings
+#: }}}
+
+#: cmd unarchive {{{
+
 cmd unarchive ${{
   case "$f" in
       *.zip) unzip "$f" ;;
@@ -266,19 +335,27 @@ cmd unarchive ${{
   esac
 }}
 
+#: }}}
+
+#: Other default commands {{{
+
 cmd zip %zip -r "$f" "$f"
 cmd tar %tar cvf "$f.tar" "$f"
 cmd targz %tar cvzf "$f.tar.gz" "$f"
 cmd tarbz2 %tar cjvf "$f.tar.bz2" "$f"
-
 cmd stripspace %stripspace "$f"
 
-# Bindings
+#: }}}
 
-# Open file in Nivm and new terminal
+#: # Open file in Nivm and new terminal {{{
+
 cmd open_nvim ${{
   open -na alacritty --args --working-directory "$(dirname ${fx})" -e fish -ic "nvim $fx"
 }}
+
+#: }}}
+
+#: Mappings {{{
 
 # Archive Mappings
 # map az zip
@@ -328,6 +405,6 @@ map gE cd /etc
 
 # toggle preview
 map ~ ${{
-	lf -remote "send $id set preview!"
+    lf -remote "send $id set preview!"
     $lf_preview && lf -remote "send $id set ratios 2:4" || lf -remote "send $id set ratios 1:2:2"
 }}
