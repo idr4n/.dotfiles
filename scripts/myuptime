@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+boottime=`sysctl -n kern.boottime | awk '{print $4}' | sed 's/,//g'`
+unixtime=`date +%s`
+timeAgo=$(($unixtime - $boottime))
+days=$(($timeAgo/86400))
+
+if [[ "$days" -eq 0 ]]; then
+    days=""
+elif [[ "$days" -eq 1 ]]; then
+    days="$days day, "
+else
+    days="$days days, "
+fi
+
+hours=$(($timeAgo/3600 % 24))
+minutes=$(($timeAgo/60 % 60))
+
+# uptime=`awk -v time=$timeAgo 'BEGIN { minutes = int(time / 60 % 60); hours = int(time / 60 / 60 % 24); days = int(time / 60 / 60 / 24); printf("%.0fd-%.0fh-%.0fm", days, hours, minutes); exit }'`
+
+# echo $uptime
+echo "$days$hours:$minutes"
