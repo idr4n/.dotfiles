@@ -1,13 +1,20 @@
 # Fish shell config
 
-# Greeting
+#: Greeting {{{
+
 # set -U fish_greeting only once in the command line or,
 set -g fish_greeting
 
-# Set EDITOR
+#: }}}
+
+#: Set EDITOR {{{
+
 set -gx EDITOR nvim
 
-# nnn env variables
+#: }}}
+
+#: nnn env variables {{{
+
 # bookmarks
 set -gx NNN_BMS "b:~/Sync/Books;d:~/Downloads;p:~/Sync/PSU;q:~/Sync/PSU/Econ103/Econ103-2021-II;w:~/Sync/PSU/Econ207/Econ207-2021-II;c:~/.config;v:/Volumes"
 # plugins
@@ -18,7 +25,10 @@ set -gx NNN_FCOLORS "c1e28D31006033f7c6d6abc4"
 set -gx TERMINAL $(echo $(which alacritty))
 set -gx NNN_USE_EDITOR 1
 
-# Bat env variable
+#: }}}
+
+#: Bat env variable {{{
+
 set t (math (date +%H) + (date +%M)/60)
 # if [ $t -gt 8 ]
 if test $t -gt 7; and test $t -lt 18 
@@ -28,7 +38,10 @@ else
     set -gx BAT_THEME "Nord"
 end
 
-# Aliases
+#: }}}
+
+#: Aliases {{{
+
 alias ls='exa --icons'
 alias ll='ls -al'
 alias la='ls -a'
@@ -81,6 +94,10 @@ function llt
     end
 end
 
+#: }}}
+
+#: Vi mode {{{
+
 # # Vi mode cursor shape
 # Set the normal and visual mode cursors to a block
 # set fish_cursor_default block
@@ -89,42 +106,77 @@ end
 # Set the replace mode cursor to an underscore
 # set fish_cursor_replace_one underscore
 
+#: }}}
+
+#: Add homebrew's python3 and pip3 as default {{{
+
 # Add homebrew's python3 and pip3 as default (so no need to add the 3 at the end)
 set -gx PATH $(brew --prefix)/opt/python@3.10/libexec/bin $PATH
 
-# Fzf
+#: }}}
+
+#: Fzf {{{
+
 set -gx PATH $PATH $(brew --prefix)/opt/fzf/bin
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
 
-# add ~/bin to path
+#: }}}
+
+#: add ~/bin to path {{{
+
 set -gx PATH $PATH $HOME/bin
 
-# Golang's path
+#: }}}
+
+#: Golang's path {{{
+
 set -gx GOPATH $HOME/go
 set -gx PATH $PATH $GOPATH/bin
+
+#: }}}
+
+#: Postgres {{{
 
 # Postgres
 set -gx PATH $PATH /Applications/Postgres.app/Contents/Versions/14/bin
 
-# Rust's cargo
+#: }}}
+
+#: Rust's cargo {{{
+
 set -gx PATH $HOME/.cargo/bin $PATH
 
-# Autojump
+#: }}}
+
+#: Autojump {{{
+
 [ -f $(brew --prefix)/share/autojump/autojump.fish ]; and source $(brew --prefix)/share/autojump/autojump.fish
 
-# ZK Notes
+#: }}}
+
+#: ZK Notes {{{
+
 set -gx ZK_NOTEBOOK_DIR "$HOME/Sync/Notes-zk"
 set -gx ZK_SHELL "/bin/bash"
 
-# MegaSync
+#: }}}
+
+#: MegaSync {{{
+
 set -gx PATH /Applications/MEGAcmd.app/Contents/MacOS $PATH
 
-# Alogorithms course Java class
+#: }}}
+
+#: Alogorithms course Java class {{{
+
 set -gx CLASSPATH $HOME/Dev/Java-Libraries/algs4.jar
 
-# Fish git prompt
+#: }}}
+
+#: Fish git prompt {{{
+
 set __fish_git_prompt_showuntrackedfiles 'yes'
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate ''
@@ -133,6 +185,10 @@ set __fish_git_prompt_show_informative_status
 set __fish_git_prompt_showcolorhints
 set __fish_git_prompt_showupstream "informative"
 set __fish_git_prompt_char_stateseparator ' '
+
+#: }}}
+
+#: colored man output {{{
 
 # colored man output
 # from http://linuxtidbits.wordpress.com/2009/03/23/less-colors-for-man-pages/
@@ -143,6 +199,10 @@ setenv LESS_TERMCAP_se \e'[0m'           # end standout-mode
 setenv LESS_TERMCAP_so \e'[38;5;246m'    # begin standout-mode - info box
 setenv LESS_TERMCAP_ue \e'[0m'           # end underline
 setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
+
+#: }}}
+
+#: Prompt configuration {{{
 
 # Prompt configuration
 # function fish_prompt
@@ -189,12 +249,20 @@ setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 #   printf '%s ' (__fish_git_prompt)
 # end
 
+#: }}}
+
+#: fish - interactive status {{{
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
+#: }}}
+
+#: fish_greeting function {{{
+
 function fish_greeting
-	set r (random 0 100)
+    set r (random 0 100)
     # set r 10
 
     if test -s ~/Sync/Notes-Database/todos_unimportant.md
@@ -219,57 +287,65 @@ function fish_greeting
         echo
     end
 
-	if test $r -lt 10 
-		# unimportant, so show rarely
+    if test $r -lt 10 
+        # unimportant, so show rarely
         set_color green
     if test -s ~/Sync/Notes-Database/todos_unimportant.md
         echo
         cat ~/Sync/Notes-Database/todos_unimportant.md | sed 's/^/  /'
     end
-		# echo "  [project] <description>"
-	end
-	if test $r -lt 20 
-		# not so important, so show occasionally
+        # echo "  [project] <description>"
+    end
+    if test $r -lt 20 
+        # not so important, so show occasionally
         set_color blue
     if test -s ~/Sync/Notes-Database/todos_eventually.md
         echo
         cat ~/Sync/Notes-Database/todos_eventually.md | sed 's/^/  /'
     end
-		# echo "  [project] <description>"
-	end
-	if test $r -lt 50 
-		# upcoming, so prompt regularly
-		set_color yellow
+        # echo "  [project] <description>"
+    end
+    if test $r -lt 50 
+        # upcoming, so prompt regularly
+        set_color yellow
     if test -s ~/Sync/Notes-Database/todos_upcoming.md
         echo
         cat ~/Sync/Notes-Database/todos_upcoming.md | sed 's/^/  /'
     end
-		# echo "  [project] <description>"
-	end
+        # echo "  [project] <description>"
+    end
 
-	# urgent, so prompt always
+    # urgent, so prompt always
     set_color magenta
     if test -s ~/Sync/Notes-Database/todos_important.md
         echo
         cat ~/Sync/Notes-Database/todos_important.md | sed 's/^/  /'
     end
-	# echo "  [project] <description>"
+    # echo "  [project] <description>"
 
-	if test -s ~/Sync/Notes-Database/notes.md
+    if test -s ~/Sync/Notes-Database/notes.md
         echo
         set_color normal
         echo -e " \e[1mNOTEs\e[0;32m"
         echo
-		set_color brblue
-		cat ~/Sync/Notes-Database/notes.md | sed 's/^/  /'
-	end
+        set_color brblue
+        cat ~/Sync/Notes-Database/notes.md | sed 's/^/  /'
+    end
 
     # echo
-	set_color normal
+    set_color normal
 end
 
-# Add zoxide
+#: }}}
+
+#: Add zoxide {{{
+
 zoxide init fish | source
 
-# Add starship prompt
+#: }}}
+
+#: Add starship prompt {{{
+
 starship init fish | source
+
+#: }}}
