@@ -15,8 +15,8 @@ fi
 
 hours=$(($timeAgo/3600 % 24))
 minutes=$(($timeAgo/60 % 60))
+hours_mins=$(printf "%02d:%02d" $hours $minutes)
 
 # uptime=`awk -v time=$timeAgo 'BEGIN { minutes = int(time / 60 % 60); hours = int(time / 60 / 60 % 24); days = int(time / 60 / 60 / 24); printf("%.0fd-%.0fh-%.0fm", days, hours, minutes); exit }'`
 
-# echo $uptime
-echo "$days$hours:$minutes"
+echo "$days$hours_mins"
