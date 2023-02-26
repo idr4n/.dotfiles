@@ -120,7 +120,8 @@ set -gx PATH $(brew --prefix)/opt/python@3.10/libexec/bin $PATH
 set -gx PATH $PATH $(brew --prefix)/opt/fzf/bin
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
-setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
+# setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
+setenv FZF_DEFAULT_OPTS "--reverse --border rounded --no-info --prompt=' ' --pointer='' --marker=' ' --ansi --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:4,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
 
 #: }}}
 

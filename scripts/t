@@ -1,8 +1,9 @@
 #!/bin/sh
 
+FZF_BORDER_LABEL=" t - Tmux New Session - Zoxide "
+
 # save fzf to variables
-ZOXIDE_RESULT=$(zoxide query -l | fzf --height 100% --layout=reverse --info=inline --ansi \
-  --preview 'll {1}' --preview-window=down,60%)
+ZOXIDE_RESULT=$(zoxide query -l | fzf --border-label "$FZF_BORDER_LABEL" --height 100% --layout=reverse --preview 'll {1}' --preview-window=down,60%)
 
 # if not currently in tmux
 if [ -z "$TMUX" ]; then
