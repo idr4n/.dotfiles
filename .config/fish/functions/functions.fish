@@ -165,19 +165,3 @@ function fuc -a file -d "search for URLs in given file"
     open $url
   end
 end
-
-function td -d "print all todos"
-  set_color green
-  echo
-  cat ~/Sync/Notes-Database/todos_unimportant.md | sed 's/^/  /'
-  set_color blue
-  echo
-  cat ~/Sync/Notes-Database/todos_eventually.md | sed 's/^/  /'
-  set_color yellow
-  echo
-  cat ~/Sync/Notes-Database/todos_upcoming.md | sed 's/^/  /'
-  set_color magenta
-  echo
-  cat ~/Sync/Notes-Database/todos_important.md | sed 's/^/  /'
-  echo
-end

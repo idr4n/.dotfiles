@@ -76,6 +76,8 @@ alias zl="zk l"
 alias zd="zk d"
 alias zs="zk s"
 alias lfl="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
+alias td="todos_rg"
+alias tf="todos_rg fzf"
 
 function lt
     if test (count $argv) -gt 0
@@ -121,7 +123,8 @@ set -gx PATH $PATH $(brew --prefix)/opt/fzf/bin
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 # setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
-setenv FZF_DEFAULT_OPTS "--reverse --border rounded --no-info --prompt=' ' --pointer='' --marker=' ' --ansi --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:4,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
+# alternative pointer ''
+setenv FZF_DEFAULT_OPTS "--reverse --border rounded --no-info --prompt=' ' --pointer='' --marker=' ' --ansi --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:4,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
 
 #: }}}
 
@@ -264,77 +267,10 @@ end
 
 function fish_greeting
     set r (random 0 100)
-    # set r 10
 
-    if test -s ~/Sync/Notes-Database/todos_unimportant.md
-        or test -s ~/Sync/Notes-Database/todos_eventually.md
-        or test -s ~/Sync/Notes-Database/todos_upcoming.md
-        or test -s ~/Sync/Notes-Database/todos_important.md
-        set_color normal
-        echo -en " \e[1mTODOs\e[0;32m "
-        if test $r -gt 10; and test -s ~/Sync/Notes-Database/todos_unimportant.md
-            set_color --bold green
-            echo -n "+"
-        end
-        if test $r -gt 20; and test -s ~/Sync/Notes-Database/todos_eventually.md
-            set_color --bold blue
-            echo -n "+"
-        end
-        if test $r -gt 50; and test -s ~/Sync/Notes-Database/todos_upcoming.md
-            set_color --bold yellow
-            echo -n "+"
-        end
-        set_color normal
-        echo
+    if test $r -lt 30
+        todos_rg
     end
-
-    if test $r -lt 10 
-        # unimportant, so show rarely
-        set_color green
-    if test -s ~/Sync/Notes-Database/todos_unimportant.md
-        echo
-        cat ~/Sync/Notes-Database/todos_unimportant.md | sed 's/^/  /'
-    end
-        # echo "  [project] <description>"
-    end
-    if test $r -lt 20 
-        # not so important, so show occasionally
-        set_color blue
-    if test -s ~/Sync/Notes-Database/todos_eventually.md
-        echo
-        cat ~/Sync/Notes-Database/todos_eventually.md | sed 's/^/  /'
-    end
-        # echo "  [project] <description>"
-    end
-    if test $r -lt 50 
-        # upcoming, so prompt regularly
-        set_color yellow
-    if test -s ~/Sync/Notes-Database/todos_upcoming.md
-        echo
-        cat ~/Sync/Notes-Database/todos_upcoming.md | sed 's/^/  /'
-    end
-        # echo "  [project] <description>"
-    end
-
-    # urgent, so prompt always
-    set_color magenta
-    if test -s ~/Sync/Notes-Database/todos_important.md
-        echo
-        cat ~/Sync/Notes-Database/todos_important.md | sed 's/^/  /'
-    end
-    # echo "  [project] <description>"
-
-    if test -s ~/Sync/Notes-Database/notes.md
-        echo
-        set_color normal
-        echo -e " \e[1mNOTEs\e[0;32m"
-        echo
-        set_color brblue
-        cat ~/Sync/Notes-Database/notes.md | sed 's/^/  /'
-    end
-
-    # echo
-    set_color normal
 end
 
 #: }}}
