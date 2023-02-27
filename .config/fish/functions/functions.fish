@@ -30,7 +30,7 @@ end
 function ff -d "search and cd into directories"
   set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud ~/Sync
 
-  set -l sel $(fd . -H --type d -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse --height 50% --ansi)
+  set -l sel $(fd . -H --type d -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse --height 50% --ansi --border-label  " ff - search directories in given list - cd ")
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -44,7 +44,7 @@ function fa -d "search files and cd into their directories"
   set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud ~/Sync
 
   set -l sel $(fd . -H --type f -E '*.git*' -E '*node_modules*' $directories | \
-              fzf --height 100% --layout=reverse --info=inline --ansi \
+              fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fa - search files in given list - cd " \
               --preview 'bat --color=always (echo {}) --style="numbers"' --preview-window=down,60%)
   if test -z "$sel"
     echo "nothing selected!"
@@ -57,7 +57,7 @@ end
 
 function fr -d "Search files and directories in current directory"
   set -l sel $(fd . -H --type f -E '*.git*' -E node_modules | \
-              fzf --height 100% --layout=reverse --info=inline --ansi \
+              fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fr - search files and directories in current directory - cd " \
               --preview 'bat --color=always {1} --style="numbers"' --preview-window=down,60%)
   if test -z "$sel"
     echo "nothing selected!"
@@ -70,7 +70,7 @@ end
 
 function frr -d "Search with fzf/rg in current directory"
   set -l sel $(rg -n '.*' --hidden --follow --no-ignore -g '!.git/*' -g !node_modules | \
-              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi --border-label  " frr - search lines in current directory - open in Nvim " \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window=down --preview-window +{2}-5) 
 
@@ -88,7 +88,7 @@ function fno -d "# search in Notes with fzf/rg"
   # set -l sel $(rg -n '.*' $HOME/Sync/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
   set -l sel $(rg -n '.*' $HOME/Sync/Notes-zk/ $HOME/Sync/Notes-Database/ | \
               # fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
-              fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim" \
               --preview 'bat --color=always (echo {1}) --highlight-line {2} --style="numbers"' \
               --preview-window=down --preview-window +{2}-5)
 
@@ -103,7 +103,7 @@ function fno -d "# search in Notes with fzf/rg"
 end
 
 function f -d "search recent workdirs set in Neovim"
-  set -l sel $(cat ~/.config/nvim/lua/workdirs.txt | fzf --layout=reverse --height 50% --ansi)
+  set -l sel $(cat ~/.config/nvim/lua/workdirs.txt | fzf --layout=reverse --height 50% --ansi --border-label  " f - search recent workdirs - cd ")
   if test -z "$sel"
     echo "nothing selected!"
   else if test -d "$sel"
@@ -115,7 +115,7 @@ end
 
 function fuu -d "search for URLs in current directory"
   set -l sel $(rg -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules | \
-              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fuu - search URLs in current directory - open in browser " \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window=down --preview-window +{2}-5) 
 
@@ -134,7 +134,7 @@ function fu -d "search for URLs in list of directories"
   set -l directories ~/Sync/Notes-zk ~/Sync/Notes-Database
 
   set -l sel $(rg -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules $directories | \
-              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
+              fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fu - search URLs in given list of directories - open in browser " \
               --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
               --preview-window=down --preview-window +{2}-5) 
 
@@ -155,7 +155,7 @@ function fuc -a file -d "search for URLs in given file"
     return 1
   end
 
-  set -l sel $(rg -N 'https?://[^ ]+' --follow "$file" | fzf --layout=reverse --height 50% --ansi)
+  set -l sel $(rg -N 'https?://[^ ]+' --follow "$file" | fzf --layout=reverse --height 50% --ansi --border-label  " fuc - search URLs in current file - open in browser " )
   set -l url $(echo "$sel" | egrep -o 'https?://[^ )>]+' | string trim --right --chars=.:)
 
   if test -z $url
