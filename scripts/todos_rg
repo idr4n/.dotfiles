@@ -43,7 +43,7 @@ colors_length=${#colors[@]}
 marker="•"
 
 # store rg results in array "results"
-mapfile -t results < <(rg -NI --glob='*.md' $2 "^\s*\- \[ \]\s+.*($1)" "${directories[@]}" | sort)
+mapfile -t results < <(rg -NIS --glob='*.md' $2 "^\s*\- \[ \]\s+.*($1)" "${directories[@]}" | sort)
 
 # check if results were found
 [[ -z $results ]] && echo "No results were found!" && exit 0
