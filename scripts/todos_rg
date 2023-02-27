@@ -1,0 +1,59 @@
+#!/usr/bin/env bash
+
+directories=(
+  ~/Sync/Notes-Database
+  # ~/Sync/Notes-zk
+)
+
+FZF_BORDER_LABEL=" TODOs Picker "
+
+if [[ $1 == "fzf" ]]; then
+    sel=$(rg -n "^\s*\- \[ \]" "${directories[@]}" | sed "s/ *\- \[ \]//" | fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --ansi --border-label "$FZF_BORDER_LABEL" \
+              --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
+              --preview-window=down --preview-window +{2}-2)
+    [[ -z $sel ]] && echo "nothing selected!" && exit 0
+    file=$(echo "$sel" | cut -d ":" -f 1)
+    line_nr=$(echo "$sel" | cut -d ":" -f 2)
+
+    $EDITOR "$file" +$line_nr
+    exit 0
+fi
+
+colors=(
+    '\033[0;31m'  # Red
+    '\033[0;32m'  # Green
+    '\033[0;33m'  # Yellow
+    '\033[0;34m'  # Blue
+    '\033[0;35m'  # Purple
+    '\033[0;36m'  # Cyan
+    '\033[0;37m'  # White
+    '\033[0;91m'  # Bright Red
+    '\033[0;92m'  # Bright Green
+    '\033[0;93m'  # Bright Yellow
+    '\033[0;94m'  # Bright Blue
+    '\033[0;95m'  # Bright Purple
+    '\033[0;96m'  # Bright Cyan
+    '\033[0;97m'  # Bright White
+)
+nocolor="\033[0m"  # Color reset
+colors_length=${#colors[@]}
+
+# marker=""
+# marker="◉"
+marker="•"
+
+# store rg results in array "results"
+mapfile -t results < <(rg -NI $2 "^\s*\- \[ \].*($1)" "${directories[@]}" | sort)
+
+# sort array elements in ascending order
+# readarray -t results < <(for i in "${results[@]}"; do echo "$i"; done | sort)
+
+# print empty line
+echo -e "\n ${colors[4]}TODOS:$nocolor\n"
+
+for ((i = 0; i<${#results[@]}; i++)); do
+    todo=$(echo ${results[$i]} | sed 's/^ *\- \[ \]//')
+    random=$(($RANDOM % ($colors_length + 1)))
+    let mod=$i%$colors_length
+    echo -e " ${colors[$random]}$marker$todo$nocolor"
+done
