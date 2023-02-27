@@ -5,16 +5,16 @@ format = '(\([+$added]($added_style) )([-$deleted]($deleted_style)\) )'
 [git_status]
 style = "bold cyan"
 format = '([$all_status$ahead_behind]($style) )'
-conflicted = ' $count '
+conflicted = '繁 $count '
 ahead = ' $count '
 behind =' $count '
 up_to_date = ""
-untracked = '[ $count](green) '
-stashed = 'ﮅ $count '
-modified = '[ $count](yellow) '
-staged = '[ $count](green) '
+untracked = '[ $count](green) '
+stashed = ' $count '
+modified = '[ $count](yellow) '
+staged = '[都 $count](green) '
 renamed = '[ $count](magenta) '
-deleted = '[ﯰ $count](red) '
+deleted = '[ $count](red) '
 
 [aws]
 symbol = "  "
