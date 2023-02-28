@@ -282,6 +282,31 @@ map gt list_tags
 
 #: }}}
 
+#: cmd tag dir or file {{{
+
+cmd tag_file ${{
+    path="$fx"
+    file_tags="$HOME/Sync/file_tags.txt"
+
+    # check if file_tags exists
+    if [ ! -f $file_tags ]; then
+        touch $file_tags
+    fi
+
+    # replace $HOME with ~ from the start of path
+    path="${path/#$HOME/~}"
+
+    if rg -q "^$path\$" $file_tags; then
+        echo "Path already present."
+    else
+        # append the path to the file name and save it in the "file_tags" file
+        echo "$path" >> $file_tags
+    fi
+}}
+map ft tag_file
+
+#: }}}
+
 #: cmd copy_path {{{
 
 cmd copy_path ${{

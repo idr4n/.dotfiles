@@ -165,3 +165,14 @@ function fuc -a file -d "search for URLs in given file"
     open $url
   end
 end
+
+function ft -d "search for tagged dirs and files"
+    set -l sel $(cat ~/Sync/file_tags.txt | sort | fzf --layout=reverse --height 50% --ansi --border-label  " ft - search tagged dirs and files - open ")
+    set -l sel (string replace -r ':\*$' '' $sel)
+    set -l sel (string replace -r '^~' "$HOME" $sel)
+    if test -z "$sel"
+        echo "nothing selected!"
+    else
+        open "$sel"
+    end
+end
