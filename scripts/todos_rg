@@ -33,7 +33,6 @@ colors=(
     '\033[0;94m'  # Bright Blue
     '\033[0;95m'  # Bright Purple
     '\033[0;96m'  # Bright Cyan
-    '\033[0;97m'  # Bright White
 )
 nocolor="\033[0m"  # Color reset
 colors_length=${#colors[@]}
