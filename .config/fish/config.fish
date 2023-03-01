@@ -113,7 +113,7 @@ end
 #: Add homebrew's python3 and pip3 as default {{{
 
 # Add homebrew's python3 and pip3 as default (so no need to add the 3 at the end)
-set -gx PATH $(brew --prefix)/opt/python@3.10/libexec/bin $PATH
+set -gx PATH $(brew --prefix)/opt/python@3.11/libexec/bin $PATH
 
 #: }}}
 
