@@ -8,7 +8,7 @@ cmd + ctrl + shift - return : open -na kitty
 alt - return : ~/scripts/run_term_fm
 
 # search and open tagged paths
-cmd + shift - return : open -na alacritty --args -e fish -ic "ft"
+alt + shift - return : open -na alacritty --args -e fish -ic "ft"
 
 # run or focus ~/Downloads in file manager
 ctrl + shift - d : ~/scripts/open_downloads
