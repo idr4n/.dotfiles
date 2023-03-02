@@ -28,10 +28,7 @@ colors=(
     '\033[0;36m'  # Cyan
     '\033[0;37m'  # White
     '\033[0;91m'  # Bright Red
-    '\033[0;92m'  # Bright Green
     '\033[0;93m'  # Bright Yellow
-    '\033[0;94m'  # Bright Blue
-    '\033[0;95m'  # Bright Purple
     '\033[0;96m'  # Bright Cyan
 )
 nocolor="\033[0m"  # Color reset
