@@ -10,6 +10,9 @@ alt - return : ~/scripts/run_term_fm
 # search and open tagged paths
 alt + shift - return : open -na alacritty --args -e fish -ic "ft"
 
+# search and open
+ctrl + alt + shift - return : open -na alacritty --args -e fish -ic "F"
+
 # run or focus ~/Downloads in file manager
 ctrl + shift - d : ~/scripts/open_downloads
 

@@ -40,6 +40,17 @@ function ff -d "search and cd into directories"
   end
 end
 
+function F -d "search in given list - open"
+  set -l directories ~/pCloud ~/Sync
+
+  set -l sel $(fd . -H -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse --height 50% --ansi --border-label  " ff - search in given list - open ")
+  if test -z "$sel"
+      echo "nothing selected!"
+  else
+      open "$sel"
+  end
+end
+
 function fa -d "search files and cd into their directories"
   set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud ~/Sync
 
