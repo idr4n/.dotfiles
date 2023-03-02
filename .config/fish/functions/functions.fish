@@ -42,8 +42,14 @@ end
 
 function F -d "search in given list - open"
   set -l directories ~/pCloud ~/Sync
+  set -l REVEAL "ctrl-y:execute-silent(open -R {})+abort"
+  set -l HEADER "ctrl-y: reveal in Finder."
 
-  set -l sel $(fd . -H -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse --height 50% --ansi --border-label  " ff - search in given list - open ")
+  set -l sel $(fd . -H -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse \
+      --height 50% --ansi \
+      --border-label  " ff - search in given list - open " \
+      --header $HEADER \
+      --bind "$REVEAL")
   if test -z "$sel"
       echo "nothing selected!"
   else
