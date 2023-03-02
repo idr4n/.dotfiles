@@ -399,7 +399,7 @@ schemes:
       foreground: '#333333'
     cursor:
       text: '#ffffff'
-      cursor: '#333333'
+      cursor: '#9775FA'
     normal:
       black:   '#ffffff'
       red:     '#ed6a43'
