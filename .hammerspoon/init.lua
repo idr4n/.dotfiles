@@ -715,11 +715,6 @@ hs.hotkey.bind({ "alt", "shift" }, "h", function()
 end)
 
 -- Open alacritty with the right size according to screen
--- hs.hotkey.bind("ctrl", "return", function()
-hs.hotkey.bind({ "ctrl", "shift" }, "return", function()
-    hs.execute("open -na alacritty", true)
-end)
-
 hs.hotkey.bind({ "alt", "shift" }, "v", function()
     h.open_alacritty("fish -ic nvim")
 end)
