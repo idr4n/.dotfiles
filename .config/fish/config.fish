@@ -124,7 +124,7 @@ setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 # setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
 # alternative pointer ''
-setenv FZF_DEFAULT_OPTS "--reverse --border rounded --no-info --prompt=' ' --pointer='' --marker=' ' --ansi --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:4,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
+setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt=' ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
 
 #: }}}
 

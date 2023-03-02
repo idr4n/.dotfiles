@@ -1,17 +1,17 @@
 # run terminal
-# ctrl - return : open -na alacritty # set in hammerspoon instead
+ctrl - return : open -na alacritty
 # ctrl + shift - return : wezterm --config initial_rows=33 --config initial_cols=132 start --always-new-process
-ctrl - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
+ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
 cmd + ctrl + shift - return : open -na kitty
 
 # run or focus ~/scripts/run_term_fm
 alt - return : ~/scripts/run_term_fm
 
 # search and open tagged paths
-alt + shift - return : open -na alacritty --args -e fish -ic "ft"
+alt + shift - return : open -na alacritty --args -o window.dimensions.lines=15 -e fish -ic "ft"
 
 # search and open
-ctrl + alt + shift - return : open -na alacritty --args -e fish -ic "F"
+ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.lines=15 -e fish -ic "F"
 
 # run or focus ~/Downloads in file manager
 ctrl + shift - d : ~/scripts/open_downloads
