@@ -54,7 +54,7 @@ function F -d "search in given list - open"
     set -l last_query $(tail -n 1 $HOME/.fzf_history)
     set -l directories ~/pCloud ~/Sync ~/Downloads
     set -l REVEAL "ctrl-y:execute-silent(open -R {})+execute-silent(echo {q} >> $HOME/.fzf_history)+abort"
-    set -l HEADER "ctrl-y: reveal in Finder."
+    set -l HEADER "CTRL-Y: reveal in Finder."
 
     set -l sel $(fd . -H -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse \
         --height 100% --ansi \
@@ -216,11 +216,15 @@ end
 #: ft -d "search for tagged dirs and files" {{{
 function ft -d "search for tagged dirs and files"
     set -l last_query $(tail -n 1 $HOME/.fzf_history)
+    set -l REVEAL "ctrl-y:execute-silent(open -R (string replace -r '^~' '$HOME' {}))+execute-silent(echo {q} >> $HOME/.fzf_history)+abort"
+    set -l HEADER "CTRL-Y: reveal in Finder."
+
     set -l sel $(cat ~/Sync/file_tags.txt | sort | fzf --layout=reverse \
         --height 100% --ansi \
         --query="$last_query" \
+        --header $HEADER \
+        --bind "$REVEAL" \
         --border-label  " ft - search tagged dirs and files - open ")
-    set -l sel (string replace -r ':\*$' '' $sel)
     set -l sel (string replace -r '^~' "$HOME" $sel)
     if test -z "$sel"
         echo "nothing selected!"
