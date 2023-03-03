@@ -221,7 +221,6 @@ function ft -d "search for tagged dirs and files"
 
     set -l sel $(cat ~/Sync/file_tags.txt | sort | fzf --layout=reverse \
         --height 100% --ansi \
-        --query="$last_query" \
         --header $HEADER \
         --bind "$REVEAL" \
         --border-label  " ft - search tagged dirs and files - open ")
