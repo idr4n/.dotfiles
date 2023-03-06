@@ -12,7 +12,7 @@ directories=(
 
 FZF_BORDER_LABEL=" T - Tmux New Session - Selected Dirs "
 
-RESULT=$(fd . --type d -H -L -E '*.git*' -E node_modules "${directories[@]}" | fzf --border-label "$FZF_BORDER_LABEL" --layout=reverse --height 100% --preview 'll {1}' --preview-window=down,60%)
+RESULT=$(fd . --type d -H -L -E '*.git*' -E node_modules "${directories[@]}" | fzf --border-label "$FZF_BORDER_LABEL" --layout=reverse --height 50%)
 
 # if not currently in tmux
 if [ -z "$TMUX" ]; then
