@@ -715,14 +715,28 @@ hs.hotkey.bind({ "alt", "shift" }, "h", function()
 end)
 
 -- Open alacritty with the right size and options according to screen and time
-local t = os.date("*t").hour + os.date("*t").min / 60
-local duringDayTime = t >= 7 and t < 18
-
 hs.hotkey.bind("ctrl", "return", function()
+    -- system apperance
+    local appearance = os.execute("defaults read -g AppleInterfaceStyle")
+    local duringDayTime = appearance == nil
+
     if duringDayTime then
         hs.execute("open -na alacritty --args -o window.opacity=1 ", true)
     else
         hs.execute("open -na alacritty", true)
+    end
+end)
+
+-- Open kitty with the right size and options according to screen and time
+hs.hotkey.bind({ "ctrl", "cmd" }, "return", function()
+    -- system apperance
+    local appearance = os.execute("defaults read -g AppleInterfaceStyle")
+    local duringDayTime = appearance == nil
+
+    if duringDayTime then
+        hs.execute("open -na kitty --args -o background_opacity=1 ", true)
+    else
+        hs.execute("open -na kitty", true)
     end
 end)
 
