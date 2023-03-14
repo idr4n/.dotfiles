@@ -31,24 +31,26 @@ window:
 
 #: font {{{
 font:
-  # size: 16
-  size: 15.5
+  size: 16
+  # size: 15.5
   normal:
     # family: JetBrainsMono Nerd Font
     # family: FiraCode Nerd Font
-    family: MonolisaLight Nerd Font 
-    # style: Light
+    # family: MonolisaLight Nerd Font 
+    family: Liga SFMono Nerd Font
+    style: Light
     # style: Regular
-  bold:
+  # bold:
     # family: JetBrainsMono Nerd Font
     # family: FiraCode Nerd Font
-    family: MonoLisaMedium Nerd Font
+    # family: MonoLisaMedium Nerd Font
     # style: Medium
-  # italic:
+  italic:
     # family:  MesloLGS NF
     # family: JetBrainsMono Nerd Font
+    family: Liga SFMono Nerd Font
     # style: ExtraLight Italic
-    # style: Light Italic
+    style: Light Italic
   # bold_italic:
     # family:  MesloLGS NF
     # family: JetBrainsMono Nerd Font
@@ -61,8 +63,10 @@ font:
     # y: 6
     # for FiraCode
     # y: 8
+    # for Liga SFMono
+    y: 9
     # For MonoLisa
-    y: 4
+    # y: 4
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
