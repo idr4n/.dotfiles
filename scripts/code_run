@@ -12,7 +12,7 @@ case $ext in
     case $os in
       Linux*) g++ -o $dir_path/a.out $file;;
       # *) clang++ -g -std=c++17 -stdlib=libc++ $file
-      *) clang++ -g -o $dir_path/a.out -std=c++17 -stdlib=libc++ $file;;
+      *) clang++ -o $dir_path/a.out -std=c++17 -stdlib=libc++ $file;;
     esac
     [ -f $dir_path/a.out ] && $dir_path/a.out
     ;;
