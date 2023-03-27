@@ -692,16 +692,16 @@ hs.hotkey.bind("alt", "Q", function()
     h.focusApp(app, name)
 end)
 
-hs.hotkey.bind("alt", "m", function()
-    local name = "finder"
-    local app = hs.application.find(name)
-    if not app then
-        hs.application.launchOrFocus(name)
-        return
-    end
-
-    h.focusApp(app, name)
-end)
+-- hs.hotkey.bind("alt", "m", function()
+--     local name = "finder"
+--     local app = hs.application.find(name)
+--     if not app then
+--         hs.application.launchOrFocus(name)
+--         return
+--     end
+--
+--     h.focusApp(app, name)
+-- end)
 
 hs.hotkey.bind({ "alt", "shift" }, "h", function()
     local name = "code"

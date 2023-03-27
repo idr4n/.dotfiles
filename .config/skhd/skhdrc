@@ -13,7 +13,8 @@ alt + shift - return : open -na alacritty --args -o window.dimensions.lines=15 -
 ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.lines=15 -o window.opacity=1 -e fish -ic "F"
 
 # run or focus ~/Downloads in file manager
-ctrl + shift - d : ~/scripts/open_downloads
+# ctrl + shift - d : ~/scripts/open_downloads
+ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
 
 # run or focus browser
 # ctrl + alt - f : /Applications/Firefox.app/Contents/MacOS/firefox
