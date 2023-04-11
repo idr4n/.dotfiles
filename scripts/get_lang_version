@@ -1,0 +1,35 @@
+#!/bin/bash
+
+language=$1
+
+case $language in
+    python)
+        version=$(python --version 2>&1)
+        echo "${version//Python /}"
+        ;;
+    go)
+        version=$(go version)
+        echo "${version}" | awk '{print $3}' | sed 's/go//'
+        ;;
+    lua)
+        version=$(lua -v 2>&1)
+        echo "${version}" | awk '{print $2}'
+        ;;
+    javascript|typescript|javascriptreact|typescriptreact)
+        version=$(node --version)
+        echo " ${version//v/}"
+        ;;
+    cpp)
+        version=$(g++ --version | head -n 1)
+        echo "${version}" | awk '{print $4}'
+        ;;
+    rust)
+        version=$(rustc --version)
+        echo "${version}" | awk '{print $2}'
+        ;;
+    *)
+        echo ""
+        exit 1
+        ;;
+esac
+
