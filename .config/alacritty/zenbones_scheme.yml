@@ -545,4 +545,4 @@ schemes:
       white: "#ffffff"
   #: }}}
 
-colors: *oxocarbon
+colors: *github_light

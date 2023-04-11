@@ -357,13 +357,27 @@ hs.hotkey.bind(hyper3, "C", function()
 end)
 
 -- Almost center window, tilted right 1
+hs.hotkey.bind({ "ctrl", "alt" }, "J", function()
+    local win = hs.window.focusedWindow()
+    local f = win:frame()
+    local screen = win:screen()
+    local max = screen:frame()
+
+    f.x = max.x + max.w / 3.4
+    f.y = max.y + screenMargin
+    f.w = (max.w - screenMargin * 2 - wingap) / 2
+    f.h = max.h - screenMargin * 2
+    win:setFrame(f)
+end)
+
+-- Almost center window, tilted right 2
 hs.hotkey.bind({ "ctrl", "alt" }, "K", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
 
-    f.x = max.x + max.w / 3
+    f.x = max.x + max.w / 2.9
     f.y = max.y + screenMargin
     f.w = (max.w - screenMargin * 2 - wingap) / 2
     f.h = max.h - screenMargin * 2
@@ -377,7 +391,7 @@ hs.hotkey.bind({ "ctrl", "alt" }, "O", function()
     local screen = win:screen()
     local max = screen:frame()
 
-    f.x = max.x + max.w / 2.6
+    f.x = max.x + max.w / 2.2
     f.y = max.y + screenMargin
     f.w = (max.w - screenMargin * 2 - wingap) / 2
     f.h = max.h - screenMargin * 2
