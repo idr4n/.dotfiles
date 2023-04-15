@@ -27,6 +27,10 @@ case $language in
         version=$(rustc --version)
         echo "${version}" | awk '{print $2}'
         ;;
+    java)
+        version=$(java --version 2>&1)
+        echo "${version}" | awk 'NR==1{print $2}'
+        ;;
     *)
         echo ""
         exit 1
