@@ -20,7 +20,8 @@ case $language in
         echo " ${version//v/}"
         ;;
     cpp)
-        version=$(g++ --version | head -n 1)
+        # version=$(g++ --version | head -n 1)
+        version=$(c++ --version | head -n 1)
         echo "${version}" | awk '{print $4}'
         ;;
     rust)

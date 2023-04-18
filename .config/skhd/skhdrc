@@ -32,7 +32,7 @@ cmd + ctrl + shift - d : ~/scripts/dailynote
 cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/todos_important.md"
 
 # Open scratchpad note file
-cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-zk/b4il-scratchpad.md"
+cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
 
 # Open finder script
 # ctrl + shift - f : ~/scripts/finder
@@ -50,7 +50,7 @@ alt + shift - t: kitty -d ~/ tmux new-session -A -s W
 alt - j : ~/scripts/focus_app alacritty
 alt - h : ~/scripts/focus_app wezterm
 alt + shift - z : ~/scripts/focus_app zathura 1
-alt - k : ~/scripts/focus_app kitty
+alt + shift - k : ~/scripts/focus_app kitty
 
 # run scripts
 ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py

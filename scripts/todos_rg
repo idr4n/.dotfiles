@@ -39,10 +39,10 @@ colors_length=${#colors[@]}
 marker="•"
 
 # store rg results in array "results"
-mapfile -t results < <(rg -NIS --glob='*.md' $2 "^\s*\- \[ \]\s+.*($1)" "${directories[@]}" | sort)
+mapfile -t results < <(rg -NIS --glob='*.md' $2 "^\s*\- \[ \]\s+.*($1)" "${directories[@]}" | sort -r)
 
 # check if results were found
-[[ -z $results ]] && echo "No results were found!" && exit 0
+[[ -z $results ]] && echo -e "\033[0;35mNo TODOs! 🥳" && exit 0
 
 # print empty line
 echo -e "\n ${colors[4]}TODOS:$nocolor\n"
