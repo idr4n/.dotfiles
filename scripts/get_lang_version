@@ -15,7 +15,7 @@ case $language in
         version=$(lua -v 2>&1)
         echo "${version}" | awk '{print $2}'
         ;;
-    javascript|typescript|javascriptreact|typescriptreact)
+    javascript|typescript|javascriptreact|typescriptreact|vue)
         version=$(node --version)
         echo " ${version//v/}"
         ;;
