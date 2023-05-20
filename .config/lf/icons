@@ -33,7 +33,7 @@ cd             # CHR
 su             # SETUID
 sg             # SETGID
 ex             # EXEC
-fi             # FILE
+fi             # FILE
 
 # file extensions (vim-devicons)
 *.styl          
@@ -361,4 +361,5 @@ Vagrantfile             
 *.xspf  
 
 # other formats
-*.pdf   
+*.pdf   
+*.csv   
