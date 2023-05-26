@@ -23,13 +23,13 @@
 ln             # LINK
 or             # ORPHAN
 tw             # STICKY_OTHER_WRITABLE
-ow             # OTHER_WRITABLE
+ow      󰈤       # OTHER_WRITABLE
 st             # STICKY
 di             # DIR
 pi      ﳣ       # FIFO
 so      臘       # SOCK
 bd      כּ       # BLK
-cd             # CHR
+cd      󰂽       # CHR
 su             # SETUID
 sg             # SETGID
 ex             # EXEC
@@ -87,9 +87,9 @@ fi             # FILE
 *.cc            
 *.cp            
 *.c             
-*.cs            
-*.doc           
-*.docx          
+*.cs            󰌛
+*.doc           󰈬
+*.docx          󰈬
 *.h             
 *.hh            
 *.hpp           
@@ -106,8 +106,8 @@ fi             # FILE
 *.ksh           
 *.csh           
 *.awk           
-*.ppt           
-*.pptx          
+*.ppt           󰈧
+*.pptx          󰈧
 *.ps1           
 *.ml            λ
 *.mli           λ
@@ -122,8 +122,8 @@ fi             # FILE
 *.scala         
 *.go            
 *.dart          
-*.xls           
-*.xlsx          
+*.xls           󰈛
+*.xlsx          󰈛
 *.xul           
 *.sln           
 *.suo           
@@ -158,11 +158,11 @@ fi             # FILE
 *.elm           
 *.swift         
 *.xcplayground  
-*.tex           ﭨ
+*.tex           󰙩
 *.r             ﳒ
 *.rproj         鉶
 *.sol           ﲹ
-*.pem           
+*.pem           󰌋
 
 # file names (vim-devicons) (case-insensitive not supported in lf)
 *gruntfile.coffee       
