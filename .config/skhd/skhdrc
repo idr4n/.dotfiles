@@ -1,20 +1,31 @@
 # run terminal
 # ctrl - return : open -na alacritty
-ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
+# ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
+# ctrl + shift - return : emacsclient -nc | open -a Emacs
+ctrl + shift - return : emacsclient -nc & ~/scripts/focus_app emacs
 cmd + ctrl + shift - return : open -na kitty
 
 # run or focus ~/scripts/run_term_fm
-alt - return : ~/scripts/run_term_fm
+alt + shift - return : ~/scripts/run_term_fm
+
+# restart Emacs server
+ctrl + alt + cmd - e : brew services restart emacs-plus@30
+# restart skhd
+ctrl + alt + cmd - s : skhd --restart-service
+
+# emacs edit config
+ctrl + alt + cmd - 0 : emacsclient -nc ~/.emacs.d/init.el
 
 # search and open tagged paths
-alt + shift - return : open -na alacritty --args -o window.dimensions.lines=15 -o window.opacity=1 -e fish -ic "ft"
+alt + shift - t : open -na alacritty --args -o window.dimensions.lines=15 -o window.opacity=1 -e fish -ic "ft"
 
 # search and open
 ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.lines=15 -o window.opacity=1 -e fish -ic "F"
 
 # run or focus ~/Downloads in file manager
-# ctrl + shift - d : ~/scripts/open_downloads
-ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
+# ctrl + shift - d : emacsclient -nc -F "((width . 145)(height . 40))" ~/Downloads
+ctrl + shift - d : ~/scripts/open_downloads
+# ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
 
 # run or focus browser
 # ctrl + alt - f : /Applications/Firefox.app/Contents/MacOS/firefox
@@ -33,6 +44,7 @@ cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Sync/No
 
 # Open scratchpad note file
 cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
+# cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "hx ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
 
 # Open finder script
 # ctrl + shift - f : ~/scripts/finder
@@ -44,20 +56,21 @@ alt - v: open -na kitty --args nvim
 
 # open terminal and attach to Tmux session
 # alt - t: alacritty --working-directory ~/ -e tmux new-session -A -s W
-alt + shift - t: kitty -d ~/ tmux new-session -A -s W
+# alt + shift - t: kitty -d ~/ tmux new-session -A -s W
+# alt + shift - t: wezterm-gui start --cwd ~/ tmux new-session -A -s W
 
 # focus apps
 alt - j : ~/scripts/focus_app alacritty
 alt - h : ~/scripts/focus_app wezterm
 alt + shift - z : ~/scripts/focus_app zathura 1
-alt + shift - k : ~/scripts/focus_app kitty
+alt - k : ~/scripts/focus_app kitty
 
 # run scripts
 ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py
 
 # check and save tasks
 # ctrl + shift - c : ~/scripts/check_later
-ctrl + alt + shift - t : ~/scripts/save_check_later
+# ctrl + alt + shift - t : ~/scripts/save_check_later
 
 
 # Yabai
