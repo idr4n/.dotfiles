@@ -51,15 +51,15 @@ end
 
 #: F -d "search in given list - open" {{{
 function F -d "search in given list - open"
-    set -l last_query $(tail -n 1 $HOME/.fzf_history)
-    set -l directories ~/pCloud ~/Sync ~/Downloads
+    # set -l last_query $(tail -n 1 $HOME/.fzf_history)
+    set -l directories ~/pCloud ~/Sync ~/Downloads ~/Desktop
     set -l REVEAL "ctrl-y:execute-silent(open -R {})+execute-silent(echo {q} >> $HOME/.fzf_history)+abort"
     set -l HEADER "CTRL-Y: reveal in Finder."
 
     set -l sel $(fd . -H -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse \
         --height 100% --ansi \
         --border-label  " ff - search in given list - open " \
-        --query="$last_query" \
+        # --query="$last_query" \
         --header $HEADER \
         --bind "$REVEAL")
     if test -z "$sel"

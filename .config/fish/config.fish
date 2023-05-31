@@ -78,6 +78,7 @@ alias zs="zk s"
 alias lfl="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
 alias td="todos_rg"
 alias tf="todos_rg fzf"
+alias ec="emacsclient -nc"
 
 function lt
     if test (count $argv) -gt 0
