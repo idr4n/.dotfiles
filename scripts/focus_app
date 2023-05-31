@@ -9,9 +9,9 @@ CL_APP="$2"
 front_pid=$(lsappinfo info -only pid `lsappinfo front` | cut -d "=" -f 2)
 
 # array of pid's of APP_NAME
-# wins=($(ps -A | awk -v app="$APP_NAME" '$4 ~ app' | awk '{print $1}'))
-# this is faster than the line above!
-wins=($(pgrep "$APP_NAME"))
+wins=($(ps -A | awk -v app="$APP_NAME" '$4 ~ app' | awk '{print $1}'))
+# this is faster than the line above!... but does not find all applications
+# wins=($(pgrep "$APP_NAME"))
 
 for var in "${wins[@]}"
 do
