@@ -407,7 +407,7 @@ map tc $trash -ey
 map do $open -a Dropover $fx
 map Q $qlmanage -p "$fx" > /dev/null 2> /dev/null &
 map of $open -R "$fx"
-map oz $zathura "$fx" &
+map oz $zathura "$fx" & ~/scripts/focus_app zathura > /dev/null 2> /dev/null
 map on open_nvim
 map yy copy
 map yp copy_path
