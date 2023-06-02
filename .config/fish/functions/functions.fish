@@ -36,7 +36,7 @@ end
 
 #: ff -d "search and cd into directories" {{{
 function ff -d "search and cd into directories"
-    set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud ~/Sync
+    set -l directories ~/.config ~/Dev ~/pCloud ~/Sync
 
     set -l sel $(fd . -H --type d -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse --height 50% --ansi --border-label  " ff - search directories in given list - cd ")
     if test -z "$sel"
@@ -72,7 +72,7 @@ end
 
 #: fa -d "search files and cd into their directories" {{{
 function fa -d "search files and cd into their directories"
-    set -l directories ~/.config ~/Dev ~/Dropbox ~/pCloud ~/Sync
+    set -l directories ~/.config ~/Dev ~/pCloud ~/Sync
 
     set -l sel $(fd . -H --type f -E '*.git*' -E '*node_modules*' $directories | \
         fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fa - search files in given list - cd " \
