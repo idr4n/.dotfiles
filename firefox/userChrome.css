@@ -11,38 +11,38 @@ and and go to the 'chrome' subfolder.
 /* https://git.sr.ht/~knazarov/dotfiles/tree/master/item/firefox/userChrome.css */
 /* ------------------------- */
 
-/* hides the native tabs */
-#TabsToolbar {
-    visibility: collapse !important;
-}
-
-/* hides the menu/URL bar */
-#main-window:not([customizing])
-    #navigator-toolbox:not(:focus-within):not(:hover) {
-    margin-top: -45px;
-}
+/* /* hides the native tabs */ */
+/* #TabsToolbar { */
+/*     visibility: collapse !important; */
+/* } */
+/**/
+/* /* hides the menu/URL bar */ */
+/* #main-window:not([customizing]) */
+/*     #navigator-toolbox:not(:focus-within):not(:hover) { */
+/*     margin-top: -45px; */
+/* } */
 
 /* ------------------------- */
 /* keep code below for narrower tabs and no tab borders */
 /* ------------------------- */
 
-/* #tabbrowser-tabs { */
-/*     --tab-min-height: 30px !important; */
-/*     --lwt-tab-line-color: transparent !important; */
-/*     /* --lwt-tab-line-color: rgba(172, 112, 255, 0.5) !important; */ */
-/* } */
-/**/
-/* #toolbar-menubar[autohide='true'] > .titlebar-buttonbox-container { */
-/*     min-height: 30px !important; */
-/* } */
-/* #tabbrowser-tabs, */
-/* .tabbrowser-tab[pinned] { */
-/*     min-height: 30px !important; */
-/* } */
-/* #nav-bar { */
-/*     margin-left: calc(100vw - var(--uc-navigationbar-width)); */
-/*     margin-top: calc(0px - var(--uc-toolbar-height)); */
-/* } */
+#tabbrowser-tabs {
+    --tab-min-height: 30px !important;
+    --lwt-tab-line-color: transparent !important;
+    /* --lwt-tab-line-color: rgba(172, 112, 255, 0.5) !important; */
+}
+
+#toolbar-menubar[autohide='true'] > .titlebar-buttonbox-container {
+    min-height: 30px !important;
+}
+#tabbrowser-tabs,
+.tabbrowser-tab[pinned] {
+    min-height: 30px !important;
+}
+#nav-bar {
+    margin-left: calc(100vw - var(--uc-navigationbar-width));
+    margin-top: calc(0px - var(--uc-toolbar-height));
+}
 
 /* ------------------------- */
 /* keep below code for autohiding the navbar */
