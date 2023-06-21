@@ -9,13 +9,13 @@ hint=${hfloat/.*}
 CACHE="$HOME/.cache/tmpimg"
 
 if [[ "$( file -Lb --mime-type "$file")" =~ ^image && $lf_preview == true ]]; then
-  kitten icat --silent --transfer-mode file --place "${w}x${h}@${x}x2" "$file"
+  kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file" < /dev/null > /dev/tty
   exit 1
 fi
 
 if [[ "$( file -Lb --mime-type "$file")" =~ ^application/pdf && $lf_preview == true ]]; then
   pdftoppm -jpeg -f 1 -singlefile "$file" "$CACHE"
-  kitten icat --silent --transfer-mode file --place "${w}x$hint@${x}x2" "${CACHE}.jpg"
+  kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x$hint@${x}x2" "${CACHE}.jpg" < /dev/null > /dev/tty
   exit 1
 fi
 
