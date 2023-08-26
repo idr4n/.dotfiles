@@ -7,6 +7,8 @@ import darkdetect
 #     "/opt/homebrew/bin/fd . --type s ${XDG_RUNTIME_DIR:-${TMPDIR}nvim.${USER}}/"
 # ).split("\n")
 
+light_helix = "mono_light"
+dark_helix = "mono_dark"
 # light_color_kitty = "Zenbones Light Custom"
 # light_color_kitty = "nordfox"
 # light_color_kitty = "Catppuccin-Frappe"
@@ -23,7 +25,8 @@ light_color_kitty = "Github Light"
 # dark_color_kitty = "Rose Pine Moon"
 # dark_color_kitty = "Catppuccin-Macchiato"
 # dark_color_kitty = "Nord Custom"
-dark_color_kitty = "Zenbones Dark Custom"
+# dark_color_kitty = "Zenbones Dark Custom"
+dark_color_kitty = "nightfly"
 # dark_color_kitty = "duskfox"
 # dark_color_kitty = "Rasmus"
 # light_color_alacritty = "zenbones_light"
@@ -41,7 +44,8 @@ light_color_alacritty = "github_light"
 # dark_color_alacritty = "rose-pine-moon"
 # dark_color_alacritty = "catppuccin-macchiato"
 # dark_color_alacritty = "oxocarbon"
-dark_color_alacritty = "zenbones_dark"
+# dark_color_alacritty = "zenbones_dark"
+dark_color_alacritty = "nightfly"
 # dark_color_alacritty = "duskfox"
 # dark_color_alacritty = "rasmus"
 
@@ -52,6 +56,9 @@ if os.environ.get("HOME") == "/Users/iduran":
         )
         os.system(
             f"{os.environ.get('HOME')}/bin/alacritty-theme {dark_color_alacritty}"
+        )
+        os.system(
+            f"{os.environ.get('HOME')}/.config/helix/helix-theme {dark_helix}"
         )
 
         # for server in nvim_servers:
@@ -67,6 +74,9 @@ if os.environ.get("HOME") == "/Users/iduran":
         )
         os.system(
             f"{os.environ.get('HOME')}/bin/alacritty-theme {light_color_alacritty}"
+        )
+        os.system(
+            f"{os.environ.get('HOME')}/.config/helix/helix-theme {light_helix}"
         )
 
         # for server in nvim_servers:
