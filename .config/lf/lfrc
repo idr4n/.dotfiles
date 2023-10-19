@@ -106,6 +106,8 @@ set cleaner ~/.config/lf/lf_kitty_clean
 set preview!
 # set ratios '1:2:2'
 set ratios '1:2'
+set incsearch true
+set incfilter true
 
 #: }}}
 
@@ -408,6 +410,7 @@ map do $open -a Dropover $fx
 map Q $qlmanage -p "$fx" > /dev/null 2> /dev/null &
 map of $open -R "$fx"
 map oz $zathura "$fx" & ~/scripts/focus_app zathura > /dev/null 2> /dev/null
+map os $sioyek "$fx" > /dev/null 2> /dev/null
 map on open_nvim
 map yy copy
 map yp copy_path
@@ -420,6 +423,7 @@ map st :set sortby time; set info time; set reverse; top
 map sa :set sortby atime; set info atime; set reverse; top
 map sc :set sortby ctime; set info ctime; set reverse; top
 map q Quit
+map ff filter
 
 map gd cd ~/Downloads
 map gs cd ~/Desktop/ScreenShots

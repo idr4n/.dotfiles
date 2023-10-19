@@ -13,11 +13,14 @@ yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.90
-# yabai -m config window_border                on
-# yabai -m config window_border_width          4
+yabai -m config window_border                on
+yabai -m config window_border_width          6
 # yabai -m config active_window_border_color   0xffd75f5f
+yabai -m config active_window_border_color   0xFFF19127
 # yabai -m config normal_window_border_color   0xff555555
 # yabai -m config insert_feedback_color        0xffd75f5f
+# yabai -m config window_border_radius       12
+yabai -m config window_border_radius         0
 yabai -m config split_ratio                  0.50
 yabai -m config auto_balance                 off
 yabai -m config mouse_modifier               fn
@@ -37,14 +40,17 @@ yabai -m rule --add app="^Fantastical 2$" manage=off
 yabai -m config --space 3 layout float
 
 # Set all padding and gaps to 20pt (default: 0)
-yabai -m config top_padding    20
-yabai -m config bottom_padding 20
-yabai -m config left_padding   20
-yabai -m config right_padding  20
-yabai -m config window_gap     15
+yabai -m config top_padding    41
+yabai -m config bottom_padding 15
+yabai -m config left_padding   15
+yabai -m config right_padding  15
+yabai -m config window_gap     10
 
 # Override gaps for space 2 only
 # yabai -m config --space 2 window_gap 0
+
+# float system preferences
+yabai -m rule --add app="^System Settings$" manage=off
 
 # # Run limelight
 # killall limelight &> /dev/null

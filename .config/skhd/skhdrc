@@ -1,8 +1,9 @@
 # run terminal
-# ctrl - return : open -na alacritty
-# ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
+# ctrl + shift - return : open -na alacritty
+ctrl + cmd - return : open -na alacritty
+ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
 # ctrl + shift - return : emacsclient -nc | open -a Emacs
-ctrl + shift - return : emacsclient -nc & ~/scripts/focus_app emacs
+# ctrl + shift - return : emacsclient -nc & ~/scripts/focus_app emacs
 cmd + ctrl + shift - return : open -na kitty
 
 # run or focus ~/scripts/run_term_fm
@@ -26,6 +27,9 @@ ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.lin
 # ctrl + shift - d : emacsclient -nc -F "((width . 145)(height . 40))" ~/Downloads
 ctrl + shift - d : ~/scripts/open_downloads
 # ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
+
+# Open Downloads in Finder
+cmd + ctrl - d : open ~/Downloads
 
 # run or focus browser
 # ctrl + alt - f : /Applications/Firefox.app/Contents/MacOS/firefox
@@ -61,9 +65,11 @@ alt - v: open -na kitty --args nvim
 
 # focus apps
 alt - j : ~/scripts/focus_app alacritty
+# alt + shift - h : ~/scripts/focus_app kitty
 alt - h : ~/scripts/focus_app wezterm
 alt + shift - z : ~/scripts/focus_app zathura 1
 alt - k : ~/scripts/focus_app kitty
+# alt - l : open -a "Visual Studio Code"
 
 # run scripts
 ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py

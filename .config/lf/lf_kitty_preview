@@ -9,7 +9,7 @@ hint=${hfloat/.*}
 CACHE="$HOME/.cache/tmpimg"
 
 if [[ "$( file -Lb --mime-type "$file")" =~ ^image && $lf_preview == true ]]; then
-  kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x${y}" "$file" < /dev/null > /dev/tty
+  kitty +kitten icat --silent --stdin no --transfer-mode file --place "${w}x${h}@${x}x2" "$file" < /dev/null > /dev/tty
   exit 1
 fi
 

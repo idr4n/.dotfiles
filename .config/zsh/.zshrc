@@ -58,7 +58,7 @@ ZSH_THEME="yusufs"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump zsh-autosuggestions zsh-syntax-highlighting git-prompt zsh-vi-mode colored-man-pages)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting git-prompt zsh-vi-mode colored-man-pages)
 
 # User configuration
 

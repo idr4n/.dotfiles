@@ -8,6 +8,8 @@ local h = require("helper")
 -- local variables
 
 local screenMargin = 0
+local screenMarginTop = 0
+-- local screenMarginTop = 30 -- to use with sketchybar mainly
 local wingap = 0
 hs.window.animationDuration = 0.1
 
@@ -181,7 +183,7 @@ hs.hotkey.bind(hyper3, ",", function()
     f.w = max.w * proportion_w
     f.h = max.h * proportion_h
     -- f.y = max.y + (max.h - f.h) / 2
-    f.y = max.y + (max.h - max.h * 0.96)
+    f.y = max.y + (max.h - max.h * 0.96) + screenMarginTop
     win:setFrame(f)
 end)
 
@@ -229,30 +231,34 @@ hs.hotkey.bind(hyper3, "J", function()
 end)
 
 -- Move window right (half size of the screen)
-hs.hotkey.bind(hyper3, "L", function()
+-- hs.hotkey.bind(hyper3, "L", function()
+hs.hotkey.bind({ "ctrl", "alt" }, "L", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
 
     f.x = max.x + screenMargin + wingap + (max.w - screenMargin * 2 - wingap) / 2
-    f.y = max.y + screenMargin
+    f.y = max.y + screenMarginTop
     f.w = (max.w - screenMargin * 2 - wingap) / 2
-    f.h = max.h - screenMargin * 2
+    -- f.h = max.h - screenMargin * 2
+    f.h = max.h - screenMarginTop
     win:setFrame(f)
 end)
 
 -- Move windown left (half size of the screen)
-hs.hotkey.bind(hyper3, "H", function()
+-- hs.hotkey.bind(hyper3, "H", function()
+hs.hotkey.bind({ "ctrl", "alt" }, "H", function()
     local win = hs.window.focusedWindow()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
 
     f.x = max.x + screenMargin
-    f.y = max.y + screenMargin
+    f.y = max.y + screenMarginTop
     f.w = (max.w - screenMargin * 2 - wingap) / 2
-    f.h = max.h - screenMargin * 2
+    -- f.h = max.h - screenMargin * 2
+    f.h = max.h - screenMarginTop
     win:setFrame(f)
 end)
 
@@ -364,9 +370,10 @@ hs.hotkey.bind({ "ctrl", "alt" }, "J", function()
     local max = screen:frame()
 
     f.x = max.x + max.w / 3.4
-    f.y = max.y + screenMargin
+    f.y = max.y + screenMarginTop
     f.w = (max.w - screenMargin * 2 - wingap) / 2
-    f.h = max.h - screenMargin * 2
+    -- f.h = max.h - screenMargin * 2
+    f.h = max.h - screenMarginTop
     win:setFrame(f)
 end)
 
@@ -378,9 +385,10 @@ hs.hotkey.bind({ "ctrl", "alt" }, "K", function()
     local max = screen:frame()
 
     f.x = max.x + max.w / 2.9
-    f.y = max.y + screenMargin
+    f.y = max.y + screenMarginTop
     f.w = (max.w - screenMargin * 2 - wingap) / 2
-    f.h = max.h - screenMargin * 2
+    -- f.h = max.h - screenMargin * 2
+    f.h = max.h - screenMarginTop
     win:setFrame(f)
 end)
 
@@ -392,9 +400,10 @@ hs.hotkey.bind({ "ctrl", "alt" }, "O", function()
     local max = screen:frame()
 
     f.x = max.x + max.w / 2.2
-    f.y = max.y + screenMargin
+    f.y = max.y + screenMarginTop
     f.w = (max.w - screenMargin * 2 - wingap) / 2
-    f.h = max.h - screenMargin * 2
+    -- f.h = max.h - screenMargin * 2
+    f.h = max.h - screenMarginTop
     win:setFrame(f)
 end)
 
@@ -483,9 +492,9 @@ hs.hotkey.bind(hyper3, "F", function()
     local max = screen:frame()
 
     f.x = max.x + screenMargin
-    f.y = max.y + screenMargin
+    f.y = max.y + screenMarginTop
     f.w = max.w - screenMargin * 2
-    f.h = max.h - screenMargin * 2
+    f.h = max.h - screenMargin - screenMarginTop
     win:setFrame(f)
 end)
 
@@ -675,7 +684,7 @@ end)
 -- Shortcuts to lunch, focus, or cycle windows of applications
 --------------------------------------------------------------
 
-hs.hotkey.bind({ "alt" }, "K", function()
+hs.hotkey.bind({ "alt", "shift" }, "K", function()
     local name = "Sublime Text"
     local app = hs.application.get(name)
     if not app then
@@ -692,9 +701,11 @@ hs.hotkey.bind("alt", "Q", function()
     -- local name = "Firefox Nightly"
     -- local name = "Safari"
     -- local name = "Opera GX"
+    -- local name = "Opera Developer"
     -- local name = "Brave Browser"
+    -- local name = "Brave Browser Nightly"
     local name = "Arc"
-    -- local name = "Microsoft Edge"
+    -- local name = "Microsoft Edge Dev"
     -- local name = "Vivaldi"
     local app = hs.application.get(name)
     -- local app = hs.application.find(name)
@@ -706,19 +717,20 @@ hs.hotkey.bind("alt", "Q", function()
     h.focusApp(app, name)
 end)
 
--- hs.hotkey.bind("alt", "m", function()
---     local name = "finder"
---     local app = hs.application.find(name)
---     if not app then
---         hs.application.launchOrFocus(name)
---         return
---     end
---
---     h.focusApp(app, name)
--- end)
+hs.hotkey.bind("alt", "m", function()
+    local name = "finder"
+    local app = hs.application.find(name)
+    if not app then
+        hs.application.launchOrFocus(name)
+        return
+    end
 
-hs.hotkey.bind({ "alt", "shift" }, "h", function()
-    local name = "code"
+    h.focusApp(app, name)
+end)
+
+hs.hotkey.bind({ "alt" }, "l", function()
+    -- local name = "code"
+    local name = "Visual Studio Code"
     local app = hs.application.find(name)
     if not app then
         hs.application.launchOrFocus("Visual Studio Code")
@@ -728,37 +740,37 @@ hs.hotkey.bind({ "alt", "shift" }, "h", function()
     h.focusApp(app, "Visual Studio Code")
 end)
 
--- Open alacritty with the right size and options according to screen and time
-hs.hotkey.bind("ctrl", "return", function()
-    -- system apperance
-    local appearance = os.execute("defaults read -g AppleInterfaceStyle")
-    local duringDayTime = appearance == nil
+-- -- Open alacritty with the right size and options according to screen and time
+-- hs.hotkey.bind("ctrl", "return", function()
+--     -- system apperance
+--     local appearance = os.execute("defaults read -g AppleInterfaceStyle")
+--     local duringDayTime = appearance == nil
+--
+--     if duringDayTime then
+--         hs.execute("open -na alacritty --args -o window.opacity=1 ", true)
+--     else
+--         hs.execute("open -na alacritty", true)
+--     end
+-- end)
 
-    if duringDayTime then
-        hs.execute("open -na alacritty --args -o window.opacity=1 ", true)
-    else
-        hs.execute("open -na alacritty", true)
-    end
-end)
-
--- Open kitty with the right size and options according to screen and time
-hs.hotkey.bind({ "ctrl", "cmd" }, "return", function()
-    -- system apperance
-    local appearance = os.execute("defaults read -g AppleInterfaceStyle")
-    local duringDayTime = appearance == nil
-
-    if duringDayTime then
-        hs.execute("open -na kitty --args -o background_opacity=1 ", true)
-    else
-        hs.execute("open -na kitty", true)
-    end
-end)
+-- -- Open kitty with the right size and options according to screen and time
+-- hs.hotkey.bind({ "ctrl", "cmd" }, "return", function()
+--     -- system apperance
+--     local appearance = os.execute("defaults read -g AppleInterfaceStyle")
+--     local duringDayTime = appearance == nil
+--
+--     if duringDayTime then
+--         hs.execute("open -na kitty --args -o background_opacity=1 ", true)
+--     else
+--         hs.execute("open -na kitty", true)
+--     end
+-- end)
 
 hs.hotkey.bind({ "alt", "shift" }, "v", function()
     h.open_alacritty("fish -ic nvim")
 end)
 
 -- hs.hotkey.bind({"alt", "shift"}, "t", function()
-hs.hotkey.bind({ "alt" }, "t", function()
-    h.open_alacritty("tmux new-session -A -s W")
-end)
+-- hs.hotkey.bind({ "alt" }, "t", function()
+--     h.open_alacritty("tmux new-session -A -s W")
+-- end)

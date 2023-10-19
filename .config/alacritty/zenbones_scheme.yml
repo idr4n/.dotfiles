@@ -91,8 +91,11 @@ schemes:
     primary:
       foreground: '#B4BDC3'
       background: '#171210'
+      # for monokai pro
+      # background: '#1D1F21'
     cursor:
-      cursor: '#C4CACF'
+      # cursor: '#C4CACF'
+      cursor: '#FFD866'
       text: '#1C1917'
     normal:
       black:   '#1C1917'
@@ -589,4 +592,4 @@ schemes:
       white:   '#d6deeb'
   #: }}}
 
-colors: *nightfly
+colors: *github_light
