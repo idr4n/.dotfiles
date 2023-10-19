@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+dir="$HOME/other_repos/neovim"
+
+cd $dir
+trash *
+trash -ey
+curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
+tar xzf nvim-macos.tar.gz
+
+ln -fs $dir/nvim-macos/bin/nvim $HOME/bin/
