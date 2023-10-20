@@ -32,6 +32,10 @@ case $language in
         version=$(java --version 2>&1)
         echo "${version}" | awk 'NR==1{print $2}'
         ;;
+    elixir)
+        version=$(elixir --version)
+        echo "${version}" | grep Elixir | awk '{print $2 " (OTP" " " $6}'
+        ;;
     *)
         echo ""
         exit 1
