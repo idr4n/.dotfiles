@@ -3,9 +3,9 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# term="/usr/local/bin/alacritty -o window.dimensions.columns=160 -o window.dimensions.lines=40 -e fish -ic"
+term="/usr/local/bin/alacritty -o window.dimensions.columns=140 -o window.dimensions.lines=35 -e"
 # term="$(brew --prefix)/bin/kitty -o remember_window_size=no -o initial_window_width=1600 -o initial_window_height=900"
-term="$(brew --prefix)/bin/wezterm-gui --config initial_rows=40 --config initial_cols=160 start"
+# term="$(brew --prefix)/bin/wezterm-gui --config initial_rows=40 --config initial_cols=160 start"
 # fm="$HOME/bin/nnn"
 fm="$(brew --prefix)/bin/lf"
 # process="$term $fm -command 'set sortby time; set info time; set reverse' $HOME/Downloads"
