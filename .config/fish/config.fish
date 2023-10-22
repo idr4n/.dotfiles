@@ -40,6 +40,10 @@ end
 
 #: }}}
 
+#: Nvim config switcher {{{
+alias nl="NVIM_APPNAME=LazyVim nvim"
+#: }}}
+
 #: Aliases {{{
 
 alias ls='exa --icons'
