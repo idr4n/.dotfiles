@@ -42,7 +42,7 @@ mapkey('>', '#3Move current tab to right', function() {
 // an example to remove mapkey `Ctrl-i`
 unmap('<Ctrl-i>');
 
-settings.blocklistPattern = /calendar.cron.com*|app.tana.inc*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*/i;
+settings.blocklistPattern = /calendar.cron.com*|app.tana.inc*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*/i;
 
 addSearchAlias('s', 'startpage', 'https://www.startpage.com/sp/search?q=', 's', 'https://www.startpage.com/cgi-bin/csuggest?query=%s&limit=10&lang=english&format=json', function(response) {
     var res = JSON.parse(response.text);
