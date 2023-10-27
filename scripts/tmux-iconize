@@ -17,13 +17,13 @@ case $NAME in
         echo ""
         ;;
     node)
-        echo ""
+        echo "󰎙"
         ;;
     ruby)
         echo ""
         ;;
     go)
-        echo "ﳑ"
+        echo "󰟓"
         ;;
     lf | lfcd)
         echo ""
