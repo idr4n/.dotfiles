@@ -6,7 +6,7 @@ Includes a folder with scripts for automation of some tasks (although some of th
 
 ## Basic setup
 
-![](./assets/terminal-tmux.png)
+![CleanShot 2023-10-30 at 20 54 24@2x](https://github.com/idr4n/.dotfiles/assets/20104703/ddeea323-a41b-4456-929b-5c5183e90973)
 
 - Main terminal: [WezTerm](https://github.com/idr4n/wezterm) (alternatively Alacritty or Kitty), normally running Tmux.
 - Shell: Fish.
