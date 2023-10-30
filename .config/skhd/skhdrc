@@ -47,7 +47,8 @@ cmd + ctrl + shift - d : ~/scripts/dailynote
 cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/todos_important.md"
 
 # Open scratchpad note file
-cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
+# cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
+cmd + ctrl + shift - n : open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd ~/Sync/Notes-Database nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md
 # cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "hx ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
 
 # Open finder script

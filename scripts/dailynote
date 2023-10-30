@@ -24,5 +24,5 @@ noteFilename="$notesDir""/Daily-Notes/$(date +%Y-%m-%d).md"
 # [ $status -eq 1 ] && $process && exit
 # $process && exit
 # /usr/local/bin/alacritty --working-directory "$notesDir" -o window.dimensions.columns=98 window.dimensions.lines=24 -e /opt/homebrew/bin/fish -ic "$EDITOR $noteFilename"
-wezterm-gui --config initial_rows=33 --config initial_cols=132 start --cwd $notesDir $EDITOR $noteFilename
+open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd $notesDir $EDITOR $noteFilename
 # emacsclient -nc $noteFilename
