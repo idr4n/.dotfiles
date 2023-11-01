@@ -695,27 +695,27 @@ hs.hotkey.bind({ "alt", "shift" }, "K", function()
     h.focusApp(app, name)
 end)
 
-hs.hotkey.bind("alt", "Q", function()
-    -- local name = "Google Chrome"
-    -- local name = "Firefox"
-    -- local name = "Firefox Nightly"
-    -- local name = "Safari"
-    -- local name = "Opera GX"
-    -- local name = "Opera Developer"
-    -- local name = "Brave Browser"
-    -- local name = "Brave Browser Nightly"
-    local name = "Arc"
-    -- local name = "Microsoft Edge Dev"
-    -- local name = "Vivaldi"
-    local app = hs.application.get(name)
-    -- local app = hs.application.find(name)
-    if not app then
-        hs.application.launchOrFocus(name)
-        return
-    end
-
-    h.focusApp(app, name)
-end)
+-- hs.hotkey.bind("alt", "Q", function()
+--     -- local name = "Google Chrome"
+--     -- local name = "Firefox"
+--     -- local name = "Firefox Nightly"
+--     -- local name = "Safari"
+--     -- local name = "Opera GX"
+--     -- local name = "Opera Developer"
+--     -- local name = "Brave Browser"
+--     -- local name = "Brave Browser Nightly"
+--     local name = "Arc"
+--     -- local name = "Microsoft Edge Dev"
+--     -- local name = "Vivaldi"
+--     local app = hs.application.get(name)
+--     -- local app = hs.application.find(name)
+--     if not app then
+--         hs.application.launchOrFocus(name)
+--         return
+--     end
+--
+--     h.focusApp(app, name)
+-- end)
 
 hs.hotkey.bind("alt", "m", function()
     local name = "finder"
