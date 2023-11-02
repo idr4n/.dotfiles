@@ -5,14 +5,14 @@ format = '(\([+$added]($added_style) )([-$deleted]($deleted_style)\) )'
 [git_status]
 style = "bold cyan"
 format = '([$all_status$ahead_behind]($style) )'
-conflicted = '繁 $count '
+conflicted = '󰕚 $count '
 ahead = ' $count '
 behind =' $count '
 up_to_date = ""
 untracked = '[󰻭 $count](green) '
 stashed = ' $count '
 modified = '[ $count](yellow) '
-staged = '[都 $count](green) '
+staged = '[󰔧 $count](green) '
 renamed = '[ $count](magenta) '
 deleted = '[ $count](red) '
 
