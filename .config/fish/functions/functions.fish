@@ -223,13 +223,29 @@ function fuc -a file -d "search for URLs in given file"
         return 1
     end
 
-    set -l sel $(rg -N 'https?://[^ ]+' --follow "$file" | fzf --layout=reverse --height 50% --ansi --border-label  " fuc - search URLs in current file - open in browser " )
-    set -l url $(echo "$sel" | egrep -o 'https?://[^ )>]+' | string trim --right --chars=.:)
+    set -l filename $(basename "$file")
+    set -l regex "https?://[^ )>]+"
+    set -l HEADER "CTRL-S: Search query; CTRL-Y: Copy URL; CTRL-O: Edit entry"
 
-    if test -z $url
+    set -l sel $(rg -n 'https?://[^ ]+' --follow "$file" | tac | fzf --layout=reverse \
+        --ansi \
+        --delimiter=: \
+        --info=inline-right \
+        --border-label  " fuc - search URLs in '$filename' - open in browser " \
+        --header $HEADER \
+        --bind "ctrl-y:execute-silent(echo '{}' | egrep -o '$regex' | string trim --right --chars=.: | pbcopy)+abort" \
+        --bind "ctrl-o:abort+execute(open -na wezterm --args start --always-new-process nvim +{1} '$file')" \
+        --bind "ctrl-s:print-query")
+
+    set -l url $(echo "$sel" | egrep -o $regex | string trim --right --chars=.:)
+
+    if test -z $sel
         echo "nothing selected!"
+    else if test -z $url
+        echo "not url found! searching query instead."
+        set -l query $(echo "$sel" | tr -d \')
+        open "https://www.google.com/search?q=$query"
     else
-        echo $url | pbcopy
         open $url
     end
 end

@@ -36,6 +36,7 @@ cmd + ctrl - d : open ~/Downloads
 
 # open bookmarks
 # ctrl + shift - b : ~/scripts/launch_browser
+alt + shift - b : open -na alacritty --args -o window.dimensions.lines=20 -o window.opacity=1 -e fish -ic "fuc ~/pCloud/bookmarks"
 
 # save bookmarks
 cmd + ctrl + shift - b : ~/scripts/save_bookmark
