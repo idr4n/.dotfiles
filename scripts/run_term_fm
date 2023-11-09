@@ -8,9 +8,9 @@ export EDITOR="$VISUAL"
 
 # . ~/.config/zsh/nnn.sh
 
-# term="/usr/local/bin/alacritty -o window.dimensions.columns=140 -o window.dimensions.lines=35 -e fish -ic"
-# term="$(brew --prefix)/bin/kitty -o remember_window_size=no -o initial_window_width=1600 -o initial_window_height=900"
-term="open -na wezterm --args --config initial_rows=40 --config initial_cols=160 start"
+# term="alacritty -o window.dimensions.columns=140 -o window.dimensions.lines=35 -e fish -ic"
+# term="kitty -o remember_window_size=no -o initial_window_width=1600 -o initial_window_height=900"
+term="wezterm --config initial_rows=40 --config initial_cols=160 start"
 # term="/opt/homebrew/bin/alacritty"
 # fm="$HOME/bin/nnn"
 fm="$(brew --prefix)/bin/lf"
