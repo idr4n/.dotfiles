@@ -3,7 +3,7 @@
 FZF_BORDER_LABEL=" t - Tmux New Session - Zoxide "
 
 # save fzf to variables
-ZOXIDE_RESULT=$(zoxide query -l | fzf --border-label "$FZF_BORDER_LABEL" --height 50% --layout=reverse)
+ZOXIDE_RESULT=$(zoxide query -l | fzf --border-label "$FZF_BORDER_LABEL" --height 100% --layout=reverse)
 
 # if not currently in tmux
 if [ -z "$TMUX" ]; then
