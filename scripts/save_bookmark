@@ -3,7 +3,7 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-# term="$(which alacritty) --working-directory $HOME/pCloud -o window.dimensions.columns=110 -o window.dimensions.lines=26"
+term="$(which alacritty) --working-directory $HOME/pCloud -o window.dimensions.columns=110 -o window.dimensions.lines=26"
 term="wezterm-gui --config initial_rows=25 --config initial_cols=100 start --cwd $HOME/pCloud"
 editor="$(which nvim)"
 

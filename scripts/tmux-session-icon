@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+NAME=$1
+
+case $NAME in
+  Dev)
+    echo "󰵮"
+    ;;
+  Config)
+    echo ""
+    ;;
+  Work)
+    echo "󰬱"
+    ;;
+  *)
+    echo ""
+    ;;
+esac
