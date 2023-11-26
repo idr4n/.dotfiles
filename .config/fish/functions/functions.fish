@@ -50,7 +50,7 @@ end
 #: }}}
 
 #: F -d "search in given list - open" {{{
-function F -d "search in given list - open"
+function F -d "search directories in given list - open"
     # set -l last_query $(tail -n 1 $HOME/.fzf_history)
     set -l directories ~/pCloud ~/Sync ~/Downloads ~/Desktop
     set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim '~/Sync/Notes-Database/00-Inbox/{q}.md'")+abort'
@@ -59,14 +59,16 @@ function F -d "search in given list - open"
 
     set -l sel $(fd . -H -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse \
         --height 100% --ansi \
-        --border-label  " ff - search in given list - open " \
+        --border-label  " F - search directories in given list - open " \
         # --query="$last_query" \
         --header $HEADER \
         --bind "$REVEAL" --bind "$CREATE")
     if test -z "$sel"
         echo "nothing selected!"
-    else
+    else if test -d "$sel"
         open "$sel"
+    else if test -f "$sel"
+        open -R "$sel"
     end
 end
 #: }}}

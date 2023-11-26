@@ -1,6 +1,6 @@
 require("bookmark_chooser")
 require("check_later")
-require("espanso_chooser")
+-- require("espanso_chooser")
 require("list_chooser")
 require("safari_tabs_chooser")
 local h = require("helper")

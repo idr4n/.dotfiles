@@ -32,8 +32,8 @@ set -gx NNN_USE_EDITOR 1
 set t (math (date +%H) + (date +%M)/60)
 # if [ $t -gt 8 ]
 if test $t -gt 7; and test $t -lt 18 
-    set -gx BAT_THEME "gruvbox-light"
-    # set -gx BAT_THEME "Nord"
+    # set -gx BAT_THEME "gruvbox-light"
+    set -gx BAT_THEME "Nord"
 else
     set -gx BAT_THEME "Nord"
 end
@@ -56,8 +56,10 @@ alias cdp='cd ~/pCloud'
 alias pd='pwd'
 alias up='cd ..'
 alias tm='tmux'
-alias tw='tmux new-session -A -s W'
-alias tc='tmux new-session -A -s C'
+alias ts='~/dotfiles/scripts/TT.sh'
+alias tw='ts Work'
+alias tc='ts Config'
+alias tl='ts Dev'
 alias xc='pwd | pbcopy'
 alias n="nvim"
 alias c="nvim ."

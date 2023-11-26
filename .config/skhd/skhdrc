@@ -7,7 +7,7 @@ ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --confi
 cmd + ctrl + shift - return : open -na kitty
 
 # run or focus ~/scripts/run_term_fm
-alt + shift - return : ~/scripts/run_term_fm
+alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "lf $(head -n 1 $HOME/.cache/lf/last_dir)" 
 
 # restart Emacs server
 ctrl + alt + cmd - e : brew services restart emacs-plus@30
@@ -18,14 +18,14 @@ ctrl + alt + cmd - s : skhd --restart-service
 ctrl + alt + cmd - 0 : emacsclient -nc ~/.emacs.d/init.el
 
 # search and open tagged paths
-alt + shift - t : open -na alacritty --args -o window.dimensions.lines=15 -o window.opacity=1 -e fish -ic "ft"
+alt + shift - t : open -na alacritty --args -o window.opacity=1 -e fish -ic "ft"
 
 # search and open
-ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.lines=15 -o window.opacity=1 -e fish -ic "F"
+ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.columns=120 -o window.opacity=1 -e fish -ic "F"
 
 # run or focus ~/Downloads in file manager
 # ctrl + shift - d : emacsclient -nc -F "((width . 145)(height . 40))" ~/Downloads
-ctrl + shift - d : ~/scripts/open_downloads
+ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "lf ~/Downloads"
 # ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
 
 # Open Downloads in Finder
