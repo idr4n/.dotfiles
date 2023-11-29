@@ -46,7 +46,7 @@ if [ -z "$TMUX" ]; then
     # create session
     case $RESULT in
       Config)
-        tmux new-session -d -s "$RESULT" -c ~/dotfiles\; new-window -c ~/.config/nvim
+        tmux new-session -d -s "$RESULT" -c ~/.config/nvim\; new-window -c ~/dotfiles -d
         ;;
       Work)
         tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
@@ -89,8 +89,8 @@ else
     # tmux switch-client -t "$RESULT"
     case $RESULT in
       Config)
-        tmux new-session -d -s "$RESULT" -c ~/dotfiles
-        tmux switch-client -t "$RESULT"\; new-window -c ~/.config/nvim
+        tmux new-session -d -s "$RESULT" -c ~/.config/nvim
+        tmux switch-client -t "$RESULT"\; new-window -c ~/dotfiles -d
         ;;
       Work)
         tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database

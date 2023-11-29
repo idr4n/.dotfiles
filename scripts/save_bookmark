@@ -3,8 +3,8 @@
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 
-term="$(which alacritty) --working-directory $HOME/pCloud -o window.dimensions.columns=110 -o window.dimensions.lines=26"
-term="wezterm-gui --config initial_rows=25 --config initial_cols=100 start --cwd $HOME/pCloud"
+term="$(which alacritty) --working-directory $HOME/pCloud -o window.dimensions.columns=110 -o window.dimensions.lines=26 -e"
+# term="wezterm-gui --config initial_rows=25 --config initial_cols=100 start --cwd $HOME/pCloud"
 editor="$(which nvim)"
 
 # create temp file
@@ -31,7 +31,7 @@ url=$(echo "$bookmark" | egrep -o 'https?://[^ ]+')
 # match=$(grep -n $url $bookmarks | awk 'FNR <= 1')
 match=$(grep -n -E "(^|\s)$url(\s|$)" $bookmarks | awk 'FNR <= 1')
 match_index=$(echo $match | cut -d ":" -f 1)
-[ -n "$match" ] && $term -e $editor $bookmarks +$match_index && exit
+[ -n "$match" ] && $term $editor $bookmarks +$match_index && exit
 
 ## Save bookmark
 echo "$bookmark" >> $bookmarks
