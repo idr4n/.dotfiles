@@ -126,10 +126,14 @@ end
 #: fn -d "search noets file names and open with Nvim" {{{
 function fn -d "search files and cd into their directories"
     set -l directories ~/Sync/Notes-Database
+    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim '~/Sync/Notes-Database/00-Inbox/{q}.md'")+abort'
+    set -l HEADER "CTRL-N: Create New Note."
 
     set -l sel $(fd . -e md -H --type f -E '*.git*' -E '*node_modules*' $directories | \
         fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fn - search noets file names and open with Nvim " \
-        --preview 'bat --color=always (echo {}) --style="numbers"' --preview-window=down,60%)
+        --preview 'bat --color=always (echo {}) --style="numbers"' --preview-window=down,60% \
+        --header $HEADER \
+        --bind "$CREATE")
     if test -z "$sel"
         echo "nothing selected!"
     else if test -f "$sel"
@@ -141,8 +145,8 @@ end
 #: fno -d "# search in Notes with fzf/rg" {{{
 function fno -d "# search in Notes with fzf/rg"
     # set -l sel $(rg -n '.*' $HOME/Sync/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
-    set -l CREATE 'ctrl-y:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim '~/Sync/Notes-Database/00-Inbox/{q}.md'")+abort'
-    set -l HEADER "CTRL-Y: Create New Note."
+    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim '~/Sync/Notes-Database/00-Inbox/{q}.md'")+abort'
+    set -l HEADER "CTRL-N: Create New Note."
 
     set -l sel $(rg -n '.*' $HOME/Sync/Notes-zk/ $HOME/Sync/Notes-Database/ | \
         # fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
