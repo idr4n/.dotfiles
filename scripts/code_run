@@ -33,5 +33,6 @@ case $ext in
     java $file
     ;;
   swift) swift $file;;
+  ex) elixir $file;;
   *) ./$file;;
 esac
