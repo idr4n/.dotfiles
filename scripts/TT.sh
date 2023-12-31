@@ -9,14 +9,23 @@ sessions=(
   "Sandbox"
 )
 
-dirs_file="$HOME/projects-dirs"  # Replace with the path to your file
+proj_dirs_file="$HOME/projects-dirs"  # Replace with the path to your file
+confs_dirs_file="$HOME/confs-dirs"  # Replace with the path to your file
 
-# Check if directory file exists
-if [ ! -f "$dirs_file" ]; then
-  echo "Directory file $dirs_file not found. Creating..."
-  touch "$dirs_file"
+# Check if projects directory file exists
+if [ ! -f "$proj_dirs_file" ]; then
+  echo "Directory file $proj_dirs_file not found. Creating..."
+  touch "$proj_dirs_file"
   # Add initial directories to the file, if needed
-  echo "~/Sync/Dev" >> "$dirs_file"
+  echo "$HOME/Sync/Dev" >> "$proj_dirs_file"
+fi
+
+# Check if configs directory file exists
+if [ ! -f "$confs_dirs_file" ]; then
+  echo "Directory file $confs_dirs_file not found. Creating..."
+  touch "$proj_dirs_file"
+  # Add initial directories to the file, if needed
+  echo "$HOME/.config/nvim" >> "$confs_dirs_file"
 fi
 
 FZF_BORDER_LABEL=" TT - Tmux New Session - Defined Sessions "
@@ -46,15 +55,20 @@ if [ -z "$TMUX" ]; then
     # create session
     case $RESULT in
       Config)
-        tmux new-session -d -s "$RESULT" -c ~/.config/nvim\; new-window -c ~/dotfiles -d
+        # tmux new-session -d -s "$RESULT" -c ~/.config/nvim\; new-window -c ~/dotfiles -d\; new-window -c ~/.config/wezterm -d
+        tmux new-session -d -s "$RESULT" -c $(head -1 $confs_dirs_file)
+        # Loop through dirs in file and create a window for each
+        tail -n +2 "$confs_dirs_file" | while read -r dir; do
+          tmux new-window -t Config -c "$dir" -d
+        done
         ;;
       Work)
         tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
         ;;
       Dev)
-        tmux new-session -d -s "$RESULT" -c $(head -1 $dirs_file)
+        tmux new-session -d -s "$RESULT" -c $(head -1 $proj_dirs_file)
         # Loop through dirs in file and create a window for each
-        tail -n +2 "$dirs_file" | while read -r dir; do
+        tail -n +2 "$proj_dirs_file" | while read -r dir; do
           tmux new-window -t Dev -c "$dir" -d
         done
         ;;
@@ -89,17 +103,24 @@ else
     # tmux switch-client -t "$RESULT"
     case $RESULT in
       Config)
-        tmux new-session -d -s "$RESULT" -c ~/.config/nvim
-        tmux switch-client -t "$RESULT"\; new-window -c ~/dotfiles -d
+        # tmux new-session -d -s "$RESULT" -c ~/.config/nvim
+        # tmux switch-client -t "$RESULT"\; new-window -c ~/dotfiles -d
+        # tmux switch-client -t "$RESULT"\; new-window -c ~/.config/wezterm -d
+        tmux new-session -d -s "$RESULT" -c $(head -1 $confs_dirs_file) 
+        # Loop through dirs in file and create a window for each
+        tail -n +2 "$confs_dirs_file" | while read -r dir; do
+          tmux new-window -t Config -c "$dir" -d
+        done
+        tmux switch-client -t "$RESULT"
         ;;
       Work)
         tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
         tmux switch-client -t "$RESULT"
         ;;
       Dev)
-        tmux new-session -d -s "$RESULT" -c $(head -1 $dirs_file) 
+        tmux new-session -d -s "$RESULT" -c $(head -1 $proj_dirs_file) 
         # Loop through dirs in file and create a window for each
-        tail -n +2 "$dirs_file" | while read -r dir; do
+        tail -n +2 "$proj_dirs_file" | while read -r dir; do
           tmux new-window -t Dev -c "$dir" -d
         done
         tmux switch-client -t "$RESULT"
