@@ -18,3 +18,6 @@ set highlight-color "#F4BF75"
 
 # mappings
 # map <C-i> recolor # use the default C-r instead
+# map d set first-page-column 1:2
+map <C-i> set "first-page-column 1:1"
+map <C-o> set "first-page-column 1:2"

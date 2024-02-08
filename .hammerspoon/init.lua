@@ -632,29 +632,29 @@ hs.hotkey.bind({ "ctrl", "alt", "shift" }, "-", function()
     win:setFrame(f)
 end)
 
------Increase height-----
-hs.hotkey.bind({ "ctrl", "alt", "shift" }, "u", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local delta = 0.025
-    local incHeight = f.h * delta
-
-    f.h = f.h + incHeight
-    f.y = f.y - incHeight / 2
-    win:setFrame(f)
-end)
-
------Decrease height-----
-hs.hotkey.bind({ "ctrl", "alt", "shift" }, "d", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local delta = 0.025
-    local incHeight = f.h * delta
-
-    f.h = f.h - incHeight
-    f.y = f.y + incHeight / 2
-    win:setFrame(f)
-end)
+-- -----Increase height-----
+-- hs.hotkey.bind({ "ctrl", "alt", "shift" }, "u", function()
+--     local win = hs.window.focusedWindow()
+--     local f = win:frame()
+--     local delta = 0.025
+--     local incHeight = f.h * delta
+--
+--     f.h = f.h + incHeight
+--     f.y = f.y - incHeight / 2
+--     win:setFrame(f)
+-- end)
+--
+-- -----Decrease height-----
+-- hs.hotkey.bind({ "ctrl", "alt", "shift" }, "d", function()
+--     local win = hs.window.focusedWindow()
+--     local f = win:frame()
+--     local delta = 0.025
+--     local incHeight = f.h * delta
+--
+--     f.h = f.h - incHeight
+--     f.y = f.y + incHeight / 2
+--     win:setFrame(f)
+-- end)
 
 -----Increase width-----
 hs.hotkey.bind({ "ctrl", "alt", "shift" }, "j", function()
@@ -728,17 +728,17 @@ hs.hotkey.bind("alt", "m", function()
     h.focusApp(app, name)
 end)
 
-hs.hotkey.bind({ "alt" }, "l", function()
-    -- local name = "code"
-    local name = "Visual Studio Code"
-    local app = hs.application.find(name)
-    if not app then
-        hs.application.launchOrFocus("Visual Studio Code")
-        return
-    end
-
-    h.focusApp(app, "Visual Studio Code")
-end)
+-- hs.hotkey.bind({ "alt" }, "l", function()
+--     -- local name = "code"
+--     local name = "Visual Studio Code"
+--     local app = hs.application.find(name)
+--     if not app then
+--         hs.application.launchOrFocus("Visual Studio Code")
+--         return
+--     end
+--
+--     h.focusApp(app, "Visual Studio Code")
+-- end)
 
 -- -- Open alacritty with the right size and options according to screen and time
 -- hs.hotkey.bind("ctrl", "return", function()
