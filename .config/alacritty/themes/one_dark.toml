@@ -1,0 +1,29 @@
+# one dark
+[colors.primary]
+background = '0x1E222A'
+foreground = '0xabb2bf'
+
+[colors.bright]
+black   = '#5c6370'
+red     = '#e06c75'
+green   = '#98c379'
+yellow  = '#d19a66'
+blue    = '#61afef'
+magenta = '#c678dd'
+cyan    = '#56b6c2'
+white   = '#ffffff'
+
+[colors.cursor]
+cursor = "#74ADE8"
+text = "#282C34"
+
+[colors.normal]
+black   = '#1e2127'
+red     = '#e06c75'
+green   = '#98c379'
+yellow  = '#d19a66'
+blue    = '#61afef'
+magenta = '#c678dd'
+cyan    = '#56b6c2'
+white   = '#abb2bf'
+

@@ -1,0 +1,190 @@
+import = ["/Users/iduran/.config/alacritty/themes/one_dark.toml"]
+live_config_reload = true
+
+[cursor]
+thickness = 0.2
+
+[font]
+size = 15
+
+[font.bold]
+family = "FiraCode Nerd Font"
+style = "Medium"
+
+[font.glyph_offset]
+y = 3
+
+[font.normal]
+family = "FiraCode Nerd Font"
+style = "Regular"
+
+[font.offset]
+# x = 1
+y = 10
+
+[[keyboard.bindings]]
+chars = "\u001BF"
+key = "F"
+mods = "Alt|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0011"
+key = "Q"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "B"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "F"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bu"
+key = "U"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bi"
+key = "I"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bo"
+key = "O"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bp"
+key = "P"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u0001/"
+key = "J"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001T"
+key = "J"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0001;"
+key = "N"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001s"
+key = "S"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001S"
+key = "S"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0001c"
+key = "T"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001\t"
+key = "Tab"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u0001n"
+key = "RBracket"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0001N"
+key = "LBracket"
+mods = "Command|Shift"
+
+[[keyboard.bindings]]
+chars = "\u0001x"
+key = "W"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001&"
+key = "X"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001^"
+key = "L"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00011"
+key = "Key1"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00012"
+key = "Key2"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00013"
+key = "Key3"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00014"
+key = "Key4"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00015"
+key = "Key5"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00016"
+key = "Key6"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00017"
+key = "Key7"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00018"
+key = "Key8"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u00019"
+key = "Key9"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001z"
+key = "Z"
+mods = "Command"
+
+[mouse]
+hide_when_typing = true
+
+[window]
+decorations = "buttonless"
+dynamic_padding = true
+opacity = 1
+option_as_alt = "Both"
+
+[window.dimensions]
+columns = 110
+lines = 26
+
+[window.padding]
+x = 0
+y = 0

@@ -1,12 +1,16 @@
 #!/usr/bin/env sh
 
 theme="$1"
-color_scheme="$HOME/.config/alacritty/zenbones_scheme.yml"
+# color_scheme="$HOME/.config/alacritty/zenbones_scheme.yml"
+config="$HOME/.config/alacritty/alacritty.toml"
+theme_path="$HOME/.config/alacritty/themes/""$theme".toml
 
 # check file exists
-if [ ! -f "$color_scheme" ]; then
+# if [ ! -f "$color_scheme" ]; then
+if [ ! -f "$config" ]; then
     echo "Color scheme file not found!"
     exit 0
 fi
 
-sed -i '' -e "s#^colors: \*.*#colors: *$theme#g" $color_scheme
+# sed -i '' -e "s#^colors: \*.*#colors: *$theme#g" $color_scheme
+sed -i '' -e "s#^import =.*#import = [\"$theme_path\"]#g" $config
