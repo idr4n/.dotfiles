@@ -137,7 +137,7 @@ function fn -d "search files and cd into their directories"
     if test -z "$sel"
         echo "nothing selected!"
     else if test -f "$sel"
-        $EDITOR "$sel"
+        $EDITOR "$sel" -c "cd ~/Sync/Notes-Database"
     end
 end
 #: }}}
@@ -162,7 +162,7 @@ function fno -d "# search in Notes with fzf/rg"
     if test -z "$sel"
         echo "nothing selected!"
     else
-        $EDITOR "$file" +$line_nr
+        $EDITOR "$file" +$line_nr -c "cd ~/Sync/Notes-Database"
     end
 end
 #: }}}

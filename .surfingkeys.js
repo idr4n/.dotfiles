@@ -24,6 +24,44 @@ mapkey('<Ctrl-y>', 'Show me the money', function() {
     Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
 });
 
+// search in Google
+mapkey('<Ctrl-g>', 'Search Query in Google', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
+  window.open('https://www.google.com/search?q=' + encodeURIComponent(queryValue));
+})
+
+// search in DuckDuckGo
+mapkey('<Ctrl-d>', 'Search Query in DuckDuckGo', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
+  window.open('https://duckduckgo.com/?q=' + encodeURIComponent(queryValue));
+})
+
+// search in Brave
+mapkey('<Ctrl-b>', 'Search Query in Brave', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
+  window.open('https://search.brave.com/search?q=' + encodeURIComponent(queryValue) + '&source=desktop');
+})
+
+// search in Perplexity
+mapkey('<Ctrl-p>', 'Search Query in Perplexity', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
+  window.open('https://www.perplexity.ai/?q=' + encodeURIComponent(queryValue) + '&source=desktop');
+})
+
+// search in ALL (Google, DuckDuckGo, Breave and Perplexity)
+mapkey('<Ctrl-A>', 'Search Query in ALL engines', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
+  window.open('https://www.google.com/search?q=' + encodeURIComponent(queryValue));
+  window.open('https://duckduckgo.com/?q=' + encodeURIComponent(queryValue));
+  window.open('https://search.brave.com/search?q=' + encodeURIComponent(queryValue) + '&source=desktop');
+  window.open('https://www.perplexity.ai/?q=' + encodeURIComponent(queryValue) + '&source=desktop');
+})
+
 mapkey('<', '#3Move current tab to left', function() {
     RUNTIME('moveTab', {
         step: -1
@@ -42,7 +80,7 @@ mapkey('>', '#3Move current tab to right', function() {
 // an example to remove mapkey `Ctrl-i`
 unmap('<Ctrl-i>');
 
-settings.blocklistPattern = /calendar.cron.com*|app.tana.inc*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
+settings.blocklistPattern = /calendar.cron.com*|colab.research.google.com|app.tana.inc*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
 
 addSearchAlias('s', 'startpage', 'https://www.startpage.com/sp/search?q=', 's', 'https://www.startpage.com/cgi-bin/csuggest?query=%s&limit=10&lang=english&format=json', function(response) {
     var res = JSON.parse(response.text);

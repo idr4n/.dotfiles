@@ -37,4 +37,3 @@ match_index=$(echo $match | cut -d ":" -f 1)
 echo "$bookmark" >> $bookmarks
 osascript -e 'display notification "👍 Bookmark saved!" with title "Bookmarks:"'
 [ -d $backup_dir ] && cp $bookmarks "$backup_dir/bookmarks"
-

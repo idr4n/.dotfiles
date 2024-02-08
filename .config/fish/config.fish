@@ -31,17 +31,19 @@ set -gx NNN_USE_EDITOR 1
 
 set t (math (date +%H) + (date +%M)/60)
 # if [ $t -gt 8 ]
-if test $t -gt 7; and test $t -lt 18 
-    # set -gx BAT_THEME "gruvbox-light"
-    set -gx BAT_THEME "Nord"
+if test $t -gt 7; and test $t -lt 18
+    set -gx BAT_THEME "gruvbox-light"
+    # set -gx BAT_THEME Nord
 else
-    set -gx BAT_THEME "Nord"
+    set -gx BAT_THEME Nord
 end
 
 #: }}}
 
 #: Nvim config switcher {{{
-alias nl="NVIM_APPNAME=LazyVim nvim"
+alias l="NVIM_APPNAME=LazyVim nvim"
+alias a="NVIM_APPNAME=AstroNvim nvim"
+alias v="NVIM_APPNAME=NvChad nvim"
 #: }}}
 
 #: Aliases {{{
@@ -60,8 +62,8 @@ alias ts='~/dotfiles/scripts/TT.sh'
 alias tw='ts Work'
 alias tc='ts Config'
 alias tl='ts Dev'
-alias xc='pwd | pbcopy'
-alias n="nvim"
+alias pc='echo -n (pwd) | pbcopy'
+alias n="NVIM_APPNAME=nvim nvim"
 alias c="nvim ."
 alias h="hx"
 alias st="subl"
@@ -77,6 +79,7 @@ alias we="fish_greeting"
 alias t="~/dotfiles/scripts/t"
 alias tt="~/dotfiles/scripts/tt"
 alias T="~/dotfiles/scripts/T.sh"
+alias TT="~/dotfiles/scripts/TT.sh"
 alias zf="zk f"
 alias zl="zk l"
 alias zd="zk d"
@@ -85,6 +88,10 @@ alias lfl="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
 alias td="todos_rg"
 alias tf="todos_rg fzf"
 alias ec="emacsclient -nc"
+alias app="pwd >> ~/projects-dirs"
+alias acp="pwd >> ~/confs-dirs"
+alias opr="nvim ~/projects-dirs"
+alias oco="nvim ~/confs-dirs"
 
 function lt
     if test (count $argv) -gt 0
@@ -120,7 +127,7 @@ end
 #: Add homebrew's python3 and pip3 as default {{{
 
 # Add homebrew's python3 and pip3 as default (so no need to add the 3 at the end)
-set -gx PATH $(brew --prefix)/opt/python@3.11/libexec/bin $PATH
+# set -gx PATH $(brew --prefix)/opt/python@3.12/libexec/bin $PATH
 
 #: }}}
 
@@ -275,7 +282,7 @@ end
 function fish_greeting
     set r (random 0 100)
 
-    if test $r -lt 30
+    if test $r -lt 90
         todos_rg
     end
 end

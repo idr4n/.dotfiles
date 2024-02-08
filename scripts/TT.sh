@@ -11,6 +11,7 @@ sessions=(
 
 proj_dirs_file="$HOME/projects-dirs"  # Replace with the path to your file
 confs_dirs_file="$HOME/confs-dirs"  # Replace with the path to your file
+work_dirs_file="$HOME/work-dirs"  # Replace with the path to your file
 
 # Check if projects directory file exists
 if [ ! -f "$proj_dirs_file" ]; then
@@ -26,6 +27,12 @@ if [ ! -f "$confs_dirs_file" ]; then
   touch "$proj_dirs_file"
   # Add initial directories to the file, if needed
   echo "$HOME/.config/nvim" >> "$confs_dirs_file"
+fi
+
+# Check if configs directory file exists
+if [ ! -f "$work_dirs_file" ]; then
+  echo "Directory file $work_dirs_file not found. Creating..."
+  touch "$work_dirs_file"
 fi
 
 FZF_BORDER_LABEL=" TT - Tmux New Session - Defined Sessions "
@@ -63,7 +70,12 @@ if [ -z "$TMUX" ]; then
         done
         ;;
       Work)
-        tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
+        # tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
+        tmux new-session -d -s "$RESULT" -c $(head -1 $work_dirs_file)
+        # Loop through dirs in file and create a window for each
+        tail -n +2 "$work_dirs_file" | while read -r dir; do
+          tmux new-window -t Work -c "$dir" -d
+        done
         ;;
       Dev)
         tmux new-session -d -s "$RESULT" -c $(head -1 $proj_dirs_file)
@@ -114,7 +126,12 @@ else
         tmux switch-client -t "$RESULT"
         ;;
       Work)
-        tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
+        # tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
+        tmux new-session -d -s "$RESULT" -c $(head -1 $work_dirs_file) 
+        # Loop through dirs in file and create a window for each
+        tail -n +2 "$work_dirs_file" | while read -r dir; do
+          tmux new-window -t Work -c "$dir" -d
+        done
         tmux switch-client -t "$RESULT"
         ;;
       Dev)

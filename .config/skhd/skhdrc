@@ -1,7 +1,8 @@
 # run terminal
 # ctrl + shift - return : open -na alacritty
 ctrl + cmd - return : open -na alacritty
-ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
+ctrl + shift - return : open -na alacritty
+# ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
 # ctrl + shift - return : emacsclient -nc | open -a Emacs
 # ctrl + shift - return : emacsclient -nc & ~/scripts/focus_app emacs
 cmd + ctrl + shift - return : open -na kitty
@@ -48,16 +49,16 @@ cmd + ctrl + shift - d : ~/scripts/dailynote
 cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/todos_important.md"
 
 # Open scratchpad note file
-# cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
-cmd + ctrl + shift - n : open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd ~/Sync/Notes-Database nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md
+cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
+# cmd + ctrl + shift - n : open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd ~/Sync/Notes-Database nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md
 # cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "hx ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
 
 # Open finder script
 # ctrl + shift - f : ~/scripts/finder
 
 # open nvim
-# alt - v: kitty nvim -c "cd ~/.config | Alpha"
-alt - v: open -na kitty --args nvim
+alt + shift - v: open -na kitty --args --session ~/kitty-session-dev
+alt - v: open -na kitty --args --session ~/kitty-session-conf
 # alt + shift - v: open -na alacritty --args -o window.dimensions.columns=100 -o window.dimensions.lines=44 -e fish -ic nvim 
 
 # open terminal and attach to Tmux session
@@ -66,11 +67,11 @@ alt - v: open -na kitty --args nvim
 # alt + shift - t: wezterm-gui start --cwd ~/ tmux new-session -A -s W
 
 # focus apps
-alt - j : ~/scripts/focus_app alacritty
+alt - h : ~/scripts/focus_app alacritty
 # alt + shift - h : ~/scripts/focus_app kitty
-alt - h : ~/scripts/focus_app wezterm
+# alt - h : ~/scripts/focus_app wezterm
 alt + shift - z : ~/scripts/focus_app zathura 1
-alt - k : ~/scripts/focus_app kitty
+alt - l : ~/scripts/focus_app kitty
 # alt - l : open -a "Visual Studio Code"
 
 # run scripts
