@@ -9,8 +9,14 @@ set -g fish_greeting
 
 #: Set EDITOR {{{
 
+# set -gx NVIM_APPNAME LazyVim
+# set -gx NVIM_APPNAME NvChad
 set -gx EDITOR nvim
 
+#: }}}
+
+#: XDG_CONFIG_HOME {{{
+set -gx XDG_CONFIG_HOME $HOME/.config
 #: }}}
 
 #: nnn env variables {{{
@@ -44,6 +50,12 @@ end
 alias l="NVIM_APPNAME=LazyVim nvim"
 alias a="NVIM_APPNAME=AstroNvim nvim"
 alias v="NVIM_APPNAME=NvChad nvim"
+#: }}}
+
+#: tdo env variable {{{
+set -gx PATH $PATH $HOME/.local/bin
+set -gx NOTES_DIR $HOME/Sync/Notes-tdo
+# set -gx NOTES_DIR $HOME/Sync/Notes-tdo-test
 #: }}}
 
 #: Aliases {{{
@@ -92,6 +104,9 @@ alias app="pwd >> ~/projects-dirs"
 alias acp="pwd >> ~/confs-dirs"
 alias opr="nvim ~/projects-dirs"
 alias oco="nvim ~/confs-dirs"
+alias osn="l ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
+alias osp="presenterm ~/Sync/Notes-Database/00-Inbox/scratch_present.md"
+alias j="joshuto"
 
 function lt
     if test (count $argv) -gt 0
@@ -138,7 +153,8 @@ setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 # setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
 # alternative pointer ''
-setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
+# setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
+setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:5,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
 
 #: }}}
 
