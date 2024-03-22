@@ -4,7 +4,7 @@ language=$1
 
 case $language in
     python)
-        version=$(python --version 2>&1)
+        version=$(python3 --version 2>&1)
         echo "${version//Python /}"
         ;;
     go)

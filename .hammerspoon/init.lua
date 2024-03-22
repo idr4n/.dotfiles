@@ -384,7 +384,7 @@ hs.hotkey.bind({ "ctrl", "alt" }, "K", function()
     local screen = win:screen()
     local max = screen:frame()
 
-    f.x = max.x + max.w / 2.9
+    f.x = max.x + max.w / 2.6
     f.y = max.y + screenMarginTop
     f.w = (max.w - screenMargin * 2 - wingap) / 2
     -- f.h = max.h - screenMargin * 2

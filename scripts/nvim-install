@@ -1,14 +1,27 @@
 #!/usr/bin/env bash
 
+current_date=$(date +%Y-%m-%d)
 dir="$HOME/other_repos/neovim"
+download_location="$HOME/Desktop/Inbox/neovim"
+download_dir="$download_location/$current_date"
 
-if [ ! -d "$dir" ]; then
-  echo "$dir does not exist. Creating directory..."
-  mkdir "$dir"
+if [ ! -d "$download_dir" ]; then
+  echo "$download_dir does not exist. Creating directory..."
+  mkdir -p "$download_dir"
 fi
 
-trash $dir/*
-curl --output-dir $dir -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
-tar -xzf $dir/nvim-macos.tar.gz --directory $dir
+trash $download_dir/nvim-macos.tar.gz
+curl --output-dir $download_dir -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos.tar.gz
 
-ln -fs $dir/nvim-macos/bin/nvim $HOME/bin/
+if [ -e "$download_dir/nvim-macos.tar.gz" ]; then
+  if [ ! -d "$dir" ]; then
+    echo "$dir does not exist. Creating directory..."
+    mkdir -p "$dir"
+  fi
+  trash $dir/*
+  cp -r $download_dir/nvim-macos.tar.gz $dir/
+  tar -xzf $dir/nvim-macos.tar.gz --directory $dir
+
+  ln -fs $dir/nvim-macos/bin/nvim $HOME/bin/
+fi
+
