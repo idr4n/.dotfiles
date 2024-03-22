@@ -99,12 +99,12 @@ mods = "Control"
 
 [[keyboard.bindings]]
 chars = "\u0001n"
-key = "RBracket"
+key = "}"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
 chars = "\u0001N"
-key = "LBracket"
+key = "{"
 mods = "Command|Shift"
 
 [[keyboard.bindings]]
