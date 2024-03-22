@@ -7,6 +7,10 @@ error_symbol = '[󰔶](bold red) '
 disabled = true
 format = '(\([+$added]($added_style) )([-$deleted]($deleted_style)\) )'
 
+[git_branch]
+symbol = " "
+# style = "purple"
+
 [git_status]
 style = "bold cyan"
 format = '([$all_status$ahead_behind]($style) )'
@@ -37,7 +41,8 @@ symbol = " "
 symbol = " "
 
 [directory]
-read_only = " "
+read_only = "🔒"
+# style = "cyan"
 
 [docker_context]
 symbol = " "
@@ -47,9 +52,6 @@ symbol = " "
 
 [elm]
 symbol = " "
-
-[git_branch]
-symbol = " "
 
 [golang]
 symbol = " "
@@ -68,6 +70,7 @@ symbol = " "
 
 [lua]
 symbol = " "
+# style = "blue"
 
 [memory_usage]
 symbol = "󰍛 "

@@ -1,6 +1,6 @@
 # run terminal
-# ctrl + shift - return : open -na alacritty
-ctrl + cmd - return : open -na alacritty
+ctrl + cmd - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
+# ctrl + cmd - return : open -na alacritty
 ctrl + shift - return : open -na alacritty
 # ctrl + shift - return : open -na wezterm --args --config initial_rows=33 --config initial_cols=132 start --always-new-process
 # ctrl + shift - return : emacsclient -nc | open -a Emacs
@@ -26,7 +26,7 @@ ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.col
 
 # run or focus ~/Downloads in file manager
 # ctrl + shift - d : emacsclient -nc -F "((width . 145)(height . 40))" ~/Downloads
-ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "lf ~/Downloads"
+ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "joshuto ~/Downloads"
 # ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
 
 # Open Downloads in Finder
@@ -68,10 +68,11 @@ alt - v: open -na kitty --args --session ~/kitty-session-conf
 
 # focus apps
 alt - h : ~/scripts/focus_app alacritty
-# alt + shift - h : ~/scripts/focus_app kitty
+alt + shift - h : ~/scripts/focus_app kitty
 # alt - h : ~/scripts/focus_app wezterm
+alt - l : ~/scripts/focus_app wezterm
 alt + shift - z : ~/scripts/focus_app zathura 1
-alt - l : ~/scripts/focus_app kitty
+# alt - l : ~/scripts/focus_app kitty
 # alt - l : open -a "Visual Studio Code"
 
 # run scripts
@@ -81,6 +82,10 @@ ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py
 # ctrl + shift - c : ~/scripts/check_later
 # ctrl + alt + shift - t : ~/scripts/save_check_later
 
+# Desktop Harpoon
+ctrl + shift - u : ~/scripts/harpoonish.sh 1
+ctrl + shift - i : ~/scripts/harpoonish.sh 2
+ctrl + shift - o : ~/scripts/harpoonish.sh 3
 
 # Yabai
 
