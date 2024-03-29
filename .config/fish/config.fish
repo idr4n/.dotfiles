@@ -60,6 +60,7 @@ set -gx NOTES_DIR $HOME/Sync/Notes-tdo
 
 #: Aliases {{{
 
+#: Aliases {{{
 alias ls='exa --icons'
 alias ll='ls -al'
 alias la='ls -a'
@@ -107,6 +108,7 @@ alias oco="nvim ~/confs-dirs"
 alias osn="l ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
 alias osp="presenterm ~/Sync/Notes-Database/00-Inbox/scratch_present.md"
 alias j="joshuto"
+alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
 
 function lt
     if test (count $argv) -gt 0
