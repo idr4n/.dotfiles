@@ -8,7 +8,9 @@ ctrl + shift - return : open -na alacritty
 cmd + ctrl + shift - return : open -na kitty
 
 # run or focus ~/scripts/run_term_fm
-alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "lf $(head -n 1 $HOME/.cache/lf/last_dir)" 
+# alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "lf $(head -n 1 $HOME/.cache/lf/last_dir)" 
+# alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "joshuto --output-file $HOME/.cache/joshuto/last_dir $(head -n 1 $HOME/.cache/joshuto/last_dir)" 
+alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "yazi --cwd-file $HOME/.cache/yazi/last_dir $(head -n 1 $HOME/.cache/yazi/last_dir)" 
 
 # restart Emacs server
 ctrl + alt + cmd - e : brew services restart emacs-plus@30
@@ -26,7 +28,7 @@ ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.col
 
 # run or focus ~/Downloads in file manager
 # ctrl + shift - d : emacsclient -nc -F "((width . 145)(height . 40))" ~/Downloads
-ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "joshuto ~/Downloads"
+ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "yazi ~/Downloads"
 # ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
 
 # Open Downloads in Finder
@@ -67,10 +69,10 @@ alt - v: open -na kitty --args --session ~/kitty-session-conf
 # alt + shift - t: wezterm-gui start --cwd ~/ tmux new-session -A -s W
 
 # focus apps
-alt - h : ~/scripts/focus_app alacritty
+# alt - h : ~/scripts/focus_app alacritty
 alt + shift - h : ~/scripts/focus_app kitty
 # alt - h : ~/scripts/focus_app wezterm
-alt - l : ~/scripts/focus_app wezterm
+# alt - l : ~/scripts/focus_app wezterm
 alt + shift - z : ~/scripts/focus_app zathura 1
 # alt - l : ~/scripts/focus_app kitty
 # alt - l : open -a "Visual Studio Code"

@@ -50,6 +50,7 @@ end
 alias l="NVIM_APPNAME=LazyVim nvim"
 alias a="NVIM_APPNAME=AstroNvim nvim"
 alias v="NVIM_APPNAME=NvChad nvim"
+alias lk="NVIM_APPNAME=LazyKick nvim"
 #: }}}
 
 #: tdo env variable {{{
@@ -171,6 +172,10 @@ set -gx PATH $PATH $HOME/bin
 set -gx GOPATH $HOME/go
 set -gx PATH $PATH $GOPATH/bin
 
+#: }}}
+
+#: Lua {{{
+# set -gx PATH /opt/homebrew/Cellar/lua@5.1/5.1.5_8/bin $PATH
 #: }}}
 
 #: Postgres {{{

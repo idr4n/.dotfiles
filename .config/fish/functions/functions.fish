@@ -204,7 +204,7 @@ end
 #: fu -d "search for URLs in list of directories" {{{
 function fu -d "search for URLs in list of directories"
     # set -l directories ~/Sync/Notes-zk ~/Sync/Notes-Database
-    set -l directories ~/Sync/Notes-Database
+    set -l directories ~/Sync/Notes-Database ~/Sync/Notes-tdo
 
     set -l sel $(rg --sortr modified -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules $directories | \
         fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fu - search URLs in given list of directories - open in browser " \
@@ -264,7 +264,7 @@ function ft -d "search for tagged dirs and files"
     set -l REVEAL "ctrl-y:execute-silent(open -R (string replace -r '^~' '$HOME' {}))+execute-silent(echo {q} >> $HOME/.fzf_history)+abort"
     set -l HEADER "CTRL-Y: reveal in Finder."
 
-    set -l sel $(cat ~/Sync/file_tags.txt | sort | fzf --layout=reverse \
+    set -l sel $(cat ~/Sync/tags_file.txt | sort | fzf --layout=reverse \
         --height 100% --ansi \
         --header $HEADER \
         --bind "$REVEAL" \

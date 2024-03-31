@@ -26,7 +26,7 @@ if [ -e "$download_dir/$tar_file" ]; then
 
   if [ -x "$dir/$dir_path/bin/nvim" ]; then
     ln -fs $dir/$dir_path/bin/nvim $HOME/bin/
-    echo "🆗 nvim binary simlink created in ~/bin directory"
+    echo "\n🆗 nvim binary simlink created in ~/bin directory"
   else
     echo "🚨 Could not simlink nvim binary!"
   fi

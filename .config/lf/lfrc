@@ -288,21 +288,21 @@ map gt list_tags
 
 cmd tag_file ${{
     path="$fx"
-    file_tags="$HOME/Sync/file_tags.txt"
+    tags_file="$HOME/Sync/tags_file.txt"
 
-    # check if file_tags exists
-    if [ ! -f $file_tags ]; then
-        touch $file_tags
+    # check if tags_file exists
+    if [ ! -f $tags_file ]; then
+        touch $tags_file
     fi
 
     # replace $HOME with ~ from the start of path
     path="${path/#$HOME/~}"
 
-    if rg -q "^$path\$" $file_tags; then
+    if rg -q "^$path\$" $tags_file; then
         echo "Path already present."
     else
-        # append the path to the file name and save it in the "file_tags" file
-        echo "$path" >> $file_tags
+        # append the path to the file name and save it in the "tags_file" file
+        echo "$path" >> $tags_file
     fi
 }}
 map ft tag_file
