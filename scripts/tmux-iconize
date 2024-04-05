@@ -8,9 +8,14 @@ case $NAME in
         echo ""
         ;;
     fish | zsh | bash)
-        echo ""
+        # echo ""
+        # echo ""
+        echo ""
         ;;
-    vi | vim | nvim | lvim)
+    nvim)
+        echo ""
+        ;;
+    vi | vim | lvim)
         echo ""
         ;;
     lazygit | git)

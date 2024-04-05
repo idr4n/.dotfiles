@@ -2,7 +2,7 @@
 
 directories=(
   ~/Sync/Notes-Database
-  # ~/Sync/Notes-zk
+  ~/Sync/Notes-tdo
 )
 
 FZF_BORDER_LABEL=" TODOs Picker "

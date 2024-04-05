@@ -59,7 +59,13 @@ set -gx NOTES_DIR $HOME/Sync/Notes-tdo
 # set -gx NOTES_DIR $HOME/Sync/Notes-tdo-test
 #: }}}
 
-#: Aliases {{{
+#: Ripgrep {{{
+set -gx RIPGREP_CONFIG_PATH $HOME/.rgrc
+#: }}}
+
+#: Abbreviations {{{
+abbr -a lr --set-cursor "exa --icons -l | rg '%'"
+#: }}}
 
 #: Aliases {{{
 # alias ls='exa --icons'
