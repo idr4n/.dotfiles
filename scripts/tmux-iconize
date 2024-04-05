@@ -27,10 +27,13 @@ case $NAME in
     ruby)
         echo ""
         ;;
-    go)
-        echo "󰟓"
+    Python)
+        echo "󰌠"
         ;;
-    lf | lfcd)
+    go)
+        echo ""
+        ;;
+    lf | lfcd | yazi | joshuto)
         echo ""
         ;;
     *)
