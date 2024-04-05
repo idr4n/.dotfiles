@@ -1,0 +1,10 @@
+user: dark_yellow
+date:
+  hour-old: dark_magenta
+  day-old: dark_cyan
+  older: dark_blue
+size:
+  none: dark_yellow
+  small: dark_yellow
+  medium: dark_magenta
+  large: dark_red

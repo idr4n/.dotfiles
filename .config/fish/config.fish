@@ -62,7 +62,8 @@ set -gx NOTES_DIR $HOME/Sync/Notes-tdo
 #: Aliases {{{
 
 #: Aliases {{{
-alias ls='exa --icons'
+# alias ls='exa --icons'
+alias ls='lsd'
 alias ll='ls -al'
 alias la='ls -a'
 alias lta='la --tree -I node_modules -I .git'
@@ -113,18 +114,18 @@ alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
 
 function lt
     if test (count $argv) -gt 0
-        exa --icons -a --tree --level=$argv[1] -I "node_modules|.git"
+        eza --icons -a --tree --level=$argv[1] -I "node_modules|.git"
     else
         # use lta alias above to print all levels
-        exa --icons -a --tree --level=3 -I "node_modules|.git"
+        eza --icons -a --tree --level=3 -I "node_modules|.git"
     end
 end
 
 function llt
     if test (count $argv) -gt 0
-        exa --icons -al --tree --level=$argv[1] -I "node_modules|.git"
+        eza --icons -al --tree --level=$argv[1] -I "node_modules|.git"
     else
-        exa --icons -al --tree --level=3 -I "node_modules|.git"
+        eza --icons -al --tree --level=3 -I "node_modules|.git"
     end
 end
 
