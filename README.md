@@ -26,6 +26,10 @@ This is my Tmux configuration which adds some icons automatically to sessions an
 
 ## Auto-switch dark/light mode in Neovim, Alacritty and Kitty
 
+
+https://github.com/idr4n/.dotfiles/assets/20104703/73eae2ac-c31e-49d3-9c56-842f6d39dde9
+
+
 The scripts folder includes a Python script that is automatically triggered when the system (macOS) changes appearance mode ([change_dark_mode.py](https://github.com/idr4n/.dotfiles/blob/master/scripts/change_dark_mode.py)).
 
 I mostly follow ['Automatic dark mode for terminal applications'](https://arslan.io/2021/02/15/automatic-dark-mode-for-terminal-applications/) instructions, with a different implementation for Neovim, and the script is written in Python, rather than in fish/bash. 
