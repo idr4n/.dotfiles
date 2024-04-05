@@ -1,0 +1,52 @@
+#!/bin/bash
+
+NVIM_PATH="/Users/iduran/bin/nvim"
+
+set_colorscheme() {
+	local scheme=$1
+	local mode=$2
+
+	case $mode in
+	light)
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:set background=light<CR>"
+		;;
+	*)
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:set background=dark<CR>"
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:colorscheme ${scheme}<CR>"
+		;;
+	esac
+	$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:colorscheme ${scheme}<CR>"
+}
+
+# Function to change the Neovim color scheme for all instances
+change_colorscheme_for_all() {
+	local scheme=$1
+	local mode=$2
+
+	# Construct the path to the Neovim server instances
+	local nvim_server_path="${XDG_RUNTIME_DIR:-${TMPDIR:-/tmp}/nvim.${USER}}/*/nvim.*.0"
+	# Get the list of Neovim server instances
+	local servers=$(ls $nvim_server_path 2>/dev/null)
+
+	for server in $servers; do
+		# Send the color scheme change command to each server
+		set_colorscheme ${scheme} $mode
+
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:luafile ~/.config/nvim/lua/config/statusline/init.lua<CR>"
+		# $NVIM_PATH --headless --server "$server" --remote-send "<Esc>:Lazy reload bufferline.nvim<CR>"
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:Lazy reload indent-blankline.nvim<CR>"
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:lua require('config.statusline.components').clear_hl_cache()<CR>"
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:lua vim.notify('**Colorscheme changed to $scheme**', vim.log.levels.WARN)<CR>"
+	done
+
+	# modify init config file with new colorscheme
+	local file="$HOME/.config/nvim/lua/config/init.lua"
+	local cmd="vim.cmd(\"colorscheme $scheme\")"
+	sed -i '' -e "\$s/.*/$cmd/" $file
+}
+
+# change_colorscheme_for_all "catppuccin-mocha"
+# change_colorscheme_for_all "github_light" "light"
+# change_colorscheme_for_all "tokyonight"
+
+change_colorscheme_for_all $@
