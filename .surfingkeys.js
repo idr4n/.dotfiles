@@ -51,6 +51,11 @@ mapkey('<Ctrl-p>', 'Search Query in Perplexity', function () {
   const queryValue = urlParams.get('q') || urlParams.get('query') || '';
   window.open('https://www.perplexity.ai/?q=' + encodeURIComponent(queryValue) + '&source=desktop');
 })
+mapkey('<Ctrl-P>', 'Search in Perplexity', async function () {
+  const selectedText = document.getSelection().toString();
+  const queryValue = selectedText || await navigator.clipboard.readText();
+  window.open('https://www.perplexity.ai/?q=' + encodeURIComponent(queryValue) + '&source=desktop');
+})
 
 // search in ALL (Google, DuckDuckGo, Breave and Perplexity)
 mapkey('<Ctrl-A>', 'Search Query in ALL engines', function () {
