@@ -105,6 +105,8 @@ addSearchAlias('u', 'you.com', 'https://you.com/search?q=', 's', '', function(re
 
 addSearchAlias('n', 'neeva', 'https://neeva.com/search?q=', 's', '', function(response) {});
 
+addSearchAlias('s', 'amazon sa', 'https://www.amazon.sa/s?k=', 's', '', function(response) {});
+
 // My settings
 settings.scrollStepSize = 150;
 settings.defaultSearchEngine = "g";
