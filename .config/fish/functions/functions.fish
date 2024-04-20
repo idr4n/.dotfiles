@@ -169,8 +169,8 @@ end
 #: }}}
 
 #: f -d "search recent workdirs set in Neovim" {{{
-function f -d "search recent workdirs set in Neovim"
-    set -l sel $(cat ~/.config/nvim/lua/workdirs.txt | fzf --layout=reverse --height 50% --ansi --border-label  " f - search recent workdirs - cd ")
+function f -d "search recent workdirs (zoxide)"
+    set -l sel $(zoxide query -l | fzf --layout=reverse --height 100% --ansi --border-label  " f - search recent directory (zoxide) - cd ")
     if test -z "$sel"
         echo "nothing selected!"
     else if test -d "$sel"
