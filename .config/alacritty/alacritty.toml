@@ -1,26 +1,44 @@
-import = ["/Users/iduran/.config/alacritty/themes/one_dark.toml"]
+import = ["/Users/iduran/.config/alacritty/themes/seoul256.toml"]
 live_config_reload = true
 
 [cursor]
 thickness = 0.2
 
 [font]
-size = 15
+# For FiraCode
+# size = 15
+# For SauceCodePro
+size = 16
 
 [font.bold]
-family = "FiraCode Nerd Font"
-style = "Medium"
+# family = "FiraCode Nerd Font"
+family = "SauceCodePro Nerd Font"
+style = "SemiBold"
+
+[font.bold_italic]
+# family = "FiraCode Nerd Font"
+family = "SauceCodePro Nerd Font"
+style = "SemiBold"
 
 [font.glyph_offset]
 y = 3
 
 [font.normal]
-family = "FiraCode Nerd Font"
+# family = "FiraCode Nerd Font"
+family = "SauceCodePro Nerd Font"
+style = "Regular"
+
+[font.italic]
+# family = "FiraCode Nerd Font"
+family = "SauceCodePro Nerd Font"
 style = "Regular"
 
 [font.offset]
 # x = 1
-y = 10
+# For FiraCode
+# y = 10
+# For SauceCodePro
+y = 4
 
 [[keyboard.bindings]]
 chars = "\u001BF"
@@ -80,12 +98,17 @@ mods = "Command"
 [[keyboard.bindings]]
 chars = "\u0001s"
 key = "S"
-mods = "Command"
+mods = "Command|Shift"
 
 [[keyboard.bindings]]
 chars = "\u0001S"
 key = "S"
-mods = "Command|Shift"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0001\u0050"
+key = "p"
+mods = "Command"
 
 [[keyboard.bindings]]
 chars = "\u0001c"

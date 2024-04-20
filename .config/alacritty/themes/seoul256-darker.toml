@@ -1,0 +1,32 @@
+# seoul256 by Junegunn Choi, https://github.com/junegunn
+# This work is licensed under the terms of the MIT license.
+# For a copy, see https://opensource.org/licenses/MIT.
+
+[colors.primary]
+background = '#333233'
+foreground = '#d8d8d8'
+
+[colors.bright]
+black   = '#757575'
+red     = '#e07798'
+green   = '#97bb98'
+yellow  = '#ffdd98'
+blue    = '#badcfb'
+magenta = '#ffbebc'
+cyan    = '#96ddde'
+white   = '#e9e9e9'
+
+[colors.cursor]
+# cursor = "#d8d8d8"
+cursor = "#E1E1E1"
+text = "#4b4b4b"
+
+[colors.normal]
+black   = '#606060'
+red     = '#df9a98'
+green   = '#719672'
+yellow  = '#e0bb71'
+blue    = '#96bbdc'
+magenta = '#dfbdbc'
+cyan    = '#97bcbc'
+white   = '#d8d8d8'
