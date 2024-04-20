@@ -64,12 +64,12 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.rgrc
 #: }}}
 
 #: Abbreviations {{{
-abbr -a lr --set-cursor "exa --icons -l | rg '%'"
+abbr -a lr --set-cursor "exa --icons -la | rg '%'"
 #: }}}
 
 #: Aliases {{{
-# alias ls='exa --icons'
-alias ls='lsd'
+# alias ls='lsd'
+alias ls='eza --icons'
 alias ll='ls -al'
 alias la='ls -a'
 alias lta='la --tree -I node_modules -I .git'
@@ -111,6 +111,7 @@ alias tf="todos_rg fzf"
 alias ec="emacsclient -nc"
 alias app="pwd >> ~/projects-dirs"
 alias acp="pwd >> ~/confs-dirs"
+alias awp="pwd >> ~/work-dirs"
 alias opr="nvim ~/projects-dirs"
 alias oco="nvim ~/confs-dirs"
 alias osn="l ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
@@ -330,3 +331,9 @@ zoxide init fish | source
 starship init fish | source
 
 #: }}}
+
+# Setting PATH for Python 3.12
+set -x PATH "/Library/Frameworks/Python.framework/Versions/3.12/bin" "$PATH"
+
+eval "$(luarocks path --bin)" # you can also add LUA_PATH based on your own setup
+set -gx DYLD_LIBRARY_PATH /opt/homebrew/Cellar/imagemagick/7.1.1-28/lib # check your imagemagic installation path; this resolve dyld loading failure
