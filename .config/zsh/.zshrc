@@ -243,9 +243,6 @@ ssh-add -A &> /dev/null
 # Kakoune default shell
 # export KAKOUNE_POSIX_SHELL=/bin/dash
 
-# ZK Notebook dir
-export ZK_NOTEBOOK_DIR="$HOME/Dropbox/Notes-zk"
-
 # source other functions
 source ~/.config/zsh/functions.sh
 
