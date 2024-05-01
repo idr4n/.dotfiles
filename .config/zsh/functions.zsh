@@ -24,7 +24,7 @@ function mkf () {
 }
 
 # Fucntion to print tree
-function lt() {
+function lt () {
   if [[ $# -gt 0 ]]; then
     eza --icons -a --tree --level=$1 -I "node_modules|.git"
   else
@@ -33,78 +33,75 @@ function lt() {
   fi
 }
 
-# search in Notes with fzf/rg
-function fno () { 
-    sel=$(rg -n '.*' "$HOME/Dropbox/Notes-Database/" | fzf --layout=reverse --height 50% --ansi); 
-    file=$(echo "$sel" | cut -d ":" -f 1)
-    line_nr=$(echo "$sel" | cut -d ":" -f 2)
-
-    [ -z $sel ] && echo "nothing selected!" && return
-
-    $EDITOR $file +$line_nr
-    # subl -n "$(dirname $file)" && subl $file:$line_nr
-}
-
 # Search in current directory
 function fr () { 
-    # sel=$(rg -n '.*' "." | fzf --layout=reverse --height 50% --ansi); 
-    # file=$(echo "$sel" | cut -d ":" -f 1)
-    # line_nr=$(echo "$sel" | cut -d ":" -f 2)
+  sel=$(fd . | fzf --layout=reverse --height 50% --ansi); 
 
-    # [ -z $sel ] && echo "nothing selected!" && return
-
-    # $EDITOR $file +$line_nr
-    # subl -n "$(dirname $file)" && subl $file:$line_nr
-
-    sel=$(fd . | fzf --layout=reverse --height 50% --ansi); 
-
-    [ -z "$sel" ] && echo "nothing selected!" && return
-    [ -d "$sel" ] && cd "$sel" && return
-    [ -f "$sel" ] && cd "$(dirname "$sel")" && return
+  [ -z "$sel" ] && echo "nothing selected!" && return
+  [ -d "$sel" ] && cd "$sel" && return
+  [ -f "$sel" ] && cd "$(dirname "$sel")" && return
 }
 
-# search files and cd into their directories
+# Search recent workdirs (zoxide)
 function f () {
-    directories=(
-        ~/.config
-        ~/Dev
-        ~/Dropbox
-        ~/pCloud
-    )
+  sel=$(zoxide query -l | fzf --layout=reverse --height 100% --ansi --border-label  " f - search recent directory (zoxide) ")
 
-    sel=$(fd . -H "${directories[@]}" | fzf --layout=reverse --height 50% --ansi); 
-
-    [ -z "$sel" ] && echo "nothing selected!" && return
-    [ -d "$sel" ] && cd "$sel" && return
-    [ -f "$sel" ] && cd "$(dirname "$sel")" && return
+  [ -z "$sel" ] && echo "nothing selected!" && return
+  [ -d "$sel" ] && cd "$sel" && return
+  [ -f "$sel" ] && cd "$(dirname "$sel")" && return
 }
 
-# search files and nnn into their directories
+# search and cd into their directories
+function ff () {
+  directories=(
+    ~/.config
+    ~/Dev
+    ~/Sync
+    ~/pCloud
+  )
+
+  sel=$(fd . -H "${directories[@]}" | fzf --layout=reverse --height 100% --ansi --border-label  " ff - search in given list and cd "); 
+
+  [ -z "$sel" ] && echo "nothing selected!" && return
+  [ -d "$sel" ] && cd "$sel" && return
+  [ -f "$sel" ] && cd "$(dirname "$sel")" && return
+}
+
+# search noets file names and open with Nvim
 function fn () {
-    directories=(
-        ~/.config
-        ~/Dev
-        ~/Dropbox
-        ~/pCloud
-    )
+  directories=(
+    ~/Sync/Notes-tdo
+    ~/Sync/Notes-Database
+  )
 
-    sel=$(fd . -H "${directories[@]}" | fzf --layout=reverse --height 50% --ansi); 
+  HEADER="CTRL-N: Create New Note."
+  CREATE='ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-tdo -e "tdo {q}")+abort'
 
-    [ -z "$sel" ] && echo "nothing selected!" && return
-    n "$sel"
+  sel=$(fd . -e md -H --type f "${directories[@]}" | fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fn - search noets file names and open with Nvim " \
+    --preview 'cat "$(echo {})" --style="numbers"' --preview-window=down,60% \
+    --header $HEADER \
+    --bind "$CREATE")
+
+  [ -z "$sel" ] && echo "nothing selected!" && return
+  [ -f "$sel" ] && $EDITOR "$sel" -c "cd $(dirname "$sel")" && return
 }
 
-# search files and open folder in Sublime Text
-function fs () {
-    directories=(
-        ~/.config
-        ~/Dev
-        ~/Dropbox
-        ~/pCloud
-    )
+#search in Notes directories - open in Nvim
+function fno () { 
+  directories=(
+    ~/Sync/Notes-tdo
+    ~/Sync/Notes-Database
+  )
 
-    sel=$(fd . -H "${directories[@]}" | fzf --layout=reverse --height 50% --ansi); 
+  sel=$(rg -n '.*' "${directories[@]}" | fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim " \
+    --preview 'bat --color=always "$(echo {1})" --highlight-line {2} --style="numbers"' \
+    --preview-window=down --preview-window +{2}-5)
 
-    [ -z "$sel" ] && echo "nothing selected!" && return
-    subl -n "$sel"
+  file=$(echo "$sel" | cut -d ":" -f 1)
+  line_nr=$(echo "$sel" | cut -d ":" -f 2)
+
+  [ -z $sel ] && echo "nothing selected!" && return
+
+  $EDITOR "$file" +$line_nr -c "cd $(dirname "$sel")"
 }
+
