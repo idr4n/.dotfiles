@@ -1,19 +1,7 @@
-# Sources: 
-# - https://github.com/mattmc3/zdotdir
-# - https://github.com/zap-zsh/supercharge
+#: Misc {{{
 
-#: Completions {{{
-
-autoload -Uz compinit
-zstyle ':completion:*' menu select
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
 zmodload zsh/complist
-_comp_options+=(globdots)   # Include hidden files.
 zle_highlight=('paste:none')
-for dump in "${ZDOTDIR:-$HOME}/.zcompdump"(N.mh+24); do
-  compinit
-done
-compinit -C
 
 # bindings
 bindkey -M menuselect '^[[Z' reverse-menu-complete
@@ -62,10 +50,13 @@ zle -N down-line-or-beginning-search
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type file --follow'
 export FZF_CTRL_T_COMMAND='fd --type file --follow'
-export FZF_DEFAULT_OPTS="--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:5,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
+export FZF_DEFAULT_OPTS="--reverse --history='$HOME/.fzf_history' --border rounded --height 100% --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:5,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
 
 # JAVA_HOME
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+# BAT
+export BAT_THEME=Nord
 
 #: }}}
 

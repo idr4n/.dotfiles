@@ -3,6 +3,7 @@
 # FZF
 # Use one of the following:
 # eval "$(fzf --zsh)"
+zvm_after_init_commands+=('eval "$(fzf --zsh)"')
 # zvm_after_init_commands+=('[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh')
 
 # RVM
