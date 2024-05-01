@@ -7,7 +7,7 @@ Includes a folder with scripts for automation of some tasks. This scripts are no
 ## Basic setup
 
 - Main terminal: Alacritty and [WezTerm](https://github.com/idr4n/wezterm) (Kitty as a third option), normally running Tmux.
-- Shell: Fish.
+- Shell: Zsh (zim as plugin manager and powerlevel10k as prompt).
 - Font used in terminal: [tonsky/FiraCode](https://github.com/tonsky/FiraCode) (Nerd Fonts version).
 - Main editor: Neovim (see my config at [idr4n/nvim-lua](https://github.com/idr4n/nvim-lua)).
 - Window manager: [Hammerspoon](http://www.hammerspoon.org/). I also use a MacOS app called [Rectangle](https://rectangleapp.com/).
