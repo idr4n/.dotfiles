@@ -1,7 +1,7 @@
-zmodule zsh-users/zsh-completions --fpath src
-zmodule completion
-
 zmodule zsh-users/zsh-autosuggestions
 zmodule zdharma-continuum/fast-syntax-highlighting
 zmodule jeffreytse/zsh-vi-mode
 zmodule romkatv/powerlevel10k
+
+zmodule zsh-users/zsh-completions --fpath src
+zmodule completion

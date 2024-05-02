@@ -58,5 +58,11 @@ export JAVA_HOME=$(/usr/libexec/java_home)
 # BAT
 export BAT_THEME=Nord
 
+# Ripgrep
+export RIPGREP_CONFIG_PATH=$HOME/.rgrc
+
+# tdo env variable
+export NOTES_DIR=$HOME/Sync/Notes-tdo
+
 #: }}}
 
