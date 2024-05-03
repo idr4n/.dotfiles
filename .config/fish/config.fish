@@ -22,7 +22,7 @@ set -gx XDG_CONFIG_HOME $HOME/.config
 #: nnn env variables {{{
 
 # bookmarks
-set -gx NNN_BMS "b:~/Sync/Books;d:~/Downloads;p:~/Sync/PSU;q:~/Sync/PSU/Econ103/Econ103-2021-II;w:~/Sync/PSU/Econ207/Econ207-2021-II;c:~/.config;v:/Volumes"
+set -gx NNN_BMS "b:~/pCloud/Books;d:~/Downloads;p:~/pCloud/PSU;q:~/pCloud/PSU/Econ103/Econ103-2021-II;w:~/pCloud/PSU/Econ207/Econ207-2021-II;c:~/.config;v:/Volumes"
 # plugins
 set -gx NNN_PLUG "d:dropover;f:openfinder;j:autojump;c:fcd;h:fhcd;o:fzopen;l:openzathura;p:timg-preview;t:preview-tabbed;T:trash;v:imgview;z:fzcd;y:yoink;a:timg-preview-all"
 # colors
@@ -55,8 +55,10 @@ alias lk="NVIM_APPNAME=LazyKick nvim"
 
 #: tdo env variable {{{
 set -gx PATH $PATH $HOME/.local/bin
-set -gx NOTES_DIR $HOME/Sync/Notes-tdo
-# set -gx NOTES_DIR $HOME/Sync/Notes-tdo-test
+set -gx NOTES_DIR $HOME/pCloud/Notes-tdo
+# set -gx ADD_ENTRY_TIMESTAMP true
+# set -gx FILE_NAME_AS_TITLE true
+# set -gx NOTES_DIR $HOME/pCloud/Notes-tdo-test
 #: }}}
 
 #: Ripgrep {{{
@@ -76,6 +78,7 @@ alias lta='la --tree -I node_modules -I .git'
 alias c='clear'
 alias cdd='cd ~/Dropbox'
 alias cdp='cd ~/pCloud'
+alias ot="cd ~/pCloud/Notes-tdo"
 alias pd='pwd'
 alias up='cd ..'
 alias tm='tmux'
@@ -108,10 +111,7 @@ alias ec="emacsclient -nc"
 alias app="pwd >> ~/projects-dirs"
 alias acp="pwd >> ~/confs-dirs"
 alias awp="pwd >> ~/work-dirs"
-alias opr="nvim ~/projects-dirs"
-alias oco="nvim ~/confs-dirs"
-alias osn="l ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
-alias osp="presenterm ~/Sync/Notes-Database/00-Inbox/scratch_present.md"
+alias osp="presenterm ~/pCloud/Notes-Database/00-Inbox/scratch_present.md"
 alias j="joshuto"
 alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
 
@@ -203,7 +203,7 @@ set -gx PATH $HOME/.cargo/bin $PATH
 
 #: ZK Notes {{{
 
-set -gx ZK_NOTEBOOK_DIR "$HOME/Sync/Notes-zk"
+set -gx ZK_NOTEBOOK_DIR "$HOME/pCloud/Notes-zk"
 set -gx ZK_SHELL "/bin/bash"
 
 #: }}}

@@ -62,7 +62,7 @@ export BAT_THEME=Nord
 export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
 # tdo env variable
-export NOTES_DIR=$HOME/Sync/Notes-tdo
+export NOTES_DIR=$HOME/pCloud/Notes-tdo
 
 #: }}}
 

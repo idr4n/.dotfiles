@@ -11,7 +11,7 @@ red="\033[0;31m"
 blue="\033[0;34m"
 nc="\033[0m" # no color
 
-ts_template_dir=$HOME/Sync/Project-Templates/TypeScript
+ts_template_dir=$HOME/pCloud/Project-Templates/TypeScript
 
 mkdir -p "$name" && cp -a "$ts_template_dir"/. ./"$name"/ && cd "$name" &&
 

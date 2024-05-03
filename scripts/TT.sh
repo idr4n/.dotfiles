@@ -18,7 +18,7 @@ if [ ! -f "$proj_dirs_file" ]; then
   echo "Directory file $proj_dirs_file not found. Creating..."
   touch "$proj_dirs_file"
   # Add initial directories to the file, if needed
-  echo "$HOME/Sync/Dev" >> "$proj_dirs_file"
+  echo "$HOME/pCloud/Dev" >> "$proj_dirs_file"
 fi
 
 # Check if configs directory file exists
@@ -70,7 +70,7 @@ if [ -z "$TMUX" ]; then
         done
         ;;
       Work)
-        # tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
+        # tmux new-session -d -s "$RESULT" -c ~/pCloud/Notes-Database
         tmux new-session -d -s "$RESULT" -c $(head -1 $work_dirs_file)
         # Loop through dirs in file and create a window for each
         tail -n +2 "$work_dirs_file" | while read -r dir; do
@@ -85,7 +85,7 @@ if [ -z "$TMUX" ]; then
         done
         ;;
       Sandbox)
-        tmux new-session -d -s "$RESULT" -c ~/Sync/Dev/Sandboxes
+        tmux new-session -d -s "$RESULT" -c ~/pCloud/Dev/Sandboxes
         ;;
       *)
         tmux new-session -d -s "$RESULT"
@@ -126,7 +126,7 @@ else
         tmux switch-client -t "$RESULT"
         ;;
       Work)
-        # tmux new-session -d -s "$RESULT" -c ~/Sync/Notes-Database
+        # tmux new-session -d -s "$RESULT" -c ~/pCloud/Notes-Database
         tmux new-session -d -s "$RESULT" -c $(head -1 $work_dirs_file) 
         # Loop through dirs in file and create a window for each
         tail -n +2 "$work_dirs_file" | while read -r dir; do
@@ -143,7 +143,7 @@ else
         tmux switch-client -t "$RESULT"
         ;;
       Sandbox)
-        tmux new-session -d -s "$RESULT" -c ~/Sync/Dev/Sandboxes
+        tmux new-session -d -s "$RESULT" -c ~/pCloud/Dev/Sandboxes
         tmux switch-client -t "$RESULT"
         ;;
       *)

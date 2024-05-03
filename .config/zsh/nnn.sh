@@ -1,7 +1,7 @@
 # NNN
 
 # bookmarks
-export NNN_BMS="b:~/Dropbox/Books;d:~/Downloads;p:~/Dropbox/PSU;q:~/Dropbox/PSU/Econ103/Econ103-2021-II;w:~/Dropbox/PSU/Econ207/Econ207-2021-II;c:~/.config;v:/Volumes"
+export NNN_BMS="b:d:~/Downloads;c:~/.config;v:/Volumes"
 
 # plugins
 export NNN_PLUG="d:dropover;f:openfinder;j:autojump;c:fcd;h:fhcd;o:fzopen;l:openzathura;p:timg-preview;t:preview-tabbed;T:trash;v:imgview;z:fzcd;y:yoink;a:timg-preview-all"

@@ -1,5 +1,5 @@
 require("bookmark_chooser")
-require("check_later")
+-- require("check_later")
 -- require("espanso_chooser")
 require("list_chooser")
 require("safari_tabs_chooser")

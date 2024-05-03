@@ -23,7 +23,7 @@ class fzf_select(Command):
         if "fdfind" in get_executables():
             fd = "fdfind"
         elif "fd" in get_executables():
-            fd = "fd . -H ~/Sync ~/.config ~/pCloud"
+            fd = "fd . -H ~/.config ~/pCloud"
 
         if fd is not None:
             hidden = "--hidden" if self.fm.settings.show_hidden else ""

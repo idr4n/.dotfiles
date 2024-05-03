@@ -56,7 +56,6 @@ function ff () {
   directories=(
     ~/.config
     ~/Dev
-    ~/Sync
     ~/pCloud
   )
 
@@ -70,12 +69,12 @@ function ff () {
 # search noets file names and open with Nvim
 function fn () {
   directories=(
-    ~/Sync/Notes-tdo
-    ~/Sync/Notes-Database
+    ~/pCloud/Notes-tdo
+    ~/pCloud/Notes-Database
   )
 
   HEADER="CTRL-N: Create New Note."
-  CREATE='ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-tdo -e "tdo {q}")+abort'
+  CREATE='ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-tdo -e "tdo {q}")+abort'
 
   sel=$(fd . -e md -H --type f "${directories[@]}" | fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fn - search noets file names and open with Nvim " \
     --preview 'cat "$(echo {})" --style="numbers"' --preview-window=down,60% \
@@ -89,8 +88,8 @@ function fn () {
 #search in Notes directories - open in Nvim
 function fno () { 
   directories=(
-    ~/Sync/Notes-tdo
-    ~/Sync/Notes-Database
+    ~/pCloud/Notes-tdo
+    ~/pCloud/Notes-Database
   )
 
   sel=$(rg -n '.*' "${directories[@]}" | fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim " \

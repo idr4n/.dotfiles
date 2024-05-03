@@ -48,12 +48,12 @@ cmd + ctrl + shift - b : ~/scripts/save_bookmark
 cmd + ctrl + shift - d : ~/scripts/dailynote
 
 # Open todos note
-cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/todos_important.md"
+cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim ~/pCloud/Notes-Database/todos_important.md"
 
 # Open scratchpad note file
-cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 --working-directory ~/Sync/Notes-Database -e fish -ic "nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
-# cmd + ctrl + shift - n : open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd ~/Sync/Notes-Database nvim ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md
-# cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "hx ~/Sync/Notes-Database/Misc-Notes/Scratchpad.md"
+cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 --working-directory ~/pCloud/Notes-tdo -e fish -ic "nvim ~/pCloud/Notes-tdo/notes/Scratchpad.md"
+# cmd + ctrl + shift - n : open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd ~/pCloud/Notes-Database nvim ~/pCloud/Notes-Database/Misc-Notes/Scratchpad.md
+# cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "hx ~/pCloud/Notes-Database/Misc-Notes/Scratchpad.md"
 
 # Open finder script
 # ctrl + shift - f : ~/scripts/finder

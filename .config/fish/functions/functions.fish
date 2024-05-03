@@ -36,9 +36,10 @@ end
 
 #: ff -d "search and cd into directories" {{{
 function ff -d "search and cd into directories"
-    set -l directories ~/.config ~/Dev ~/pCloud ~/Sync
+    set -q argv[1]; and set -l initial_query $argv[1]; or set -l initial_query ""
+    set -l directories ~/.config ~/Dev ~/pCloud
 
-    set -l sel $(fd . -H --type d -E '*.git*' -E '*node_modules*' $directories | fzf --layout=reverse --height 50% --ansi --border-label  " ff - search directories in given list - cd ")
+    set -l sel $(fd . -H --type d -E '*.git*' -E '*node_modules*' $directories | fzf --query="$initial_query" --layout=reverse --height 50% --ansi --border-label  " ff - search directories in given list - cd ")
     if test -z "$sel"
         echo "nothing selected!"
     else if test -d "$sel"
@@ -52,8 +53,8 @@ end
 #: F -d "search in given list - open" {{{
 function F -d "search directories in given list - open"
     # set -l last_query $(tail -n 1 $HOME/.fzf_history)
-    set -l directories ~/pCloud ~/Sync ~/Downloads ~/Desktop
-    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim '~/Sync/Notes-Database/00-Inbox/{q}.md'")+abort'
+    set -l directories ~/pCloud ~/Downloads ~/Desktop
+    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim '~/pCloud/Notes-Database/00-Inbox/{q}.md'")+abort'
     set -l REVEAL "ctrl-y:execute-silent(open -R {})+execute-silent(echo {q} >> $HOME/.fzf_history)+abort"
     set -l HEADER "CTRL-N: Create New Note; CTRL-Y: reveal in Finder."
 
@@ -75,7 +76,7 @@ end
 
 #: fa -d "search files and cd into their directories" {{{
 function fa -d "search files and cd into their directories"
-    set -l directories ~/.config ~/Dev ~/pCloud ~/Sync
+    set -l directories ~/.config ~/Dev ~/pCloud
 
     set -l sel $(fd . -H --type f -E '*.git*' -E '*node_modules*' $directories | \
         fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fa - search files in given list - cd " \
@@ -125,8 +126,9 @@ end
 
 #: fn -d "search noets file names and open with Nvim" {{{
 function fn -d "search files and cd into their directories"
-    set -l directories ~/Sync/Notes-Database ~/Sync/Notes-tdo
-    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim '~/Sync/Notes-Database/00-Inbox/{q}.md'")+abort'
+    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-tdo
+    # set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim '~/pCloud/Notes-Database/00-Inbox/{q}.md'")+abort'
+    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-tdo -e fish -ic "tdo {q}")+abort'
     set -l HEADER "CTRL-N: Create New Note."
 
     set -l sel $(fd . -e md -H --type f -E '*.git*' -E '*node_modules*' $directories | \
@@ -137,16 +139,16 @@ function fn -d "search files and cd into their directories"
     if test -z "$sel"
         echo "nothing selected!"
     else if test -f "$sel"
-        $EDITOR "$sel" -c "cd ~/Sync/Notes-Database"
+        $EDITOR "$sel" -c "cd ~/pCloud/Notes-Database"
     end
 end
 #: }}}
 
 #: fno -d "# search in Notes with fzf/rg" {{{
 function fno -d "# search in Notes with fzf/rg"
-    set -l directories ~/Sync/Notes-Database ~/Sync/Notes-tdo
-    # set -l sel $(rg -n '.*' $HOME/Sync/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
-    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/Sync/Notes-Database -e fish -ic "nvim '~/Sync/Notes-Database/00-Inbox/{q}.md'")+abort'
+    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-tdo
+    # set -l sel $(rg -n '.*' $HOME/pCloud/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
+    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim '~/pCloud/Notes-Database/00-Inbox/{q}.md'")+abort'
     set -l HEADER "CTRL-N: Create New Note."
 
     set -l sel $(rg -n '.*' $directories | \
@@ -163,14 +165,15 @@ function fno -d "# search in Notes with fzf/rg"
     if test -z "$sel"
         echo "nothing selected!"
     else
-        $EDITOR "$file" +$line_nr -c "cd ~/Sync/Notes-Database"
+        $EDITOR "$file" +$line_nr -c "cd ~/pCloud/Notes-Database"
     end
 end
 #: }}}
 
 #: f -d "search recent workdirs set in Neovim" {{{
 function f -d "search recent workdirs (zoxide)"
-    set -l sel $(zoxide query -l | fzf --layout=reverse --height 100% --ansi --border-label  " f - search recent directory (zoxide) - cd ")
+    set -q argv[1]; and set -l initial_query $argv[1]; or set -l initial_query ""
+    set -l sel $(zoxide query -l | fzf --query="$initial_query" --layout=reverse --height 100% --ansi --border-label  " f - search recent directory (zoxide) - cd ")
     if test -z "$sel"
         echo "nothing selected!"
     else if test -d "$sel"
@@ -203,8 +206,8 @@ end
 
 #: fu -d "search for URLs in list of directories" {{{
 function fu -d "search for URLs in list of directories"
-    # set -l directories ~/Sync/Notes-zk ~/Sync/Notes-Database
-    set -l directories ~/Sync/Notes-Database ~/Sync/Notes-tdo
+    # set -l directories ~/pCloud/Notes-zk ~/pCloud/Notes-Database
+    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-tdo
 
     set -l sel $(rg --sortr modified -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules $directories | \
         fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fu - search URLs in given list of directories - open in browser " \
@@ -264,7 +267,7 @@ function ft -d "search for tagged dirs and files"
     set -l REVEAL "ctrl-y:execute-silent(open -R (string replace -r '^~' '$HOME' {}))+execute-silent(echo {q} >> $HOME/.fzf_history)+abort"
     set -l HEADER "CTRL-Y: reveal in Finder."
 
-    set -l sel $(cat ~/Sync/tags_file.txt | sort | fzf --layout=reverse \
+    set -l sel $(cat ~/pCloud/tags_file.txt | sort | fzf --layout=reverse \
         --height 100% --ansi \
         --header $HEADER \
         --bind "$REVEAL" \

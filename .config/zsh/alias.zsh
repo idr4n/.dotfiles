@@ -15,7 +15,7 @@ alias c='clear'
 alias oo='cd ~/dotfiles'
 alias oc='cd ~/.config'
 alias on='cd ~/.config/nvim'
-alias ot="cd ~/Sync/Notes-tdo"
+alias ot="cd ~/pCloud/Notes-tdo"
 alias pd='pwd'
 alias up='cd ..'
 alias tm='tmux'
@@ -52,7 +52,7 @@ alias ec="emacsclient -nc"
 alias app="pwd >> ~/projects-dirs"
 alias acp="pwd >> ~/confs-dirs"
 alias awp="pwd >> ~/work-dirs"
-alias osp="presenterm ~/Sync/Notes-Database/00-Inbox/scratch_present.md"
+alias osp="presenterm ~/pCloud/Notes-Database/00-Inbox/scratch_present.md"
 alias j="joshuto"
 alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
 

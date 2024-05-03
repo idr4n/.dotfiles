@@ -156,7 +156,6 @@ cmd fzf_dirs ${{
     ~/Desktop
     ~/Downloads
     ~/Dropbox
-    ~/Sync
     ~/pCloud
   )
   sel=$(fd . -H -L -E '*.git*' -E node_modules "${directories[@]}" | fzf --layout=reverse --height 50% --ansi) || true
@@ -240,7 +239,6 @@ cmd move_to_dir ${{
     ~/Desktop
     ~/Downloads
     ~/Dropbox
-    ~/Sync
     ~/pCloud
   )
   sel=$(fd . -H --type d -L -E '*.git*' -E node_modules "${directories[@]}" | \
@@ -288,7 +286,7 @@ map gt list_tags
 
 cmd tag_file ${{
     path="$fx"
-    tags_file="$HOME/Sync/tags_file.txt"
+    tags_file="$HOME/pCloud/tags_file.txt"
 
     # check if tags_file exists
     if [ ! -f $tags_file ]; then

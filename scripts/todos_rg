@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 directories=(
-  ~/Sync/Notes-Database
-  ~/Sync/Notes-tdo
+  ~/pCloud/Notes-Database
+  ~/pCloud/Notes-tdo
 )
 
 FZF_BORDER_LABEL=" TODOs Picker "
