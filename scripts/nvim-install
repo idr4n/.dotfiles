@@ -16,13 +16,20 @@ trash $download_dir/$tar_file
 curl --output-dir $download_dir -LO https://github.com/neovim/neovim/releases/download/nightly/$tar_file
 
 if [ -e "$download_dir/$tar_file" ]; then
+  tar xzf $download_dir/$tar_file --directory $download_dir
+  if [ -x "$download_dir/$dir_path/bin/nvim" ]; then
+    echo -e "\n🔓 nvim tar file extracted successfully into $download_dir"
+  else
+    echo "🚨 Could not extract tar file!"
+    return 1
+  fi
+
   if [ ! -d "$dir" ]; then
     echo "$dir does not exist. Creating directory..."
     mkdir -p "$dir"
   fi
   trash $dir/*
-  cp -r $download_dir/$tar_file $dir/
-  tar xzf $dir/$tar_file --directory $dir
+  cp -r $download_dir/$dir_path $dir/
 
   if [ -x "$dir/$dir_path/bin/nvim" ]; then
     ln -fs $dir/$dir_path/bin/nvim $HOME/bin/

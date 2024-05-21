@@ -10,11 +10,31 @@ if [ ! -d "$download_dir" ]; then
   mkdir -p "$download_dir"
 fi
 
-trash $download_dir/nvim-macos.tar.gz
-curl --output-dir $download_dir -LO https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz
+tar_file="nvim-macos-arm64.tar.gz"
+dir_path="nvim-macos-arm64"
+trash $download_dir/$tar_file
+curl --output-dir $download_dir -LO https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-macos-arm64.tar.gz
 
-if [ -e "$download_dir/nvim-macos.tar.gz" ]; then
-  tar -xzf $download_dir/nvim-macos.tar.gz --directory $download_dir
-  ln -fs $download_dir/nvim-macos/bin/nvim $HOME/bin/
+if [ -e "$download_dir/$tar_file" ]; then
+  tar xzf $download_dir/$tar_file --directory $download_dir
+  if [ -x "$download_dir/$dir_path/bin/nvim" ]; then
+    echo -e "\n🔓 nvim tar file extracted successfully into $download_dir"
+  else
+    echo "🚨 Could not extract tar file!"
+    return 1
+  fi
+
+  if [ ! -d "$dir" ]; then
+    echo "$dir does not exist. Creating directory..."
+    mkdir -p "$dir"
+  fi
+  trash $dir/*
+  cp -r $download_dir/$dir_path $dir/
+
+  if [ -x "$dir/$dir_path/bin/nvim" ]; then
+    ln -fs $dir/$dir_path/bin/nvim $HOME/bin/
+    echo -e "\n🆗 nvim binary simlink created in ~/bin directory"
+  else
+    echo "🚨 Could not simlink nvim binary!"
+  fi
 fi
-
