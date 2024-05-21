@@ -15,7 +15,7 @@ if [ -z "$TMUX" ]; then
     exit 0
   fi
 
-  FOLDER=$(basename $ZOXIDE_RESULT)
+  FOLDER=$(basename "$ZOXIDE_RESULT")
 
   # lookup tmux session name
   SESSION=$(tmux list-sessions | grep $FOLDER | awk '{print $1}')
@@ -26,7 +26,7 @@ if [ -z "$TMUX" ]; then
     # session does not exist
     echo "session does not exist"
     # jump to directory
-    cd $ZOXIDE_RESULT
+    cd "$ZOXIDE_RESULT"
     # create session
     tmux new-session -s "$FOLDER"
   else
