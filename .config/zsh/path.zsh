@@ -37,3 +37,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # Deno bin Path
 export PATH="/Users/ivan/.deno/bin:$PATH"
 
+# Python
+export PATH="/Library/Frameworks/Python.framework/Versions/3.12/bin:$PATH"
+

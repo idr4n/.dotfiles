@@ -35,7 +35,7 @@ function lt () {
 
 # Search in current directory
 function fr () { 
-  sel=$(fd . | fzf --layout=reverse --height 50% --ansi); 
+  sel=$(fd "$1" | fzf --layout=reverse --height 50% --ansi); 
 
   [ -z "$sel" ] && echo "nothing selected!" && return
   [ -d "$sel" ] && cd "$sel" && return
@@ -44,7 +44,7 @@ function fr () {
 
 # Search recent workdirs (zoxide)
 function f () {
-  sel=$(zoxide query -l | fzf --layout=reverse --height 100% --ansi --border-label  " f - search recent directory (zoxide) ")
+  sel=$(zoxide query "$1" -l | fzf --layout=reverse --height 100% --ansi --border-label  " f - search recent directory (zoxide) ")
 
   [ -z "$sel" ] && echo "nothing selected!" && return
   [ -d "$sel" ] && cd "$sel" && return
@@ -59,7 +59,7 @@ function ff () {
     ~/pCloud
   )
 
-  sel=$(fd . -H "${directories[@]}" | fzf --layout=reverse --height 100% --ansi --border-label  " ff - search in given list and cd "); 
+  sel=$(fd "$1" -H "${directories[@]}" | fzf --layout=reverse --height 100% --ansi --border-label  " ff - search in given list and cd "); 
 
   [ -z "$sel" ] && echo "nothing selected!" && return
   [ -d "$sel" ] && cd "$sel" && return
@@ -76,7 +76,7 @@ function fn () {
   HEADER="CTRL-N: Create New Note."
   CREATE='ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-tdo -e "tdo {q}")+abort'
 
-  sel=$(fd . -e md -H --type f "${directories[@]}" | fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fn - search noets file names and open with Nvim " \
+  sel=$(fd "$1" -e md -H --type f "${directories[@]}" | fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fn - search noets file names and open with Nvim " \
     --preview 'cat "$(echo {})" --style="numbers"' --preview-window=down,60% \
     --header $HEADER \
     --bind "$CREATE")
@@ -92,7 +92,7 @@ function fno () {
     ~/pCloud/Notes-Database
   )
 
-  sel=$(rg -n '.*' "${directories[@]}" | fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim " \
+  sel=$(rg "$1" -n "${directories[@]}" | fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim " \
     --preview 'bat --color=always "$(echo {1})" --highlight-line {2} --style="numbers"' \
     --preview-window=down --preview-window +{2}-5)
 
