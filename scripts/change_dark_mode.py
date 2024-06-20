@@ -4,27 +4,22 @@ import os
 import darkdetect
 
 # Neovim
-# light_nvim = "github_light"
-light_nvim = "seoul256"
-# dark_nvim = "catppuccin-mocha"
-# dark_nvim = "duskfox"
-# dark_nvim = "monotone"
-# dark_nvim = "zenbones"
-dark_nvim = "wind"
+# light_nvim = "seoul256"
+light_nvim = "github_light"
+# dark_nvim = "solarized"
+dark_nvim = "catppuccin-frappe"
 
 # Kitty
+# light_color_kitty = "seoul256"
 light_color_kitty = "Github Light"
-dark_color_kitty = "Catppuccin-Mocha"
+# dark_color_kitty = "Solarized"
+dark_color_kitty = "catppuccin-frappe"
 
 # Alacritty
-# light_color_alacritty = "github_light"
-light_color_alacritty = "seoul256"
-# dark_color_alacritty = "tokyo_night_moon"
-# dark_color_alacritty = "catppuccin-mocha"
-# dark_color_alacritty = "duskfox"
-# dark_color_alacritty = "zenbones_dark"
-# dark_color_alacritty = "monotone"
-dark_color_alacritty = "wind"
+# light_color_alacritty = "seoul256"
+light_color_alacritty = "github_light"
+# dark_color_alacritty = "solarized_dark"
+dark_color_alacritty = "catppuccin-frappe"
 
 if os.environ.get("HOME") == "/Users/iduran":
     if darkdetect.isDark():
