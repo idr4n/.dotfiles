@@ -9,6 +9,7 @@ set_colorscheme() {
 	case $mode in
 	light)
 		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:set background=light<CR>"
+		# $NVIM_PATH --headless --server "$server" --remote-send "<Esc>:colorscheme ${scheme}<CR>"
 		;;
 	*)
 		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:set background=dark<CR>"
