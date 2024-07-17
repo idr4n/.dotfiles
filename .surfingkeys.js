@@ -1,82 +1,160 @@
 const {
-    aceVimMap,
-    mapkey,
-    imap,
-    imapkey,
-    getClickableElements,
-    vmapkey,
-    map,
-    unmap,
-    cmap,
-    addSearchAlias,
-    removeSearchAlias,
-    tabOpenLink,
-    readText,
-    Clipboard,
-    Front,
-    Hints,
-    Visual,
-    RUNTIME,
+  aceVimMap,
+  mapkey,
+  imap,
+  imapkey,
+  getClickableElements,
+  vmapkey,
+  map,
+  unmap,
+  cmap,
+  addSearchAlias,
+  removeSearchAlias,
+  tabOpenLink,
+  readText,
+  Clipboard,
+  Front,
+  Hints,
+  Visual,
+  RUNTIME
 } = api;
 
 // an example to create a new mapping `ctrl-y`
-mapkey('<Ctrl-y>', 'Show me the money', function() {
-    Front.showPopup('a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).');
+mapkey('<Ctrl-y>', 'Show me the money', function () {
+  Front.showPopup(
+    'a well-known phrase uttered by characters in the 1996 film Jerry Maguire (Escape to close).'
+  );
 });
 
 // search in Google
 mapkey('<Ctrl-g>', 'Search Query in Google', function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
-  window.open('https://www.google.com/search?q=' + encodeURIComponent(queryValue));
-})
+  const queryValue =
+    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
+  window.open(
+    'https://www.google.com/search?q=' + encodeURIComponent(queryValue)
+  );
+});
 
 // search in DuckDuckGo
 mapkey('<Ctrl-d>', 'Search Query in DuckDuckGo', function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
+  const queryValue =
+    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
   window.open('https://duckduckgo.com/?q=' + encodeURIComponent(queryValue));
-})
+});
 
 // search in Brave
 mapkey('<Ctrl-b>', 'Search Query in Brave', function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
-  window.open('https://search.brave.com/search?q=' + encodeURIComponent(queryValue) + '&source=desktop');
-})
+  const queryValue =
+    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
+  window.open(
+    'https://search.brave.com/search?q=' +
+      encodeURIComponent(queryValue) +
+      '&source=desktop'
+  );
+});
+
+// search in Amazon.com
+mapkey('<Ctrl-s>', 'Search Query in Amazon.com', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue =
+    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
+  if (queryValue) {
+    // If queryValue is present, redirect to Amazon search with the query value
+    window.open(
+      'https://www.amazon.com/s?k=' +
+        encodeURIComponent(queryValue) +
+        '&source=desktop'
+    );
+  } else {
+    // If there is no queryValue, check and convert current URL if it's a Saudi Amazon URL
+    const currentUrl = window.location.href;
+    const pattern = /^https:\/\/www\.amazon\.sa\/-\/en\/([^\/]+)(\/.*)?$/;
+
+    if (pattern.test(currentUrl)) {
+      const match = currentUrl.match(pattern);
+      const query = match[1].replace(/-/g, ' ');
+      window.open(`https://www.amazon.com/s?k=${encodeURI(query)}`);
+    } else {
+      // Optionally, handle the case where the URL does not match the pattern
+      window.open('https://www.amazon.com');
+    }
+  }
+});
+
+// search in Amazon.sa
+mapkey('<Ctrl-a>', 'Search Query in Amazon.sa', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue =
+    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
+  // window.open('https://www.amazon.sa/s?k=' + encodeURIComponent(queryValue) + '&source=desktop');
+  if (queryValue) {
+    // If queryValue is present, redirect to Amazon.sa search with the query value
+    window.open(
+      'https://www.amazon.sa/s?k=' +
+        encodeURIComponent(queryValue) +
+        '&source=desktop'
+    );
+  } else {
+    // If there is no queryValue, check and convert current URL if it's a USA Amazon URL
+    const currentUrl = window.location.href;
+    const pattern = /^https:\/\/www\.amazon\.com\/([^\/]+)(\/.*)?$/;
+
+    if (pattern.test(currentUrl)) {
+      const match = currentUrl.match(pattern);
+      const query = match[1].replace(/-/g, ' ');
+      window.open(`https://www.amazon.sa/s?k=${encodeURI(query)}`);
+    } else {
+      // Optionally, handle the case where the URL does not match the pattern
+      window.open('https://www.amazon.sa');
+    }
+  }
+});
 
 // search in Perplexity
 mapkey('<Ctrl-p>', 'Search Query in Perplexity', function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const queryValue = urlParams.get('q') || urlParams.get('query') || '';
-  window.open('https://www.perplexity.ai/?q=' + encodeURIComponent(queryValue) + '&source=desktop');
-})
-mapkey('<Ctrl-P>', 'Search in Perplexity', async function () {
-  const selectedText = document.getSelection().toString();
-  const queryValue = selectedText || await navigator.clipboard.readText();
-  window.open('https://www.perplexity.ai/?q=' + encodeURIComponent(queryValue) + '&source=desktop');
-})
+  const queryValue =
+    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
+  window.open(
+    'https://www.perplexity.ai/?q=' +
+      encodeURIComponent(queryValue) +
+      '&source=desktop'
+  );
+});
 
 // search in ALL (Google, DuckDuckGo, Breave and Perplexity)
 mapkey('<Ctrl-A>', 'Search Query in ALL engines', function () {
   const urlParams = new URLSearchParams(window.location.search);
   const queryValue = urlParams.get('q') || urlParams.get('query') || '';
-  window.open('https://www.google.com/search?q=' + encodeURIComponent(queryValue));
+  window.open(
+    'https://www.google.com/search?q=' + encodeURIComponent(queryValue)
+  );
   window.open('https://duckduckgo.com/?q=' + encodeURIComponent(queryValue));
-  window.open('https://search.brave.com/search?q=' + encodeURIComponent(queryValue) + '&source=desktop');
-  window.open('https://www.perplexity.ai/?q=' + encodeURIComponent(queryValue) + '&source=desktop');
-})
-
-mapkey('<', '#3Move current tab to left', function() {
-    RUNTIME('moveTab', {
-        step: -1
-    });
+  window.open(
+    'https://search.brave.com/search?q=' +
+      encodeURIComponent(queryValue) +
+      '&source=desktop'
+  );
+  window.open(
+    'https://www.perplexity.ai/?q=' +
+      encodeURIComponent(queryValue) +
+      '&source=desktop'
+  );
 });
 
-mapkey('>', '#3Move current tab to right', function() {
-    RUNTIME('moveTab', {
-        step: 1
-    });
+mapkey('<', '#3Move current tab to left', function () {
+  RUNTIME('moveTab', {
+    step: -1
+  });
+});
+
+mapkey('>', '#3Move current tab to right', function () {
+  RUNTIME('moveTab', {
+    step: 1
+  });
 });
 
 // an example to replace `u` with `?`, click `Default mappings` to see how `u` works.
@@ -85,48 +163,114 @@ mapkey('>', '#3Move current tab to right', function() {
 // an example to remove mapkey `Ctrl-i`
 unmap('<Ctrl-i>');
 
-settings.blocklistPattern = /calendar.cron.com*|colab.research.google.com|app.tana.inc*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
+settings.blocklistPattern =
+  /calendar.cron.com*|typeform.com*|colab.research.google.com|app.eraser.io*|excalidraw.com*|design.penpot.app*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
 
-addSearchAlias('s', 'startpage', 'https://www.startpage.com/sp/search?q=', 's', 'https://www.startpage.com/cgi-bin/csuggest?query=%s&limit=10&lang=english&format=json', function(response) {
+addSearchAlias(
+  'gw',
+  'google-webonly',
+  'https://www.google.com/search?udm=14&q=',
+  's',
+  'https://www.google.com/complete/search?client=chrome-omni&gs_ri=chrome-ext&oit=1&cp=1&pgcl=7&q=',
+  function (response) {
     var res = JSON.parse(response.text);
     return res[1];
-});
+  }
+);
 
-addSearchAlias('b', 'brave', 'https://search.brave.com/search?q=', 's', 'https://search.brave.com/api/suggest?q=', function(response) {
+addSearchAlias(
+  's',
+  'startpage',
+  'https://www.startpage.com/sp/search?q=',
+  's',
+  'https://www.startpage.com/cgi-bin/csuggest?query=%s&limit=10&lang=english&format=json',
+  function (response) {
     var res = JSON.parse(response.text);
-    return res[1].map(function(r){
-        return r;
+    return res[1];
+  }
+);
+
+addSearchAlias(
+  'b',
+  'brave',
+  'https://search.brave.com/search?q=',
+  's',
+  'https://search.brave.com/api/suggest?q=',
+  function (response) {
+    var res = JSON.parse(response.text);
+    return res[1].map(function (r) {
+      return r;
     });
-}, '', {favicon_url: 'https://cdn.search.brave.com/serp/favicon.ico'});
+  },
+  '',
+  { favicon_url: 'https://cdn.search.brave.com/serp/favicon.ico' }
+);
 
-addSearchAlias('a', 'amazon', 'https://www.amazon.com/s?k=', 's', '', function(response) {});
+addSearchAlias(
+  'a',
+  'amazon',
+  'https://www.amazon.com/s?k=',
+  's',
+  '',
+  function (response) {}
+);
 
-addSearchAlias('u', 'you.com', 'https://you.com/search?q=', 's', '', function(response) {});
+addSearchAlias(
+  'u',
+  'you.com',
+  'https://you.com/search?q=',
+  's',
+  '',
+  function (response) {}
+);
 
-addSearchAlias('n', 'neeva', 'https://neeva.com/search?q=', 's', '', function(response) {});
+addSearchAlias(
+  'n',
+  'neeva',
+  'https://neeva.com/search?q=',
+  's',
+  '',
+  function (response) {}
+);
 
-addSearchAlias('s', 'amazon sa', 'https://www.amazon.sa/s?k=', 's', '', function(response) {});
+addSearchAlias(
+  's',
+  'amazon sa',
+  'https://www.amazon.sa/s?k=',
+  's',
+  '',
+  function (response) {}
+);
+
+addSearchAlias(
+  'p',
+  'perplexity',
+  'https://www.perplexity.ai/?q=',
+  's',
+  '',
+  function (response) {}
+);
 
 // My settings
 settings.scrollStepSize = 150;
-settings.defaultSearchEngine = "g";
+settings.defaultSearchEngine = 'g';
 map('p', 'd');
-map('<Ctrl-a>', 'k');
-map('<Ctrl-s>', 'j');
+// map('<Ctrl-a>', 'k');
+// map('<Ctrl-s>', 'j');
 // imap('fd', "<Esc>");
 aceVimMap('jk', '<Esc>', 'insert');
-settings.newTabPosition = "right";
-settings.focusAfterClosed = "left";
-settings.hintAlign = "left";
+settings.newTabPosition = 'right';
+settings.focusAfterClosed = 'left';
+settings.hintAlign = 'left';
 settings.tabsThreshold = 3;
-settings.modeAfterYank = "Normal";
+settings.modeAfterYank = 'Normal';
 cmap('<Ctrl-j>', '<Tab>');
 cmap('<Ctrl-k>', '<Shift-Tab>');
 mapkey('cw', '#2Switch frames', 'Normal.rotateFrame()');
 map('q', 'E');
 map('w', 'R');
-mapkey('ga', '#4Go to last used tab', function() {
-    RUNTIME("goToLastTab");
+mapkey('ga', '#4Go to last used tab', function () {
+  RUNTIME('goToLastTab');
 });
 map('<Ctrl-;>', 'og');
 map('<Ctrl-l>', 'od');
@@ -282,7 +426,6 @@ Dark_theme = `
 }
 `;
 
-
 Light_theme = `
 .sk_theme {
     font-family: Input Sans Condensed, Charcoal, sans-serif;
@@ -422,7 +565,6 @@ Light_theme = `
 }
 `;
 
-
 settings.theme = `
     @media (prefers-color-scheme: dark) {
     ${Dark_theme}
@@ -431,4 +573,4 @@ settings.theme = `
     ${Light_theme}
 }
 }
-`
+`;
