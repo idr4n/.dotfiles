@@ -19,6 +19,10 @@ set -gx EDITOR nvim
 set -gx XDG_CONFIG_HOME $HOME/.config
 #: }}}
 
+#: Private env {{{
+source $HOME/.environment
+#: }}}
+
 #: nnn env variables {{{
 
 # bookmarks
@@ -38,8 +42,8 @@ set -gx NNN_USE_EDITOR 1
 set t (math (date +%H) + (date +%M)/60)
 # if [ $t -gt 8 ]
 if test $t -gt 7; and test $t -lt 18
-    set -gx BAT_THEME "gruvbox-light"
-    # set -gx BAT_THEME Nord
+    # set -gx BAT_THEME "gruvbox-light"
+    set -gx BAT_THEME Nord
 else
     set -gx BAT_THEME Nord
 end
@@ -67,6 +71,8 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.rgrc
 
 #: Abbreviations {{{
 abbr -a lr --set-cursor "exa --icons -la | rg '%'"
+abbr -a \*\* --position anywhere --set-cursor "(fd . --type d -H -E '*.git*' -E '*node_modules*' | fzf)"
+# abbr 
 #: }}}
 
 #: Aliases {{{
@@ -76,8 +82,9 @@ alias ll='ls -al'
 alias la='ls -a'
 alias lta='la --tree -I node_modules -I .git'
 alias c='clear'
-alias cdd='cd ~/Dropbox'
-alias cdp='cd ~/pCloud'
+alias oo='cd ~/dotfiles'
+alias oc='cd ~/.config'
+alias on='cd ~/.config/nvim'
 alias ot="cd ~/pCloud/Notes-tdo"
 alias pd='pwd'
 alias up='cd ..'
@@ -87,8 +94,11 @@ alias tw='ts Work'
 alias tc='ts Config'
 alias tl='ts Dev'
 alias pc='echo -n (pwd) | pbcopy'
-alias n="NVIM_APPNAME=nvim nvim"
-alias c="nvim ."
+alias c="nvim -c 'CommandTRipgrep'"
+alias n="nvim"
+alias nv="nvim ."
+# alias nn="nvim -c 'cd ~/.config/nvim' -c 'CommandTRipgrep'"
+alias nn="nvim -c 'cd ~/.config/nvim' -c 'Telescope find_files'"
 alias h="hx"
 alias st="subl"
 alias sm="smerge"
@@ -205,12 +215,6 @@ set -gx PATH $HOME/.cargo/bin $PATH
 
 set -gx ZK_NOTEBOOK_DIR "$HOME/pCloud/Notes-zk"
 set -gx ZK_SHELL "/bin/bash"
-
-#: }}}
-
-#: MegaSync {{{
-
-set -gx PATH /Applications/MEGAcmd.app/Contents/MacOS $PATH
 
 #: }}}
 
@@ -331,5 +335,5 @@ starship init fish | source
 # Setting PATH for Python 3.12
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.12/bin" "$PATH"
 
-eval "$(luarocks path --bin)" # you can also add LUA_PATH based on your own setup
+# eval "$(luarocks path --bin)" # you can also add LUA_PATH based on your own setup
 set -gx DYLD_LIBRARY_PATH /opt/homebrew/Cellar/imagemagick/7.1.1-28/lib # check your imagemagic installation path; this resolve dyld loading failure
