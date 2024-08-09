@@ -6,10 +6,10 @@ export PATH="/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sb
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/sbin:$PATH
 # Add homebrew's python3 and pip3 as default (so no need to add the 3 at the end)
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  export PATH=/usr/local/opt/python@3.12/libexec/bin:$PATH
-  export PATH=/opt/homebrew/opt/python@3.12/libexec/bin:$PATH
-fi
+# if [[ "$OSTYPE" == "darwin"* ]]; then
+#   export PATH=/usr/local/opt/python@3.12/libexec/bin:$PATH
+#   export PATH=/opt/homebrew/opt/python@3.12/libexec/bin:$PATH
+# fi
 #: }}}
 
 # add llvm to path for clangd (LSP for c/c++)

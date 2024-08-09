@@ -7,7 +7,7 @@ alias lk="NVIM_APPNAME=LazyKick nvim"
 
 #: Aliases {{{
 # alias ls='lsd'
-alias ls='eza --icons'
+alias ls='eza --icons --git'
 alias ll='ls -al'
 alias la='ls -a'
 alias lta='la --tree -I node_modules -I .git'
@@ -23,7 +23,7 @@ alias ts='~/dotfiles/scripts/TT.sh'
 alias tw='ts Work'
 alias tc='ts Config'
 alias tl='ts Dev'
-alias pc='echo -n (pwd) | pbcopy'
+alias pc='echo -n $(pwd) | pbcopy'
 # alias c="nvim -c 'lua require(\"bufferline\")' -c 'CommandTRipgrep'"
 alias c="nvim -c 'lua require(\"bufferline\")' -c 'lua require(\"telescope.builtin\").find_files(_G.dropdown_theme())'"
 alias n="nvim"
@@ -55,4 +55,8 @@ alias awp="pwd >> ~/work-dirs"
 alias osp="presenterm ~/pCloud/Notes-Database/00-Inbox/scratch_present.md"
 alias j="joshuto"
 alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
-
+# alias s="sesh connect \"\$(sesh list -i | gum filter --limit 1 --placeholder 'Pick a sesh' --prompt='⚡')\""
+alias s="sesh connect \"\$(sesh list -i | fzf --ansi --height 50% --border-label 'Pick a Sesh' --prompt=$'\e[33;1m⚡\e[m  ')\""
+alias sc="sesh connect \"Config  \""
+alias sw="sesh connect \"Work  \""
+alias sd="sesh connect \"Dev  \""

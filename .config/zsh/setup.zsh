@@ -50,7 +50,11 @@ zle -N down-line-or-beginning-search
 # FZF
 export FZF_DEFAULT_COMMAND='fd --type file --follow'
 export FZF_CTRL_T_COMMAND='fd --type file --follow'
-export FZF_DEFAULT_OPTS="--reverse --history='$HOME/.fzf_history' --border rounded --height 100% --no-info --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8"
+# export FZF_DEFAULT_OPTS="--reverse --history='$HOME/.fzf_history' --border rounded --height 100% --info=right --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8"
+
+# export FZF_DEFAULT_OPTS="--reverse --history='$HOME/.fzf_history' --border rounded --height 100% --info=right --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8 --info-command='echo -e \"\x1b[33;1m\$FZF_POS\x1b[m/\$FZF_INFO 💛\"'"
+
+export FZF_DEFAULT_OPTS="--reverse --history='$HOME/.fzf_history' --border rounded --height 100% --info=right --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8 --info-command='echo \"\$FZF_INFO (\x1b[33;1m\$FZF_POS\x1b[m) 💛\"'"
 
 # JAVA_HOME
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -63,6 +67,12 @@ export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
 # tdo env variable
 export NOTES_DIR=$HOME/pCloud/Notes-tdo
+
+# private env variables
+source $HOME/.environment_zsh
+
+# Terminal background
+export TERMBG=$(python3 $ZDOTDIR/bgenv.py) 
 
 #: }}}
 

@@ -76,7 +76,7 @@ function fn () {
   HEADER="CTRL-N: Create New Note."
   CREATE='ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-tdo -e "tdo {q}")+abort'
 
-  sel=$(fd "$1" -e md -H --type f "${directories[@]}" | fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fn - search noets file names and open with Nvim " \
+  sel=$(fd "$1" -e md -I -E "{**/.obsidian,**/.vscode}"  --type f "${directories[@]}" | fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fn - search noets file names and open with Nvim " \
     --preview 'cat "$(echo {})" --style="numbers"' --preview-window=down,60% \
     --header $HEADER \
     --bind "$CREATE")
@@ -92,7 +92,7 @@ function fno () {
     ~/pCloud/Notes-Database
   )
 
-  sel=$(rg "$1" -n "${directories[@]}" | fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim " \
+  sel=$(rg "$1" -g "!{**/.obsidian,**/.vscode}" -n "${directories[@]}" | fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim " \
     --preview 'bat --color=always "$(echo {1})" --highlight-line {2} --style="numbers"' \
     --preview-window=down --preview-window +{2}-5)
 
@@ -104,3 +104,18 @@ function fno () {
   $EDITOR "$file" +$line_nr -c "cd $(dirname "$sel")"
 }
 
+function sesh-sessions() {
+  {
+    exec </dev/tty
+    exec <&1
+    local session
+    session=$(sesh list -i | fzf --ansi --height 50% --reverse --border-label ' sesh ' --border --prompt $'\e[33;1m⚡\e[m  ')
+    [[ -z "$session" ]] && echo "No session provided!" && return
+    sesh connect $session
+  }
+}
+
+zle     -N             sesh-sessions
+bindkey -M emacs '\es' sesh-sessions
+bindkey -M vicmd '\es' sesh-sessions
+bindkey -M viins '\es' sesh-sessions
