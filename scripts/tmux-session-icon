@@ -13,6 +13,7 @@ case $NAME in
     echo "󰬱"
     ;;
   *)
-    echo ""
+    # echo ""
+    echo "󰤂"
     ;;
 esac

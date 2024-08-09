@@ -85,7 +85,7 @@ if [ -z "$TMUX" ]; then
         done
         ;;
       Sandbox)
-        tmux new-session -d -s "$RESULT" -c ~/pCloud/Dev/Sandboxes
+        tmux new-session -d -s "$RESULT" -c ~/pCloud/Dev/Sandboxes\; new-window -c ~/pCloud/Dev/Sandboxes/TypeScript-Sandbox -d
         ;;
       *)
         tmux new-session -d -s "$RESULT"
@@ -143,7 +143,8 @@ else
         tmux switch-client -t "$RESULT"
         ;;
       Sandbox)
-        tmux new-session -d -s "$RESULT" -c ~/pCloud/Dev/Sandboxes
+        # tmux new-session -d -s "$RESULT" -c ~/pCloud/Dev/Sandboxes
+        tmux new-session -d -s "$RESULT" -c ~/pCloud/Dev/Sandboxes\; new-window -c ~/pCloud/Dev/Sandboxes/TypeScript-Sandbox -d
         tmux switch-client -t "$RESULT"
         ;;
       *)

@@ -19,14 +19,14 @@ kill_current_popup() {
     local session_to_kill="$popup_session"
     # Check if the session exists before attempting to kill it
     if ! tmux has-session -t "$session_to_kill" 2>/dev/null; then
-      echo "Popup session does not exist: $session_to_kill"
+      tmux display-message "Popup session does not exist: $session_to_kill"
       return
     fi
   fi
   if tmux kill-session -t "$session_to_kill" 2>/dev/null; then
-    echo "Killed popup session: $session_to_kill"
+    tmux display-message "Killed popup session: $session_to_kill"
   else
-    echo "Failed to kill session: $session_to_kill"
+    tmux display-message "Failed to kill session: $session_to_kill"
   fi
 }
 
@@ -40,14 +40,27 @@ kill_all_popups() {
   local failed=0
   while read -r session; do
     if tmux kill-session -t "$session" 2>/dev/null; then
-      echo "Killed session: $session"
       ((killed++))
     else
-      echo "Failed to kill session: $session"
       ((failed++))
     fi
   done < <(tmux list-sessions | awk '/^scratch-/{print $1}')
-  echo "Killed $killed popup session(s), failed to kill $failed session(s)"
+  tmux display-message "Killed $killed popup session(s), failed to kill $failed session(s)"
+}
+
+# Function to kill the current session and its popup
+kill_current_session_and_popup() {
+  local current_session=$(tmux display-message -p "#{session_name}")
+  local popup_session="scratch-${current_session}"
+
+  # Kill the popup session if it exists
+  if tmux has-session -t "$popup_session" 2>/dev/null; then
+    tmux kill-session -t "$popup_session"
+  fi
+
+  # Kill the current session
+  tmux kill-session -t "$current_session"
+  tmux display-message "Killed current session: $current_session"
 }
 
 # Parse arguments
@@ -59,6 +72,10 @@ while [[ "$#" -gt 0 ]]; do
     ;;
   -K | --kill-all)
     kill_all_popups
+    exit 0
+    ;;
+  -x | --kill-session)
+    kill_current_session_and_popup
     exit 0
     ;;
   *)
@@ -81,3 +98,4 @@ else
     -T "Scratch - $current_session" \
     -E "tmux new-session -A -s '$popup_session' \; set-option -t '$popup_session' status off"
 fi
+

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+TERMBG=$(python3 $ZDOTDIR/bgenv.py)
+tmux set-environment TERMBG $TERMBG
+tmux source-file ~/.tmux.conf
+tmux display-message "background and ~/.tmux.conf reloaded"
