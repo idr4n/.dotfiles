@@ -57,17 +57,29 @@ mapkey('<Ctrl-b>', 'Search Query in Brave', function () {
 });
 
 // search in Amazon.com
-mapkey('<Ctrl-s>', 'Search Query in Amazon.com', function () {
+mapkey('<Ctrl-s>', 'Search Query in Amazon.com (US)', function () {
+  const openAmazonUs = (query) => {
+    window.open(
+      'https://www.amazon.com/s?k=' +
+        encodeURIComponent(query) +
+        '&source=desktop'
+    );
+  };
+
+  const selectedText = window.getSelection().toString().trim();
+  if (selectedText) {
+    // If there is selected text, use it as the query
+    openAmazonUs(selectedText);
+    return;
+  }
+
   const urlParams = new URLSearchParams(window.location.search);
   const queryValue =
     urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
+
   if (queryValue) {
-    // If queryValue is present, redirect to Amazon search with the query value
-    window.open(
-      'https://www.amazon.com/s?k=' +
-        encodeURIComponent(queryValue) +
-        '&source=desktop'
-    );
+    // If queryValue is present, redirect to Amazon.com search with the query value
+    openAmazonUs(queryValue);
   } else {
     // If there is no queryValue, check and convert current URL if it's a Saudi Amazon URL
     const currentUrl = window.location.href;
@@ -76,7 +88,7 @@ mapkey('<Ctrl-s>', 'Search Query in Amazon.com', function () {
     if (pattern.test(currentUrl)) {
       const match = currentUrl.match(pattern);
       const query = match[1].replace(/-/g, ' ');
-      window.open(`https://www.amazon.com/s?k=${encodeURI(query)}`);
+      openAmazonUs(query);
     } else {
       // Optionally, handle the case where the URL does not match the pattern
       window.open('https://www.amazon.com');
@@ -86,17 +98,28 @@ mapkey('<Ctrl-s>', 'Search Query in Amazon.com', function () {
 
 // search in Amazon.sa
 mapkey('<Ctrl-a>', 'Search Query in Amazon.sa', function () {
+  const openAmazonSa = (query) => {
+    window.open(
+      'https://www.amazon.sa/s?k=' +
+        encodeURIComponent(query) +
+        '&source=desktop'
+    );
+  };
+
+  const selectedText = window.getSelection().toString().trim();
+  if (selectedText) {
+    // If there is selected text, use it as the query
+    openAmazonSa(selectedText);
+    return;
+  }
+
   const urlParams = new URLSearchParams(window.location.search);
   const queryValue =
     urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
-  // window.open('https://www.amazon.sa/s?k=' + encodeURIComponent(queryValue) + '&source=desktop');
+
   if (queryValue) {
     // If queryValue is present, redirect to Amazon.sa search with the query value
-    window.open(
-      'https://www.amazon.sa/s?k=' +
-        encodeURIComponent(queryValue) +
-        '&source=desktop'
-    );
+    openAmazonSa(queryValue);
   } else {
     // If there is no queryValue, check and convert current URL if it's a USA Amazon URL
     const currentUrl = window.location.href;
@@ -105,7 +128,7 @@ mapkey('<Ctrl-a>', 'Search Query in Amazon.sa', function () {
     if (pattern.test(currentUrl)) {
       const match = currentUrl.match(pattern);
       const query = match[1].replace(/-/g, ' ');
-      window.open(`https://www.amazon.sa/s?k=${encodeURI(query)}`);
+      openAmazonSa(query);
     } else {
       // Optionally, handle the case where the URL does not match the pattern
       window.open('https://www.amazon.sa');
@@ -164,7 +187,7 @@ mapkey('>', '#3Move current tab to right', function () {
 unmap('<Ctrl-i>');
 
 settings.blocklistPattern =
-  /calendar.cron.com*|typeform.com*|colab.research.google.com|app.eraser.io*|excalidraw.com*|design.penpot.app*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
+  /calendar.cron.com*|app.capacities.io*|typeform.com*|colab.research.google.com|app.eraser.io*|excalidraw.com*|design.penpot.app*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
 
 addSearchAlias(
   'gw',
