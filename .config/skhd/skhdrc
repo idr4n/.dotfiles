@@ -70,7 +70,7 @@ alt - v: open -na kitty --args --session ~/kitty-session-conf
 
 # focus apps
 # alt - h : ~/scripts/focus_app alacritty
-alt + shift - h : ~/scripts/focus_app kitty
+# alt + shift - h : ~/scripts/focus_app kitty
 # alt - h : ~/scripts/focus_app wezterm
 # alt - l : ~/scripts/focus_app wezterm
 alt + shift - z : ~/scripts/focus_app zathura 1

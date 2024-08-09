@@ -519,13 +519,13 @@ end)
 local function moveWindowNext()
     local win = hs.window.focusedWindow()
     win:moveOneScreenEast(0)
-    toggleFullScreen(s)
+    -- toggleFullScreen(s)
 end
 
 local function moveWindowPrev()
     local win = hs.window.focusedWindow()
     win:moveOneScreenWest(0)
-    toggleFullScreen(s)
+    -- toggleFullScreen(s)
 end
 
 hs.hotkey.bind(hyper3, "right", moveWindowNext)
@@ -773,4 +773,10 @@ end)
 -- hs.hotkey.bind({"alt", "shift"}, "t", function()
 -- hs.hotkey.bind({ "alt" }, "t", function()
 --     h.open_alacritty("tmux new-session -A -s W")
+-- end)
+
+-- Alt + \ = Play / Pause
+-- hs.hotkey.bind({ "alt" }, "\\", function()
+--     hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
+--     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
 -- end)
