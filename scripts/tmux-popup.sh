@@ -60,7 +60,7 @@ kill_current_session_and_popup() {
 
   # Kill the current session
   tmux kill-session -t "$current_session"
-  tmux display-message "Killed current session: $current_session"
+  # tmux display-message "Killed current session: $current_session"
 }
 
 # Parse arguments
@@ -92,7 +92,19 @@ if in_popup; then
   tmux detach-client
 else
   # If we're not in a popup, create or attach to it
-  tmux popup -xC -yC -w80% -h80% \
+  # Calculate the width
+  w_percent=80
+  total_columns=$(tmux display-message -p '#{window_width}')
+  percent_columns=$((total_columns * $w_percent / 100))
+  if [ $percent_columns -gt 140 ]; then
+    width=140
+  else
+    width=$percent_columns
+  fi
+
+  # Use the calculated width in the tmux popup command
+  # tmux popup -xC -yC -w80% -h85% \
+  tmux popup -xC -yC -w${width} -h85% \
     -b rounded \
     -S fg=magenta \
     -T "Scratch - $current_session" \
