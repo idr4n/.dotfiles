@@ -1,0 +1,41 @@
+[manager]
+prepend_keymap = [
+# Open with
+{ on = [ "o", "f" ], run = ''' shell 'open -R "$1"' --confirm ''', desc = "Reveal in finder" },
+{ on = [ "o", "p" ], run = ''' shell 'qlmanage -p "$1" > /dev/null 2> /dev/null' --confirm ''', desc = "Preview file" },
+{ on = [ "o", "s" ], run = ''' shell 'sioyek "$1" > /dev/null 2> /dev/null' --confirm ''', desc = "Open with Sioyek" },
+{ on = [ "o", "z" ], run = ''' shell 'zathura "$1" & ~/scripts/focus_app zathura > /dev/null 2> /dev/null' --confirm ''', desc = "Open with Zathura" },
+{ on = [ "o", "d" ], run = ''' shell 'open -a Dropover "$@"' --confirm ''', desc = "Open with Dropover (make dragable)" },
+
+# Go to
+{ on = [ "g", "s" ], run = "cd ~/Desktop/ScreenShots",   desc = "Go to ScreenShots" },
+
+# tags
+{ on = [ "b", "a" ], run = '''
+shell --block --confirm '
+  path="$1"
+  tags_file="$HOME/Sync/tags_file.txt"
+
+  # check if tags_file exists
+  if [ ! -f $tags_file ]; then
+    touch $tags_file
+  fi
+
+  # replace $HOME with ~ from the start of path
+  path="${path/#$HOME/~}"
+
+  if rg -q "^$path\$" $tags_file; then
+    echo "Path already present."
+  else
+    # append the path to the file name and save it in the "tags_file" file
+    echo "$path" >> $tags_file
+  fi
+'
+''', desc = "Add tag" },
+{ on = [ "b", "s" ], run = '''
+shell --block --confirm '
+sel=$(cat ~/Sync/tags_file.txt | sort | fzf --layout=reverse)
+yazi --cwd-file ~/.cache/yazi/last_dir "$sel"
+'
+''', desc = "Search tag" }
+]
