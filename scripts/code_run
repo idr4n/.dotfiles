@@ -9,30 +9,31 @@ os="$(uname -s)"
 
 case $ext in
 cpp)
-	case $os in
-	Linux*) g++ -o $dir_path/a.out $file ;;
-	# *) clang++ -g -std=c++17 -stdlib=libc++ $file
-	*) clang++ -o $dir_path/a.out -std=c++17 -stdlib=libc++ $file ;;
-	esac
-	[ -f $dir_path/a.out ] && $dir_path/a.out
-	;;
+  case $os in
+  Linux*) g++ -o $dir_path/a.out $file ;;
+  # *) clang++ -g -std=c++17 -stdlib=libc++ $file
+  *) clang++ -o $dir_path/a.out -std=c++17 -stdlib=libc++ $file ;;
+  esac
+  [ -f $dir_path/a.out ] && $dir_path/a.out
+  ;;
 c)
-	gcc $file -o $dir_path/a.out
-	[ -f $dir_path/a.out ] && $dir_path/a.out
-	;;
+  gcc $file -o $dir_path/a.out
+  [ -f $dir_path/a.out ] && $dir_path/a.out
+  ;;
 go) go run $file ;;
 py) python3 $file ;;
 rs)
-	cd $dir_path
-	cargo run
-	;;
+  cd $dir_path
+  cargo run
+  ;;
 js | ts) node $file ;;
 jl) julia $file ;;
 java)
-	javac $file
-	java $file
-	;;
+  javac $file
+  java $file
+  ;;
 swift) swift $file ;;
+zig) zig run $file ;;
 ex) elixir $file ;;
 *) ./$file ;;
 esac
