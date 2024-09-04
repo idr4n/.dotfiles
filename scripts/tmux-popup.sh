@@ -63,6 +63,49 @@ kill_current_session_and_popup() {
   # tmux display-message "Killed current session: $current_session"
 }
 
+# Function to synchronize windows between main and popup sessions
+synchronize_windows() {
+  local main_windows=$(tmux list-windows -t "$current_session" -F "#{window_index}")
+  local popup_windows=$(tmux list-windows -t "$popup_session" -F "#{window_index}" 2>/dev/null || echo "")
+
+  # Remove windows from popup session that don't exist in main session
+  for popup_window in $popup_windows; do
+    if ! echo "$main_windows" | grep -q "$popup_window"; then
+      tmux kill-window -t "$popup_session:$popup_window"
+    fi
+  done
+
+  # Create windows in popup session that exist in main session
+  for main_window in $main_windows; do
+    if ! echo "$popup_windows" | grep -q "$main_window"; then
+      local window_path=$(tmux display-message -t "$current_session:$main_window" -p "#{pane_current_path}")
+      tmux new-window -t "$popup_session" -c "$window_path" -n "$main_window"
+    fi
+  done
+}
+
+# Function to get or create a corresponding window in the popup session
+get_or_create_popup_window() {
+  local current_window=$1
+  local current_path=$2
+  
+  # Check if the window already exists in the popup session
+  if ! tmux list-windows -t "$popup_session" 2>/dev/null | grep -q "^$current_window:"; then
+    # If it doesn't exist, create it with the current path
+    tmux new-window -t "$popup_session" -c "$current_path" -n "$current_window"
+  else
+    # If it exists, check if the path is different
+    local popup_path=$(tmux display-message -t "$popup_session:$current_window" -p "#{pane_current_path}")
+    if [ "$current_path" != "$popup_path" ]; then
+      # Update the path only if it's different
+      tmux send-keys -t "$popup_session:$current_window" "cd $current_path" C-m
+    fi
+  fi
+  
+  # Switch to the corresponding window
+  tmux select-window -t "$popup_session:$current_window"
+}
+
 # Parse arguments
 while [[ "$#" -gt 0 ]]; do
   case $1 in
