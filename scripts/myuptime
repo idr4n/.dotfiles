@@ -3,28 +3,17 @@
 boottime=$(sysctl -n kern.boottime | awk '{print $4}' | sed 's/,//g')
 unixtime=$(date +%s)
 timeAgo=$(($unixtime - $boottime))
+
 days=$(($timeAgo / 86400))
+remaining_seconds=$(($timeAgo % 86400))
+hours=$(echo "scale=1; $remaining_seconds / 3600" | bc)
 
 if [[ "$days" -eq 0 ]]; then
-  days=""
+  result=$(printf "%.1f hours" $hours)
 elif [[ "$days" -eq 1 ]]; then
-  days="$days day, "
+  result=$(printf "1 day, %.1f hours" $hours)
 else
-  days="$days days, "
+  result=$(printf "%d days, %.1f hours" $days $hours)
 fi
 
-# hours=$(($timeAgo/3600 % 24))
-# minutes=$(($timeAgo/60 % 60))
-# hours_mins=$(printf "%02d:%02d" $hours $minutes)
-
-# uptime=`awk -v time=$timeAgo 'BEGIN { minutes = int(time / 60 % 60); hours = int(time / 60 / 60 % 24); days = int(time / 60 / 60 / 24); printf("%.0fd-%.0fh-%.0fm", days, hours, minutes); exit }'`
-
-# echo "$days$hours_mins"
-
-hours=$(echo "scale=1; $timeAgo / 3600" | bc)
-
-# Format hours with leading zeros if needed
-hours_mins=$(printf "%04.1f hours" $hours)
-
-# Print the result
-echo "$days$hours_mins"
+echo "$result"
