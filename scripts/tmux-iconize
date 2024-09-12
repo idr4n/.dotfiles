@@ -8,9 +8,7 @@ case $NAME in
         echo ""
         ;;
     fish | zsh | bash)
-        # echo ""
-        # echo ""
-        echo ""
+        echo ""
         ;;
     nvim)
         echo ""
