@@ -145,12 +145,22 @@ else
     width=$percent_columns
   fi
 
+  current_window=$(tmux display-message -p "#{window_index}")
+  current_path=$(tmux display-message -p "#{pane_current_path}")
+
+  # Create the popup session if it doesn't exist
+  tmux has-session -t "$popup_session" 2>/dev/null || tmux new-session -d -s "$popup_session"
+
+  # Synchronize windows between main and popup sessions
+  synchronize_windows
+
+  # Get or create the corresponding window and switch to it
+  get_or_create_popup_window "$current_window" "$current_path"
+
   # Use the calculated width in the tmux popup command
-  # tmux popup -xC -yC -w80% -h85% \
   tmux popup -xC -yC -w${width} -h85% \
     -b rounded \
     -S fg=magenta \
     -T "Scratch - $current_session" \
-    -E "tmux new-session -A -s '$popup_session' \; set-option -t '$popup_session' status off"
+    -E "tmux attach-session -t '$popup_session' \; set-option -t '$popup_session' status off"
 fi
-
