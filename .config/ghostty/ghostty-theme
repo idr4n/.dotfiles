@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+theme="$1"
+config="$HOME/.config/ghostty/config"
+
+# check file exists
+if [ ! -f "$config" ]; then
+  echo "Config file not found!"
+  exit 0
+fi
+
+sed -i '' -e "s#^theme =.*#theme = \"$theme\"#g" $config

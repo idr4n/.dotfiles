@@ -1,0 +1,47 @@
+# Theme
+theme = "dracula"
+
+# Font
+font-size = 17
+font-family = "Zed Plex Mono"
+
+# Cell
+adjust-cell-width = -1
+adjust-cell-height = 9
+
+# Cursor
+adjust-cursor-thickness = 3
+
+# Keybindings
+keybind = super+shift+n=new_window
+keybind = super+shift+n=new_window
+keybind = super+shift+t=new_tab
+keybind = super+shift+w=close_surface
+keybind = super+shift+equal=equalize_splits
+
+# Tmux Keybindings
+keybind = super+k=text:\x01\x53
+keybind = super+n=text:\x01\x3b
+keybind = super+j=text:\x01\x2f
+keybind = super+l=text:\x01\x5e
+keybind = super+p=text:\x01\x50
+keybind = super+z=text:\x01\x7a
+keybind = super+t=text:\x01\x63
+keybind = super+w=text:\x01\x78
+keybind = ctrl+q=text:\x01\x09
+keybind = ctrl+1=text:\x01\x31
+keybind = ctrl+2=text:\x01\x32
+keybind = ctrl+3=text:\x01\x33
+keybind = ctrl+4=text:\x01\x34
+
+# Window
+window-height = 26
+window-width = 110
+
+# Misc
+clipboard-read = allow
+confirm-close-surface = false
+macos-option-as-alt = true
+title = " "
+shell-integration-features = no-title
+
