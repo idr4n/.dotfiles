@@ -1,4 +1,4 @@
-import = ["/Users/iduran/.config/alacritty/themes/seoul256.toml"]
+import = ["/Users/iduran/.config/alacritty/themes/nord.toml"]
 live_config_reload = true
 
 [cursor]
@@ -7,38 +7,69 @@ thickness = 0.2
 [font]
 # For FiraCode
 # size = 15
+# size = 16
 # For SauceCodePro
-size = 16
+# size = 16
+# for monolisa
+# size = 15
+size = 17
 
 [font.bold]
 # family = "FiraCode Nerd Font"
-family = "SauceCodePro Nerd Font"
-style = "SemiBold"
+# family = "MonoLisa Nerd Font"
+# family = "IosevkaCustom Nerd Font"
+family = "ZedPlexMono Nerd Font"
+# family = "SauceCodePro Nerd Font"
+# style = "SemiBold"
+# style = "Bold"
+style = "Bold Extended"
 
 [font.bold_italic]
 # family = "FiraCode Nerd Font"
-family = "SauceCodePro Nerd Font"
-style = "SemiBold"
+# family = "MonoLisa Nerd Font"
+# family = "IosevkaCustom Nerd Font"
+family = "ZedPlexMono Nerd Font"
+# family = "SauceCodePro Nerd Font"
+# style = "SemiBold"
+# style = "Bold Italic"
+style = "Bold Extended Italic"
 
 [font.glyph_offset]
 y = 3
 
 [font.normal]
 # family = "FiraCode Nerd Font"
-family = "SauceCodePro Nerd Font"
-style = "Regular"
+# family = "MonoLisa Nerd Font"
+# family = "IosevkaCustom Nerd Font"
+family = "ZedPlexMono Nerd Font"
+# family = "SauceCodePro Nerd Font"
+# style = "Regular"
+# style = "Light Regular"
+style = "Extended"
 
 [font.italic]
 # family = "FiraCode Nerd Font"
-family = "SauceCodePro Nerd Font"
-style = "Regular"
+# family = "MonoLisa Nerd Font"
+# family = "IosevkaCustom Nerd Font"
+family = "ZedPlexMono Nerd Font"
+# family = "SauceCodePro Nerd Font"
+# style = "Regular"
+# style = "Italic"
+# style = "Light Italic"
+style = "Extended Italic"
 
 [font.offset]
 # x = 1
 # For FiraCode
 # y = 10
+# y = 12
+# y = 6
 # For SauceCodePro
-y = 4
+# y = 4
+# For MonoLisa
+# y = 5
+# For ZedPlexMono
+y = 10
 
 [[keyboard.bindings]]
 chars = "\u001BF"
@@ -102,7 +133,7 @@ mods = "Command|Shift"
 
 [[keyboard.bindings]]
 chars = "\u0001S"
-key = "S"
+key = "k"
 mods = "Command"
 
 [[keyboard.bindings]]
@@ -201,7 +232,8 @@ hide_when_typing = true
 [window]
 decorations = "buttonless"
 dynamic_padding = true
-opacity = 1
+# opacity = 0.95
+# blur = true
 option_as_alt = "Both"
 
 [window.dimensions]
