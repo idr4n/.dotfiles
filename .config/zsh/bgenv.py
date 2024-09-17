@@ -1,9 +1,8 @@
 import sys
 import darkdetect
 
-bg_light = "#282A36"  # dracula
-# bg_dark = "#222436" # tokyonight moon
-bg_dark = "#282A36"  # dracual
+bg_light = "#3C435D"
+bg_dark = "#2E3347"
 
 if darkdetect.isDark():
     print(bg_dark, end="")

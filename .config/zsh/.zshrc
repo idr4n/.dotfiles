@@ -25,6 +25,8 @@ export XDG_CONFIG_HOME=$HOME/.config
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
 
 #: Set Editor {{{
+# export NVIM_APPNAME=LazyVim
+# export NVIM_APPNAME=NvChad
 export VISUAL=nvim
 export EDITOR="$VISUAL"
 #: }}}
@@ -69,3 +71,4 @@ source ${ZIM_HOME}/init.zsh
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
 
 #: }}}
+fpath+=${ZDOTDIR:-~}/.zsh_functions

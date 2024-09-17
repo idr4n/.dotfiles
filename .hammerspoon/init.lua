@@ -171,8 +171,8 @@ hs.hotkey.bind(hyper3, ",", function()
     local f = win:frame()
     local screen = win:screen()
     local max = screen:frame()
-    local proportion_w = 0.45
-    local proportion_h = 0.9
+    local proportion_w = 0.5
+    local proportion_h = 0.95
 
     if max.h <= 1200 then
         proportion_w = 0.53
@@ -183,7 +183,7 @@ hs.hotkey.bind(hyper3, ",", function()
     f.w = max.w * proportion_w
     f.h = max.h * proportion_h
     -- f.y = max.y + (max.h - f.h) / 2
-    f.y = max.y + (max.h - max.h * 0.96) + screenMarginTop
+    f.y = max.y + (max.h - max.h * 0.975) + screenMarginTop
     win:setFrame(f)
 end)
 
@@ -780,3 +780,4 @@ end)
 --     hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
 --     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
 -- end)
+

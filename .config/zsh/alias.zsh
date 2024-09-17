@@ -26,7 +26,7 @@ alias tl='ts Dev'
 alias pc='echo -n $(pwd) | pbcopy'
 # alias c="nvim -c 'lua require(\"bufferline\")' -c 'CommandTRipgrep'"
 alias c="nvim -c 'lua require(\"bufferline\")' -c 'lua require(\"telescope.builtin\").find_files(_G.dropdown_theme())'"
-alias n="nvim"
+alias n="NVIM_APPNAME=nvim nvim"
 alias nv="nvim ."
 # alias nn="nvim -c 'cd ~/.config/nvim' -c 'lua require(\"bufferline\")' -c 'CommandTRipgrep'"
 alias nn="nvim -c 'cd ~/.config/nvim' -c 'lua require(\"bufferline\")' -c 'lua require(\"telescope.builtin\").find_files(_G.dropdown_theme())'"

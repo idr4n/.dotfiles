@@ -7,6 +7,25 @@ prepend_keymap = [
 { on = [ "o", "z" ], run = ''' shell 'zathura "$1" & ~/scripts/focus_app zathura > /dev/null 2> /dev/null' --confirm ''', desc = "Open with Zathura" },
 { on = [ "o", "d" ], run = ''' shell 'open -a Dropover "$@"' --confirm ''', desc = "Open with Dropover (make dragable)" },
 
+# search
+{ on = [ "s", "f" ], run = ''' search fd''', desc = "Search via fd" },
+{ on = [ "s", "s" ], run = '''
+shell --block --confirm '
+  directories=(
+    ~/.config
+    ~/Dev
+    ~/pCloud
+  )
+  sel=$(fd . -H "${directories[@]}" | fzf --layout=reverse --height 100% --ansi --border-label  " ff - search in given list and cd "); 
+
+  if [ -d "$sel" ]; then
+    ya pub dds-cd --str "$sel"
+  else
+    ya pub dds-cd --str "$(dirname "$sel")"
+  fi
+'
+''', desc = "Search via fzf selected dirs" },
+
 # Go to
 { on = [ "g", "s" ], run = "cd ~/Desktop/ScreenShots",   desc = "Go to ScreenShots" },
 
@@ -14,7 +33,7 @@ prepend_keymap = [
 { on = [ "b", "a" ], run = '''
 shell --block --confirm '
   path="$1"
-  tags_file="$HOME/Sync/tags_file.txt"
+  tags_file="$HOME/pCloud/tags_file.txt"
 
   # check if tags_file exists
   if [ ! -f $tags_file ]; then
@@ -34,8 +53,16 @@ shell --block --confirm '
 ''', desc = "Add tag" },
 { on = [ "b", "s" ], run = '''
 shell --block --confirm '
-sel=$(cat ~/Sync/tags_file.txt | sort | fzf --layout=reverse)
-yazi --cwd-file ~/.cache/yazi/last_dir "$sel"
+sel=$(cat ~/pCloud/tags_file.txt | sort | fzf --layout=reverse)
+sel="${sel/#\~/$HOME}"
+
+if [ -d "$sel" ]; then
+  ya pub dds-cd --str "$sel"
+else
+  if [ -f "$sel" ]; then
+    ya pub dds-cd --str "$(dirname "$sel")"
+  fi
+fi
 '
 ''', desc = "Search tag" }
 ]

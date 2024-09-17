@@ -51,7 +51,7 @@ cmd + ctrl + shift - d : ~/scripts/dailynote
 cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim ~/pCloud/Notes-Database/todos_important.md"
 
 # Open scratchpad note file
-cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 --working-directory ~/pCloud/Notes-tdo -e fish -ic "nvim ~/pCloud/Notes-tdo/notes/Scratchpad.md"
+cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 --working-directory ~/pCloud/Notes-tdo -e zsh -ic "nvim ~/pCloud/Notes-tdo/notes/Scratchpad.md"
 # cmd + ctrl + shift - n : open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd ~/pCloud/Notes-Database nvim ~/pCloud/Notes-Database/Misc-Notes/Scratchpad.md
 # cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "hx ~/pCloud/Notes-Database/Misc-Notes/Scratchpad.md"
 
@@ -78,7 +78,7 @@ alt + shift - z : ~/scripts/focus_app zathura 1
 # alt - l : open -a "Visual Studio Code"
 
 # run scripts
-ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py
+# ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py
 
 # check and save tasks
 # ctrl + shift - c : ~/scripts/check_later
@@ -88,6 +88,12 @@ ctrl + alt + cmd - r : ~/scripts/add_image_shadow.py
 ctrl + shift - u : ~/scripts/harpoonish.sh 1
 ctrl + shift - i : ~/scripts/harpoonish.sh 2
 ctrl + shift - o : ~/scripts/harpoonish.sh 3
+
+# Aerospace
+cmd + ctrl + alt - h : aerospace mode service && aerospace join-with left && aerospace mode main
+cmd + ctrl + alt - l : aerospace mode service && aerospace join-with right && aerospace mode main
+cmd + ctrl + alt - r : aerospace mode service && aerospace flatten-workspace-tree && aerospace mode main
+cmd + ctrl + alt - f : aerospace mode service && aerospace layout floating tiling && aerospace mode main
 
 # Yabai
 
