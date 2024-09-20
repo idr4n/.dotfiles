@@ -88,7 +88,7 @@ synchronize_windows() {
 get_or_create_popup_window() {
   local current_window=$1
   local current_path=$2
-  
+
   # Check if the window already exists in the popup session
   if ! tmux list-windows -t "$popup_session" 2>/dev/null | grep -q "^$current_window:"; then
     # If it doesn't exist, create it with the current path
@@ -101,7 +101,7 @@ get_or_create_popup_window() {
       tmux send-keys -t "$popup_session:$current_window" "cd $current_path" C-m
     fi
   fi
-  
+
   # Switch to the corresponding window
   tmux select-window -t "$popup_session:$current_window"
 }
