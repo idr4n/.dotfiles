@@ -6,7 +6,7 @@ Includes a folder with scripts for automation of some tasks. This scripts are no
 
 ## Basic setup
 
-- Main terminal: Ghostty, Alacritty and [WezTerm](https://github.com/idr4n/wezterm) (Kitty as a fourth option), normally running Tmux.
+- Main terminal: [WezTerm](https://github.com/idr4n/wezterm), Alacritty and Ghostty in MacOS (I use Kitty and Alacritty in Linux), normally running Tmux.
 - Shell: Zsh (zim as plugin manager and powerlevel10k as prompt).
 - Font used in terminal: [tonsky/FiraCode](https://github.com/tonsky/FiraCode) (Nerd Fonts version).
 - Main editor: Neovim (see my config at [idr4n/nvim-lua](https://github.com/idr4n/nvim-lua)).

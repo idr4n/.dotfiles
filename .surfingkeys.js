@@ -300,9 +300,7 @@ map('<Ctrl-l>', 'od');
 
 // set theme
 
-// click `Save` button to make above settings to take effect.
-
-Dark_theme = `
+const Dark_theme = `
 .sk_theme {
     font-family: Input Sans Condensed, Charcoal, sans-serif;
     font-size: 14px;
@@ -449,7 +447,7 @@ Dark_theme = `
 }
 `;
 
-Light_theme = `
+const Light_theme = `
 .sk_theme {
     font-family: Input Sans Condensed, Charcoal, sans-serif;
     font-size: 14px;
@@ -588,12 +586,11 @@ Light_theme = `
 }
 `;
 
-settings.theme = `
-    @media (prefers-color-scheme: dark) {
-    ${Dark_theme}
+if (
+  window.matchMedia &&
+  window.matchMedia('(prefers-color-scheme: dark)').matches
+) {
+  settings.theme = Dark_theme;
+} else {
+  settings.theme = Light_theme;
 }
-    @media (prefers-color-scheme: light) {
-    ${Light_theme}
-}
-}
-`;
