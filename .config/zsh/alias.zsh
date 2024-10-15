@@ -3,6 +3,7 @@ alias l="NVIM_APPNAME=LazyVim nvim"
 alias a="NVIM_APPNAME=AstroNvim nvim"
 alias v="NVIM_APPNAME=NvChad nvim"
 alias lk="NVIM_APPNAME=LazyKick nvim"
+alias vt="NVIM_APPNAME=ChadTiny nvim"
 #: }}}
 
 #: Aliases {{{
