@@ -74,5 +74,8 @@ source $HOME/.environment_zsh
 # Terminal background
 export TERMBG=$(python3 $ZDOTDIR/bgenv.py) 
 
+# typst
+export TYPST_ROOT="$HOME"
+
 #: }}}
 
