@@ -1,7 +1,7 @@
 DOTFILES_DIR := $(HOME)/dotfiles
 CONFIG_DIR := $(HOME)/.config
 
-DOTFILE_TARGETS := git alacritty nvim typst
+DOTFILE_TARGETS := git alacritty nvim latexmkrc typst
 
 .PHONY: all
 all: homebrew dotfiles
