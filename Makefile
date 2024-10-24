@@ -37,6 +37,11 @@ nvim:
 		cd $(CONFIG_DIR)/nvim && git pull; \
 	fi
 
+.PHONY: latexmkrc
+latexmkrc:
+	@echo "Setting up latexmkrc..."
+	@ln -vsf $(DOTFILES_DIR)/.latexmkrc $(HOME)
+
 .PHONY: typst
 typst:
 	@echo "Setting up Typst configuration..."

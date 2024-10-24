@@ -21,8 +21,7 @@ size = 17
 family = "ZedPlexMono Nerd Font"
 # family = "SauceCodePro Nerd Font"
 # style = "SemiBold"
-# style = "Bold"
-style = "Bold Extended"
+style = "Extended Bold"
 
 [font.bold_italic]
 # family = "FiraCode Nerd Font"
@@ -31,8 +30,7 @@ style = "Bold Extended"
 family = "ZedPlexMono Nerd Font"
 # family = "SauceCodePro Nerd Font"
 # style = "SemiBold"
-# style = "Bold Italic"
-style = "Bold Extended Italic"
+style = "Extended Bold Italic"
 
 [font.glyph_offset]
 y = 3
