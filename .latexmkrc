@@ -1,1 +1,1 @@
-$clean_ext = "synctex.gz %R";
+push @generated_exts, "synctex.gz";
