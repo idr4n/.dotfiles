@@ -1,8 +1,8 @@
 require("bookmark_chooser")
 -- require("check_later")
 -- require("espanso_chooser")
-require("list_chooser")
-require("safari_tabs_chooser")
+-- require("list_chooser")
+-- require("safari_tabs_chooser")
 local h = require("helper")
 
 -- local variables
@@ -656,44 +656,44 @@ end)
 --     win:setFrame(f)
 -- end)
 
------Increase width-----
-hs.hotkey.bind({ "ctrl", "alt", "shift" }, "j", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local delta = 0.025
-    local incWidth = f.w * delta
-
-    f.x = f.x - incWidth / 2
-    f.w = f.w + incWidth
-    win:setFrame(f)
-end)
-
------Decreasae width-----
-hs.hotkey.bind({ "ctrl", "alt", "shift" }, "k", function()
-    local win = hs.window.focusedWindow()
-    local f = win:frame()
-    local delta = 0.025
-    local incWidth = f.w * delta
-
-    f.x = f.x + incWidth / 2
-    f.w = f.w - incWidth
-    win:setFrame(f)
-end)
+-- -----Increase width-----
+-- hs.hotkey.bind({ "ctrl", "alt", "shift" }, "j", function()
+--     local win = hs.window.focusedWindow()
+--     local f = win:frame()
+--     local delta = 0.025
+--     local incWidth = f.w * delta
+--
+--     f.x = f.x - incWidth / 2
+--     f.w = f.w + incWidth
+--     win:setFrame(f)
+-- end)
+--
+-- -----Decreasae width-----
+-- hs.hotkey.bind({ "ctrl", "alt", "shift" }, "k", function()
+--     local win = hs.window.focusedWindow()
+--     local f = win:frame()
+--     local delta = 0.025
+--     local incWidth = f.w * delta
+--
+--     f.x = f.x + incWidth / 2
+--     f.w = f.w - incWidth
+--     win:setFrame(f)
+-- end)
 
 --------------------------------------------------------------
 -- Shortcuts to lunch, focus, or cycle windows of applications
 --------------------------------------------------------------
 
-hs.hotkey.bind({ "alt", "shift" }, "K", function()
-    local name = "Sublime Text"
-    local app = hs.application.get(name)
-    if not app then
-        -- print("launching app...")
-        hs.application.launchOrFocus(name)
-        return
-    end
-    h.focusApp(app, name)
-end)
+-- hs.hotkey.bind({ "alt", "shift" }, "K", function()
+--     local name = "Sublime Text"
+--     local app = hs.application.get(name)
+--     if not app then
+--         -- print("launching app...")
+--         hs.application.launchOrFocus(name)
+--         return
+--     end
+--     h.focusApp(app, name)
+-- end)
 
 -- hs.hotkey.bind("alt", "Q", function()
 --     -- local name = "Google Chrome"
@@ -780,4 +780,3 @@ end)
 --     hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
 --     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
 -- end)
-
