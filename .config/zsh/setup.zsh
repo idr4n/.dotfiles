@@ -77,5 +77,8 @@ export TERMBG=$(python3 $ZDOTDIR/bgenv.py)
 # typst
 export TYPST_ROOT="$HOME"
 
+# imagemagic
+export DYLD_FALLBACK_LIBRARY_PATH="$(brew --prefix)/lib:$DYLD_FALLBACK_LIBRARY_PATH"
+
 #: }}}
 

@@ -13,6 +13,7 @@
   doc_template(
   title: title,
   authors: authors,
+  prefix: prefix,
   enable-footer: enable-footer,
   {
     gen_preamble(title: title, authors: authors, suffix: suffix, prefix: prefix)

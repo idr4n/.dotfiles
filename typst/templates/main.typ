@@ -100,6 +100,7 @@
   title: "",
   authors: none,
   enable-footer: true,
+  prefix: none,
 
   // Content to wrap
   body,
@@ -152,8 +153,10 @@
       #columns(3)[
         #align(left)[
           //©
-          #author_string(authors: authors),
-          #datetime.today().year()
+          // #author_string(authors: authors),
+          // #prefix,
+          // #datetime.today().year()
+          #prefix
         ]
         #colbreak()
 
