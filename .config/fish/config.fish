@@ -72,6 +72,8 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.rgrc
 #: Abbreviations {{{
 abbr -a lr --set-cursor "exa --icons -la | rg '%'"
 abbr -a \*\* --position anywhere --set-cursor "(fd . --type d -H -E '*.git*' -E '*node_modules*' | fzf)"
+abbr -a gco --set-cursor "git checkout"
+abbr -a wp --set-cursor "echo -n (which %) | pbcopy"
 # abbr 
 #: }}}
 
@@ -124,6 +126,7 @@ alias awp="pwd >> ~/work-dirs"
 alias osp="presenterm ~/pCloud/Notes-Database/00-Inbox/scratch_present.md"
 alias j="joshuto"
 alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
+alias s='sesh connect (sesh list -i | fzf --ansi --height "50%" --border-label "Pick a Sesh" --prompt="⚡ ")'
 
 function lt
     if test (count $argv) -gt 0
@@ -153,6 +156,25 @@ end
 # set fish_cursor_insert line
 # Set the replace mode cursor to an underscore
 # set fish_cursor_replace_one underscore
+set fish_cursor_default block blink
+set fish_cursor_insert line blink
+set fish_cursor_replace_one underscore blink
+set fish_cursor_visual block
+
+# Function to change cursor on mode switch
+function fish_vi_cursor --on-variable fish_bind_mode
+    switch $fish_bind_mode
+        case default
+            echo -en "\e[2 q" # Set block cursor
+            set fish_cursor_custom block blink
+        case insert
+            echo -en "\e[6 q" # Set line cursor
+            set fish_cursor_custom line blink
+        case visual
+            echo -en "\e[2 q" # Set block cursor
+            set fish_cursor_custom block
+    end
+end
 
 #: }}}
 
@@ -171,7 +193,8 @@ setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 # setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
 # alternative pointer ''
 # setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
-setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:5,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
+# setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:5,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
+set -gx FZF_DEFAULT_OPTS "--reverse --history=$HOME/.fzf_history --border rounded --height 100% --info=right --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8 --info-command='echo \"\$FZF_INFO (\$(set_color -o yellow)\$FZF_POS\$(set_color normal)) 💛\"'"
 
 #: }}}
 
@@ -329,6 +352,7 @@ zoxide init fish | source
 #: Add starship prompt {{{
 
 starship init fish | source
+enable_transience
 
 #: }}}
 
