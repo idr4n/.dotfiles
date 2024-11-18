@@ -3,16 +3,20 @@
 # error_symbol = '[󰔶](bold red) '
 # error_symbol = '[✘](bold red) '
 
+# format = """$character"""
+format = """$directory$character"""
+right_format = """[$all](none)"""
+
 [git_metrics]
 disabled = true
 format = '(\([+$added]($added_style) )([-$deleted]($deleted_style)\) )'
 
 [git_branch]
 symbol = " "
-# style = "purple"
+style = "purple"
 
 [git_status]
-style = "bold cyan"
+style = "cyan"
 format = '([$all_status$ahead_behind]($style) )'
 conflicted = '󰕚 $count '
 ahead = ' $count '
@@ -24,6 +28,13 @@ modified = '[ $count](yellow) '
 staged = '[󰔧 $count](green) '
 renamed = '[ $count](magenta) '
 deleted = '[ $count](red) '
+
+[directory]
+truncate_to_repo = false
+truncation_symbol = '.../'
+truncation_length = 5
+read_only = "🔒"
+style = "blue"
 
 [aws]
 symbol = "  "
@@ -40,15 +51,11 @@ symbol = " "
 [dart]
 symbol = " "
 
-[directory]
-read_only = "🔒"
-# style = "cyan"
-
 [docker_context]
 symbol = " "
 
 [elixir]
-symbol = " "
+symbol = " "
 
 [elm]
 symbol = " "
@@ -57,7 +64,7 @@ symbol = " "
 symbol = " "
 
 [haskell]
-symbol = " "
+symbol = "󰲒 "
 
 [hg_branch]
 symbol = " "
@@ -94,5 +101,7 @@ symbol = " "
 symbol = "🅢 "
 
 [rust]
-symbol = " "
+symbol = "󱘗 "
 
+[zig]
+symbol = " "

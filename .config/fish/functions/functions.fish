@@ -280,3 +280,22 @@ function ft -d "search for tagged dirs and files"
     end
 end
 #: }}}
+
+#: whp -d "Get path of command, echo and copy to clipboard" {{{
+function whp -d "Get path of command, echo and copy to clipboard"
+    if test (count $argv) -eq 0
+        echo "Usage: wp <command>"
+        return 1
+    end
+
+    set -l path (which $argv[1])
+    if test $status -eq 0
+        echo $path
+        echo -n $path | pbcopy
+    else
+        echo "Command not found: $argv[1]"
+        return 1
+    end
+end
+
+#: }}}

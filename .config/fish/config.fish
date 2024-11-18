@@ -71,10 +71,9 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.rgrc
 
 #: Abbreviations {{{
 abbr -a lr --set-cursor "exa --icons -la | rg '%'"
-abbr -a \*\* --position anywhere --set-cursor "(fd . --type d -H -E '*.git*' -E '*node_modules*' | fzf)"
+abbr -a \*\* --position anywhere --set-cursor "(fd . --type f -H -E '*.git*' -E '*node_modules*' | fzf --print-query | tail -1)"
 abbr -a gco --set-cursor "git checkout"
-abbr -a wp --set-cursor "echo -n (which %) | pbcopy"
-# abbr 
+abbr -a wp --set-cursor "set -l path (which %); echo \$path; echo -n \$path | pbcopy"
 #: }}}
 
 #: Aliases {{{
@@ -161,15 +160,15 @@ set fish_cursor_insert line blink
 set fish_cursor_replace_one underscore blink
 set fish_cursor_visual block
 
-# Function to change cursor on mode switch
+# # Function to change cursor on mode switch
 function fish_vi_cursor --on-variable fish_bind_mode
     switch $fish_bind_mode
         case default
             echo -en "\e[2 q" # Set block cursor
-            set fish_cursor_custom block blink
+            set fish_cursor_custom block
         case insert
             echo -en "\e[6 q" # Set line cursor
-            set fish_cursor_custom line blink
+            set fish_cursor_custom line
         case visual
             echo -en "\e[2 q" # Set block cursor
             set fish_cursor_custom block
@@ -187,14 +186,16 @@ end
 
 #: Fzf {{{
 
-set -gx PATH $PATH $(brew --prefix)/opt/fzf/bin
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
 # setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
 # alternative pointer ''
 # setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
 # setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:5,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
-set -gx FZF_DEFAULT_OPTS "--reverse --history=$HOME/.fzf_history --border rounded --height 100% --info=right --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8 --info-command='echo \"\$FZF_INFO (\$(set_color -o yellow)\$FZF_POS\$(set_color normal)) 💛\"'"
+set -gx FZF_DEFAULT_OPTS "--reverse --history=$HOME/.fzf_history --border rounded --height 100% --info=right --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8"
+
+# Set up fzf key bindings
+fzf --fish | source
 
 #: }}}
 
@@ -351,10 +352,17 @@ zoxide init fish | source
 
 #: Add starship prompt {{{
 
+function starship_transient_prompt_func
+  # starship module character
+  echo -n "🚀"
+end
 starship init fish | source
 enable_transience
 
 #: }}}
+
+# Typst
+export TYPST_ROOT="$HOME"
 
 # Setting PATH for Python 3.12
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.12/bin" "$PATH"
