@@ -3,9 +3,29 @@
 # error_symbol = '[󰔶](bold red) '
 # error_symbol = '[✘](bold red) '
 
-# format = """$character"""
-format = """$directory$character"""
-right_format = """[$all](none)"""
+# Two line prompt:
+# format = """$all$time$character"""
+
+# One line prompt with right prompt
+# format = """$directory$character"""
+format = """$character$directory"""
+# format = """$time$character"""
+right_format = """$all"""
+
+[character]
+success_symbol= '[❯](bold green)'
+# success_symbol= '[󰔶 ](bold bright-white)'
+error_symbol = '[❯](bold red)'
+# success_symbol= '[_](bold green)'
+vimcmd_symbol = '[❮](bold bright-green)'
+# vimcmd_symbol = '[󰔷 ](bold bright-white)'
+# vimcmd_symbol = '[󰫻_](bold bright-green)'
+format = '$symbol '
+
+[time]
+# disabled = false
+disabled = true
+format = '[✦ ](bold blue)at [$time]($style) '
 
 [git_metrics]
 disabled = true
@@ -30,11 +50,13 @@ renamed = '[ $count](magenta) '
 deleted = '[ $count](red) '
 
 [directory]
+# format = '▲  [$path]($style)[$read_only]($read_only_style) '
 truncate_to_repo = false
 truncation_symbol = '.../'
-truncation_length = 5
+truncation_length = 4
 read_only = "🔒"
-style = "blue"
+# style = "bright-black"
+style = "white"
 
 [aws]
 symbol = "  "
