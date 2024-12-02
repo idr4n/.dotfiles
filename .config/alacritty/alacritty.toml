@@ -1,4 +1,5 @@
-import = ["/Users/iduran/.config/alacritty/themes/noirbuddy-slate.toml"]
+[general]
+import = ["/Users/iduran/.config/alacritty/themes/tokyonight_night.toml"]
 live_config_reload = true
 
 [cursor]
