@@ -3,7 +3,7 @@ prepend_keymap = [
 # Open with
 { on = [ "o", "f" ], run = ''' shell 'open -R "$1"' --confirm ''', desc = "Reveal in finder" },
 { on = [ "o", "p" ], run = ''' shell 'qlmanage -p "$1" > /dev/null 2> /dev/null' --confirm ''', desc = "Preview file" },
-{ on = [ "o", "s" ], run = ''' shell 'sioyek "$1" > /dev/null 2> /dev/null' --confirm ''', desc = "Open with Sioyek" },
+{ on = [ "o", "s" ], run = ''' shell 'open -na sioyek "$1" > /dev/null 2> /dev/null' --confirm ''', desc = "Open with Sioyek" },
 { on = [ "o", "z" ], run = ''' shell 'zathura "$1" & ~/scripts/focus_app zathura > /dev/null 2> /dev/null' --confirm ''', desc = "Open with Zathura" },
 { on = [ "o", "d" ], run = ''' shell 'open -a Dropover "$@"' --confirm ''', desc = "Open with Dropover (make dragable)" },
 

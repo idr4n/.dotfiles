@@ -148,6 +148,16 @@ mapkey('<Ctrl-p>', 'Search Query in Perplexity', function () {
   );
 });
 
+// search in Merlin
+mapkey('<Ctrl-m>', 'Search Query in Merlin', function () {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryValue =
+    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
+  window.open(
+    'https://www.getmerlin.in/chat/?q=' + encodeURIComponent(queryValue)
+  );
+});
+
 // search in ALL (Google, DuckDuckGo, Breave and Perplexity)
 mapkey('<Ctrl-A>', 'Search Query in ALL engines', function () {
   const urlParams = new URLSearchParams(window.location.search);
