@@ -72,7 +72,7 @@ set -gx RIPGREP_CONFIG_PATH $HOME/.rgrc
 #: Abbreviations {{{
 abbr -a lr --set-cursor "exa --icons -la | rg '%'"
 abbr -a \*\* --position anywhere --set-cursor "(fd . --type f -H -E '*.git*' -E '*node_modules*' | fzf --print-query | tail -1)"
-abbr -a gco --set-cursor "git checkout"
+abbr -a gc --set-cursor "git checkout"
 abbr -a wp --set-cursor "set -l path (which %); echo \$path; echo -n \$path | pbcopy"
 #: }}}
 
@@ -86,6 +86,8 @@ alias c='clear'
 alias oo='cd ~/dotfiles'
 alias oc='cd ~/.config'
 alias on='cd ~/.config/nvim'
+alias og='cd ~/.config/ghostty'
+alias ow='cd ~/.config/wezterm'
 alias ot="cd ~/pCloud/Notes-tdo"
 alias pd='pwd'
 alias up='cd ..'
@@ -155,13 +157,13 @@ end
 # set fish_cursor_insert line
 # Set the replace mode cursor to an underscore
 # set fish_cursor_replace_one underscore
-set fish_cursor_default block blink
-set fish_cursor_insert line blink
-set fish_cursor_replace_one underscore blink
+set fish_cursor_default block
+set fish_cursor_insert line
+set fish_cursor_replace_one underscore
 set fish_cursor_visual block
 
 # # Function to change cursor on mode switch
-function fish_vi_cursor --on-variable fish_bind_mode
+function fish_vim_cursor --on-variable fish_bind_mode
     switch $fish_bind_mode
         case default
             echo -en "\e[2 q" # Set block cursor
@@ -174,6 +176,9 @@ function fish_vi_cursor --on-variable fish_bind_mode
             set fish_cursor_custom block
     end
 end
+
+# Activate vi keybindings
+set -g fish_key_bindings fish_vi_key_bindings
 
 #: }}}
 
@@ -188,10 +193,6 @@ end
 
 setenv FZF_DEFAULT_COMMAND 'fd --type file --follow'
 setenv FZF_CTRL_T_COMMAND 'fd --type file --follow'
-# setenv FZF_DEFAULT_OPTS "--height 20% --color 'gutter:-1' --preview-window right:50% --bind ctrl-l:toggle-preview"
-# alternative pointer ''
-# setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:0,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
-# setenv FZF_DEFAULT_OPTS "--reverse --history='$HOME/.fzf_history' --border rounded --no-info --prompt='  ' --pointer='' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:5,hl+:5,header:2,separator:5,info:4,label:4,pointer:5,prompt:#828BB8,query:#828BB8"
 set -gx FZF_DEFAULT_OPTS "--reverse --history=$HOME/.fzf_history --border rounded --height 100% --info=right --prompt='  ' --pointer='•' --marker=' ' --bind ctrl-l:toggle-preview --color gutter:-1,bg+:-1,fg+:4,hl:#FF87D7,hl+:#FF87D7,header:2,separator:#FF87D7,info:4,label:4,pointer:#FF87D7,prompt:#828BB8,query:#828BB8"
 
 # Set up fzf key bindings
@@ -275,55 +276,6 @@ setenv LESS_TERMCAP_us \e'[04;38;5;146m' # begin underline
 
 #: }}}
 
-#: Prompt configuration {{{
-
-# Prompt configuration
-# function fish_prompt
-#   echo
-#   set -g fish_prompt_pwd_dir_length 1
-#   set -g fish_prompt_pwd_full_dirs 2 
-#   set_color white
-#   # echo -n "["(date "+%H:%M")"] "
-#   # echo -n '卑 '
-#   # set_color blue
-#   # set_color yellow
-#   # set_color white
-#   set_color magenta
-#   # echo -n (prompt_pwd)
-#   if [ $PWD != $HOME ]
-#     if [ (dirname $PWD) = $HOME ]
-#       echo -n "~/"(basename $PWD)
-#     else if [ (dirname $PWD) = "/" ]
-#       echo -n $PWD
-#     else
-#       echo -n (__shorten (basename (dirname $PWD)))/(basename $PWD)
-#     end
-#   else
-#     echo -n (prompt_pwd)
-#     # echo -n "~"
-#   end
-#   set_color normal
-#   printf '%s' (__fish_git_prompt)
-#   # set_color brblack
-#   echo
-#   set_color white
-#   # set_color red
-#   # echo -n ' ❯ '
-#   echo -n '❯ '
-#   # echo -n '▲ '
-#   # echo -n '△ '
-#   # echo -n '喝 '
-#   # echo -n '➜ '
-#   set_color normal
-# end
-
-# function fish_right_prompt -d "Right Prompt"
-#   set_color normal
-#   printf '%s ' (__fish_git_prompt)
-# end
-
-#: }}}
-
 #: fish - interactive status {{{
 
 if status is-interactive
@@ -344,6 +296,23 @@ end
 
 #: }}}
 
+function fish_title
+    # Get shortened path without the full home path
+    # basename (prompt_pwd)
+
+    # Get current working directory
+    set -l wd (prompt_pwd)
+
+    # Try to get git branch
+    set -l git_branch (command git rev-parse --abbrev-ref HEAD 2>/dev/null)
+
+    if test -n "$git_branch"
+        echo "$wd ($git_branch)"
+    else
+        echo $wd
+    end
+end
+
 #: Add zoxide {{{
 
 zoxide init fish | source
@@ -353,9 +322,9 @@ zoxide init fish | source
 #: Add starship prompt {{{
 
 function starship_transient_prompt_func
-  # starship module character
-  echo -n "🚀"
+  echo -n "󰦥 at "(set_color yellow)(date "+%H:%M:%S ")(set_color normal)
 end
+
 starship init fish | source
 enable_transience
 
@@ -367,5 +336,5 @@ export TYPST_ROOT="$HOME"
 # Setting PATH for Python 3.12
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.12/bin" "$PATH"
 
-# eval "$(luarocks path --bin)" # you can also add LUA_PATH based on your own setup
-set -gx DYLD_LIBRARY_PATH /opt/homebrew/Cellar/imagemagick/7.1.1-28/lib # check your imagemagic installation path; this resolve dyld loading failure
+# imagemagick
+set -gx DYLD_FALLBACK_LIBRARY_PATH (brew --prefix)/lib $DYLD_FALLBACK_LIBRARY_PATH

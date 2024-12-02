@@ -1,8 +1,3 @@
-# [character]
-# success_symbol = '[󰔶](bold green) '
-# error_symbol = '[󰔶](bold red) '
-# error_symbol = '[✘](bold red) '
-
 # Two line prompt:
 # format = """$all$time$character"""
 
@@ -14,11 +9,9 @@ right_format = """$all"""
 
 [character]
 success_symbol= '[❯](bold green)'
-# success_symbol= '[󰔶 ](bold bright-white)'
 error_symbol = '[❯](bold red)'
 # success_symbol= '[_](bold green)'
-vimcmd_symbol = '[❮](bold bright-green)'
-# vimcmd_symbol = '[󰔷 ](bold bright-white)'
+vimcmd_symbol = '[❮](bold green)'
 # vimcmd_symbol = '[󰫻_](bold bright-green)'
 format = '$symbol '
 
@@ -50,7 +43,6 @@ renamed = '[ $count](magenta) '
 deleted = '[ $count](red) '
 
 [directory]
-# format = '▲  [$path]($style)[$read_only]($read_only_style) '
 truncate_to_repo = false
 truncation_symbol = '.../'
 truncation_length = 4
