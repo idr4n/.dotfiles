@@ -36,9 +36,10 @@
 
 #let gen_title(
   title: none,
+  font: heading_font,
 ) = {
   // Set document metadata.
-  text(size: title-size, weight: "black", title, font: heading_font)
+  text(size: title-size, weight: "black", title, font: font)
 }
 
 #let author_string(authors: none) = {
@@ -69,9 +70,10 @@
   authors: none,
   prefix: none,
   suffix: none,
+  font: heading_font,
 ) = {
   pad(left: -2%, {
-      gen_title(title: title)
+      gen_title(title: title, font: font)
       v(13pt, weak: true)
       pad(left: 1.5pt, prefix)
       align(right,
@@ -101,11 +103,12 @@
   authors: none,
   enable-footer: true,
   prefix: none,
+  text_font: font,
 
   // Content to wrap
   body,
 ) = {
-  set text(size: normal-size, font: font, weight: "regular", lang: settings.lang)
+  set text(size: normal-size, font: text_font, weight: "regular", lang: settings.lang)
   show link: text.with(fill: rgb("#5577bb"), weight: "bold")
   show math.equation: eq => eq
   set figure.caption(position: top)
@@ -171,7 +174,8 @@
       ]
     ],
   )
-  set list(indent: 5pt, body-indent: 5pt, marker: ("▪", "‣"))
+  // set list(indent: 5pt, body-indent: 5pt, marker: ("▪", "‣"))
+  set list(indent: 5pt, body-indent: 5pt, marker: ("•", "◦"))
   set enum(indent: 5pt, body-indent: 5pt)
 
   // Configure paragraph properties.
