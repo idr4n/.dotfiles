@@ -298,4 +298,24 @@ function whp -d "Get path of command, echo and copy to clipboard"
     end
 end
 
+function showmedacolors -d "Print current terminal colors"
+    set colors black red green yellow \
+               blue magenta cyan white \
+               brblack brred brgreen bryellow \
+               brblue brmagenta brcyan brwhite
+
+    for i in (seq 1 16)
+        set color $colors[(math $i)]
+        printf "%10s " $color
+        set_color normal
+        set_color $color
+        printf "███"
+        set_color normal
+        if test (math "$i % 4") = 0
+            echo ''
+        end
+    end
+    echo ''
+end
+
 #: }}}
