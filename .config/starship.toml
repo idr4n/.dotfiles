@@ -2,16 +2,20 @@
 # format = """$all$time$character"""
 
 # One line prompt with right prompt
-# format = """$directory$character"""
-format = """$character$directory"""
+format = """ $directory$character """
+# format = """$character$directory"""
 # format = """$time$character"""
 right_format = """$all"""
 
 [character]
-success_symbol= '[❯](bold green)'
-error_symbol = '[❯](bold red)'
+# success_symbol= '[❯](bold green)'
+# success_symbol= '[φ](bold green)'
+success_symbol= '[Ξ](bold green)'
+# error_symbol = '[❯](bold red)'
+error_symbol = '[Ξ](bold red)'
 # success_symbol= '[_](bold green)'
-vimcmd_symbol = '[❮](bold green)'
+# vimcmd_symbol = '[❮](bold green)'
+vimcmd_symbol = '[Ϟ](bold green)'
 # vimcmd_symbol = '[󰫻_](bold bright-green)'
 format = '$symbol '
 
