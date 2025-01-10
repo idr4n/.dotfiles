@@ -1,4 +1,5 @@
 --hidden
 --follow
 --no-ignore 
+--smart-case
 --glob=!{node_modules,.zig-cache,.git,**/.DS_Store,**/_build,deps,.elixir_ls,**/target,**/assets/node_modules,**/assets/vendor,**/.next,**/.vercel,**/build,**/out}
