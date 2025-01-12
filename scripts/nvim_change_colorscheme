@@ -37,7 +37,7 @@ change_colorscheme_for_all() {
 		# $NVIM_PATH --headless --server "$server" --remote-send "<Esc>:Lazy reload bufferline.nvim<CR>"
 		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:Lazy reload indent-blankline.nvim<CR>"
 		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:lua require('config.statusline.components').clear_hl_cache()<CR>"
-		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:lua vim.notify('**Colorscheme changed to $scheme**', vim.log.levels.WARN)<CR>"
+		$NVIM_PATH --headless --server "$server" --remote-send "<Esc>:lua vim.notify('**Colorscheme changed to $scheme**', vim.log.levels.INFO)<CR>"
 	done
 
 	# modify init config file with new colorscheme
