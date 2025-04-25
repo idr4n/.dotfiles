@@ -1,28 +1,55 @@
 #!/usr/bin/env sh
 
 export VISUAL=nvim
-# export VISUAL=hx
 export EDITOR="$VISUAL"
 
-# notesDir="$HOME/pCloud/Notes-zk"
-notesDir="$HOME/pCloud/Notes-Database"
-# notesDir="$HOME/pCloud/Notes-Flow"
+# notesDir="$HOME/pCloud/Notes-Database"
+notesDir="$HOME/pCloud/Notes-tdo"
 
-# noteFilename="$HOME/Dropbox/Notes-Database/Daily-Notes/$(date +%Y-%m-%d).md"
-noteFilename="$notesDir""/Daily-Notes/$(date +%Y-%m-%d).md"
-# noteFilename="$notesDir""/journal/daily/$(date +%Y-%m-%d).md"
-# term="/usr/local/bin/alacritty --working-directory $HOME/Dropbox/Notes-Database -d 90 20"
-# term="/usr/local/bin/alacritty --working-directory $HOME/Dropbox/Notes-Database"
+# Default to daily note
+note_type="daily"
 
-# echo $noteFilename
-# process="$term -e $editor $noteFilename"
-# process="subl $noteFilename"
+# Check if argument is provided
+if [ "$1" = "weekly" ]; then
+  note_type="weekly"
+fi
 
-# ~/scripts/lof "$process"
-# status=$?
+if [ "$note_type" = "daily" ]; then
+  # Daily note setup
+  year=$(date +%Y)
+  month=$(date +%m)
+  dateStamp=$(date +%Y-%m-%d)
 
-# [ $status -eq 1 ] && $process && exit
-# $process && exit
-# /usr/local/bin/alacritty --working-directory "$notesDir" -o window.dimensions.columns=98 window.dimensions.lines=24 -e /opt/homebrew/bin/fish -ic "$EDITOR $noteFilename"
-open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd $notesDir $EDITOR $noteFilename
-# emacsclient -nc $noteFilename
+  noteDir="$notesDir/Daily-Notes/entries/$year/$month"
+  noteFilename="$noteDir/$dateStamp.md"
+else
+  # Weekly note setup
+  # Get the current day of the week (0=Sunday, 6=Saturday)
+  current_day_of_week=$(date +%w)
+
+  # Calculate the Sunday (start) of current week by going back $current_day_of_week days
+  start_date=$(date -v-${current_day_of_week}d +%Y-%m-%d)
+
+  # Calculate the Saturday (end) of current week by adding 6 days to Sunday
+  end_date=$(date -v+6d -v-${current_day_of_week}d +%Y-%m-%d)
+
+  # Extract components for filename
+  start_day=$(date -jf %Y-%m-%d "$start_date" +%d)
+  end_day=$(date -jf %Y-%m-%d "$end_date" +%d)
+  month=$(date -jf %Y-%m-%d "$start_date" +%m)
+  year=$(date -jf %Y-%m-%d "$start_date" +%Y)
+
+  # Extract year and month from the start date (for directory structure)
+  dir_year=$(date -jf %Y-%m-%d "$start_date" +%Y)
+  dir_month=$(date -jf %Y-%m-%d "$start_date" +%m)
+
+  # Create weekly note filename in format w20-26-04-2025
+  noteDir="$notesDir/Daily-Notes/entries/$dir_year/$dir_month"
+  noteFilename="$noteDir/w$start_day-$end_day\_$month-$year.md"
+fi
+
+# Create directory structure
+mkdir -p "$noteDir"
+
+# Launch terminal with Neovim
+open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd $notesDir fish -ic "$EDITOR $noteFilename"
