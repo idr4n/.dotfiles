@@ -63,6 +63,7 @@ set -gx NOTES_DIR $HOME/pCloud/Notes-tdo
 # set -gx ADD_ENTRY_TIMESTAMP true
 # set -gx FILE_NAME_AS_TITLE true
 # set -gx NOTES_DIR $HOME/pCloud/Notes-tdo-test
+source $HOME/other_repos/tdo/completions/tdo_completion.fish
 #: }}}
 
 #: Ripgrep {{{
@@ -74,6 +75,12 @@ abbr -a lr --set-cursor "exa --icons -la | rg '%'"
 abbr -a \*\* --position anywhere --set-cursor "(fd . --type f -H -E '*.git*' -E '*node_modules*' | fzf --print-query | tail -1)"
 abbr -a gc --set-cursor "git checkout"
 abbr -a wp --set-cursor "set -l path (which %); echo \$path; echo -n \$path | pbcopy"
+abbr -a yc --set-cursor "ys -c '%'"
+abbr -a yfc --set-cursor "ys --fetch % -c 'summarize this for me'"
+abbr -a yfa --set-cursor "ys --fetch % -a 'summarize this for me'"
+abbr -a yrc --set-cursor "ys --rag -c '%'"
+abbr -a yra --set-cursor "ys --rag -a '%'"
+abbr -a ysa --set-cursor "ys --ask '%'"
 #: }}}
 
 #: Aliases {{{
@@ -89,6 +96,7 @@ alias on='cd ~/.config/nvim'
 alias og='cd ~/.config/ghostty'
 alias ow='cd ~/.config/wezterm'
 alias ot="cd ~/pCloud/Notes-tdo"
+alias od="cd ~/pCloud/Notes-Database"
 alias pd='pwd'
 alias up='cd ..'
 alias tm='tmux'
@@ -96,11 +104,11 @@ alias ts='~/dotfiles/scripts/TT.sh'
 alias tw='ts Work'
 alias tc='ts Config'
 alias tl='ts Dev'
-alias pc='echo -n (pwd) | pbcopy'
+alias pc='echo -n "\""(pwd)"\"" | pbcopy'
+alias pc2='echo -n (pwd | string replace -a " " "\\ ") | pbcopy'
 alias c="nvim -c 'CommandTRipgrep'"
 alias n="nvim"
 alias nv="nvim ."
-# alias nn="nvim -c 'cd ~/.config/nvim' -c 'CommandTRipgrep'"
 alias nn="nvim -c 'cd ~/.config/nvim' -c 'Telescope find_files'"
 alias h="hx"
 alias st="subl"
@@ -118,7 +126,7 @@ alias tt="~/dotfiles/scripts/tt"
 alias T="~/dotfiles/scripts/T.sh"
 alias TT="~/dotfiles/scripts/TT.sh"
 alias lfl="lf '$(head -n 1 ~/.cache/lf/last_dir)'"
-alias td="todos_rg"
+alias td="todos_rg glow"
 alias tf="todos_rg fzf"
 alias ec="emacsclient -nc"
 alias app="pwd >> ~/projects-dirs"
@@ -128,6 +136,14 @@ alias osp="presenterm ~/pCloud/Notes-Database/00-Inbox/scratch_present.md"
 alias j="joshuto"
 alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
 alias s='sesh connect (sesh list -i | fzf --ansi --height "50%" --border-label "Pick a Sesh" --prompt="⚡ ")'
+alias ys="youtube-summarizer"
+alias ysh="youtube-summarizer --history"
+alias ysf="youtube-summarizer --first"
+alias ysl="youtube-summarizer --last"
+alias yse="youtube-summarizer -e"
+alias ysi="youtube-summarizer -i"
+alias yi="youtube-summarizer -I"
+alias i="zi"
 
 function lt
     if test (count $argv) -gt 0
@@ -159,6 +175,7 @@ end
 # set fish_cursor_replace_one underscore
 set fish_cursor_default block
 set fish_cursor_insert line
+# set fish_cursor_insert block
 set fish_cursor_replace_one underscore
 set fish_cursor_visual block
 
@@ -289,8 +306,8 @@ end
 function fish_greeting
     set r (random 0 100)
 
-    if test $r -lt 90
-        todos_rg
+    if test $r -lt 50
+        todos_rg glow
     end
 end
 
@@ -322,7 +339,7 @@ zoxide init fish | source
 #: Add starship prompt {{{
 
 function starship_transient_prompt_func
-  echo -n "󰦥 at "(set_color yellow)(date "+%H:%M:%S ")(set_color normal)
+  echo -n " 󰦥 at "(set_color yellow)(date "+%H:%M:%S ")(set_color normal)
 end
 
 starship init fish | source
@@ -334,7 +351,13 @@ enable_transience
 export TYPST_ROOT="$HOME"
 
 # Setting PATH for Python 3.12
-set -x PATH "/Library/Frameworks/Python.framework/Versions/3.12/bin" "$PATH"
+set -x PATH "/Library/Frameworks/Python.framework/Versions/3.13/bin" "$PATH"
+
+# Ruby rbenv
+if type rbenv >/dev/null
+  rbenv init - | source
+end
+set -gx PATH $PATH "$HOME/.rbenv/shims"
 
 # imagemagick
 set -gx DYLD_FALLBACK_LIBRARY_PATH (brew --prefix)/lib $DYLD_FALLBACK_LIBRARY_PATH
