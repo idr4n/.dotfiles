@@ -1,48 +1,75 @@
-[colors.bright]
-black = "0x9893a5"
-blue = "0x56949f"
-cyan = "0xd7827e"
-green = "0x286983"
-magenta = "0x907aa9"
-red = "0xb4637a"
-white = "0x575279"
-yellow = "0xea9d34"
-
-[colors.cursor]
-cursor = "0x575279"
-text = "0xfaf4ed"
-
-[colors.hints.end]
-background = "#fffaf3"
-foreground = "#9893a5"
-
-[colors.hints.start]
-background = "#fffaf3"
-foreground = "#797593"
-
-[colors.line_indicator]
-background = "None"
-foreground = "None"
-
-[colors.normal]
-black = "0xf2e9e1"
-blue = "0x56949f"
-cyan = "0xd7827e"
-green = "0x286983"
-magenta = "0x907aa9"
-red = "0xb4637a"
-white = "0x575279"
-yellow = "0xea9d34"
+# Colors section of "Alacritty - TOML configuration file format"
+# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd#colors
 
 [colors.primary]
-background = "0xfaf4ed"
-foreground = "0x575279"
+foreground = "#575279"
+background = "#FAF4ED"
+dim_foreground = "#797593"
+bright_foreground = "#575279"
 
-[colors.selection]
-background = "0xdfdad9"
-text = "0x575279"
+[colors.cursor]
+text = "#CECACD"
+cursor = "#575279"
 
 [colors.vi_mode_cursor]
-cursor = "0xcecacd"
-text = "0x575279"
+text = "#CECACD"
+cursor = "#575279"
+
+[colors.search.matches]
+foreground = "#797593"
+background = "#F2E9E1"
+
+[colors.search.focused_match]
+foreground = "#FAF4ED"
+background = "#D7827E"
+
+[colors.hints.start]
+foreground = "#797593"
+background = "#FFFAF3"
+
+[colors.hints.end]
+foreground = "#9893A5"
+background = "#FFFAF3"
+
+[colors.line_indicator]
+foreground = "None"
+background = "None"
+
+[colors.footer_bar]
+foreground = "#575279"
+background = "#FFFAF3"
+
+[colors.selection]
+text = "#575279"
+background = "#DFDAD9"
+
+[colors.normal]
+black = "#F2E9E1"
+red = "#B4637A"
+green = "#286983"
+yellow = "#EA9D34"
+blue = "#56949F"
+magenta = "#907AA9"
+cyan = "#D7827E"
+white = "#575279"
+
+[colors.bright]
+black = "#9893A5"
+red = "#B4637A"
+green = "#286983"
+yellow = "#EA9D34"
+blue = "#56949F"
+magenta = "#907AA9"
+cyan = "#D7827E"
+white = "#575279"
+
+[colors.dim]
+black = "#9893A5"
+red = "#B4637A"
+green = "#286983"
+yellow = "#EA9D34"
+blue = "#56949F"
+magenta = "#907AA9"
+cyan = "#D7827E"
+white = "#575279"
 

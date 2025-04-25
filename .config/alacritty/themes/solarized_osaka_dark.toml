@@ -1,0 +1,32 @@
+# Colors (Solarized Osaka Dark)
+
+# Default colors
+[colors.primary]
+background = '#001419'
+foreground = '#839395'
+
+# Normal colors
+[colors.normal]
+black      = '#001014'
+red        = '#DB302D'
+green      = '#849900'
+yellow     = '#B28500'
+blue       = '#268BD3'
+magenta    = '#D23681'
+cyan       = '#29A298'
+white      = '#839496'
+
+[colors.cursor]
+cursor     = "#93a1a1"
+text       = "#001419"
+
+# Bright colors
+[colors.bright]
+black      = '#576D74'
+red        = '#DB302D'
+green      = '#849900'
+yellow     = '#B28500'
+blue       = '#268BD3'
+magenta    = '#D23681'
+cyan       = '#29A298'
+white      = '#657b83'

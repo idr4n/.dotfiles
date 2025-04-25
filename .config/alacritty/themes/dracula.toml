@@ -9,9 +9,10 @@
 
 [colors.primary]
 
-background = "#282a36"
-# background = "#22212C"
-foreground = "#f8f8f2"
+# background = "#282a36"
+background = "#22212C"
+# foreground = "#f8f8f2"
+foreground = "#E9E9F4"
 bright_foreground = "#ffffff"
 
 [colors.cursor]
