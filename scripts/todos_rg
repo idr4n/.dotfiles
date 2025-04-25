@@ -7,31 +7,42 @@ directories=(
 
 FZF_BORDER_LABEL=" TODOs Picker "
 
+# Handle fzf mode
 if [[ $1 == "fzf" ]]; then
-    sel=$(rg -n "^\s*\- \[ \]" "${directories[@]}" | sed "s/ *\- \[ \]//" | fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --ansi --border-label "$FZF_BORDER_LABEL" \
-              --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
-              --preview-window=down --preview-window +{2}-2)
-    [[ -z $sel ]] && echo "nothing selected!" && exit 0
-    file=$(echo "$sel" | cut -d ":" -f 1)
-    line_nr=$(echo "$sel" | cut -d ":" -f 2)
+  sel=$(rg -n "^\s*\- \[ \]" "${directories[@]}" | sed "s/ *\- \[ \]//" | fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --ansi --border-label "$FZF_BORDER_LABEL" \
+    --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
+    --preview-window=down --preview-window +{2}-2)
+  [[ -z $sel ]] && echo "nothing selected!" && exit 0
+  file=$(echo "$sel" | cut -d ":" -f 1)
+  line_nr=$(echo "$sel" | cut -d ":" -f 2)
 
-    $EDITOR "$file" +$line_nr
-    exit 0
+  $EDITOR "$file" +$line_nr
+  exit 0
+fi
+
+# Handle markdown formatting
+formatter=""
+if [[ $1 == "rich" ]]; then
+  formatter="rich"
+  shift
+elif [[ $1 == "glow" ]]; then
+  formatter="glow"
+  shift
 fi
 
 colors=(
-    '\033[0;31m'  # Red
-    '\033[0;32m'  # Green
-    '\033[0;33m'  # Yellow
-    '\033[0;34m'  # Blue
-    '\033[0;35m'  # Purple
-    '\033[0;36m'  # Cyan
-    '\033[0;37m'  # White
-    '\033[0;91m'  # Bright Red
-    '\033[0;93m'  # Bright Yellow
-    '\033[0;96m'  # Bright Cyan
+  '\033[0;31m' # Red
+  '\033[0;32m' # Green
+  '\033[0;33m' # Yellow
+  '\033[0;34m' # Blue
+  '\033[0;35m' # Purple
+  '\033[0;36m' # Cyan
+  '\033[0;37m' # White
+  '\033[0;91m' # Bright Red
+  '\033[0;93m' # Bright Yellow
+  '\033[0;96m' # Bright Cyan
 )
-nocolor="\033[0m"  # Color reset
+nocolor="\033[0m" # Color reset
 colors_length=${#colors[@]}
 
 # marker=""
@@ -42,15 +53,52 @@ marker="•"
 mapfile -t results < <(rg -NIS --glob='*.md' $2 "^\s*\- \[ \]\s+.*($1)" "${directories[@]}" | sort -r)
 
 # check if results were found
-# [[ -z $results ]] && echo -e "\033[0;35mNo TODOs! 🥳" && exit 0
 [[ -z $results ]] && exit 0
 
-# print empty line
-echo -e "\n ${colors[4]}TODOS:$nocolor\n"
+# Format using rich (Python)
+if [[ $formatter == "rich" ]]; then
+  # Create a temporary markdown file
+  tmpfile=$(mktemp /tmp/todos.md)
+  echo "## TODOs" >"$tmpfile"
 
-for ((i = 0; i<${#results[@]}; i++)); do
+  for ((i = 0; i < ${#results[@]}; i++)); do
+    todo=$(echo ${results[$i]} | sed 's/^ *\- \[ \]//')
+    echo "- $todo" >>"$tmpfile"
+  done
+
+  # Use rich to display the markdown
+  python3 -c "from rich.console import Console; from rich.markdown import Markdown; console = Console(width=70); md = Markdown(open('$tmpfile').read()); console.print(md)"
+  rm "$tmpfile"
+  exit 0
+# Format using glow
+elif [[ $formatter == "glow" ]]; then
+  # Create a temporary markdown file
+  tmpfile=$(mktemp /tmp/todos.md)
+  echo "# TODOs" >"$tmpfile"
+
+  for ((i = 0; i < ${#results[@]}; i++)); do
+    todo=$(echo ${results[$i]} | sed 's/^ *\- \[ \]//')
+    echo "- $todo" >>"$tmpfile"
+  done
+
+  # Check if glow is installed
+  if command -v glow &>/dev/null; then
+    glow -w 70 "$tmpfile"
+  else
+    echo "Glow not found. You can install it with: brew install glow (macOS) or go install github.com/charmbracelet/glow@latest"
+    cat "$tmpfile" # Fallback to plain markdown
+  fi
+  rm "$tmpfile"
+  exit 0
+# Default to original colorized output
+else
+  # print empty line
+  echo -e "\n ${colors[4]}TODOS:$nocolor\n"
+
+  for ((i = 0; i < ${#results[@]}; i++)); do
     todo=$(echo ${results[$i]} | sed 's/^ *\- \[ \]//')
     random=$(($RANDOM % ($colors_length + 1)))
     let mod=$i%$colors_length
     echo -e " ${colors[$random]}$marker$todo$nocolor"
-done
+  done
+fi

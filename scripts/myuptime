@@ -16,4 +16,4 @@ else
   result=$(printf "%d days, %.1f hours" $days $hours)
 fi
 
-echo "$result"
+echo "$result "
