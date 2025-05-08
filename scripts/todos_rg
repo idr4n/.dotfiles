@@ -7,6 +7,84 @@ directories=(
 
 FZF_BORDER_LABEL=" TODOs Picker "
 
+today_icon="󰃶"
+cal_icon="󰭧"
+
+# Function to extract date from a TODO item
+extract_date() {
+  local todo="$1"
+  # Look for date pattern [YYYY-MM-DD HH:MM] or similar formats
+  if [[ $todo =~ \[(20[0-9]{2}-[0-1]?[0-9]-[0-3]?[0-9]( [0-2]?[0-9]:[0-5]?[0-9])?)\ *\] ]]; then
+    echo "${BASH_REMATCH[1]}"
+  else
+    # Return far future date for items without dates (to sort at the end)
+    echo "9999-12-31"
+  fi
+}
+
+# Function to format date in human-readable format
+format_date() {
+  local date_str="$1"
+
+  # Skip formatting for placeholder dates
+  if [[ "$date_str" == "9999-12-31" ]]; then
+    echo ""
+    return
+  fi
+
+  # Get current date, yesterday, and tomorrow
+  local today=$(date "+%Y-%m-%d")
+  local yesterday=$(date -v-1d "+%Y-%m-%d")
+  local tomorrow=$(date -v+1d "+%Y-%m-%d")
+
+  # Extract just the date part if there's a time component
+  local todo_date
+  if [[ $date_str =~ ([0-9]{4}-[0-9]{2}-[0-9]{2})\ ([0-9]{1,2}:[0-9]{2}) ]]; then
+    todo_date="${BASH_REMATCH[1]}"
+    time_part="${BASH_REMATCH[2]}"
+  else
+    todo_date="$date_str"
+    time_part=""
+  fi
+
+  # Determine relative date label
+  local date_label
+  if [[ "$todo_date" == "$today" ]]; then
+    date_label="$today_icon Today"
+  elif [[ "$todo_date" == "$yesterday" ]]; then
+    date_label="$today_icon Yesterday"
+  elif [[ "$todo_date" == "$tomorrow" ]]; then
+    date_label="$today_icon Tomorrow"
+  else
+    # Format as before for other dates
+    date_label="$cal_icon $(date -j -f "%Y-%m-%d" "$todo_date" "+%a, %b %d")"
+  fi
+
+  # If there's a time component, format it
+  if [[ -n "$time_part" ]]; then
+    # Format time (assumes 24-hour format input)
+    hour=$(echo "$time_part" | cut -d':' -f1)
+    minute=$(echo "$time_part" | cut -d':' -f2)
+
+    if ((hour < 12)); then
+      if ((hour == 0)); then
+        hour=12
+      fi
+      time_suffix="am"
+    else
+      if ((hour > 12)); then
+        hour=$((hour - 12))
+      fi
+      time_suffix="pm"
+    fi
+
+    echo "**$date_label at ${hour}${minute:+:$minute}$time_suffix**"
+  else
+    # Just show the date
+    echo "**$date_label**"
+  fi
+}
+
 # Handle fzf mode
 if [[ $1 == "fzf" ]]; then
   sel=$(rg -n "^\s*\- \[ \]" "${directories[@]}" | sed "s/ *\- \[ \]//" | fzf --delimiter=: --nth=2.. --height 50% --layout=reverse --ansi --border-label "$FZF_BORDER_LABEL" \
@@ -22,13 +100,33 @@ fi
 
 # Handle markdown formatting
 formatter=""
-if [[ $1 == "rich" ]]; then
-  formatter="rich"
-  shift
-elif [[ $1 == "glow" ]]; then
-  formatter="glow"
-  shift
-fi
+sort_by_date=true # Default to sorting by date
+
+# Parse command line options
+while [[ "$#" -gt 0 ]]; do
+  case $1 in
+  "rich")
+    formatter="rich"
+    shift
+    ;;
+  "glow")
+    formatter="glow"
+    shift
+    ;;
+  "sort-date" | "--sort-date")
+    sort_by_date=true
+    shift
+    ;;
+  "no-sort-date" | "--no-sort-date")
+    sort_by_date=false
+    shift
+    ;;
+  *)
+    search_term="$1"
+    shift
+    ;;
+  esac
+done
 
 colors=(
   '\033[0;31m' # Red
@@ -45,15 +143,65 @@ colors=(
 nocolor="\033[0m" # Color reset
 colors_length=${#colors[@]}
 
-# marker=""
+# marker=""
 # marker="◉"
 marker="•"
 
 # store rg results in array "results"
-mapfile -t results < <(rg -NIS --glob='*.md' $2 "^\s*\- \[ \]\s+.*($1)" "${directories[@]}" | sort -r)
+mapfile -t results < <(rg -NIS --glob='*.md' $search_term "^\s*\- \[ \]\s+.*" "${directories[@]}" | sort -r)
 
 # check if results were found
 [[ -z $results ]] && exit 0
+
+# If sort by date is requested, extract dates and sort
+if [ "$sort_by_date" = true ]; then
+  # Create temporary files for sorting
+  dated_tmpfile=$(mktemp /tmp/todos_dated.XXXXXX)
+  undated_tmpfile=$(mktemp /tmp/todos_undated.XXXXXX)
+
+  # Separate dated and undated TODOs
+  for ((i = 0; i < ${#results[@]}; i++)); do
+    todo_text=$(echo "${results[$i]}" | sed 's/^ *\- \[ \]//')
+    date_str=$(extract_date "$todo_text")
+
+    if [[ "$date_str" == "9999-12-31" ]]; then
+      # Undated TODOs go to separate file
+      echo "$date_str|||$todo_text" >>"$undated_tmpfile"
+    else
+      # Dated TODOs go to main file
+      echo "$date_str|||$todo_text" >>"$dated_tmpfile"
+    fi
+  done
+
+  # Sort dated TODOs by date
+  mapfile -t dated_results < <(sort "$dated_tmpfile")
+
+  # Sort undated TODOs (they'll all have the same date, but we'll keep the original order)
+  mapfile -t undated_results < <(cat "$undated_tmpfile")
+
+  # Combine results, with dated TODOs first, then undated
+  results=()
+
+  # Add dated TODOs
+  for item in "${dated_results[@]}"; do
+    todo_text=$(echo "$item" | sed 's/^[^|]*|||//')
+    results+=("$todo_text")
+  done
+
+  # Add a separator item if we have both dated and undated TODOs
+  if [[ ${#dated_results[@]} -gt 0 && ${#undated_results[@]} -gt 0 ]]; then
+    results+=("---SEPARATOR---")
+  fi
+
+  # Add undated TODOs
+  for item in "${undated_results[@]}"; do
+    todo_text=$(echo "$item" | sed 's/^[^|]*|||//')
+    results+=("$todo_text")
+  done
+
+  # Clean up temporary files
+  rm "$dated_tmpfile" "$undated_tmpfile"
+fi
 
 # Format using rich (Python)
 if [[ $formatter == "rich" ]]; then
@@ -62,7 +210,24 @@ if [[ $formatter == "rich" ]]; then
   echo "## TODOs" >"$tmpfile"
 
   for ((i = 0; i < ${#results[@]}; i++)); do
-    todo=$(echo ${results[$i]} | sed 's/^ *\- \[ \]//')
+    todo=${results[$i]}
+
+    # Handle separator
+    if [[ "$todo" == "---SEPARATOR---" ]]; then
+      echo -e "\n### Tasks without dates\n" >>"$tmpfile"
+      continue
+    fi
+
+    # Extract and format date if sorting by date
+    if [ "$sort_by_date" = true ]; then
+      date_str=$(extract_date "$todo")
+      if [[ "$date_str" != "9999-12-31" ]]; then
+        formatted_date=$(format_date "$date_str")
+        # Replace [YYYY-MM-DD HH:MM] with formatted date
+        todo=$(echo "$todo" | sed "s/\[$date_str\]/$formatted_date/")
+      fi
+    fi
+
     echo "- $todo" >>"$tmpfile"
   done
 
@@ -77,7 +242,26 @@ elif [[ $formatter == "glow" ]]; then
   echo "# TODOs" >"$tmpfile"
 
   for ((i = 0; i < ${#results[@]}; i++)); do
-    todo=$(echo ${results[$i]} | sed 's/^ *\- \[ \]//')
+    todo=${results[$i]}
+
+    # Handle separator
+    if [[ "$todo" == "---SEPARATOR---" ]]; then
+      # echo -e "\n## Tasks without dates\n" >>"$tmpfile"
+      # echo -e "---" >>"$tmpfile"
+      echo -e "## Anytime" >>"$tmpfile"
+      continue
+    fi
+
+    # Extract and format date if sorting by date
+    if [ "$sort_by_date" = true ]; then
+      date_str=$(extract_date "$todo")
+      if [[ "$date_str" != "9999-12-31" ]]; then
+        formatted_date=$(format_date "$date_str")
+        # Replace [YYYY-MM-DD HH:MM] with formatted date
+        todo=$(echo "$todo" | sed "s/\[$date_str\]/$formatted_date/")
+      fi
+    fi
+
     echo "- $todo" >>"$tmpfile"
   done
 
@@ -95,10 +279,31 @@ else
   # print empty line
   echo -e "\n ${colors[4]}TODOS:$nocolor\n"
 
+  had_separator=false
+
   for ((i = 0; i < ${#results[@]}; i++)); do
-    todo=$(echo ${results[$i]} | sed 's/^ *\- \[ \]//')
+    todo=${results[$i]}
+
+    # Handle separator
+    if [[ "$todo" == "---SEPARATOR---" ]]; then
+      echo -e "\n ${colors[4]}Tasks without dates:$nocolor"
+      echo -e " ${colors[4]}-------------------$nocolor\n"
+      had_separator=true
+      continue
+    fi
+
+    # Extract and format date if sorting by date
+    if [ "$sort_by_date" = true ]; then
+      date_str=$(extract_date "$todo")
+      if [[ "$date_str" != "9999-12-31" ]]; then
+        formatted_date=$(format_date "$date_str")
+        # Replace [YYYY-MM-DD HH:MM] with formatted date
+        todo=$(echo "$todo" | sed "s/\[$date_str\]/$formatted_date/")
+      fi
+    fi
+
     random=$(($RANDOM % ($colors_length + 1)))
     let mod=$i%$colors_length
-    echo -e " ${colors[$random]}$marker$todo$nocolor"
+    echo -e " ${colors[$random]}$marker $todo$nocolor"
   done
 fi

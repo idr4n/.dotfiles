@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# naas: No-as-a-servie
+
+# Path to the reasons file
+REASONS_FILE="$HOME/other_repos/no-as-a-service/reasons.json"
+
+# Check if the file exists
+if [ ! -f "$REASONS_FILE" ]; then
+  echo "Error: Reasons file not found at $REASONS_FILE"
+  exit 1
+fi
+
+# Read the reasons file and select a random line
+if command -v jq &>/dev/null; then
+  # If jq is available, use it for proper JSON parsing
+  # Get array length, select random index, then get that element
+  ARRAY_LENGTH=$(jq '. | length' "$REASONS_FILE")
+  RANDOM_INDEX=$((RANDOM % ARRAY_LENGTH))
+  RANDOM_REASON=$(jq -r ".[$RANDOM_INDEX]" "$REASONS_FILE")
+else
+  # Fallback if jq is not available - less reliable
+  # Convert multiline JSON to single lines, extract array elements, then pick random one
+  REASONS=$(grep -o '"[^"]*"' "$REASONS_FILE" | sed 's/^"//;s/"$//')
+  TOTAL_REASONS=$(echo "$REASONS" | wc -l)
+  RANDOM_LINE=$((RANDOM % TOTAL_REASONS + 1))
+  RANDOM_REASON=$(echo "$REASONS" | sed -n "${RANDOM_LINE}p")
+fi
+
+# Display the random reason
+if command -v lolcat &>/dev/null; then
+  echo -e "\n  │ $RANDOM_REASON\n" | lolcat
+else
+  echo -e "\n  │ $RANDOM_REASON\n"
+fi
