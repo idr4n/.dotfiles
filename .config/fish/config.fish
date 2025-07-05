@@ -41,9 +41,8 @@ set -gx NNN_USE_EDITOR 1
 
 set t (math (date +%H) + (date +%M)/60)
 # if [ $t -gt 8 ]
-if test $t -gt 7; and test $t -lt 18
-    # set -gx BAT_THEME "gruvbox-light"
-    set -gx BAT_THEME Nord
+if test $t -gt 7; and test $t -lt 19
+    set -gx BAT_THEME "gruvbox-light"
 else
     set -gx BAT_THEME Nord
 end
@@ -55,15 +54,6 @@ alias l="NVIM_APPNAME=LazyVim nvim"
 alias a="NVIM_APPNAME=AstroNvim nvim"
 alias v="NVIM_APPNAME=NvChad nvim"
 alias lk="NVIM_APPNAME=LazyKick nvim"
-#: }}}
-
-#: tdo env variable {{{
-set -gx PATH $PATH $HOME/.local/bin
-set -gx NOTES_DIR $HOME/pCloud/Notes-tdo
-# set -gx ADD_ENTRY_TIMESTAMP true
-# set -gx FILE_NAME_AS_TITLE true
-# set -gx NOTES_DIR $HOME/pCloud/Notes-tdo-test
-source $HOME/other_repos/tdo/completions/tdo_completion.fish
 #: }}}
 
 #: Ripgrep {{{
@@ -81,10 +71,12 @@ abbr -a yfa --set-cursor "ys --fetch % -a 'summarize this for me'"
 abbr -a yrc --set-cursor "ys --rag -c '%'"
 abbr -a yra --set-cursor "ys --rag -a '%'"
 abbr -a ysa --set-cursor "ys --ask '%'"
+abbr -a zt --set-cursor "zk edit -Me --match=\"[ ]\" --match=\"%\" --tag \"\" -i"
 #: }}}
 
 #: Aliases {{{
 # alias ls='lsd'
+alias lb='br -dp'
 alias ls='eza --icons'
 alias ll='ls -al'
 alias la='ls -a'
@@ -95,7 +87,7 @@ alias oc='cd ~/.config'
 alias on='cd ~/.config/nvim'
 alias og='cd ~/.config/ghostty'
 alias ow='cd ~/.config/wezterm'
-alias ot="cd ~/pCloud/Notes-tdo"
+alias oz="cd ~/pCloud/Notes-zk"
 alias od="cd ~/pCloud/Notes-Database"
 alias pd='pwd'
 alias up='cd ..'
@@ -132,8 +124,7 @@ alias ec="emacsclient -nc"
 alias app="pwd >> ~/projects-dirs"
 alias acp="pwd >> ~/confs-dirs"
 alias awp="pwd >> ~/work-dirs"
-alias osp="presenterm ~/pCloud/Notes-Database/00-Inbox/scratch_present.md"
-alias j="joshuto"
+alias osp="presenterm ~/pCloud/Notes-zk/notes/scratch_present.md"
 alias y="yazi --cwd-file ~/.cache/yazi/last_dir"
 alias s='sesh connect (sesh list -i | fzf --ansi --height "50%" --border-label "Pick a Sesh" --prompt="⚡ ")'
 alias ys="youtube-summarizer"
@@ -144,6 +135,11 @@ alias yse="youtube-summarizer -e"
 alias ysi="youtube-summarizer -i"
 alias yi="youtube-summarizer -I"
 alias i="zi"
+alias no="naas"
+alias ct="crypto-tracker"
+alias b="broot"
+alias gst="git status"
+alias gcl="git clone"
 
 function lt
     if test (count $argv) -gt 0
@@ -305,9 +301,14 @@ end
 
 function fish_greeting
     set r (random 0 100)
+    set r2 (random 0 100)
 
-    if test $r -lt 50
+    if test $r -lt 40
         todos_rg glow
+    end
+
+    if test $r2 -lt 5
+      naas
     end
 end
 
@@ -340,6 +341,7 @@ zoxide init fish | source
 
 function starship_transient_prompt_func
   echo -n " 󰦥 at "(set_color yellow)(date "+%H:%M:%S ")(set_color normal)
+  # echo -n " $(starship module directory)$(starship module character)"
 end
 
 starship init fish | source
@@ -347,10 +349,14 @@ enable_transience
 
 #: }}}
 
+#: Helix runtime {{{
+set -gx HELIX_RUNTIME $HOME/other_repos/helix/runtime
+#: }}}
+
 # Typst
 export TYPST_ROOT="$HOME"
 
-# Setting PATH for Python 3.12
+# Setting PATH for Python 3.13
 set -x PATH "/Library/Frameworks/Python.framework/Versions/3.13/bin" "$PATH"
 
 # Ruby rbenv
@@ -361,3 +367,6 @@ set -gx PATH $PATH "$HOME/.rbenv/shims"
 
 # imagemagick
 set -gx DYLD_FALLBACK_LIBRARY_PATH (brew --prefix)/lib $DYLD_FALLBACK_LIBRARY_PATH
+
+# opencode
+fish_add_path $HOME/.opencode/bin
