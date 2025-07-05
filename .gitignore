@@ -43,3 +43,5 @@ debug
 .idea/
 __pycache__/
 current-theme.conf
+.opencode
+OpenCode.md

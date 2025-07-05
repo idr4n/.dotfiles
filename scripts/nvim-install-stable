@@ -13,7 +13,7 @@ fi
 tar_file="nvim-macos-arm64.tar.gz"
 dir_path="nvim-macos-arm64"
 trash $download_dir/$tar_file
-curl --output-dir $download_dir -LO https://github.com/neovim/neovim/releases/download/v0.10.0/nvim-macos-arm64.tar.gz
+curl --output-dir $download_dir -LO https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-macos-arm64.tar.gz
 
 if [ -e "$download_dir/$tar_file" ]; then
   tar xzf $download_dir/$tar_file --directory $download_dir

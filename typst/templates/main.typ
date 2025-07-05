@@ -169,7 +169,9 @@
         #colbreak()
 
         #align(right)[
-          #counter(page).display("1")
+          #context {
+            counter(page).display("1")
+          }
         ]
       ]
     ],

@@ -95,7 +95,7 @@ end
 function fr -d "Search files and directories in current directory"
     set -l sel $(fd . -H --type f -E '*.git*' -E node_modules | \
         fzf --height 100% --layout=reverse --info=inline --ansi --border-label  " fr - search files and directories in current directory - cd " \
-        --preview 'bat --color=always {1} --style="numbers"' --preview-window=down,60%)
+        --preview 'bat --color=always (echo {}) --style="numbers"' --preview-window=down,60%)
     if test -z "$sel"
         echo "nothing selected!"
     else if test -d "$sel"
@@ -124,11 +124,11 @@ function frr -d "Search with fzf/rg in current directory"
 end
 #: }}}
 
-#: fn -d "search noets file names and open with Nvim" {{{
-function fn -d "search files and cd into their directories"
-    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-tdo
+#: fn -d "search notes file names and open with Nvim" {{{
+function fn -d "search notes file names and open with Nvim"
+    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-zk
     # set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim '~/pCloud/Notes-Database/00-Inbox/{q}.md'")+abort'
-    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-tdo -e fish -ic "tdo {q}")+abort'
+    set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-zk -e fish -ic "zk new --title {q}")+abort'
     set -l HEADER "CTRL-N: Create New Note."
 
     set -l sel $(fd . -e md -H --type f -E '*.git*' -E '*node_modules*' $directories | \
@@ -146,13 +146,12 @@ end
 
 #: fno -d "# search in Notes with fzf/rg" {{{
 function fno -d "# search in Notes with fzf/rg"
-    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-tdo
+    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-zk
     # set -l sel $(rg -n '.*' $HOME/pCloud/Notes-Database/ | fzf --layout=reverse --height 50% --ansi) 
     set -l CREATE 'ctrl-n:execute-silent(open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim '~/pCloud/Notes-Database/00-Inbox/{q}.md'")+abort'
     set -l HEADER "CTRL-N: Create New Note."
 
-    set -l sel $(rg -n '.*' $directories | \
-        # fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi \
+    set -l sel $(rg -n '.*' --glob=!{'node_modules','.git','**/.obsidian/**','.obsidian*','**/.obsidian*'} $directories | \
         fzf --delimiter=: --nth=1.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fno - search in Notes directories - open in Nvim" \
         --preview 'bat --color=always (echo {1}) --highlight-line {2} --style="numbers"' \
         --preview-window=down --preview-window +{2}-5 \
@@ -207,9 +206,9 @@ end
 #: fu -d "search for URLs in list of directories" {{{
 function fu -d "search for URLs in list of directories"
     # set -l directories ~/pCloud/Notes-zk ~/pCloud/Notes-Database
-    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-tdo
+    set -l directories ~/pCloud/Notes-Database ~/pCloud/Notes-zk
 
-    set -l sel $(rg --sortr modified -n 'https?://[^ ]+' --follow --no-ignore -g '!.git/*' -g !node_modules $directories | \
+    set -l sel $(rg --sortr modified -n 'https?://[^ ]+' --follow --no-ignore --glob=!{node_modules,.git,**/.DS_Store,.obsidian} $directories | \
         fzf --delimiter=: --nth=2.. --height 100% --layout=reverse --info=inline --ansi --border-label  " fu - search URLs in given list of directories - open in browser " \
         --preview 'bat --color=always {1} --highlight-line {2} --style="numbers"' \
         --preview-window=down --preview-window +{2}-5) 

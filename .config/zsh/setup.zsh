@@ -67,6 +67,7 @@ export RIPGREP_CONFIG_PATH=$HOME/.rgrc
 
 # tdo env variable
 export NOTES_DIR=$HOME/pCloud/Notes-tdo
+source $HOME/other_repos/tdo/completions/tdo_completion.sh
 
 # private env variables
 source $HOME/.environment_zsh

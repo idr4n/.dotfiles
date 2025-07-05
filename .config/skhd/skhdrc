@@ -11,10 +11,10 @@ cmd + ctrl + shift - return : open -na kitty
 # run or focus ~/scripts/run_term_fm
 # alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "lf $(head -n 1 $HOME/.cache/lf/last_dir)" 
 # alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "joshuto --output-file $HOME/.cache/joshuto/last_dir $(head -n 1 $HOME/.cache/joshuto/last_dir)" 
-alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "yazi --cwd-file $HOME/.cache/yazi/last_dir $(head -n 1 $HOME/.cache/yazi/last_dir)" 
+alt + shift - return :open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "yazi --cwd-file $HOME/.cache/yazi/last_dir '$(head -n 1 $HOME/.cache/yazi/last_dir)'" 
 
 # restart Emacs server
-ctrl + alt + cmd - e : brew services restart emacs-plus@30
+# ctrl + alt + cmd - e : brew services restart emacs-plus@30
 # restart skhd
 ctrl + alt + cmd - s : skhd --restart-service
 
@@ -29,11 +29,16 @@ ctrl + alt + shift - return : open -na alacritty --args -o window.dimensions.col
 
 # run or focus ~/Downloads in file manager
 # ctrl + shift - d : emacsclient -nc -F "((width . 145)(height . 40))" ~/Downloads
-ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "yazi ~/Downloads"
+# ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "yazi ~/Downloads"
+# ctrl + shift - d : open -na kitty --args fish -ic "yazi ~/Downloads"
+ctrl + shift - d : open -na kitty --args fish -ic "br --sort-by-date -c \":toggle_dates\" ~/Downloads"
+# ctrl + shift - d : open -na wezterm --args --config initial_rows=45 --config initial_cols=180 start --always-new-process fish -ic "br --sort-by-date ~/Downloads"
+# ctrl + shift - d : open -na Ghostty --args --window-height=45 --window-width=180 -e fish -ic "yazi ~/Downloads"
 # ctrl + shift - d : /usr/local/bin/marta --existing-tab ~/Downloads
 
 # Open Downloads in Finder
 cmd + ctrl - d : open ~/Downloads
+# cmd + ctrl - d : marta --existing-tab ~/Downloads
 
 # run or focus browser
 # ctrl + alt - f : /Applications/Firefox.app/Contents/MacOS/firefox
@@ -47,15 +52,14 @@ cmd + ctrl + shift - b : ~/scripts/save_bookmark
 
 # Open daily note
 cmd + ctrl + shift - d : ~/scripts/dailynote
+# Open weekly note
+cmd + ctrl + shift - w : ~/scripts/dailynote weekly
 
 # Open todos note
 cmd + ctrl + shift - t : open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "nvim ~/pCloud/Notes-Database/todos_important.md"
 
 # Open scratchpad note file
-# cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 --working-directory ~/pCloud/Notes-tdo -e zsh -ic "nvim ~/pCloud/Notes-tdo/notes/Scratchpad.md"
-cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 -o window.position.y=0 -o window.position.x=1600 --working-directory ~/pCloud/Notes-tdo -e fish -ic "nvim"
-# cmd + ctrl + shift - n : open -na wezterm --args --config initial_rows=48 --config initial_cols=102 start --always-new-process --cwd ~/pCloud/Notes-Database nvim ~/pCloud/Notes-Database/Misc-Notes/Scratchpad.md
-# cmd + ctrl + shift - n : open -na alacritty --args --working-directory ~/pCloud/Notes-Database -e fish -ic "hx ~/pCloud/Notes-Database/Misc-Notes/Scratchpad.md"
+cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=102 -o window.dimensions.lines=48 -o window.position.y=0 -o window.position.x=1600 --working-directory ~/pCloud/Notes-zk -e fish -ic "nvim"
 
 # Open finder script
 # ctrl + shift - f : ~/scripts/finder

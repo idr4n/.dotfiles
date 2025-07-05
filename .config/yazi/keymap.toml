@@ -19,9 +19,9 @@ shell --block --confirm '
   sel=$(fd . -H "${directories[@]}" | fzf --layout=reverse --height 100% --ansi --border-label  " ff - search in given list and cd "); 
 
   if [ -d "$sel" ]; then
-    ya pub dds-cd --str "$sel"
+    ya emit cd "$sel"
   else
-    ya pub dds-cd --str "$(dirname "$sel")"
+    ya emit reveal "$sel"
   fi
 '
 ''', desc = "Search via fzf selected dirs" },
@@ -57,10 +57,10 @@ sel=$(cat ~/pCloud/tags_file.txt | sort | fzf --layout=reverse)
 sel="${sel/#\~/$HOME}"
 
 if [ -d "$sel" ]; then
-  ya pub dds-cd --str "$sel"
+  ya emit cd "$sel"
 else
   if [ -f "$sel" ]; then
-    ya pub dds-cd --str "$(dirname "$sel")"
+    ya emit reveal "$sel"
   fi
 fi
 '

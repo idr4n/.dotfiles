@@ -1,5 +1,5 @@
 [general]
-import = ["/Users/iduran/.config/alacritty/themes/github_monochrome_dark.toml"]
+import = ["/Users/iduran/.config/alacritty/themes/gruvbox_dark.toml"]
 live_config_reload = true
 
 [cursor]
@@ -13,49 +13,62 @@ thickness = 0.2
 # size = 16
 # for monolisa
 # size = 15
-size = 17
+# For ZedPlexMono
+# size = 17
+# For BerkeleyMono
+# size = 16.5
+size = 17.5
 
 [font.bold]
 # family = "FiraCode Nerd Font"
 # family = "MonoLisa Nerd Font"
 # family = "IosevkaCustom Nerd Font"
-family = "ZedPlexMono Nerd Font"
+# family = "ZedPlexMono Nerd Font"
+family = "BerkeleyMono Nerd Font"
 # family = "SauceCodePro Nerd Font"
 # style = "SemiBold"
-style = "Extended Bold"
+# style = "Extended Bold"
+style = "Bold"
 
 [font.bold_italic]
 # family = "FiraCode Nerd Font"
 # family = "MonoLisa Nerd Font"
 # family = "IosevkaCustom Nerd Font"
-family = "ZedPlexMono Nerd Font"
+# family = "ZedPlexMono Nerd Font"
+family = "BerkeleyMono Nerd Font"
 # family = "SauceCodePro Nerd Font"
 # style = "SemiBold"
-style = "Extended Bold Italic"
+# style = "Extended Bold Italic"
+style = "Bold Oblique"
 
 [font.glyph_offset]
-y = 3
+# y = 3
+y = 5
 
 [font.normal]
 # family = "FiraCode Nerd Font"
 # family = "MonoLisa Nerd Font"
 # family = "IosevkaCustom Nerd Font"
-family = "ZedPlexMono Nerd Font"
+# family = "ZedPlexMono Nerd Font"
+family = "BerkeleyMono Nerd Font"
 # family = "SauceCodePro Nerd Font"
 # style = "Regular"
 # style = "Light Regular"
-style = "Extended"
+# style = "Extended"
+style = "Regular"
 
 [font.italic]
 # family = "FiraCode Nerd Font"
 # family = "MonoLisa Nerd Font"
 # family = "IosevkaCustom Nerd Font"
-family = "ZedPlexMono Nerd Font"
+# family = "ZedPlexMono Nerd Font"
+family = "BerkeleyMono Nerd Font"
 # family = "SauceCodePro Nerd Font"
 # style = "Regular"
 # style = "Italic"
 # style = "Light Italic"
-style = "Extended Italic"
+# style = "Extended Italic"
+style = "Oblique"
 
 [font.offset]
 # x = 1
@@ -68,7 +81,9 @@ style = "Extended Italic"
 # For MonoLisa
 # y = 5
 # For ZedPlexMono
-y = 10
+# y = 10
+# For BerkeleyMono
+y = 13
 
 [[keyboard.bindings]]
 chars = "\u001BF"
@@ -231,7 +246,7 @@ hide_when_typing = true
 [window]
 decorations = "buttonless"
 dynamic_padding = true
-# opacity = 0.95
+# opacity = 0.85
 # blur = true
 option_as_alt = "Both"
 

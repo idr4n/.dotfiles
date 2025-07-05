@@ -2,27 +2,55 @@
 # format = """$all$time$character"""
 
 # One line prompt with right prompt
-format = """ $directory$character """
-# format = """$character$directory"""
-# format = """$time$character"""
-right_format = """$all"""
+# format = """ $directory$character"""
+# right_format = """$all"""
+
+# Two line prompt with left and right sides
+format = " $directory$fill$all $character"
+# format = """
+#  $directory\
+#  $fill \
+#  $git_branch\
+#  $git_commit\
+#  $git_state\
+#  $git_metrics\
+#  $git_status\
+#  $lua\
+#  $rust\
+#  $python\
+#  $golang\
+#  $time\
+#  [─┐ ](bright-black)
+#  $character"""
+# right_format = "[─┘ ](bright-black)"
+
+[fill]
+symbol = " "
+style = "bright-black"
 
 [character]
-# success_symbol= '[❯](bold green)'
+# success_symbol= '[❯](bold green) '
+success_symbol= '[❯](green) '
 # success_symbol= '[φ](bold green)'
-success_symbol= '[Ξ](bold green)'
+# success_symbol= '❯ '
 # error_symbol = '[❯](bold red)'
-error_symbol = '[Ξ](bold red)'
+# error_symbol = '[❯](bold red) '
+error_symbol = '[❯](red) '
 # success_symbol= '[_](bold green)'
-# vimcmd_symbol = '[❮](bold green)'
-vimcmd_symbol = '[Ϟ](bold green)'
+# vimcmd_symbol = '[❮](bold green) '
+vimcmd_symbol = '[❮](green) '
+# vimcmd_symbol = '[Ϟ](bold green)'
+# vimcmd_symbol = '[Ξ](bold green)'
+# vimcmd_symbol = 'φⁿ'
+# vimcmd_symbol = '❮ '
 # vimcmd_symbol = '[󰫻_](bold bright-green)'
 format = '$symbol '
 
 [time]
-# disabled = false
 disabled = true
-format = '[✦ ](bold blue)at [$time]($style) '
+# disabled = false
+style = "yellow"
+format = '[✦ ](bold blue)[$time]($style) '
 
 [git_metrics]
 disabled = true
@@ -52,7 +80,8 @@ truncation_symbol = '.../'
 truncation_length = 4
 read_only = "🔒"
 # style = "bright-black"
-style = "white"
+# style = "white"
+style = "blue"
 
 [aws]
 symbol = "  "
