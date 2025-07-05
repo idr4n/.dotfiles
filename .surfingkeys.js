@@ -148,16 +148,6 @@ mapkey('<Ctrl-p>', 'Search Query in Perplexity', function () {
   );
 });
 
-// search in Merlin
-mapkey('<Ctrl-m>', 'Search Query in Merlin', function () {
-  const urlParams = new URLSearchParams(window.location.search);
-  const queryValue =
-    urlParams.get('q') || urlParams.get('query') || urlParams.get('k') || '';
-  window.open(
-    'https://www.getmerlin.in/chat/?q=' + encodeURIComponent(queryValue)
-  );
-});
-
 // search in ALL (Google, DuckDuckGo, Breave and Perplexity)
 mapkey('<Ctrl-A>', 'Search Query in ALL engines', function () {
   const urlParams = new URLSearchParams(window.location.search);
@@ -197,7 +187,7 @@ mapkey('>', '#3Move current tab to right', function () {
 unmap('<Ctrl-i>');
 
 settings.blocklistPattern =
-  /calendar.cron.com*|getmerlin.in*|app.capacities.io*|typeform.com*|colab.research.google.com|app.eraser.io*|excalidraw.com*|design.penpot.app*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
+  /calendar.cron.com*|grok.com*|t3.chat*|exchange.revolut.com*|www.tradingview.com*|getmerlin.in*|app.capacities.io*|typeform.com*|colab.research.google.com|app.eraser.io*|excalidraw.com*|design.penpot.app*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
 
 addSearchAlias(
   'gw',
@@ -315,7 +305,7 @@ const Dark_theme = `
     font-family: Input Sans Condensed, Charcoal, sans-serif;
     font-size: 14px;
     backdrop-filter: blur(25px);
-    background: rgba(39, 39, 39, 0.85);
+    background: rgba(39, 39, 39, 1);
     color: #F2F2F2;
     border: 0.5px solid rgba(255, 255, 255, 0.3);
     caret-color: #A0A0A1;
@@ -428,7 +418,7 @@ const Dark_theme = `
     color: #F2F2F2 !important;
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
-    background: rgba(39, 39, 39, 0.7) !important;
+    background: rgba(39, 39, 39, 1) !important;
 }
 .ace_print-margin {
     background: #C6A0F6 !important;
@@ -462,7 +452,7 @@ const Light_theme = `
     font-family: Input Sans Condensed, Charcoal, sans-serif;
     font-size: 14px;
     backdrop-filter: blur(30px);
-    background: rgba(241, 241, 241, 0.6);
+    background: rgba(241, 241, 241, 1);
     color: #3C3C3C;
     border: 0.5px solid rgba(0, 0, 0, 0.3);
     caret-color: #000000;
@@ -579,7 +569,7 @@ const Light_theme = `
     color: #4C4F69 !important;
     backdrop-filter: blur(30px);
     -webkit-backdrop-filter: blur(30px);
-    background: rgba(241, 241, 241, 0.6) !important;
+    background: rgba(241, 241, 241, 1) !important;
 }
 .ace_cursor {
     color: #8839EF !important;

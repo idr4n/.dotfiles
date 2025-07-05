@@ -2,13 +2,16 @@
 
 directories=(
   ~/pCloud/Notes-Database
-  ~/pCloud/Notes-tdo
+  ~/pCloud/Notes-zk
 )
 
 FZF_BORDER_LABEL=" TODOs Picker "
 
 today_icon="󰃶"
 cal_icon="󰭧"
+# overdue_icon="󱑂 " # Small warning icon for overdue items
+# overdue_icon="⭕🔴🚨❗ " # Small warning icon for overdue items
+overdue_icon="❗" # Small warning icon for overdue items
 
 # Function to extract date from a TODO item
 extract_date() {
@@ -20,6 +23,27 @@ extract_date() {
     # Return far future date for items without dates (to sort at the end)
     echo "9999-12-31"
   fi
+}
+
+# Function to check if a date is overdue
+is_overdue() {
+  local date_str="$1"
+
+  # Skip for placeholder dates
+  if [[ "$date_str" == "9999-12-31" ]]; then
+    return 1 # false
+  fi
+
+  local todo_date
+  if [[ $date_str =~ ([0-9]{4}-[0-9]{2}-[0-9]{2}) ]]; then
+    todo_date="${BASH_REMATCH[1]}"
+  else
+    todo_date="$date_str"
+  fi
+
+  local today=$(date "+%Y-%m-%d")
+
+  [[ "$todo_date" < "$today" ]]
 }
 
 # Function to format date in human-readable format
@@ -45,6 +69,12 @@ format_date() {
   else
     todo_date="$date_str"
     time_part=""
+  fi
+
+  # Check if date is overdue and add indicator
+  local overdue_indicator=""
+  if is_overdue "$todo_date"; then
+    overdue_indicator="$overdue_icon"
   fi
 
   # Determine relative date label
@@ -78,10 +108,10 @@ format_date() {
       time_suffix="pm"
     fi
 
-    echo "**$date_label at ${hour}${minute:+:$minute}$time_suffix**"
+    echo "**${overdue_indicator}$date_label at ${hour}${minute:+:$minute}$time_suffix**"
   else
     # Just show the date
-    echo "**$date_label**"
+    echo "**${overdue_indicator}$date_label**"
   fi
 }
 
@@ -142,6 +172,7 @@ colors=(
 )
 nocolor="\033[0m" # Color reset
 colors_length=${#colors[@]}
+red_color='\033[0;31m' # Red color for overdue indicator
 
 # marker=""
 # marker="◉"
@@ -206,7 +237,8 @@ fi
 # Format using rich (Python)
 if [[ $formatter == "rich" ]]; then
   # Create a temporary markdown file
-  tmpfile=$(mktemp /tmp/todos.md)
+  tmpfile=$(mktemp -t "todos-XXXXXX").md
+  trap 'rm -f "$tmpfile"' EXIT INT TERM
   echo "## TODOs" >"$tmpfile"
 
   for ((i = 0; i < ${#results[@]}; i++)); do
@@ -238,7 +270,8 @@ if [[ $formatter == "rich" ]]; then
 # Format using glow
 elif [[ $formatter == "glow" ]]; then
   # Create a temporary markdown file
-  tmpfile=$(mktemp /tmp/todos.md)
+  tmpfile=$(mktemp -t "todos-XXXXXX").md
+  trap 'rm -f "$tmpfile"' EXIT INT TERM
   echo "# TODOs" >"$tmpfile"
 
   for ((i = 0; i < ${#results[@]}; i++)); do
@@ -292,9 +325,15 @@ else
       continue
     fi
 
+    # Check for overdue tasks
+    date_str=$(extract_date "$todo")
+    overdue_indicator=""
+    if is_overdue "$date_str"; then
+      overdue_indicator="${red_color}${overdue_icon}${nocolor} "
+    fi
+
     # Extract and format date if sorting by date
     if [ "$sort_by_date" = true ]; then
-      date_str=$(extract_date "$todo")
       if [[ "$date_str" != "9999-12-31" ]]; then
         formatted_date=$(format_date "$date_str")
         # Replace [YYYY-MM-DD HH:MM] with formatted date
@@ -304,6 +343,6 @@ else
 
     random=$(($RANDOM % ($colors_length + 1)))
     let mod=$i%$colors_length
-    echo -e " ${colors[$random]}$marker $todo$nocolor"
+    echo -e " ${colors[$random]}$marker $overdue_indicator$todo$nocolor"
   done
 fi

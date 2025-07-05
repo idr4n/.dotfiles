@@ -42,6 +42,12 @@ latexmkrc:
 	@echo "Setting up latexmkrc..."
 	@ln -vsf $(DOTFILES_DIR)/.latexmkrc $(HOME)
 
+.PHONY: setup-tex-class
+setup-tex-class:
+	@echo "Setting up mydoc_eng custom class..."
+	@mkdir -p ~/Library/texmf/tex/latex/mydoc_eng
+	@cp ~/dotfiles/.config/tex/mydoc_eng.cls ~/Library/texmf/tex/latex/mydoc_eng/
+
 .PHONY: typst
 typst:
 	@echo "Setting up Typst configuration..."

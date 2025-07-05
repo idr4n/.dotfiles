@@ -117,7 +117,7 @@ hs.hotkey.bind(hyper3, "S", function()
 
     f.x = max.x + (max.w * (1 - proportion) / 2)
     f.w = max.w * proportion
-    f.h = f.w * 1 / ratio * 1.05
+    f.h = f.w * 1 / ratio * 1.1
     -- f.y = max.y + (max.h - f.h)/2
     f.y = max.y + (max.h - max.w * 0.8 * 1 / ratio) / 2
     win:setFrame(f)
@@ -717,16 +717,16 @@ end)
 --     h.focusApp(app, name)
 -- end)
 
-hs.hotkey.bind("alt", "m", function()
-    local name = "finder"
-    local app = hs.application.find(name)
-    if not app then
-        hs.application.launchOrFocus(name)
-        return
-    end
-
-    h.focusApp(app, name)
-end)
+-- hs.hotkey.bind("alt", "m", function()
+--     local name = "finder"
+--     local app = hs.application.find(name)
+--     if not app then
+--         hs.application.launchOrFocus(name)
+--         return
+--     end
+--
+--     h.focusApp(app, name)
+-- end)
 
 -- hs.hotkey.bind({ "alt" }, "l", function()
 --     -- local name = "code"
@@ -780,3 +780,39 @@ end)
 --     hs.eventtap.event.newSystemKeyEvent("PLAY", true):post()
 --     hs.eventtap.event.newSystemKeyEvent("PLAY", false):post()
 -- end)
+
+--------------------------------------------------------------
+-- Shortcuts to move windows across desktops
+--------------------------------------------------------------
+
+local function moveWindowToSpace(spaceNumber)
+    local win = hs.window.focusedWindow()
+    if not win then
+        return
+    end
+
+    -- Get window position for clicking
+    local clickPoint = hs.geometry.point(win:frame().x + 100, win:frame().y + 5)
+
+    -- Create mouse events for dragging
+    local mouseDown = hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseDown, clickPoint)
+    local mouseUp = hs.eventtap.event.newMouseEvent(hs.eventtap.event.types.leftMouseUp, clickPoint)
+
+    -- Execute the sequence
+    mouseDown:post()
+    hs.timer.usleep(500000) -- 500ms delay
+
+    -- Switch to target space
+    hs.eventtap.keyStroke({ "alt" }, tostring(spaceNumber))
+    hs.timer.usleep(500000) -- 500ms delay
+
+    -- Release the window
+    mouseUp:post()
+end
+
+-- Bind shortcuts for desktops 1-9
+for i = 1, 9 do
+    hs.hotkey.bind({ "alt", "shift" }, tostring(i), function()
+        moveWindowToSpace(i)
+    end)
+end
