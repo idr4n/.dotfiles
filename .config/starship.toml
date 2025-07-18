@@ -92,9 +92,6 @@ symbol = " "
 [c]
 symbol = " "
 
-[conda]
-symbol = " "
-
 [dart]
 symbol = " "
 
@@ -138,17 +135,11 @@ symbol = " "
 [nodejs]
 symbol = " "
 
-[package]
-symbol = "󰏗 "
-
 [python]
 symbol = " "
 
 [spack]
 symbol = "🅢 "
-
-[rust]
-symbol = "󱘗 "
 
 [zig]
 symbol = " "

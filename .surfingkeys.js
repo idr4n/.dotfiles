@@ -187,7 +187,7 @@ mapkey('>', '#3Move current tab to right', function () {
 unmap('<Ctrl-i>');
 
 settings.blocklistPattern =
-  /calendar.cron.com*|grok.com*|t3.chat*|exchange.revolut.com*|www.tradingview.com*|getmerlin.in*|app.capacities.io*|typeform.com*|colab.research.google.com|app.eraser.io*|excalidraw.com*|design.penpot.app*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
+  /calendar.cron.com*|grok.com*|t3.chat*|perplexity.ai*|exchange.revolut.com*|www.tradingview.com*|getmerlin.in*|app.capacities.io*|typeform.com*|colab.research.google.com|app.eraser.io*|excalidraw.com*|design.penpot.app*|mail.google.com*|.*inbox.google.com.*|workona.com*|coda.io*|logseq.com*|workflowy.com*|mail.superhuman.com*|app.hey.com*|docs.google.com|app.clickup.com*|app.slack.com*|teams.microsoft.com*|roamresearch.com*|remnote.io*|my.supernotes.app*|notion.so*|app.shortwave.com|access.mymind.com*|remnote.com*|omnivore.app*/i;
 
 addSearchAlias(
   'gw',

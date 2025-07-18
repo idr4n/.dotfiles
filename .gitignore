@@ -45,3 +45,4 @@ __pycache__/
 current-theme.conf
 .opencode
 OpenCode.md
+.claude

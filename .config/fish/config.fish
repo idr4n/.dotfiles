@@ -60,8 +60,12 @@ alias lk="NVIM_APPNAME=LazyKick nvim"
 set -gx RIPGREP_CONFIG_PATH $HOME/.rgrc
 #: }}}
 
+#: EZA {{{
+set -gx EZA_CONFIG_DIR $HOME/.config/eza
+#: }}}
+
 #: Abbreviations {{{
-abbr -a lr --set-cursor "exa --icons -la | rg '%'"
+abbr -a lr --set-cursor "eza --icons -la | rg '%'"
 abbr -a \*\* --position anywhere --set-cursor "(fd . --type f -H -E '*.git*' -E '*node_modules*' | fzf --print-query | tail -1)"
 abbr -a gc --set-cursor "git checkout"
 abbr -a wp --set-cursor "set -l path (which %); echo \$path; echo -n \$path | pbcopy"
@@ -81,7 +85,7 @@ alias ls='eza --icons'
 alias ll='ls -al'
 alias la='ls -a'
 alias lta='la --tree -I node_modules -I .git'
-alias c='clear'
+alias tree='la --tree -I node_modules -I .git'
 alias oo='cd ~/dotfiles'
 alias oc='cd ~/.config'
 alias on='cd ~/.config/nvim'
@@ -143,10 +147,12 @@ alias gcl="git clone"
 
 function lt
     if test (count $argv) -gt 0
-        eza --icons -a --tree --level=$argv[1] -I "node_modules|.git"
+        # eza --icons -a --tree --level=$argv[1] -I "node_modules|.git"
+        eza -lTag --level=$argv[1] --icons=always -I "node_modules|.git"
     else
         # use lta alias above to print all levels
-        eza --icons -a --tree --level=3 -I "node_modules|.git"
+        # eza --icons -a --tree --level=3 -I "node_modules|.git"
+        eza -lTag --level=3 --icons=always -I "node_modules|.git"
     end
 end
 
@@ -368,5 +374,3 @@ set -gx PATH $PATH "$HOME/.rbenv/shims"
 # imagemagick
 set -gx DYLD_FALLBACK_LIBRARY_PATH (brew --prefix)/lib $DYLD_FALLBACK_LIBRARY_PATH
 
-# opencode
-fish_add_path $HOME/.opencode/bin

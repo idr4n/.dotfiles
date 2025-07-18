@@ -1,4 +1,4 @@
-[manager]
+[mgr]
 prepend_keymap = [
 # Open with
 { on = [ "o", "f" ], run = ''' shell 'open -R "$1"' --confirm ''', desc = "Reveal in finder" },

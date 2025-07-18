@@ -65,8 +65,8 @@ cmd + ctrl + shift - n : open -na alacritty --args -o window.dimensions.columns=
 # ctrl + shift - f : ~/scripts/finder
 
 # open nvim
-alt + shift - v: open -na kitty --args --session ~/kitty-session-dev
-alt - v: open -na kitty --args --session ~/kitty-session-conf
+alt + shift - v: open -na kitty --args --session ~/.config/kitty/sessions/Dev
+alt - v: open -na kitty --args --session ~/.config/kitty/sessions/Config
 # alt + shift - v: open -na alacritty --args -o window.dimensions.columns=100 -o window.dimensions.lines=44 -e fish -ic nvim 
 
 # open terminal and attach to Tmux session
