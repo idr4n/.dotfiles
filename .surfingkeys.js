@@ -26,6 +26,18 @@ mapkey('<Ctrl-y>', 'Show me the money', function () {
   );
 });
 
+function copyMarkdownLink(){
+  const url = document.URL;
+  const title = document.title;
+  const selection = window.getSelection().toString().trim()
+  const text = selection? selection : title
+  api.Clipboard.write(`[${text}](${url})`)
+}
+
+mapkey('yL', 'Copy markdown link', copyMarkdownLink)
+mapkey('<Ctrl-m>', 'Copy markdown link', copyMarkdownLink)
+vmapkey('<Ctrl-m>', 'Copy markdown link', copyMarkdownLink)
+
 // search in Google
 mapkey('<Ctrl-g>', 'Search Query in Google', function () {
   const urlParams = new URLSearchParams(window.location.search);
